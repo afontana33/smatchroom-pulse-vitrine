@@ -939,8 +939,7 @@ git commit -m "feat(seo): sitemap.js et robots.js (Next.js 16 file conventions)"
     "seo:init-db": "node dist/scripts/init-db.js"
   },
   "dependencies": {
-    "@langchain/anthropic": "^0.4.0",
-    "@langchain/core": "^0.3.0",
+    "@anthropic-ai/sdk": "^0.30.0",
     "better-sqlite3": "^11.3.0",
     "dotenv": "^16.4.5",
     "gray-matter": "^4.0.3",
@@ -1621,15 +1620,18 @@ git commit -m "feat(seo): brand context, seed bank (60 angles agent-ia) et link 
 
 ---
 
-## Task 13: Anthropic client wrapper + UsageTracker
+## Task 13: Anthropic client wrapper + UsageTracker (native SDK)
 
 **Files:**
 - Create: `src/seo-engine/lib/anthropic.ts`
 
+> **SDK choice** : on utilise `@anthropic-ai/sdk` natif (pas LangChain). C'est le même
+> SDK que ton `pulse-sdr` utilise déjà — stable, prompt caching natif, moins de couches.
+
 - [ ] **Step 1: Write `src/seo-engine/lib/anthropic.ts`**
 
 ```typescript
-import { ChatAnthropic } from '@langchain/anthropic';
+import Anthropic from '@anthropic-ai/sdk';
 import { logger } from './logger.js';
 
 export interface UsageTotals {
@@ -1640,21 +1642,35 @@ export interface UsageTotals {
 }
 
 const PRICE_PER_MTOK = {
-  'claude-sonnet-4-6':       { input: 3.0,  output: 15.0, cacheRead: 0.30, cacheWrite: 3.75 },
+  'claude-sonnet-4-6':         { input: 3.0, output: 15.0, cacheRead: 0.30, cacheWrite: 3.75 },
   'claude-haiku-4-5-20251001': { input: 1.0, output: 5.0,  cacheRead: 0.10, cacheWrite: 1.25 },
 } as const;
 
 export type ModelId = keyof typeof PRICE_PER_MTOK;
 
+export type SystemBlock = {
+  type: 'text';
+  text: string;
+  cache_control?: { type: 'ephemeral' };
+};
+
+export function ephemeralCacheBlock(text: string): SystemBlock {
+  return { type: 'text', text, cache_control: { type: 'ephemeral' } };
+}
+
+export function textBlock(text: string): SystemBlock {
+  return { type: 'text', text };
+}
+
 export class UsageTracker {
   totals: UsageTotals = { inputTokens: 0, outputTokens: 0, cacheReadTokens: 0, cacheCreationTokens: 0 };
   usd = 0;
 
-  record(model: ModelId, u: { input_tokens?: number; output_tokens?: number; cache_read_input_tokens?: number; cache_creation_input_tokens?: number }) {
-    const i = u.input_tokens ?? 0;
-    const o = u.output_tokens ?? 0;
-    const cr = u.cache_read_input_tokens ?? 0;
-    const cw = u.cache_creation_input_tokens ?? 0;
+  record(model: ModelId, usage: Anthropic.Messages.Usage): void {
+    const i = usage.input_tokens ?? 0;
+    const o = usage.output_tokens ?? 0;
+    const cr = usage.cache_read_input_tokens ?? 0;
+    const cw = usage.cache_creation_input_tokens ?? 0;
     this.totals.inputTokens += i;
     this.totals.outputTokens += o;
     this.totals.cacheReadTokens += cr;
@@ -1668,33 +1684,30 @@ export class UsageTracker {
   }
 }
 
-export function makeClient(model: ModelId, tracker: UsageTracker): ChatAnthropic {
-  return new ChatAnthropic({
-    model,
-    apiKey: process.env.ANTHROPIC_API_KEY,
-    temperature: 0.4,
-    maxTokens: 4096,
-    callbacks: [{
-      handleLLMEnd: async (output) => {
-        const usage = (output as any).llmOutput?.tokenUsage ?? (output as any).llmOutput?.usage ?? {};
-        const raw = (output as any).llmOutput?.usage_metadata ?? usage;
-        tracker.record(model, {
-          input_tokens: raw.input_tokens ?? raw.inputTokens ?? usage.promptTokens,
-          output_tokens: raw.output_tokens ?? raw.outputTokens ?? usage.completionTokens,
-          cache_read_input_tokens: raw.cache_read_input_tokens,
-          cache_creation_input_tokens: raw.cache_creation_input_tokens,
-        });
-        logger.debug({ model, usage: tracker.snapshot() }, 'llm call complete');
-      },
-    }],
-  });
+const _client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
+
+export interface LLMClient {
+  invoke(args: { system: SystemBlock[]; user: string; maxTokens?: number }): Promise<string>;
 }
 
-export function ephemeralCacheBlock(text: string) {
+export function makeClient(model: ModelId, tracker: UsageTracker): LLMClient {
   return {
-    type: 'text' as const,
-    text,
-    cache_control: { type: 'ephemeral' as const },
+    async invoke({ system, user, maxTokens = 4096 }) {
+      const response = await _client.messages.create({
+        model,
+        max_tokens: maxTokens,
+        temperature: 0.4,
+        system,
+        messages: [{ role: 'user', content: user }],
+      });
+      tracker.record(model, response.usage);
+      logger.debug({ model, usage: tracker.snapshot() }, 'llm call complete');
+      const text = response.content
+        .filter((b): b is Anthropic.TextBlock => b.type === 'text')
+        .map((b) => b.text)
+        .join('');
+      return text;
+    },
   };
 }
 ```
@@ -1708,8 +1721,19 @@ Expected: no errors.
 
 ```bash
 git add src/seo-engine/lib/anthropic.ts
-git commit -m "feat(seo): client Anthropic + UsageTracker (prompt caching)"
+git commit -m "feat(seo): client Anthropic (SDK natif) + UsageTracker + prompt caching"
 ```
+
+> **Pour les tâches 14–18** : remplacer le pattern LangChain
+> ```ts
+> const result = await client.invoke([{ role: 'system', content: system as any }, { role: 'user', content: user }]);
+> const text = typeof result.content === 'string' ? result.content : (result.content as any)[0]?.text ?? '';
+> ```
+> par
+> ```ts
+> const text = await client.invoke({ system, user });
+> ```
+> Le wrapper retourne directement le texte concaténé des blocks `text` de la réponse.
 
 ---
 
@@ -1726,7 +1750,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { z } from 'zod';
 import { findStaleInProgress, findTopicBySlug, insertTopic } from './lib/db.js';
-import { makeClient, ephemeralCacheBlock, UsageTracker } from './lib/anthropic.js';
+import { makeClient, ephemeralCacheBlock, type UsageTracker } from './lib/anthropic.js';
 import { sanitizeUserText } from './lib/sanitize.js';
 import { logger } from './lib/logger.js';
 import { SEEDS_DIR } from './lib/paths.js';
@@ -1810,12 +1834,7 @@ Réponds en JSON strict {"title": "...", "questionLongTail": "...", "estimatedDi
 - mot-clé principal : ${sanitizeUserText(seed.primaryKeyword, 100)}
 - question initiale : ${sanitizeUserText(seed.questionLongTail, 300)}`;
 
-  const result = await client.invoke([
-    { role: 'system', content: system as any },
-    { role: 'user', content: user },
-  ]);
-
-  const text = typeof result.content === 'string' ? result.content : (result.content as any)[0]?.text ?? '';
+  const text = await client.invoke({ system, user });
   const json = extractJson(text);
   return RefinedSchema.parse(json);
 }
@@ -1898,7 +1917,7 @@ git commit -m "feat(seo): module Planner (raffinage Haiku, reprise stale) + test
 
 ```typescript
 import { z } from 'zod';
-import { makeClient, ephemeralCacheBlock, UsageTracker } from '../lib/anthropic.js';
+import { makeClient, ephemeralCacheBlock, type UsageTracker } from '../lib/anthropic.js';
 import { BRAND_CONTEXT, GEO_INSTRUCTIONS } from '../lib/brand-context.js';
 import { sanitizeUserText } from '../lib/sanitize.js';
 import { logger } from '../lib/logger.js';
@@ -1944,11 +1963,7 @@ Search intent : ${topic.searchIntent}`;
   let lastErr: unknown;
   for (let attempt = 1; attempt <= 2; attempt++) {
     try {
-      const result = await client.invoke([
-        { role: 'system', content: system as any },
-        { role: 'user', content: user },
-      ]);
-      const text = typeof result.content === 'string' ? result.content : (result.content as any)[0]?.text ?? '';
+      const text = await client.invoke({ system, user });
       const json = extractJson(text);
       return OutlineSchema.parse(json);
     } catch (err) {
@@ -2024,7 +2039,7 @@ git commit -m "feat(seo): stage outline (Sonnet) + schéma Zod + tests"
 - [ ] **Step 1: Write `src/seo-engine/stages/sections.ts`**
 
 ```typescript
-import { makeClient, ephemeralCacheBlock, UsageTracker } from '../lib/anthropic.js';
+import { makeClient, ephemeralCacheBlock, type UsageTracker } from '../lib/anthropic.js';
 import { BRAND_CONTEXT, GEO_INSTRUCTIONS } from '../lib/brand-context.js';
 import { sanitizeUserText } from '../lib/sanitize.js';
 import { logger } from '../lib/logger.js';
@@ -2090,11 +2105,7 @@ Intent : ${sanitizeUserText(section.intent)}
 Cible : ~${section.wordsTarget} mots.
 ${isFirst ? 'Cette section est la PREMIÈRE de l\'article : commence par 1 paragraphe court (≤80 mots) qui répond directement à la question longue traîne, AVANT le "## ".' : ''}`;
 
-    const result = await client.invoke([
-      { role: 'system', content: cachedSystem as any },
-      { role: 'user', content: userMsg },
-    ]);
-    const text = typeof result.content === 'string' ? result.content : (result.content as any)[0]?.text ?? '';
+    const text = await client.invoke({ system: cachedSystem, user: userMsg });
     parts.push(text.trim());
     logger.info({ section: section.title, index: i + 1 }, 'section written');
   }
@@ -2126,7 +2137,7 @@ git commit -m "feat(seo): stage sections (Sonnet H2 séquentiel, cache hit syst�
 
 ```typescript
 import { z } from 'zod';
-import { makeClient, ephemeralCacheBlock, UsageTracker } from '../lib/anthropic.js';
+import { makeClient, ephemeralCacheBlock, type UsageTracker } from '../lib/anthropic.js';
 import { sanitizeUserText } from '../lib/sanitize.js';
 import { logger } from '../lib/logger.js';
 import type { TopicProposal } from '../lib/types.js';
@@ -2167,11 +2178,7 @@ Question : ${sanitizeUserText(topic.questionLongTail, 300)}
 Extrait du body (300 premiers caractères) :
 ${sanitizeUserText(bodyMarkdown.slice(0, 600), 600)}`;
 
-  const result = await client.invoke([
-    { role: 'system', content: system as any },
-    { role: 'user', content: user },
-  ]);
-  const text = typeof result.content === 'string' ? result.content : (result.content as any)[0]?.text ?? '';
+  const text = await client.invoke({ system, user });
   const json = extractJson(text);
   const parsed = MetaSchema.parse(json);
 
@@ -3056,6 +3063,11 @@ node dist/scripts/init-db.js
 npm run seo:dry-run    # test sans publier
 node dist/index.js      # run live (génère + commit + build + pm2 restart)
 ```
+
+## Stack LLM
+- Client : `@anthropic-ai/sdk` natif (le même que `pulse-sdr`)
+- Prompt caching ephemeral sur les system blocks longs
+- UsageTracker : enregistre `input_tokens`, `output_tokens`, `cache_read_input_tokens`, `cache_creation_input_tokens` + coût USD
 
 ## Pipeline
 
