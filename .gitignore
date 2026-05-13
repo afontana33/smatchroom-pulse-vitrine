@@ -39,3 +39,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# SEO engine
+src/seo-engine/node_modules
+src/seo-engine/dist
+src/seo-engine/data
+src/seo-engine/.env
