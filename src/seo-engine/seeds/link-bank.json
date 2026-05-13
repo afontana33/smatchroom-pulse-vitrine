@@ -1,0 +1,12 @@
+[
+  { "anchor": "créer un agent IA sur-mesure", "url": "/solutions/agent-sur-mesure", "context": "workflow propriétaire, sur-mesure, custom", "priority": 10 },
+  { "anchor": "agent IA SDR", "url": "/solutions/agent-sdr", "context": "prospection, qualification, lead, sdr, commercial", "priority": 9 },
+  { "anchor": "agent IA support", "url": "/solutions/agent-support", "context": "support, ticket, helpdesk, client", "priority": 9 },
+  { "anchor": "automatiser votre prospection B2B", "url": "/solutions/agent-sdr", "context": "prospection, b2b, lead, sdr", "priority": 8 },
+  { "anchor": "automatiser votre support client", "url": "/solutions/agent-support", "context": "support, helpdesk, client", "priority": 8 },
+  { "anchor": "tarification SmatchRoom Pulse", "url": "/#pricing", "context": "tarif, prix, coût, pricing, abonnement", "priority": 7 },
+  { "anchor": "notre processus de déploiement", "url": "/#process", "context": "processus, méthode, déploiement, cadrage", "priority": 7 },
+  { "anchor": "cas d'usage SmatchRoom Pulse", "url": "/#use-cases", "context": "cas d'usage, exemple, retour d'expérience", "priority": 6 },
+  { "anchor": "déployer un agent IA", "url": "/solutions/agent-sur-mesure", "context": "déployer, déploiement, mettre en place", "priority": 6 },
+  { "anchor": "Pilote SmatchRoom Pulse", "url": "/#pricing", "context": "pilote, démarrer, test, mvp", "priority": 5 }
+]
