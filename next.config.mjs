@@ -1,6 +1,20 @@
+import path from 'node:path';
+import createMDX from '@next/mdx';
+
+const withMDX = createMDX({
+  options: {
+    // Turbopack v16 requires string plugin identifiers (not function refs)
+    remarkPlugins: [['remark-frontmatter', ['yaml']], 'remark-gfm'],
+    rehypePlugins: ['rehype-slug', ['rehype-autolink-headings', { behavior: 'wrap' }]],
+  },
+});
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  /* config options here */
+  pageExtensions: ['js', 'jsx', 'md', 'mdx'],
+  turbopack: {
+    root: path.resolve('.'),
+  },
 };
 
-export default nextConfig;
+export default withMDX(nextConfig);
