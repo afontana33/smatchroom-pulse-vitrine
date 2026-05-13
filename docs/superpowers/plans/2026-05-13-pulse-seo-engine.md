@@ -17,7 +17,8 @@
 ### Pulse app (existing, JS — additions only)
 ```
 smatchroom-pulse/
-├── next.config.mjs                          # MODIFY: add @next/mdx + remark/rehype plugins
+├── next.config.mjs                          # MODIFY: add @next/mdx, preserve turbopack.root
+├── mdx-components.jsx                       # CREATE: required by @next/mdx (App Router)
 ├── package.json                             # MODIFY: add MDX deps
 ├── ecosystem.config.js                      # CREATE: pm2 config (Pulse + cron)
 ├── .gitignore                               # MODIFY: ignore seo-engine/data, dist, node_modules
@@ -29,12 +30,12 @@ smatchroom-pulse/
 │   │   └── ArticleCard.jsx                  # CREATE: index card
 │   ├── app/
 │   │   ├── blog/page.jsx                    # CREATE: /blog index
-│   │   ├── blog/[slug]/page.jsx             # CREATE: /blog/[slug]
+│   │   ├── blog/[slug]/page.jsx             # CREATE: /blog/[slug] (async params + dynamic mdx import)
 │   │   ├── agent-ia/page.jsx                # CREATE: /agent-ia hub
-│   │   ├── agent-ia/[slug]/page.jsx         # CREATE: /agent-ia/[slug]
-│   │   ├── solutions/[slug]/page.jsx        # CREATE: /solutions/[slug]
-│   │   ├── sitemap.xml/route.js             # CREATE: dynamic sitemap
-│   │   └── robots.txt/route.js              # CREATE: robots
+│   │   ├── agent-ia/[slug]/page.jsx         # CREATE: /agent-ia/[slug] (idem)
+│   │   ├── solutions/[slug]/page.jsx        # CREATE: /solutions/[slug] (idem)
+│   │   ├── sitemap.js                       # CREATE: Next.js 16 sitemap file convention
+│   │   └── robots.js                        # CREATE: Next.js 16 robots file convention
 │   └── content/
 │       ├── agent-ia/.gitkeep                # CREATE
 │       ├── blog/.gitkeep                    # CREATE
@@ -121,8 +122,11 @@ Expected: build succeeds (baseline before changes).
 
 - [ ] **Step 1: Install MDX runtime + plugins**
 
-Run: `cd /root/smatchroom-ecosystem/smatchroom-pulse && npm install @next/mdx @mdx-js/loader @mdx-js/react gray-matter remark-gfm rehype-slug rehype-autolink-headings reading-time`
+Run: `cd /root/smatchroom-ecosystem/smatchroom-pulse && npm install @next/mdx @mdx-js/loader @mdx-js/react gray-matter remark-gfm remark-frontmatter rehype-slug rehype-autolink-headings reading-time`
 Expected: packages installed, package.json updated.
+
+> **Next.js 16 note** : on n'installe PAS `next-mdx-remote` (déprécié au profit du dynamic import natif `await import('...mdx')`).
+> `remark-frontmatter` est requis pour empêcher `@next/mdx` de rendre visiblement le bloc YAML `---...---` au début de chaque article.
 
 - [ ] **Step 2: Verify package.json**
 
@@ -138,56 +142,71 @@ git commit -m "feat(seo): ajoute deps MDX (next/mdx, gray-matter, remark/rehype)
 
 ---
 
-## Task 2: Wire MDX in next.config.mjs
+## Task 2: Wire MDX in next.config.mjs + create mdx-components.jsx
 
 **Files:**
 - Modify: `next.config.mjs`
+- Create: `mdx-components.jsx` (at repo root — **MANDATORY for App Router + @next/mdx**)
+
+> **Next.js 16 specifics applied** :
+> - Plugins listed as **strings** (Turbopack v16 requires string identifiers, not imported function refs)
+> - `pageExtensions` includes `md`/`mdx` alongside `js`/`jsx`
+> - `turbopack.root` preserved from existing config (user's pre-existing setting)
+> - `remark-frontmatter` ahead of `remark-gfm` in the plugin chain to strip YAML headers before rendering
 
 - [ ] **Step 1: Read current config**
 
 Run: `cat next.config.mjs`
-Note current shape.
+Note current shape. Expected: contains `turbopack: { root: path.resolve('.') }` — must be preserved.
 
 - [ ] **Step 2: Replace with MDX-enabled config**
 
 Write to `next.config.mjs`:
 
 ```javascript
+import path from 'node:path';
 import createMDX from '@next/mdx';
-import remarkGfm from 'remark-gfm';
-import rehypeSlug from 'rehype-slug';
-import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 
 const withMDX = createMDX({
   options: {
-    remarkPlugins: [remarkGfm],
-    rehypePlugins: [rehypeSlug, [rehypeAutolinkHeadings, { behavior: 'wrap' }]],
+    // Turbopack v16 requires string plugin identifiers (not function refs)
+    remarkPlugins: [['remark-frontmatter', ['yaml']], 'remark-gfm'],
+    rehypePlugins: ['rehype-slug', ['rehype-autolink-headings', { behavior: 'wrap' }]],
   },
 });
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  pageExtensions: ['js', 'jsx', 'mdx'],
-  experimental: {
-    mdxRs: false,
+  pageExtensions: ['js', 'jsx', 'md', 'mdx'],
+  turbopack: {
+    root: path.resolve('.'),
   },
 };
 
 export default withMDX(nextConfig);
 ```
 
-(If existing config has other settings, preserve them inside `nextConfig`.)
+- [ ] **Step 3: Create `mdx-components.jsx` at repo root**
 
-- [ ] **Step 3: Verify build still works**
+`@next/mdx` with the App Router REQUIRES this file at the project root, otherwise rendering fails. Minimal pass-through implementation:
+
+```jsx
+// mdx-components.jsx — required by @next/mdx (App Router)
+export function useMDXComponents(components) {
+  return { ...components };
+}
+```
+
+- [ ] **Step 4: Verify build still works**
 
 Run: `npm run build`
 Expected: build succeeds.
 
-- [ ] **Step 4: Commit**
+- [ ] **Step 5: Commit**
 
 ```bash
-git add next.config.mjs
-git commit -m "feat(seo): active le pipeline MDX dans Next.js"
+git add next.config.mjs mdx-components.jsx
+git commit -m "feat(seo): active le pipeline MDX dans Next.js 16 (+ mdx-components.jsx requis)"
 ```
 
 ---
@@ -411,20 +430,23 @@ export default function BlogIndex() {
 
 - [ ] **Step 2: Write `src/app/blog/[slug]/page.jsx`**
 
+> **Next.js 16 pattern** : `params` est un `Promise` (à await), et le rendu MDX se fait
+> via dynamic import natif `await import(...mdx)` — pas via `next-mdx-remote`.
+
 ```jsx
 import { notFound } from 'next/navigation';
 import { listArticles, readArticle } from '@/lib/content';
 import Article from '@/components/Article';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
-import { MDXRemote } from 'next-mdx-remote/rsc';
 
 export function generateStaticParams() {
   return listArticles('blog').map((a) => ({ slug: a.slug }));
 }
 
-export function generateMetadata({ params }) {
-  const article = readArticle('blog', params.slug);
+export async function generateMetadata({ params }) {
+  const { slug } = await params;
+  const article = readArticle('blog', slug);
   if (!article) return {};
   return {
     title: article.frontmatter.metaTitle || article.frontmatter.title,
@@ -432,35 +454,32 @@ export function generateMetadata({ params }) {
   };
 }
 
-export default function BlogArticle({ params }) {
-  const article = readArticle('blog', params.slug);
+export default async function BlogArticle({ params }) {
+  const { slug } = await params;
+  const article = readArticle('blog', slug);
   if (!article) notFound();
   const related = listArticles('blog').filter((a) => a.slug !== article.slug).slice(0, 3);
+  const { default: MdxContent } = await import(`@/content/blog/${slug}.mdx`);
   return (
     <>
       <Nav />
-      <Article article={article} mdxContent={<MDXRemote source={article.bodyMarkdown} />} related={related} />
+      <Article article={article} mdxContent={<MdxContent />} related={related} />
       <Footer />
     </>
   );
 }
 ```
 
-- [ ] **Step 3: Install `next-mdx-remote`**
-
-Run: `npm install next-mdx-remote`
-Expected: package installed.
-
-- [ ] **Step 4: Verify build**
+- [ ] **Step 3: Verify build**
 
 Run: `npm run build`
 Expected: succeeds (no articles yet, but routes compile).
 
-- [ ] **Step 5: Commit**
+- [ ] **Step 4: Commit**
 
 ```bash
-git add src/app/blog package.json package-lock.json
-git commit -m "feat(seo): routes /blog et /blog/[slug] (SSG via MDX)"
+git add src/app/blog
+git commit -m "feat(seo): routes /blog et /blog/[slug] (SSG via dynamic MDX import)"
 ```
 
 ---
@@ -511,20 +530,22 @@ export default function AgentIaHub() {
 
 - [ ] **Step 2: Write `src/app/agent-ia/[slug]/page.jsx`**
 
+> Pattern Next.js 16 : async params + dynamic MDX import (cf. note Task 5).
+
 ```jsx
 import { notFound } from 'next/navigation';
 import { listArticles, readArticle } from '@/lib/content';
 import Article from '@/components/Article';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
-import { MDXRemote } from 'next-mdx-remote/rsc';
 
 export function generateStaticParams() {
   return listArticles('agent-ia').map((a) => ({ slug: a.slug }));
 }
 
-export function generateMetadata({ params }) {
-  const article = readArticle('agent-ia', params.slug);
+export async function generateMetadata({ params }) {
+  const { slug } = await params;
+  const article = readArticle('agent-ia', slug);
   if (!article) return {};
   return {
     title: article.frontmatter.metaTitle || article.frontmatter.title,
@@ -532,14 +553,16 @@ export function generateMetadata({ params }) {
   };
 }
 
-export default function AgentIaArticle({ params }) {
-  const article = readArticle('agent-ia', params.slug);
+export default async function AgentIaArticle({ params }) {
+  const { slug } = await params;
+  const article = readArticle('agent-ia', slug);
   if (!article) notFound();
   const related = listArticles('agent-ia').filter((a) => a.slug !== article.slug).slice(0, 3);
+  const { default: MdxContent } = await import(`@/content/agent-ia/${slug}.mdx`);
   return (
     <>
       <Nav />
-      <Article article={article} mdxContent={<MDXRemote source={article.bodyMarkdown} />} related={related} />
+      <Article article={article} mdxContent={<MdxContent />} related={related} />
       <Footer />
     </>
   );
@@ -576,14 +599,14 @@ import { listArticles, readArticle } from '@/lib/content';
 import Article from '@/components/Article';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
-import { MDXRemote } from 'next-mdx-remote/rsc';
 
 export function generateStaticParams() {
   return listArticles('solutions').map((a) => ({ slug: a.slug }));
 }
 
-export function generateMetadata({ params }) {
-  const article = readArticle('solutions', params.slug);
+export async function generateMetadata({ params }) {
+  const { slug } = await params;
+  const article = readArticle('solutions', slug);
   if (!article) return {};
   return {
     title: article.frontmatter.metaTitle || article.frontmatter.title,
@@ -591,13 +614,15 @@ export function generateMetadata({ params }) {
   };
 }
 
-export default function SolutionPage({ params }) {
-  const article = readArticle('solutions', params.slug);
+export default async function SolutionPage({ params }) {
+  const { slug } = await params;
+  const article = readArticle('solutions', slug);
   if (!article) notFound();
+  const { default: MdxContent } = await import(`@/content/solutions/${slug}.mdx`);
   return (
     <>
       <Nav />
-      <Article article={article} mdxContent={<MDXRemote source={article.bodyMarkdown} />} />
+      <Article article={article} mdxContent={<MdxContent />} />
       <Footer />
     </>
   );
@@ -828,72 +853,64 @@ git commit -m "feat(seo): 3 landings /solutions/ (agent-sdr, agent-support, sur-
 
 ---
 
-## Task 8: Sitemap and robots.txt
+## Task 8: Sitemap and robots (Next.js 16 file conventions)
 
 **Files:**
-- Create: `src/app/sitemap.xml/route.js`
-- Create: `src/app/robots.txt/route.js`
+- Create: `src/app/sitemap.js` (file convention — Next.js sérialise en XML auto)
+- Create: `src/app/robots.js` (file convention — Next.js sérialise en text/plain auto)
 
-- [ ] **Step 1: Write `src/app/sitemap.xml/route.js`**
+> **Next.js 16 file convention** : on n'utilise PAS un Route Handler `route.js` qui
+> renvoie du XML/text à la main. On exporte un default `function sitemap()` /
+> `function robots()` qui retourne un objet typé, Next.js gère la sérialisation.
+
+- [ ] **Step 1: Write `src/app/sitemap.js`**
 
 ```javascript
 import { listAllPublished } from '@/lib/content';
 
 const BASE = 'https://pulse.smatchroom.com';
 
-export async function GET() {
+export default function sitemap() {
   const articles = listAllPublished();
 
   const staticUrls = [
-    { loc: BASE, lastmod: new Date().toISOString(), priority: '1.0' },
-    { loc: `${BASE}/blog`, lastmod: new Date().toISOString(), priority: '0.8' },
-    { loc: `${BASE}/agent-ia`, lastmod: new Date().toISOString(), priority: '0.9' },
+    { url: BASE, lastModified: new Date(), changeFrequency: 'weekly', priority: 1.0 },
+    { url: `${BASE}/blog`, lastModified: new Date(), changeFrequency: 'daily', priority: 0.8 },
+    { url: `${BASE}/agent-ia`, lastModified: new Date(), changeFrequency: 'daily', priority: 0.9 },
   ];
 
   const dynamicUrls = articles.map((a) => ({
-    loc: `${BASE}/${a.cluster}/${a.slug}`,
-    lastmod: a.frontmatter.publishedAt,
-    priority: a.cluster === 'solutions' ? '0.9' : '0.7',
+    url: `${BASE}/${a.cluster}/${a.slug}`,
+    lastModified: new Date(a.frontmatter.publishedAt),
+    changeFrequency: 'monthly',
+    priority: a.cluster === 'solutions' ? 0.9 : 0.7,
   }));
 
-  const all = [...staticUrls, ...dynamicUrls];
-
-  const xml = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${all.map((u) => `  <url>
-    <loc>${u.loc}</loc>
-    <lastmod>${u.lastmod}</lastmod>
-    <priority>${u.priority}</priority>
-  </url>`).join('\n')}
-</urlset>`;
-
-  return new Response(xml, { headers: { 'Content-Type': 'application/xml' } });
+  return [...staticUrls, ...dynamicUrls];
 }
 ```
 
-- [ ] **Step 2: Write `src/app/robots.txt/route.js`**
+- [ ] **Step 2: Write `src/app/robots.js`**
 
 ```javascript
-export async function GET() {
-  const body = `User-agent: *
-Allow: /
-
-Sitemap: https://pulse.smatchroom.com/sitemap.xml
-`;
-  return new Response(body, { headers: { 'Content-Type': 'text/plain' } });
+export default function robots() {
+  return {
+    rules: { userAgent: '*', allow: '/' },
+    sitemap: 'https://pulse.smatchroom.com/sitemap.xml',
+  };
 }
 ```
 
 - [ ] **Step 3: Build check**
 
 Run: `npm run build`
-Expected: succeeds. After `npm run start`, `curl http://127.0.0.1:3001/sitemap.xml` returns valid XML.
+Expected: succeeds. After `npm run start`, `curl http://127.0.0.1:3001/sitemap.xml` returns valid XML and `curl http://127.0.0.1:3001/robots.txt` returns text.
 
 - [ ] **Step 4: Commit**
 
 ```bash
-git add src/app/sitemap.xml src/app/robots.txt
-git commit -m "feat(seo): sitemap.xml et robots.txt dynamiques"
+git add src/app/sitemap.js src/app/robots.js
+git commit -m "feat(seo): sitemap.js et robots.js (Next.js 16 file conventions)"
 ```
 
 ---
