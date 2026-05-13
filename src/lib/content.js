@@ -9,7 +9,7 @@ export function listArticles(cluster) {
   const dir = path.join(CONTENT_ROOT, cluster);
   if (!fs.existsSync(dir)) return [];
   return fs.readdirSync(dir)
-    .filter((f) => f.endsWith('.mdx'))
+    .filter((f) => f.endsWith('.mdx') && !f.startsWith('_'))
     .map((f) => readArticle(cluster, f.replace(/\.mdx$/, '')))
     .filter(Boolean)
     .sort((a, b) => (a.frontmatter.publishedAt < b.frontmatter.publishedAt ? 1 : -1));
