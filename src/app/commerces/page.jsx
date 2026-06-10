@@ -224,11 +224,6 @@ export default function CommercesPage() {
                 name: "Karim Bensalem",
                 role: "Plombier indépendant · Toulouse",
               },
-              {
-                quote: "Le plus impressionnant c'est que ça tourne tout seul. J'ai pas besoin de m'en occuper. Des fois je regarde le tableau de bord le matin et il y a déjà 3 prospects contactés pendant la nuit.",
-                name: "Claire Dupont",
-                role: "Gérante de restaurant · Lyon",
-              },
             ].map(({ quote, name, role }) => (
               <div key={name} className="glass rounded-2xl p-8">
                 <p className="text-sm leading-relaxed text-[var(--muted)] italic">« {quote} »</p>
