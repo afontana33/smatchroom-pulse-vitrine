@@ -1,26 +1,95 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #050508;
+  --foreground: #f5f5f7;
+  --muted: #9aa0b0;
+  --primary: #a855f7;
+  --primary-hover: #c084fc;
+  --primary-soft: rgba(168, 85, 247, 0.15);
+  --primary-glow: rgba(168, 85, 247, 0.45);
+  --surface: #0d0d18;
+  --surface-2: #14142a;
+  --border: rgba(168, 85, 247, 0.18);
+  --border-strong: rgba(168, 85, 247, 0.4);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-muted: var(--muted);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-jetbrains);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-inter), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-image:
+    radial-gradient(800px circle at 20% 10%, rgba(168, 85, 247, 0.08), transparent 50%),
+    radial-gradient(700px circle at 80% 70%, rgba(120, 70, 200, 0.06), transparent 60%);
+}
+
+/* Utility: neon text glow */
+.glow-text {
+  text-shadow: 0 0 12px var(--primary-glow), 0 0 32px rgba(168, 85, 247, 0.25);
+}
+
+/* Utility: glass card */
+.glass {
+  background: linear-gradient(180deg, rgba(20, 20, 42, 0.7), rgba(13, 13, 24, 0.85));
+  border: 1px solid var(--border);
+  backdrop-filter: blur(8px);
+}
+
+.glass-hover:hover {
+  border-color: var(--border-strong);
+  box-shadow: 0 0 0 1px var(--border-strong), 0 12px 60px -10px var(--primary-soft);
+}
+
+/* Utility: section heading eyebrow */
+.eyebrow {
+  font-family: var(--font-jetbrains), monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--primary);
+}
+
+/* Utility: gradient violet → blanc texte */
+.gradient-text {
+  background: linear-gradient(180deg, #ffffff 0%, #c084fc 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Animated scrollbar in pulse violet */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: #050508; }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #a855f7, #6d28d9);
+  border-radius: 6px;
+}
+
+/* Selection */
+::selection {
+  background: var(--primary);
+  color: #050508;
 }
