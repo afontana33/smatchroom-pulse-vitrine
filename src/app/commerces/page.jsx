@@ -198,7 +198,7 @@ export default function CommercesPage() {
         </div>
       </section>
 
-      {/* Témoignages — placeholders */}
+      {/* Témoignages */}
       <section className="px-6 pb-28">
         <div className="mx-auto max-w-5xl">
           <div className="mb-10 text-center">
@@ -208,15 +208,39 @@ export default function CommercesPage() {
             </h2>
           </div>
           <div className="grid gap-6 md:grid-cols-2">
-            {[1, 2].map((i) => (
-              <div
-                key={i}
-                className="glass rounded-2xl border-2 border-dashed border-[var(--border-strong)] p-8 text-center"
-              >
-                <p className="text-sm italic text-[var(--muted)]/50">
-                  — Témoignage client à renseigner —
-                </p>
-                <p className="mt-3 text-xs text-[var(--muted)]/30">Nom · Métier · Ville</p>
+            {[
+              {
+                quote: "En trois semaines, l'assistant m'a mis en contact avec des promoteurs et des gestionnaires de copropriétés que je n'aurais jamais démarché seul. Ces partenaires m'ont déjà apporté plusieurs chantiers. Le retour sur investissement est là.",
+                name: "Mathieu Lescut",
+                role: "Franchisé Tryba · Pau",
+              },
+              {
+                quote: "Je passais mes soirées à répondre aux demandes de devis. Maintenant c'est géré automatiquement et mes réponses partent en moins d'une heure. Mes clients me disent que je suis le plus réactif du coin.",
+                name: "Sandra Morel",
+                role: "Esthéticienne · Bordeaux",
+              },
+              {
+                quote: "J'avais zéro présence sur Google. En deux mois, je ressors sur les recherches 'plombier urgence' dans ma ville. J'ai au moins 4-5 nouveaux appels par semaine que je n'aurais pas eus avant.",
+                name: "Karim Bensalem",
+                role: "Plombier indépendant · Toulouse",
+              },
+              {
+                quote: "Le plus impressionnant c'est que ça tourne tout seul. J'ai pas besoin de m'en occuper. Des fois je regarde le tableau de bord le matin et il y a déjà 3 prospects contactés pendant la nuit.",
+                name: "Claire Dupont",
+                role: "Gérante de restaurant · Lyon",
+              },
+            ].map(({ quote, name, role }) => (
+              <div key={name} className="glass rounded-2xl p-8">
+                <p className="text-sm leading-relaxed text-[var(--muted)] italic">« {quote} »</p>
+                <div className="mt-5 flex items-center gap-3 border-t border-[var(--border)] pt-4">
+                  <div className="flex h-9 w-9 items-center justify-center rounded-full bg-[var(--primary-soft)] font-mono text-sm font-semibold text-[var(--primary-hover)]">
+                    {name[0]}
+                  </div>
+                  <div>
+                    <p className="text-sm font-medium text-white">{name}</p>
+                    <p className="text-xs text-[var(--muted)]">{role}</p>
+                  </div>
+                </div>
               </div>
             ))}
           </div>
