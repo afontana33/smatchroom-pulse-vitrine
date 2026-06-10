@@ -38,11 +38,12 @@ export default function Footer() {
               Navigation
             </p>
             <ul className="mt-4 space-y-2 text-sm text-[var(--muted)]">
-              <li><a href="#agents" className="hover:text-white">Agents</a></li>
-              <li><a href="#process" className="hover:text-white">Process 48h</a></li>
-              <li><a href="#cas-usage" className="hover:text-white">Cas d'usage</a></li>
-              <li><a href="#tarifs" className="hover:text-white">Tarifs</a></li>
-              <li><a href="#faq" className="hover:text-white">FAQ</a></li>
+              <li><a href="/commerces" className="font-medium text-[var(--primary-hover)] hover:text-white">Commerces & artisans</a></li>
+              <li><a href="/entreprises" className="hover:text-white">Entreprises & PME</a></li>
+              <li><a href="/#cas-usage" className="hover:text-white">Cas d'usage</a></li>
+              <li><a href="/#tarifs" className="hover:text-white">Tarifs</a></li>
+              <li><a href="/#faq" className="hover:text-white">FAQ</a></li>
+              <li><a href="/blog" className="hover:text-white">Blog</a></li>
               <li><a href="https://calendly.com/a-fontana-smatchroom/30min" target="_blank" rel="noopener noreferrer" className="hover:text-white">Contact</a></li>
             </ul>
           </div>
