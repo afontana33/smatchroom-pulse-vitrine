@@ -36,8 +36,8 @@ const PILLARS = [
     bullets: [
       'Sourcing de données légales (INSEE / INPI) croisé avec votre présence numérique réelle',
       'Algorithme d\'Hyper-Personnalisation : analyse des signaux faibles métiers',
-      'Infrastructure Anti-Ban : Jitter aléatoire 8.8 → 13.3 min, comportement humain',
-      'Protection LinkedIn & Mail : aucun risque de blacklist sur vos comptes',
+      'Envoi continu et intelligent : un flux de leads qualifiés qui ne s\'arrête jamais',
+      'Délivrabilité optimisée : vos comptes LinkedIn et mail restent protégés',
     ],
   },
   {

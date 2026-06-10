@@ -1,4 +1,4 @@
-import { Check, Package, Rocket, Building2, ArrowRight } from 'lucide-react';
+import { Check, Package, Rocket, Building2, ArrowRight, Store, MessageSquare } from 'lucide-react';
 
 const CALENDLY = 'https://calendly.com/a-fontana-smatchroom/30min';
 
@@ -55,19 +55,68 @@ export default function Pricing() {
     <section id="tarifs" className="relative py-32 px-6">
       <div className="mx-auto max-w-7xl">
         <div className="mb-16 text-center">
-          <p className="eyebrow">Modèles de déploiement</p>
+          <p className="eyebrow">Tarifs</p>
           <h2 className="mt-3 text-balance text-4xl font-semibold tracking-tight md:text-5xl">
-            <span className="gradient-text">Chaque infrastructure est unique.</span> Nos agents aussi.
+            <span className="gradient-text">Transparent pour les commerces.</span> Sur-mesure pour les entreprises.
           </h2>
-          <p className="mx-auto mt-6 max-w-3xl text-balance text-[var(--muted)]">
-            Nous n'appliquons pas de grille tarifaire standardisée. Le déploiement d'un agent
-            industriel dépend de votre architecture : volume de données à scraper, raccordement
-            de vos bases de données (Supabase dedicated, triggers PostgreSQL), et calibrage des
-            fenêtres de contexte LLM.
+          <p className="mx-auto mt-6 max-w-2xl text-balance text-[var(--muted)]">
+            Une fourchette claire pour les TPE. Un diagnostic de cadrage pour les structures plus importantes.
           </p>
-          <p className="mx-auto mt-3 max-w-2xl text-balance text-sm text-[var(--muted)]/70">
-            Le diagnostic de cadrage est offert — 30 minutes pour qualifier votre cas et
-            poser le périmètre exact.
+        </div>
+
+        {/* Bloc TPE */}
+        <div className="glass mb-10 overflow-hidden rounded-2xl p-8 md:p-10">
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,var(--primary-soft),transparent_60%)]"
+          />
+          <div className="relative grid gap-8 md:grid-cols-[auto_1fr_auto] md:items-center">
+            <div className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-[var(--primary-soft)] text-[var(--primary-hover)] ring-1 ring-[var(--border-strong)]">
+              <Store size={26} strokeWidth={1.8} />
+            </div>
+            <div>
+              <p className="font-mono text-xs uppercase tracking-[0.18em] text-[var(--primary)]">
+                Pour les commerces · artisans · indépendants
+              </p>
+              <h3 className="mt-2 text-2xl font-semibold tracking-tight text-white md:text-3xl">
+                À partir de <span className="gradient-text">500 €</span> d'installation{' '}
+                <span className="text-[var(--muted)]">+</span>{' '}
+                <span className="gradient-text">150 €/mois</span>
+              </h3>
+              <p className="mt-3 max-w-2xl text-sm text-[var(--muted)] md:text-base">
+                Un assistant IA conçu pour votre métier, déployé en 48h. Vous savez exactement ce que vous payez, dès le départ — sans surprise.
+              </p>
+              <ul className="mt-5 grid gap-2 sm:grid-cols-2">
+                {[
+                  'Un assistant taillé pour votre activité',
+                  'Opérationnel en 48h',
+                  'Tableau de bord simple inclus',
+                  'Support disponible si besoin',
+                ].map((f) => (
+                  <li key={f} className="flex items-center gap-2 text-sm text-[var(--muted)]">
+                    <Check size={15} className="flex-shrink-0 text-[var(--primary-hover)]" strokeWidth={2.5} />
+                    {f}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <a
+              href="/commerces"
+              className="group inline-flex items-center justify-center gap-2 self-start rounded-full bg-[var(--primary)] px-6 py-3 font-medium text-black transition-all hover:bg-[var(--primary-hover)] hover:shadow-[0_0_40px_-5px_var(--primary-glow)] md:self-center"
+            >
+              Voir l'offre commerces
+              <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
+            </a>
+          </div>
+        </div>
+
+        {/* Titre configs PME */}
+        <div className="mb-8 text-center">
+          <p className="font-mono text-xs uppercase tracking-[0.2em] text-[var(--muted)]">
+            Pour les entreprises · PME · structures
+          </p>
+          <p className="mt-2 text-[var(--muted)]">
+            Le tarif dépend de votre situation. Le diagnostic de cadrage est offert — 30 min pour qualifier votre cas.
           </p>
         </div>
 

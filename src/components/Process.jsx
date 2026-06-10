@@ -6,28 +6,28 @@ const STEPS = [
     icon: Compass,
     title: 'Audit & Cadrage',
     description:
-      "30 min de call. On identifie le besoin métier, les sources de données, les SLA. Un brief technique sort en sortie.",
+      "30 min de call. On comprend votre activité, ce qui vous prend du temps, ce que vous voudriez automatiser. On vous dit honnêtement si on peut aider.",
   },
   {
     hour: 'H+12',
     icon: Cog,
-    title: 'Architecture',
+    title: 'Conception',
     description:
-      "Choix du modèle, des outils MCP, des tools fonctionnels. Pipeline d'évaluation conçu sur tes vraies données.",
+      "On choisit la meilleure approche pour votre cas. L'agent est conçu à partir de vos vraies données et de vos contraintes métier.",
   },
   {
     hour: 'H+30',
     icon: GraduationCap,
-    title: 'Entraînement',
+    title: 'Apprentissage',
     description:
-      "Fine-tuning sur ton corpus + RAG contextualisé. On itère contre le pipeline d'éval jusqu'au seuil de qualité défini.",
+      "L'agent apprend votre métier, votre ton, vos clients. On affine jusqu'à ce que le résultat soit à la hauteur — pas avant.",
   },
   {
     hour: 'H+48',
     icon: Rocket,
-    title: 'Mise en prod',
+    title: 'Mise en route',
     description:
-      "Déploiement sur ton infra (cloud ou on-prem), monitoring, alertes. Tu pilotes l'agent depuis un dashboard unique.",
+      "L'agent est déployé et opérationnel. Vous le pilotez depuis un tableau de bord simple. On reste disponibles si besoin.",
   },
 ];
 

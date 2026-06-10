@@ -5,8 +5,20 @@ import { Plus, Minus } from 'lucide-react';
 
 const QUESTIONS = [
   {
-    q: "Concrètement, c'est quoi un agent IA Pulse ?",
-    a: "Un programme autonome qui exécute une mission métier (SEO, Sales, Marketing) en utilisant des outils (APIs, CRMs, search, code). Il n'attend pas un prompt humain à chaque tâche : il observe, décide, agit, et rend compte. Pulse construit, entraîne et déploie ces agents sur ton infra.",
+    q: "Je suis artisan / restaurateur. C'est fait pour moi ?",
+    a: "Oui, c'est même notre cible principale aujourd'hui. On a construit Émargeo, notre propre outil pour les restaurateurs, avec exactement cette approche. Un assistant qui gère ce qui vous prend du temps (trouver des clients, répondre aux demandes, automatiser les tâches répétitives) pendant que vous faites votre métier.",
+  },
+  {
+    q: "C'est quoi concrètement, un assistant IA pour mon commerce ?",
+    a: "C'est un programme qui travaille pour vous en continu, sans que vous ayez à le surveiller. Exemples concrets : il trouve de nouveaux clients dans votre zone, il publie du contenu sur votre site pour être mieux trouvé sur Google, il répond à des demandes de devis. Vous n'avez pas à lui donner des instructions à chaque fois — il sait ce qu'il a à faire.",
+  },
+  {
+    q: "Je ne suis pas à l'aise avec la technologie. Est-ce que c'est compliqué à utiliser ?",
+    a: "Non. On s'occupe de tout : la mise en place, le paramétrage, la mise en route. Vous avez accès à un tableau de bord simple pour voir ce que fait l'assistant. Si quelque chose ne va pas, vous nous appelez.",
+  },
+  {
+    q: "Concrètement, c'est quoi un agent IA Pulse pour une entreprise ?",
+    a: "Un programme autonome qui exécute une mission métier (SEO, Sales, Marketing) en utilisant des outils (APIs, CRMs, search, code). Il n'attend pas un prompt humain à chaque tâche : il observe, décide, agit, et rend compte. Pulse construit, entraîne et déploie ces agents sur votre infrastructure.",
   },
   {
     q: "Quels modèles utilisez-vous ?",

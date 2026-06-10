@@ -4,8 +4,8 @@ import { useState, useEffect } from 'react';
 import { Sparkles, Menu, X } from 'lucide-react';
 
 const LINKS = [
-  { href: '#agents', label: 'Agents' },
-  { href: '#process', label: 'Process 48h' },
+  { href: '/commerces', label: 'Commerces', highlight: true },
+  { href: '/entreprises', label: 'Entreprises' },
   { href: '#cas-usage', label: "Cas d'usage" },
   { href: '#tarifs', label: 'Tarifs' },
   { href: '/agent-ia', label: 'Ressources' },
@@ -45,7 +45,11 @@ export default function Nav() {
             <a
               key={l.href}
               href={l.href}
-              className="text-sm text-[var(--muted)] transition-colors hover:text-white"
+              className={
+                l.highlight
+                  ? 'text-sm font-medium text-[var(--primary-hover)] transition-colors hover:text-white'
+                  : 'text-sm text-[var(--muted)] transition-colors hover:text-white'
+              }
             >
               {l.label}
             </a>

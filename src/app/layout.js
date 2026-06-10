@@ -14,14 +14,14 @@ const jetbrains = JetBrains_Mono({
 });
 
 export const metadata = {
-  title: "SmatchRoom Pulse — Infrastructure logicielle qui remplace les processus humains",
+  title: "SmatchRoom Pulse — Assistant IA sur-mesure pour artisans, commerces et entreprises",
   description:
-    "Pulse conçoit, entraîne et déploie des Agents IA Industriels Autonomes sur votre infrastructure en 48 heures chronos. Pas une agence. Pas un wrapper ChatGPT.",
+    "Pulse conçoit et déploie un assistant IA taillé pour votre activité — artisan, restaurateur, indépendant ou PME. Il trouve vos clients, améliore votre visibilité et gère vos tâches répétitives. Opérationnel en 48h. À partir de 500 € + 150 €/mois.",
   metadataBase: new URL("https://pulse.smatchroom.com"),
   openGraph: {
-    title: "SmatchRoom Pulse — Agents IA Industriels Autonomes",
+    title: "SmatchRoom Pulse — Assistant IA pour commerces et entreprises",
     description:
-      "Infrastructure logicielle qui remplace les processus humains. Déploiement en 48h, architecture propriétaire, 100% clé en main.",
+      "Un assistant IA sur-mesure pour votre métier. Artisans, restaurateurs, indépendants et PME. Opérationnel en 48h. À partir de 500 € + 150 €/mois.",
     url: "https://pulse.smatchroom.com",
     siteName: "SmatchRoom Pulse",
     type: "website",
