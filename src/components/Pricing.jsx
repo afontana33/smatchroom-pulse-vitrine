@@ -8,7 +8,7 @@ const ENTERPRISE_FORMATS = [
     name: 'Audit & CTO Externe',
     tagline: 'Diagnostic d\'architecture · Intervention ponctuelle',
     blurb:
-      'On audite votre stack, on identifie les goulots d\'étranglement et on livre un plan d\'action précis — avec ou sans implémentation.',
+      'On audite votre stack, on identifie les goulots d\'étranglement et on livre un plan d\'action précis. Avec ou sans implémentation.',
     features: [
       'Audit complet de votre infrastructure (Linux, Node.js, APIs, BDD)',
       'Cartographie des pipelines existants et des points de rupture',
@@ -23,12 +23,12 @@ const ENTERPRISE_FORMATS = [
     name: 'Forfait Build Freelance Senior',
     tagline: 'Développement · Déploiement · Transfert de propriété',
     blurb:
-      'On conçoit, code et stabilise vos agents en production — puis on vous livre le code source complet avec toute la propriété intellectuelle.',
+      'On conçoit, code et stabilise vos agents en production, puis on vous livre le code source complet avec toute la propriété intellectuelle.',
     features: [
       'Développement full-stack en Node.js avec Supabase comme couche de données',
       'Réduction du coût token documentée (Prompt Caching natif, batching)',
-      'Déploiement sur votre propre serveur Linux — zéro dépendance SaaS',
-      'Transfert total de la PI : code, modèles, documentation — vous êtes propriétaire',
+      'Déploiement sur votre propre serveur Linux, zéro dépendance SaaS',
+      'Transfert total de la PI : code, modèles, documentation. Vous êtes propriétaire.',
     ],
     highlighted: true,
     cta: 'Discuter de mon projet',
@@ -105,7 +105,7 @@ export default function Pricing() {
             </p>
           </div>
           <p className="mt-2 text-[var(--muted)]">
-            Intervention sur-mesure. Le tarif est défini lors du diagnostic de cadrage — 30 min pour poser le périmètre précis.
+            Intervention sur-mesure. Le tarif est défini lors du diagnostic de cadrage : 30 min pour poser le périmètre précis.
           </p>
           <div className="mt-4 flex flex-wrap items-center justify-center gap-3">
             {['Souveraineté', 'Propriété Intellectuelle transférée', 'Infrastructure dédiée', 'Zéro SaaS tiers'].map((kw) => (

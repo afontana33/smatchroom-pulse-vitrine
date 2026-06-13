@@ -33,7 +33,7 @@ export default function Hero() {
         <p className="mx-auto mt-6 max-w-2xl text-balance text-lg text-[var(--muted)] md:text-xl">
           SmatchRoom conçoit, code et stabilise vos pipelines d'automatisation et de scoring en{' '}
           <span className="font-medium text-white">Node.js & Supabase</span>
-          {' '}— zéro dépendance aux SaaS génériques.{' '}
+          {', zéro dépendance aux SaaS génériques. '}
           <span className="font-mono text-white">Déployé en 48h.</span>
         </p>
 

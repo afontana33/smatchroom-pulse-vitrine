@@ -3,7 +3,7 @@ import { ArrowRight, Check, Store, Utensils, Wrench, ShoppingBag, Calendar } fro
 export const metadata = {
   title: 'Pulse pour les commerces et artisans — SmatchRoom Pulse',
   description:
-    "Un assistant IA sur-mesure pour les artisans, restaurateurs et indépendants. Il trouve vos clients, améliore votre visibilité et gère vos tâches répétitives — pendant que vous faites votre métier. À partir de 500 € + 150 €/mois.",
+    "Un assistant IA sur-mesure pour les artisans, restaurateurs et indépendants. Il trouve vos clients, améliore votre visibilité et gère vos tâches répétitives pendant que vous faites votre métier. À partir de 500 € + 150 €/mois.",
   openGraph: {
     title: 'Pulse pour les commerces et artisans',
     description:
@@ -17,7 +17,7 @@ const BENEFITS = [
   {
     icon: Store,
     title: 'Il trouve vos clients',
-    desc: "L'assistant repère chaque jour de nouveaux prospects dans votre zone et leur envoie un message personnalisé en votre nom. Vous ne cherchez plus — vous recevez.",
+    desc: "L'assistant repère chaque jour de nouveaux prospects dans votre zone et leur envoie un message personnalisé en votre nom. Vous ne cherchez plus : vous recevez.",
   },
   {
     icon: ShoppingBag,
@@ -141,7 +141,7 @@ export default function CommercesPage() {
                 On l'a d'abord construit pour nos propres restaurants.
               </h3>
               <p className="mt-4 text-[var(--muted)]">
-                Émargeo est le logiciel qu'on a développé pour notre propre activité dans la restauration. Il intègre un assistant vocal, la gestion des plannings, le suivi des stocks et des coûts alimentaires. On ne vend pas une promesse — on a d'abord résolu le problème pour nous-mêmes.
+                Émargeo est le logiciel qu'on a développé pour notre propre activité dans la restauration. Il intègre un assistant vocal, la gestion des plannings, le suivi des stocks et des coûts alimentaires. On ne vend pas une promesse : on a d'abord résolu le problème pour nous-mêmes.
               </p>
               <div className="mt-6 flex items-center gap-3">
                 <div className="font-mono text-2xl font-semibold text-white">28%</div>

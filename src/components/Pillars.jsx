@@ -20,7 +20,7 @@ const PILLARS = [
     icon: Search,
     title: 'Moteur RankSniper',
     domain: 'SEO',
-    tagline: 'Audit, sémantique et publication — 100% automatisés.',
+    tagline: 'Audit, sémantique et publication, 100% automatisés.',
     bullets: [
       'Extraction temps réel des failles SEO des concurrents sur vos requêtes cibles',
       'Rédaction chirurgicale longue traîne (2 000+ mots) optimisée pour les LLM (GEO)',
@@ -34,9 +34,9 @@ const PILLARS = [
     domain: 'Sales',
     tagline: 'Moteur souverain de qualification par signaux faibles.',
     bullets: [
-      'Scoring prédictif B2B sur données légales (INSEE / INPI) — 0% hallucination avec validation de sources cliquables',
+      'Scoring prédictif B2B sur données légales (INSEE / INPI) : 0% hallucination, validation de sources cliquables.',
       'Détection de vulnérabilités commerciales en temps réel : signaux faibles métiers croisés',
-      'Pipeline de leads autonome : qualification, personnalisation et envoi — sans intervention humaine',
+      'Pipeline de leads autonome : qualification, personnalisation et envoi, sans intervention humaine',
       'Délivrabilité industrielle : vos domaines et comptes LinkedIn restent hors radar',
     ],
   },
@@ -119,7 +119,7 @@ export default function Pillars() {
                 Votre besoin n'est pas dans la liste ? <span className="gradient-text">On le construit.</span>
               </h3>
               <p className="mt-3 max-w-2xl text-sm text-[var(--muted)] md:text-base">
-                On est une usine. Si un agent IA peut exister, on le conçoit pour vous —
+                On est une usine. Si un agent IA peut exister, on le conçoit pour vous,
                 dans la limite de ce que la techno permet aujourd'hui. Mêmes 48h, même pipeline,
                 même garantie de mise en prod.
               </p>

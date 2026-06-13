@@ -20,7 +20,7 @@ const STEPS = [
     icon: GraduationCap,
     title: 'Apprentissage',
     description:
-      "L'agent apprend votre métier, votre ton, vos clients. On affine jusqu'à ce que le résultat soit à la hauteur — pas avant.",
+      "L'agent apprend votre métier, votre ton, vos clients. On affine jusqu'à ce que le résultat soit à la hauteur. Pas avant.",
   },
   {
     hour: 'H+48',

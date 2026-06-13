@@ -10,7 +10,7 @@ const QUESTIONS = [
   },
   {
     q: "C'est quoi concrètement, un assistant IA pour mon commerce ?",
-    a: "C'est un programme qui travaille pour vous en continu, sans que vous ayez à le surveiller. Exemples concrets : il trouve de nouveaux clients dans votre zone, il publie du contenu sur votre site pour être mieux trouvé sur Google, il répond à des demandes de devis. Vous n'avez pas à lui donner des instructions à chaque fois — il sait ce qu'il a à faire.",
+    a: "C'est un programme qui travaille pour vous en continu, sans que vous ayez à le surveiller. Exemples concrets : il trouve de nouveaux clients dans votre zone, il publie du contenu sur votre site pour être mieux trouvé sur Google, il répond à des demandes de devis. Vous n'avez pas à lui donner des instructions à chaque fois : il sait ce qu'il a à faire.",
   },
   {
     q: "Je ne suis pas à l'aise avec la technologie. Est-ce que c'est compliqué à utiliser ?",
@@ -38,7 +38,7 @@ const QUESTIONS = [
   },
   {
     q: "Et si l'agent ne convient pas ?",
-    a: "On refuse les missions qu'on ne pense pas pouvoir réussir. Pour celles qu'on prend, le pilote a un seuil de qualité contractuel sur ton pipeline d'évaluation. Si on ne l'atteint pas en 48h, on continue jusqu'à l'atteindre — sans surcoût.",
+    a: "On refuse les missions qu'on ne pense pas pouvoir réussir. Pour celles qu'on prend, le pilote a un seuil de qualité contractuel sur ton pipeline d'évaluation. Si on ne l'atteint pas en 48h, on continue jusqu'à l'atteindre, sans surcoût.",
   },
 ];
 

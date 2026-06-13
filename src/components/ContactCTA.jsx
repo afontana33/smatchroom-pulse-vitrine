@@ -57,7 +57,7 @@ export default function ContactCTA() {
               </div>
             </div>
             <p className="mb-6 text-sm text-[var(--muted)]">
-              30 min de visio. On qualifie le besoin, on identifie l'agent qui colle, on vous dit honnêtement si c'est pour Pulse — ou pas.
+              30 min de visio. On qualifie le besoin, on identifie l'agent qui colle, on vous dit honnêtement si c'est pour Pulse, ou pas.
             </p>
             <div className="mt-auto flex flex-col items-center gap-3 text-center">
               <a

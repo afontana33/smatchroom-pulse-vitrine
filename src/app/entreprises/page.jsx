@@ -19,11 +19,11 @@ const FORMATS = [
     name: 'Audit & CTO Externe',
     tagline: 'Diagnostic d\'architecture · Intervention ponctuelle ou récurrente',
     blurb:
-      'Vous avez une stack qui tourne mais vous ne savez pas où elle cassera. On audite, on cartographie, on livre un plan d\'action — avec ou sans implémentation.',
+      'Vous avez une stack qui tourne mais vous ne savez pas où elle cassera. On audite, on cartographie, on livre un plan d\'action. Avec ou sans implémentation.',
     features: [
       'Audit complet de votre infrastructure (Linux, Node.js, APIs REST, BDD Supabase/Postgres)',
       'Cartographie des pipelines IA existants, détection des goulots et points de rupture',
-      'Analyse des coûts token : Prompt Caching, batching, modèle routing — économies documentées',
+      'Analyse des coûts token : Prompt Caching, batching, modèle routing. Économies documentées.',
       'Livrable : plan d\'architecture avec priorisation et estimations d\'effort réalistes',
       'Option : intervention CTO externe sur la durée pour piloter les développements',
     ],
@@ -35,13 +35,13 @@ const FORMATS = [
     name: 'Forfait Build Freelance Senior',
     tagline: 'Développement · Déploiement · Transfert de propriété',
     blurb:
-      'On conçoit, code et stabilise vos agents en production sur votre infra — puis on vous livre le code source complet. Vous devenez propriétaire à 100%.',
+      'On conçoit, code et stabilise vos agents en production sur votre infra, puis on vous livre le code source complet. Vous devenez propriétaire à 100%.',
     features: [
       'Architecture Node.js event-driven avec Supabase comme couche de données souveraine',
       'Pipelines de scoring et d\'automatisation sans dépendance aux SaaS tiers',
       'Déploiement direct sur vos serveurs Linux : Ubuntu, PM2, NGINX reverse proxy',
       'Réduction des coûts API documentée : Prompt Caching natif, context compression',
-      'Transfert total de la PI : code source, documentation technique, modèles fins — vous repartez avec tout',
+      'Transfert total de la PI : code source, documentation technique, modèles fins. Vous repartez avec tout.',
     ],
     highlighted: true,
     cta: 'Discuter de mon projet',
@@ -54,7 +54,7 @@ const PROOFS = [
     sector: 'Restauration',
     metric: '28%',
     label: 'Food Cost stabilisé',
-    desc: 'Système d\'exploitation unifié pour restaurateurs : assistant vocal, plannings IA, suivi des stocks et HACCP — tout sur serveur dédié.',
+    desc: 'Système d\'exploitation unifié pour restaurateurs : assistant vocal, plannings IA, suivi des stocks et HACCP. Tout sur serveur dédié.',
   },
   {
     name: 'SmatchRoom Pro',
@@ -68,7 +68,7 @@ const PROOFS = [
     sector: 'Colocation',
     metric: '92%',
     label: 'Taux de maintien à 6 mois',
-    desc: 'Moteur de matching comportemental basé sur des signaux faibles — zéro questionnaire, déduction par inférence contextuelle.',
+    desc: 'Moteur de matching comportemental basé sur des signaux faibles : zéro questionnaire, déduction par inférence contextuelle.',
   },
 ];
 
@@ -93,7 +93,7 @@ export default function EntreprisesPage() {
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-balance text-lg text-[var(--muted)]">
             SmatchRoom conçoit et déploie vos pipelines d'automatisation et de scoring en{' '}
-            <span className="text-white font-medium">Node.js & Supabase</span> — directement sur vos serveurs Linux.
+            <span className="text-white font-medium">Node.js & Supabase</span>, directement sur vos serveurs Linux.
             Zéro dépendance aux SaaS génériques.{' '}
             <span className="text-white font-medium">Propriété intellectuelle transférée à 100%.</span>
           </p>
@@ -164,7 +164,7 @@ export default function EntreprisesPage() {
               <span className="gradient-text">Deux façons de travailler ensemble.</span>
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-balance text-[var(--muted)]">
-              Pas de grille tarifaire affichée — le périmètre se définit lors du diagnostic de 30 min. Aucune surprise après.
+              Pas de grille tarifaire affichée. Le périmètre se définit lors du diagnostic de 30 min. Aucune surprise après.
             </p>
           </div>
 
