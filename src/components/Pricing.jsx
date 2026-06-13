@@ -1,52 +1,37 @@
-import { Check, Package, Rocket, Building2, ArrowRight, Store, MessageSquare } from 'lucide-react';
+import { Check, ArrowRight, Store, Building2, Shield, Code2, Server } from 'lucide-react';
 
 const CALENDLY = 'https://calendly.com/a-fontana-smatchroom/30min';
 
-const TIERS = [
+const ENTERPRISE_FORMATS = [
   {
-    icon: Package,
-    name: 'Config Pilote',
-    tagline: '1 Agent Métier Isolé',
+    icon: Code2,
+    name: 'Audit & CTO Externe',
+    tagline: 'Diagnostic d\'architecture · Intervention ponctuelle',
     blurb:
-      'Idéal pour valider un premier cas d\'usage critique (SEO, Sales ou Marketing).',
+      'On audite votre stack, on identifie les goulots d\'étranglement et on livre un plan d\'action précis — avec ou sans implémentation.',
     features: [
-      'Intégration à une source de données principale',
-      'Déploiement et calibration sous 48 heures',
-      "Pipeline d'évaluation custom",
-      '30 jours de support post-mise en prod',
+      'Audit complet de votre infrastructure (Linux, Node.js, APIs, BDD)',
+      'Cartographie des pipelines existants et des points de rupture',
+      'Recommandations d\'architecture documentées et actionnables',
+      'Intervention en tant que CTO externe sur la durée si besoin',
     ],
     highlighted: false,
-    cta: 'Demander mon diagnostic',
+    cta: 'Demander un audit d\'architecture',
   },
   {
-    icon: Rocket,
-    name: 'Config Squad',
-    tagline: 'Écosystème Multi-Agents Collaboratifs',
+    icon: Server,
+    name: 'Forfait Build Freelance Senior',
+    tagline: 'Développement · Déploiement · Transfert de propriété',
     blurb:
-      'Plusieurs agents connectés via un cerveau contextuel partagé (cross-agent deduplication).',
+      'On conçoit, code et stabilise vos agents en production — puis on vous livre le code source complet avec toute la propriété intellectuelle.',
     features: [
-      'Synchronisation complète avec vos outils (CRM, n8n, Search Console, APIs métier)',
-      'Monitoring continu et maintenance corrective',
-      'Retraining mensuel des modèles',
-      'Account manager dédié',
+      'Développement full-stack en Node.js avec Supabase comme couche de données',
+      'Réduction du coût token documentée (Prompt Caching natif, batching)',
+      'Déploiement sur votre propre serveur Linux — zéro dépendance SaaS',
+      'Transfert total de la PI : code, modèles, documentation — vous êtes propriétaire',
     ],
     highlighted: true,
-    cta: 'Demander mon diagnostic',
-  },
-  {
-    icon: Building2,
-    name: 'Config Enterprise Engine',
-    tagline: 'Agent Vertical Propriétaire Core-Business',
-    blurb:
-      'Fine-tuning sur votre corpus complet et sécurisation des données.',
-    features: [
-      'Possibilité de déploiement On-Premise',
-      'SLA 99.9% / On-Call 24/7',
-      'Transfert total de la propriété intellectuelle (IP)',
-      'Modèle livré, code livré, indépendance totale',
-    ],
-    highlighted: false,
-    cta: 'Demander mon diagnostic',
+    cta: 'Discuter de mon projet',
   },
 ];
 
@@ -57,15 +42,16 @@ export default function Pricing() {
         <div className="mb-16 text-center">
           <p className="eyebrow">Tarifs</p>
           <h2 className="mt-3 text-balance text-4xl font-semibold tracking-tight md:text-5xl">
-            <span className="gradient-text">Transparent pour les commerces.</span> Sur-mesure pour les entreprises.
+            <span className="gradient-text">Transparent pour les commerces.</span>{' '}
+            Souverain pour les entreprises.
           </h2>
           <p className="mx-auto mt-6 max-w-2xl text-balance text-[var(--muted)]">
-            Une fourchette claire pour les TPE. Un diagnostic de cadrage pour les structures plus importantes.
+            Un prix affiché pour les artisans. Une intervention sur-mesure pour les structures qui ont besoin de vraie propriété sur leur infra.
           </p>
         </div>
 
         {/* Bloc TPE */}
-        <div className="glass mb-10 overflow-hidden rounded-2xl p-8 md:p-10">
+        <div className="glass relative mb-10 overflow-hidden rounded-2xl p-8 md:p-10">
           <div
             aria-hidden
             className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,var(--primary-soft),transparent_60%)]"
@@ -84,7 +70,7 @@ export default function Pricing() {
                 <span className="gradient-text">150 €/mois</span>
               </h3>
               <p className="mt-3 max-w-2xl text-sm text-[var(--muted)] md:text-base">
-                Un assistant IA conçu pour votre métier, déployé en 48h. Vous savez exactement ce que vous payez, dès le départ — sans surprise.
+                Un assistant clé en main, sans jargon, déployé en 48h. Vous savez exactement ce que vous payez, dès le départ.
               </p>
               <ul className="mt-5 grid gap-2 sm:grid-cols-2">
                 {[
@@ -110,18 +96,28 @@ export default function Pricing() {
           </div>
         </div>
 
-        {/* Titre configs PME */}
+        {/* Titre section Entreprises */}
         <div className="mb-8 text-center">
-          <p className="font-mono text-xs uppercase tracking-[0.2em] text-[var(--muted)]">
-            Pour les entreprises · PME · structures
-          </p>
+          <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-[var(--border-strong)] bg-[var(--surface-2)] px-4 py-1.5">
+            <Building2 size={14} className="text-[var(--primary-hover)]" />
+            <p className="font-mono text-xs uppercase tracking-[0.2em] text-[var(--muted)]">
+              Pour les entreprises · agences · PME tech
+            </p>
+          </div>
           <p className="mt-2 text-[var(--muted)]">
-            Le tarif dépend de votre situation. Le diagnostic de cadrage est offert — 30 min pour qualifier votre cas.
+            Intervention sur-mesure. Le tarif est défini lors du diagnostic de cadrage — 30 min pour poser le périmètre précis.
           </p>
+          <div className="mt-4 flex flex-wrap items-center justify-center gap-3">
+            {['Souveraineté', 'Propriété Intellectuelle transférée', 'Infrastructure dédiée', 'Zéro SaaS tiers'].map((kw) => (
+              <span key={kw} className="rounded-full border border-[var(--border-strong)] bg-[var(--primary-soft)]/40 px-3 py-1 font-mono text-xs text-[var(--primary-hover)]">
+                {kw}
+              </span>
+            ))}
+          </div>
         </div>
 
-        <div className="grid gap-6 lg:grid-cols-3">
-          {TIERS.map(({ icon: Icon, name, tagline, blurb, features, highlighted, cta }) => (
+        <div className="grid gap-6 lg:grid-cols-2">
+          {ENTERPRISE_FORMATS.map(({ icon: Icon, name, tagline, blurb, features, highlighted, cta }) => (
             <div
               key={name}
               className={[
@@ -133,7 +129,7 @@ export default function Pricing() {
             >
               {highlighted && (
                 <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-[var(--primary)] px-3 py-1 font-mono text-[0.65rem] uppercase tracking-[0.18em] text-black">
-                  Le plus déployé
+                  Le plus demandé
                 </span>
               )}
 
@@ -180,10 +176,9 @@ export default function Pricing() {
           ))}
         </div>
 
-        {/* Bloc de réassurance final */}
         <div className="mt-10 flex flex-col items-center gap-3 text-center">
           <p className="font-mono text-xs uppercase tracking-[0.2em] text-[var(--muted)]">
-            Pas de grille standardisée · Pas de modules cachés · Pas d'engagement 24 mois
+            Pas de grille standardisée · Code source livré · Pas d'engagement 24 mois
           </p>
           <a
             href={CALENDLY}
@@ -191,7 +186,7 @@ export default function Pricing() {
             rel="noopener noreferrer"
             className="group inline-flex items-center gap-2 rounded-full bg-[var(--primary)] px-7 py-3.5 font-medium text-black transition-all hover:bg-[var(--primary-hover)] hover:shadow-[0_0_40px_-5px_var(--primary-glow)]"
           >
-            Réserver mon Audit de Cadrage (30 min gratuit)
+            Demander un audit d'architecture (30 min gratuit)
             <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
           </a>
         </div>

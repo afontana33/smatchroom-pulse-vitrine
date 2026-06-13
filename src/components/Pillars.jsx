@@ -30,14 +30,14 @@ const PILLARS = [
   },
   {
     icon: BarChart3,
-    title: 'Moteur Prospector-X',
+    title: 'SmatchRoom Apex',
     domain: 'Sales',
-    tagline: 'Le pipeline de leads qui ne dort jamais.',
+    tagline: 'Moteur souverain de qualification par signaux faibles.',
     bullets: [
-      'Sourcing de données légales (INSEE / INPI) croisé avec votre présence numérique réelle',
-      'Algorithme d\'Hyper-Personnalisation : analyse des signaux faibles métiers',
-      'Envoi continu et intelligent : un flux de leads qualifiés qui ne s\'arrête jamais',
-      'Délivrabilité optimisée : vos comptes LinkedIn et mail restent protégés',
+      'Scoring prédictif B2B sur données légales (INSEE / INPI) — 0% hallucination avec validation de sources cliquables',
+      'Détection de vulnérabilités commerciales en temps réel : signaux faibles métiers croisés',
+      'Pipeline de leads autonome : qualification, personnalisation et envoi — sans intervention humaine',
+      'Délivrabilité industrielle : vos domaines et comptes LinkedIn restent hors radar',
     ],
   },
   {

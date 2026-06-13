@@ -11,71 +11,66 @@ const Hero3D = dynamic(() => import('./Hero3D'), {
 export default function Hero() {
   return (
     <section className="relative h-screen min-h-[720px] w-full overflow-hidden">
-      {/* Fond 3D plein écran */}
       <div className="absolute inset-0 z-0">
         <Hero3D />
       </div>
 
-      {/* Halo radial central */}
       <div className="pointer-events-none absolute inset-0 z-10 bg-[radial-gradient(circle_at_center,rgba(168,85,247,0.18),transparent_55%)]" />
 
-      {/* Contenu */}
       <div className="relative z-20 flex h-full flex-col items-center justify-center px-6 text-center">
         <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-[var(--border-strong)] bg-[var(--primary-soft)] px-4 py-1.5 font-mono text-xs uppercase tracking-[0.18em] text-[var(--primary-hover)] backdrop-blur">
           <Sparkles size={14} />
           <span>SmatchRoom · Pulse</span>
         </div>
 
-        <h1 className="max-w-4xl text-balance text-4xl font-semibold leading-[1.05] tracking-tight md:text-6xl lg:text-7xl">
+        <h1 className="max-w-5xl text-balance text-4xl font-semibold leading-[1.05] tracking-tight md:text-6xl lg:text-7xl">
           <span className="gradient-text glow-text">
-            Un assistant IA qui travaille pour vous,{' '}
+            L'écosystème d'agents IA industriels,{' '}
           </span>
-          <span className="text-white">pendant que vous faites votre métier.</span>
+          <span className="text-white">déployés sur votre infrastructure.</span>
         </h1>
 
         <p className="mx-auto mt-6 max-w-2xl text-balance text-lg text-[var(--muted)] md:text-xl">
-          Pulse conçoit et déploie des assistants IA sur-mesure pour les{' '}
-          <span className="font-medium text-white">artisans, restaurateurs et indépendants</span>{' '}
-          — comme pour les entreprises qui veulent aller plus loin.{' '}
-          <span className="font-mono text-white">Opérationnel en 48h.</span>
+          SmatchRoom conçoit, code et stabilise vos pipelines d'automatisation et de scoring en{' '}
+          <span className="font-medium text-white">Node.js & Supabase</span>
+          {' '}— zéro dépendance aux SaaS génériques.{' '}
+          <span className="font-mono text-white">Déployé en 48h.</span>
         </p>
 
-        {/* Bifurcation TPE / PME */}
         <div className="mt-10 flex flex-col items-stretch gap-4 sm:flex-row sm:items-center">
           <a
-            href="/commerces"
+            href="/entreprises"
             className="group flex items-center gap-3 rounded-2xl border border-[var(--primary)] bg-[var(--primary)] px-6 py-4 text-left font-medium text-black transition-all hover:bg-[var(--primary-hover)] hover:shadow-[0_0_40px_-5px_var(--primary-glow)]"
           >
-            <Store size={20} className="flex-shrink-0" />
+            <Building2 size={20} className="flex-shrink-0" />
             <div>
-              <div className="text-sm font-semibold leading-tight">Je suis un commerce</div>
-              <div className="text-xs font-normal opacity-70">artisan · restaurateur · indépendant</div>
+              <div className="text-sm font-semibold leading-tight">Espace Entreprises & Agences</div>
+              <div className="text-xs font-normal opacity-70">Sur-mesure · Infrastructure dédiée</div>
             </div>
             <ArrowRight size={16} className="ml-auto transition-transform group-hover:translate-x-1" />
           </a>
           <a
-            href="/entreprises"
+            href="/commerces"
             className="group flex items-center gap-3 rounded-2xl border border-[var(--border-strong)] bg-[var(--surface-2)]/60 px-6 py-4 text-left font-medium text-white backdrop-blur transition-all hover:border-[var(--primary)] hover:bg-white/5"
           >
-            <Building2 size={20} className="flex-shrink-0 text-[var(--primary-hover)]" />
+            <Store size={20} className="flex-shrink-0 text-[var(--primary-hover)]" />
             <div>
-              <div className="text-sm font-semibold leading-tight">Je suis une entreprise</div>
-              <div className="text-xs font-normal text-[var(--muted)]">PME · structure · équipe</div>
+              <div className="text-sm font-semibold leading-tight">Espace Artisans & Commerçants</div>
+              <div className="text-xs font-normal text-[var(--muted)]">Packagé · Clé en main · 48h</div>
             </div>
             <ArrowRight size={16} className="ml-auto opacity-50 transition-transform group-hover:translate-x-1 group-hover:opacity-100" />
           </a>
         </div>
 
-        {/* Indicateurs en bas */}
         <div className="absolute bottom-10 left-1/2 flex -translate-x-1/2 flex-wrap items-center justify-center gap-x-8 gap-y-2 px-4 font-mono text-xs uppercase tracking-[0.2em] text-[var(--muted)]">
           <div className="flex items-center gap-2">
             <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[var(--primary)]" />
             Opérationnel en 48h
           </div>
           <div className="hidden h-3 w-px bg-[var(--border)] md:block" />
-          <div>Sur-mesure pour votre métier</div>
+          <div>Node.js & Supabase</div>
           <div className="hidden h-3 w-px bg-[var(--border)] md:block" />
-          <div>100% clé en main</div>
+          <div>Zéro SaaS générique</div>
         </div>
       </div>
     </section>
