@@ -62,16 +62,6 @@ export default function Hero() {
           </a>
         </div>
 
-        <div className="absolute bottom-10 left-1/2 flex -translate-x-1/2 flex-wrap items-center justify-center gap-x-8 gap-y-2 px-4 font-mono text-xs uppercase tracking-[0.2em] text-[var(--muted)]">
-          <div className="flex items-center gap-2">
-            <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[var(--primary)]" />
-            Opérationnel en 48h
-          </div>
-          <div className="hidden h-3 w-px bg-[var(--border)] md:block" />
-          <div>Node.js & Supabase</div>
-          <div className="hidden h-3 w-px bg-[var(--border)] md:block" />
-          <div>Zéro SaaS générique</div>
-        </div>
       </div>
     </section>
   );
