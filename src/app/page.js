@@ -1,5 +1,6 @@
 import Nav from '@/components/Nav';
 import Hero from '@/components/Hero';
+import TrustedBy from '@/components/TrustedBy';
 import Manifesto from '@/components/Manifesto';
 import Pillars from '@/components/Pillars';
 import Process from '@/components/Process';
@@ -14,6 +15,7 @@ export default function Page() {
     <main className="flex flex-col">
       <Nav />
       <Hero />
+      <TrustedBy />
       <Manifesto />
       <Pillars />
       <Process />
