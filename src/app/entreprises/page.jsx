@@ -1,4 +1,5 @@
 import { ArrowRight, Check, Building2, Calendar, Server, Code2, Shield, GitBranch, Database, Cpu } from 'lucide-react';
+import InteractiveLab from '@/components/InteractiveLab';
 
 export const metadata = {
   title: 'Agents IA industriels pour entreprises & agences — SmatchRoom Pulse',
@@ -154,6 +155,8 @@ export default function EntreprisesPage() {
           </div>
         </div>
       </section>
+
+      <InteractiveLab />
 
       {/* Formats d'intervention */}
       <section className="px-6 pb-28">
