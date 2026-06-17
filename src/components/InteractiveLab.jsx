@@ -82,12 +82,12 @@ const SEO_OUTPUT = {
 };
 
 export default function InteractiveLab() {
-  /* ---------------- Module 1 : NextMove ---------------- */
+  /* ---------------- Module 1 : Pulse Sentinel ---------------- */
   const [sector, setSector] = useState('marketing');
   const [m1Status, setM1Status] = useState('idle'); // idle | running | done
   const [logLines, setLogLines] = useState([]);
 
-  const runNextMove = () => {
+  const runSentinel = () => {
     setM1Status('running');
     setLogLines([]);
     setM2Status('idle');
@@ -140,14 +140,14 @@ export default function InteractiveLab() {
 
         {/* MODULE 1 + 2 */}
         <div className="grid gap-6 lg:grid-cols-2">
-          {/* Module 1 : NextMove */}
+          {/* Module 1 : Pulse Sentinel */}
           <div className="glass relative flex flex-col rounded-2xl p-7">
             <div className="mb-5 flex items-center gap-3">
               <div className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-cyan-500/10 text-cyan-400 ring-1 ring-cyan-400/30">
                 <Search size={18} strokeWidth={1.8} />
               </div>
               <div>
-                <p className="font-semibold text-white">Moteur NextMove V2</p>
+                <p className="font-semibold text-white">Moteur Pulse Sentinel</p>
                 <p className="text-xs text-[var(--muted)]">Détection d'intention par signaux faibles</p>
               </div>
             </div>
@@ -173,12 +173,12 @@ export default function InteractiveLab() {
             </select>
 
             <button
-              onClick={runNextMove}
+              onClick={runSentinel}
               disabled={m1Status === 'running'}
               className="mb-4 inline-flex items-center justify-center gap-2 rounded-full bg-cyan-500 px-5 py-2.5 text-sm font-medium text-black transition-all hover:bg-cyan-400 disabled:opacity-60"
             >
               <Terminal size={15} />
-              {m1Status === 'running' ? 'Scan en cours…' : 'Lancer le moteur NextMove'}
+              {m1Status === 'running' ? 'Scan en cours…' : 'Lancer le moteur Pulse Sentinel'}
             </button>
 
             {/* Faux terminal de logs */}
@@ -277,7 +277,7 @@ export default function InteractiveLab() {
                 )}
                 {m2Status === 'idle' && (
                   <p className="m-auto text-center text-xs text-[var(--muted)]">
-                    Lancez le scan NextMove puis déclenchez Apex pour voir la conversation démarrer.
+                    Lancez le scan Pulse Sentinel puis déclenchez Apex pour voir la conversation démarrer.
                   </p>
                 )}
               </div>
