@@ -16,17 +16,20 @@ const CALENDLY = 'https://calendly.com/a-fontana-smatchroom/30min';
 const BENEFITS = [
   {
     icon: HardHat,
+    nickname: 'Le Chasseur',
     title: "L'Agent de Prospection B2B (Votre commercial virtuel)",
     desc: "L'agent Pulse scanne votre région, identifie les meilleurs apporteurs d'affaires (notaires, régies de copropriété, maîtres d'œuvre, architectes, constructeurs) et engage la conversation directement par mail ou WhatsApp avec votre numéro. Il qualifie l'intérêt et vous transfère le contact chaud. Vous n'avez plus qu'à signer le partenariat.",
   },
   {
     icon: Mail,
+    nickname: 'Le Gestionnaire',
     title: 'Une réactivité commerciale maximale (Zéro lead perdu)',
-    desc: "Un client ou un partenaire vous contacte pour un devis ? L'agent traite les messages entrants en moins d'une heure, répond aux questions basiques et met à jour votre agenda. Vos clients obtiennent une réponse immédiate, même quand vous êtes sur une échelle ou en rendez-vous.",
+    desc: "Un client ou un partenaire vous contacte pour un devis ? L'agent interne traite les messages entrants en moins d'une heure, répond aux questions basiques et met à jour votre agenda. Vos clients obtiennent une réponse immédiate, même quand vous êtes sur une échelle ou en rendez-vous.",
   },
   {
     icon: MapPin,
-    title: 'Un ancrage local puissant sur Google',
+    nickname: 'Le Visiteur',
+    title: 'Un ancrage local puissant sur Google (SEO)',
     desc: "L'agent optimise votre présence locale pour que votre entreprise ressorte en premier dans votre ville lorsque les professionnels ou les particuliers cherchent votre corps de métier en urgence.",
   },
 ];
@@ -84,19 +87,30 @@ export default function CommercesPage() {
       {/* Bénéfices */}
       <section className="px-6 pb-28">
         <div className="mx-auto max-w-5xl">
-          <div className="mb-12 text-center">
+          <div className="mb-14 text-center">
             <p className="eyebrow">Ce que ça fait concrètement</p>
             <h2 className="mt-3 text-balance text-3xl font-semibold tracking-tight md:text-4xl">
               <span className="gradient-text">Il prospecte,</span> vous vous concentrez sur vos chantiers.
             </h2>
+            <p className="mx-auto mt-4 max-w-2xl text-balance text-[var(--muted)]">
+              Trois agents IA complémentaires, qui travaillent en continu pendant que vous êtes sur le terrain.
+            </p>
           </div>
           <div className="grid gap-6 md:grid-cols-3">
-            {BENEFITS.map(({ icon: Icon, title, desc }) => (
-              <div key={title} className="glass rounded-2xl p-7">
-                <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-[var(--primary-soft)] text-[var(--primary-hover)] ring-1 ring-[var(--border-strong)]">
-                  <Icon size={22} strokeWidth={1.8} />
+            {BENEFITS.map(({ icon: Icon, nickname, title, desc }, i) => (
+              <div key={title} className="glass flex flex-col rounded-2xl p-7">
+                <div className="mb-5 flex items-center justify-between">
+                  <div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-[var(--primary-soft)] text-[var(--primary-hover)] ring-1 ring-[var(--border-strong)]">
+                    <Icon size={22} strokeWidth={1.8} />
+                  </div>
+                  <span className="font-mono text-xs uppercase tracking-[0.18em] text-[var(--muted)]">
+                    Agent {String(i + 1).padStart(2, '0')}
+                  </span>
                 </div>
-                <h3 className="text-lg font-semibold text-white">{title}</h3>
+                <p className="font-mono text-xs uppercase tracking-[0.18em] text-[var(--primary)]">
+                  {nickname}
+                </p>
+                <h3 className="mt-2 text-lg font-semibold text-white">{title}</h3>
                 <p className="mt-3 text-sm text-[var(--muted)]">{desc}</p>
               </div>
             ))}
