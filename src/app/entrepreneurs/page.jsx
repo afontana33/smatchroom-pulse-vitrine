@@ -134,7 +134,7 @@ export default function CommercesPage() {
                 Une technologie industrielle, testée et approuvée sur le terrain.
               </h3>
               <p className="mt-4 text-[var(--muted)]">
-                Nous ne vendons pas une promesse de "Chatbot" générique ou d'usines à gaz en no-code qui cassent à la première mise à jour. Pulse conçoit des agents IA robustes codés en natif (Node.js / Supabase), directement connectés à vos outils du quotidien (Mail, WhatsApp, CRM) et hébergés sur vos propres serveurs sécurisés. Déjà plus de 30 structures — de l'artisan indépendant jusqu'à des concessions de réseaux nationaux comme Tryba — utilisent nos moteurs d'acquisition pour automatiser leur croissance locale et saturer leur planning.
+                Nous ne vendons pas une promesse de "Chatbot" générique ou d'usines à gaz en no-code qui cassent à la première mise à jour. Pulse conçoit des agents IA robustes codés en natif (Node.js / Supabase), directement connectés à vos outils du quotidien (Mail, WhatsApp, CRM) et hébergés sur nos propres serveurs sécurisés. Déjà plus de 30 structures, de l'artisan indépendant jusqu'à des concessions de réseaux nationaux comme Tryba, utilisent nos moteurs d'acquisition pour automatiser leur croissance locale et saturer leur planning.
               </p>
             </div>
           </div>
