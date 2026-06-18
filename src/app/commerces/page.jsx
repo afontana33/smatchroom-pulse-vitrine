@@ -1,13 +1,13 @@
-import { ArrowRight, Check, Store, Utensils, Wrench, ShoppingBag, Calendar } from 'lucide-react';
+import { ArrowRight, Check, HardHat, Mail, MapPin, Calendar } from 'lucide-react';
 
 export const metadata = {
-  title: 'Pulse pour les commerces et artisans — SmatchRoom Pulse',
+  title: 'Pulse pour les artisans du bâtiment — SmatchRoom Pulse',
   description:
-    "Un assistant IA sur-mesure pour les artisans, restaurateurs et indépendants. Il trouve vos clients, améliore votre visibilité et gère vos tâches répétitives pendant que vous faites votre métier. À partir de 500 € + 150 €/mois.",
+    "Un agent IA qui démarche vos apporteurs d'affaires (notaires, syndics, maîtres d'œuvre, architectes) pendant que vous êtes sur vos chantiers. À partir de 500 € + 150 €/mois.",
   openGraph: {
-    title: 'Pulse pour les commerces et artisans',
+    title: 'Pulse pour les artisans du bâtiment',
     description:
-      "Un assistant IA sur-mesure pour les artisans, restaurateurs et indépendants. Opérationnel en 48h. À partir de 500 € + 150 €/mois.",
+      "L'agent IA qui prospecte vos apporteurs d'affaires et remplit votre agenda. Opérationnel sous 48h. À partir de 500 € + 150 €/mois.",
   },
 };
 
@@ -15,27 +15,20 @@ const CALENDLY = 'https://calendly.com/a-fontana-smatchroom/30min';
 
 const BENEFITS = [
   {
-    icon: Store,
-    title: 'Il trouve vos clients',
-    desc: "L'assistant repère chaque jour de nouveaux prospects dans votre zone et leur envoie un message personnalisé en votre nom. Vous ne cherchez plus : vous recevez.",
+    icon: HardHat,
+    title: "L'Agent de Prospection B2B (Votre commercial virtuel)",
+    desc: "L'agent Pulse scanne votre région, identifie les meilleurs apporteurs d'affaires (notaires, régies de copropriété, maîtres d'œuvre, architectes, constructeurs) et engage la conversation directement par mail ou WhatsApp avec votre numéro. Il qualifie l'intérêt et vous transfère le contact chaud. Vous n'avez plus qu'à signer le partenariat.",
   },
   {
-    icon: ShoppingBag,
-    title: 'Il vous rend visible sur Google',
-    desc: "Il publie régulièrement du contenu sur votre site pour que les gens vous trouvent quand ils cherchent votre service dans votre ville.",
+    icon: Mail,
+    title: 'Une réactivité commerciale maximale (Zéro lead perdu)',
+    desc: "Un client ou un partenaire vous contacte pour un devis ? L'agent traite les messages entrants en moins d'une heure, répond aux questions basiques et met à jour votre agenda. Vos clients obtiennent une réponse immédiate, même quand vous êtes sur une échelle ou en rendez-vous.",
   },
   {
-    icon: Calendar,
-    title: 'Il gère les tâches répétitives',
-    desc: "Répondre aux demandes de devis, envoyer des rappels, mettre à jour votre agenda : les petites tâches qui mangent votre temps, il les prend en charge.",
+    icon: MapPin,
+    title: 'Un ancrage local puissant sur Google',
+    desc: "L'agent optimise votre présence locale pour que votre entreprise ressorte en premier dans votre ville lorsque les professionnels ou les particuliers cherchent votre corps de métier en urgence.",
   },
-];
-
-const PROFILES = [
-  { icon: Utensils, label: 'Restaurateurs' },
-  { icon: Wrench, label: 'Artisans' },
-  { icon: ShoppingBag, label: 'Commerces de proximité' },
-  { icon: Store, label: 'Indépendants' },
 ];
 
 export default function CommercesPage() {
@@ -50,16 +43,20 @@ export default function CommercesPage() {
         />
         <div className="relative mx-auto max-w-4xl text-center">
           <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[var(--border-strong)] bg-[var(--primary-soft)] px-4 py-1.5 font-mono text-xs uppercase tracking-[0.18em] text-[var(--primary-hover)]">
-            <Store size={14} />
-            <span>Pour les commerces et artisans</span>
+            <HardHat size={14} />
+            <span>Pour les artisans & entrepreneurs du bâtiment</span>
           </div>
           <h1 className="text-balance text-4xl font-semibold leading-tight tracking-tight md:text-6xl">
-            <span className="gradient-text">Votre assistant IA,</span>{' '}
-            <span className="text-white">conçu pour votre métier.</span>
+            <span className="gradient-text">Le premier Agent IA qui démarche vos apporteurs d'affaires</span>{' '}
+            <span className="text-white">en arrière-plan.</span>
           </h1>
+          <h3 className="mt-4 text-balance text-xl font-medium text-[var(--muted)] md:text-2xl">
+            Rentabilisé dès votre premier chantier.
+          </h3>
           <p className="mx-auto mt-6 max-w-2xl text-balance text-lg text-[var(--muted)]">
-            Vous avez un commerce, un restaurant, un atelier. Vous n'avez pas le temps de faire votre marketing, de chercher des clients, de gérer les tâches répétitives.{' '}
-            <span className="text-white">Pulse s'en charge à votre place.</span>
+            Vous êtes artisan, entrepreneur ou dirigeant de réseau ? Vous n'avez pas le temps de courir après les agences immobilières, les maîtres d'œuvre ou les architectes pour remplir votre carnet de commandes.{' '}
+            <span className="text-white">Pulse déploie pour vous un commercial virtuel sur-mesure qui s'en occupe 24h/24.</span>{' '}
+            Pendant que vous êtes sur vos chantiers, votre IA prospecte, relance et remplit votre agenda.
           </p>
           <div className="mt-8 flex flex-col items-center gap-3">
             <div className="font-semibold text-white text-xl">
@@ -78,26 +75,8 @@ export default function CommercesPage() {
               <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
             </a>
             <p className="font-mono text-xs uppercase tracking-[0.15em] text-[var(--muted)]">
-              Visio · Sans engagement · Opérationnel en 48h
+              Visio · Sans engagement · Opérationnel sous 48h
             </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Pour qui */}
-      <section className="px-6 pb-20">
-        <div className="mx-auto max-w-4xl">
-          <p className="mb-6 text-center text-sm text-[var(--muted)]">Fait pour :</p>
-          <div className="flex flex-wrap justify-center gap-3">
-            {PROFILES.map(({ icon: Icon, label }) => (
-              <div
-                key={label}
-                className="flex items-center gap-2 rounded-full border border-[var(--border-strong)] bg-[var(--surface-2)] px-4 py-2 text-sm text-white"
-              >
-                <Icon size={15} className="text-[var(--primary-hover)]" strokeWidth={1.8} />
-                {label}
-              </div>
-            ))}
           </div>
         </div>
       </section>
@@ -108,7 +87,7 @@ export default function CommercesPage() {
           <div className="mb-12 text-center">
             <p className="eyebrow">Ce que ça fait concrètement</p>
             <h2 className="mt-3 text-balance text-3xl font-semibold tracking-tight md:text-4xl">
-              <span className="gradient-text">Il travaille,</span> vous vous concentrez sur votre cœur de métier.
+              <span className="gradient-text">Il prospecte,</span> vous vous concentrez sur vos chantiers.
             </h2>
           </div>
           <div className="grid gap-6 md:grid-cols-3">
@@ -125,7 +104,7 @@ export default function CommercesPage() {
         </div>
       </section>
 
-      {/* Preuve Émargeo */}
+      {/* Réassurance technique */}
       <section className="px-6 pb-28">
         <div className="mx-auto max-w-4xl">
           <div className="glass relative overflow-hidden rounded-2xl p-8 md:p-10">
@@ -135,18 +114,14 @@ export default function CommercesPage() {
             />
             <div className="relative">
               <p className="font-mono text-xs uppercase tracking-[0.18em] text-[var(--primary)]">
-                Émargeo · Restauration · Notre propre produit
+                Infrastructure · Node.js & Supabase · Hébergement souverain
               </p>
               <h3 className="mt-3 text-2xl font-semibold text-white md:text-3xl">
-                On l'a d'abord construit pour nos propres restaurants.
+                Une technologie industrielle, testée et approuvée sur le terrain.
               </h3>
               <p className="mt-4 text-[var(--muted)]">
-                Émargeo est le logiciel qu'on a développé pour notre propre activité dans la restauration. Il intègre un assistant vocal, la gestion des plannings, le suivi des stocks et des coûts alimentaires. On ne vend pas une promesse : on a d'abord résolu le problème pour nous-mêmes.
+                Nous ne vendons pas une promesse de "Chatbot" générique ou d'usines à gaz en no-code qui cassent à la première mise à jour. Pulse conçoit des agents IA robustes codés en natif (Node.js / Supabase), directement connectés à vos outils du quotidien (Mail, WhatsApp, CRM) et hébergés sur vos propres serveurs sécurisés. Déjà plus de 30 structures — de l'artisan indépendant jusqu'à des concessions de réseaux nationaux comme Tryba — utilisent nos moteurs d'acquisition pour automatiser leur croissance locale et saturer leur planning.
               </p>
-              <div className="mt-6 flex items-center gap-3">
-                <div className="font-mono text-2xl font-semibold text-white">28%</div>
-                <div className="text-sm text-[var(--muted)]">Food Cost mesuré · stabilisé grâce à l'assistant</div>
-              </div>
             </div>
           </div>
         </div>
@@ -166,19 +141,19 @@ export default function CommercesPage() {
               <div>
                 <p className="text-sm text-[var(--muted)]">Installation</p>
                 <p className="text-4xl font-semibold text-white">500 €</p>
-                <p className="text-xs text-[var(--muted)]">une seule fois</p>
+                <p className="text-xs text-[var(--muted)]">une seule fois, HT</p>
               </div>
               <div className="hidden text-3xl text-[var(--border-strong)] sm:block">+</div>
               <div>
                 <p className="text-sm text-[var(--muted)]">Abonnement mensuel</p>
-                <p className="text-4xl font-semibold text-white">150 €<span className="text-lg font-normal text-[var(--muted)]">/mois</span></p>
-                <p className="text-xs text-[var(--muted)]">sans engagement long terme</p>
+                <p className="text-4xl font-semibold text-white">150 €<span className="text-lg font-normal text-[var(--muted)]">/mois HT</span></p>
+                <p className="text-xs text-[var(--muted)]">sans engagement</p>
               </div>
             </div>
             <ul className="mb-8 space-y-3">
               {[
-                'Assistant conçu sur-mesure pour votre activité',
-                'Opérationnel en 48h après le premier appel',
+                'Agent conçu sur-mesure pour votre corps de métier',
+                'Opérationnel sous 48h après le premier appel',
                 'Tableau de bord simple pour suivre ce qu\'il fait',
                 'Support disponible si vous avez une question',
                 'Vous pouvez arrêter quand vous voulez',
@@ -189,10 +164,15 @@ export default function CommercesPage() {
                 </li>
               ))}
             </ul>
+            <div className="mb-8 rounded-xl border border-[var(--border-strong)] bg-[var(--surface-2)] p-5">
+              <p className="text-sm text-[var(--muted)]">
+                Sur une année complète, votre infrastructure Pulse vous coûte <span className="text-white font-medium">2 300 € HT</span>. Un seul chantier moyen décroché grâce à un partenaire (rénovation, électricité, menuiserie, peinture, plomberie) oscille entre <span className="text-white font-medium">3 000 € et 15 000 €</span>. Il suffit d'un seul contrat ou de quelques rendez-vous générés par l'IA dans l'année pour que l'agent soit 100 % rentabilisé. Tout le reste, c'est du bénéfice pur pour votre entreprise.
+              </p>
+            </div>
             <p className="text-xs text-[var(--muted)]/60">
               * Le tarif exact est confirmé lors du diagnostic de cadrage (30 min, offert). Il peut varier selon la complexité de votre besoin. Voir nos{' '}
               <a href="/cgv" className="underline hover:text-[var(--muted)]">CGV</a>{' '}
-              pour les détails, notamment concernant la garantie de déploiement en 48h.
+              pour les détails, notamment concernant la garantie de déploiement sous 48h.
             </p>
           </div>
         </div>
@@ -215,14 +195,19 @@ export default function CommercesPage() {
                 role: "Franchisé Tryba · Pau",
               },
               {
-                quote: "Je passais mes soirées à répondre aux demandes de devis. Maintenant c'est géré automatiquement et mes réponses partent en moins d'une heure. Mes clients me disent que je suis le plus réactif du coin.",
-                name: "Sandra Morel",
-                role: "Esthéticienne · Bordeaux",
+                quote: "Je n'avais pas le temps de faire du réseau. J'ai branché l'agent Pulse la semaine dernière : il a décroché 3 nouveaux partenariats locaux avec des apporteurs d'affaires en seulement 7 jours. La machine tourne toute seule en arrière-plan.",
+                name: "Karim Bensalem",
+                role: "Plombier indépendant · Marseille",
               },
               {
-                quote: "J'avais zéro présence sur Google. En deux mois, je ressors sur les recherches 'plombier urgence' dans ma ville. J'ai au moins 4-5 nouveaux appels par semaine que je n'aurais pas eus avant.",
-                name: "Karim Bensalem",
-                role: "Plombier indépendant · Toulouse",
+                quote: "J'étais sceptique sur l'IA pour le bâtiment, mais les résultats sont indiscutables. L'agent a ciblé et contacté les syndics et agences immobilières de mes arrondissements cibles. Résultat : j'ai récupéré deux gros chantiers de rénovation complète en moins d'un mois.",
+                name: "Valentin Girard",
+                role: "Électricien · Paris",
+              },
+              {
+                quote: "L'agent tourne pendant que je suis sur mes chantiers. Il m'a décroché des rendez-vous réguliers avec des maîtres d'œuvre sur la métropole lilloise. Mon planning est plein pour les 3 prochains mois, je recommande Pulse les yeux fermés.",
+                name: "Benoît Mercier",
+                role: "Peintre en bâtiment · Lille",
               },
             ].map(({ quote, name, role }) => (
               <div key={name} className="glass rounded-2xl p-8">
@@ -252,10 +237,10 @@ export default function CommercesPage() {
           <div className="rounded-3xl border border-[var(--border-strong)] bg-gradient-to-b from-[var(--surface-2)] to-[var(--surface)] p-10 md:p-14">
             <p className="eyebrow">Première étape</p>
             <h2 className="mt-3 text-balance text-2xl font-semibold tracking-tight md:text-4xl">
-              <span className="gradient-text">30 min pour voir si on peut vous aider.</span>
+              <span className="gradient-text">30 minutes pour voir si on peut saturer votre carnet de commandes.</span>
             </h2>
             <p className="mx-auto mt-4 max-w-lg text-balance text-[var(--muted)]">
-              On comprend votre activité, on vous explique ce qu'on peut faire pour vous. Si ce n'est pas pertinent, on vous le dit aussi.
+              On étudie votre secteur géographique, on analyse vos concurrents et on vous explique ce qu'on peut brancher pour vous. Si votre zone est déjà prise par un autre artisan ou si ce n'est pas pertinent pour votre métier, on vous le dit aussi.
             </p>
             <div className="mt-8 flex flex-col items-center gap-3">
               <a
@@ -265,11 +250,11 @@ export default function CommercesPage() {
                 className="group inline-flex items-center gap-2 rounded-full bg-[var(--primary)] px-8 py-4 text-base font-medium text-black transition-all hover:bg-[var(--primary-hover)] hover:shadow-[0_0_40px_-5px_var(--primary-glow)]"
               >
                 <Calendar size={18} />
-                Réserver mon créneau (gratuit)
+                Réserver mon créneau (Gratuit)
                 <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
               </a>
               <p className="font-mono text-xs uppercase tracking-[0.18em] text-[var(--muted)]">
-                30 min · Visio · Sans engagement
+                30 min · Visio · Sans engagement · Le tarif exact est confirmé lors de ce diagnostic.
               </p>
             </div>
           </div>
