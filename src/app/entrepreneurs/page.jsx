@@ -93,7 +93,7 @@ export default function CommercesPage() {
               <span className="gradient-text">Il prospecte,</span> vous vous concentrez sur vos chantiers.
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-balance text-[var(--muted)]">
-              Trois agents IA complémentaires, qui travaillent en continu pendant que vous êtes sur le terrain.
+              Trois agents IA spécialisés. Choisissez le premier agent que vous souhaitez déployer dans votre entreprise :
             </p>
           </div>
           <div className="grid gap-6 md:grid-cols-3">
@@ -154,13 +154,13 @@ export default function CommercesPage() {
             <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-end sm:gap-8">
               <div>
                 <p className="text-sm text-[var(--muted)]">Installation</p>
-                <p className="text-4xl font-semibold text-white">500 €</p>
-                <p className="text-xs text-[var(--muted)]">une seule fois, HT</p>
+                <p className="text-4xl font-semibold text-white">500 € HT<span className="text-lg font-normal text-[var(--muted)]"> / par agent</span></p>
+                <p className="text-xs text-[var(--muted)]">une seule fois</p>
               </div>
               <div className="hidden text-3xl text-[var(--border-strong)] sm:block">+</div>
               <div>
                 <p className="text-sm text-[var(--muted)]">Abonnement mensuel</p>
-                <p className="text-4xl font-semibold text-white">150 €<span className="text-lg font-normal text-[var(--muted)]">/mois HT</span></p>
+                <p className="text-4xl font-semibold text-white">150 €<span className="text-lg font-normal text-[var(--muted)]">/mois HT / par agent</span></p>
                 <p className="text-xs text-[var(--muted)]">sans engagement</p>
               </div>
             </div>
@@ -171,6 +171,7 @@ export default function CommercesPage() {
                 'Tableau de bord simple pour suivre ce qu\'il fait',
                 'Support disponible si vous avez une question',
                 'Vous pouvez arrêter quand vous voulez',
+                'Vous choisissez l\'agent prioritaire pour votre activité (possibilité de cumuler plusieurs agents ensuite)',
               ].map((f) => (
                 <li key={f} className="flex items-center gap-3 text-sm text-[var(--muted)]">
                   <Check size={15} className="flex-shrink-0 text-[var(--primary-hover)]" strokeWidth={2.5} />
@@ -180,7 +181,7 @@ export default function CommercesPage() {
             </ul>
             <div className="mb-8 rounded-xl border border-[var(--border-strong)] bg-[var(--surface-2)] p-5">
               <p className="text-sm text-[var(--muted)]">
-                Sur une année complète, votre infrastructure Pulse vous coûte <span className="text-white font-medium">2 300 € HT</span>. Un seul chantier moyen décroché grâce à un partenaire (rénovation, électricité, menuiserie, peinture, plomberie) oscille entre <span className="text-white font-medium">3 000 € et 15 000 €</span>. Il suffit d'un seul contrat ou de quelques rendez-vous générés par l'IA dans l'année pour que l'agent soit 100 % rentabilisé. Tout le reste, c'est du bénéfice pur pour votre entreprise.
+                Sur une année complète, le déploiement de votre premier agent Pulse vous coûte <span className="text-white font-medium">2 300 € HT</span>. Un seul chantier moyen décroché grâce à un partenaire (rénovation, électricité, menuiserie, peinture, plomberie) oscille entre <span className="text-white font-medium">3 000 € et 15 000 €</span>. Il suffit d'un seul contrat ou de quelques rendez-vous générés par l'IA dans l'année pour que l'agent soit 100 % rentabilisé. Tout le reste, c'est du bénéfice pur pour votre entreprise.
               </p>
             </div>
             <p className="text-xs text-[var(--muted)]/60">
