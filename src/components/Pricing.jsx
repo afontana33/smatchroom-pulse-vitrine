@@ -87,10 +87,10 @@ export default function Pricing() {
               </ul>
             </div>
             <a
-              href="/commerces"
+              href="/entrepreneurs"
               className="group inline-flex items-center justify-center gap-2 self-start rounded-full bg-[var(--primary)] px-6 py-3 font-medium text-black transition-all hover:bg-[var(--primary-hover)] hover:shadow-[0_0_40px_-5px_var(--primary-glow)] md:self-center"
             >
-              Voir l'offre commerces
+              Voir l'offre artisans
               <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
             </a>
           </div>

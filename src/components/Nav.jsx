@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { Sparkles, Menu, X } from 'lucide-react';
 
 const LINKS = [
-  { href: '/commerces', label: 'Commerces', highlight: true },
+  { href: '/entrepreneurs', label: 'Artisans', highlight: true },
   { href: '/entreprises', label: 'Entreprises' },
   { href: '#cas-usage', label: "Cas d'usage" },
   { href: '#tarifs', label: 'Tarifs' },

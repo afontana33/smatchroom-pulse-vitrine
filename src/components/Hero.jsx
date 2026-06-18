@@ -50,7 +50,7 @@ export default function Hero() {
             <ArrowRight size={16} className="ml-auto transition-transform group-hover:translate-x-1" />
           </a>
           <a
-            href="/commerces"
+            href="/entrepreneurs"
             className="group flex items-center gap-3 rounded-2xl border border-[var(--border-strong)] bg-[var(--surface-2)]/60 px-6 py-4 text-left font-medium text-white backdrop-blur transition-all hover:border-[var(--primary)] hover:bg-white/5"
           >
             <Store size={20} className="flex-shrink-0 text-[var(--primary-hover)]" />

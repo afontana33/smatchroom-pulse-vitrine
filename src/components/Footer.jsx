@@ -38,7 +38,7 @@ export default function Footer() {
               Navigation
             </p>
             <ul className="mt-4 space-y-2 text-sm text-[var(--muted)]">
-              <li><a href="/commerces" className="font-medium text-[var(--primary-hover)] hover:text-white">Commerces & artisans</a></li>
+              <li><a href="/entrepreneurs" className="font-medium text-[var(--primary-hover)] hover:text-white">Artisans & entrepreneurs</a></li>
               <li><a href="/entreprises" className="hover:text-white">Entreprises & PME</a></li>
               <li><a href="/#cas-usage" className="hover:text-white">Cas d'usage</a></li>
               <li><a href="/#tarifs" className="hover:text-white">Tarifs</a></li>

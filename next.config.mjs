@@ -15,6 +15,15 @@ const nextConfig = {
   turbopack: {
     root: path.resolve('.'),
   },
+  async redirects() {
+    return [
+      {
+        source: '/commerces',
+        destination: '/entrepreneurs',
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default withMDX(nextConfig);
