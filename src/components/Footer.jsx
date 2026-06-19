@@ -25,10 +25,7 @@ export default function Footer() {
               Écosystème
             </p>
             <ul className="mt-4 space-y-2 text-sm text-[var(--muted)]">
-              <li><a href="https://smatchroom.com" className="hover:text-white">SmatchRoom App</a></li>
-              <li><a href="https://pro.smatchroom.com" className="hover:text-white">SmatchRoom Pro</a></li>
-              <li><a href="https://émargeo.com" className="hover:text-white">Émargeo</a></li>
-              <li><a href="#" className="text-white">SmatchRoom Pulse</a></li>
+              <li><a href="https://smatchroom.com" className="hover:text-white">smatchroom.com</a></li>
             </ul>
           </div>
 
