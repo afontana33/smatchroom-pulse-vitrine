@@ -14,8 +14,8 @@ export default function Footer() {
               </span>
             </div>
             <p className="mt-4 max-w-md text-sm text-[var(--muted)]">
-              L'usine à agents IA du groupe SmatchRoom. SEO, Sales, Marketing —
-              déployés en 48h, sur ton infra, sur ton métier.
+              L'usine à agents IA du groupe SmatchRoom, taillée pour les artisans du bâtiment.
+              Prospection, devis, RDV, SEO local — déployés en 48h sur votre infra.
             </p>
           </div>
 
@@ -35,8 +35,7 @@ export default function Footer() {
               Navigation
             </p>
             <ul className="mt-4 space-y-2 text-sm text-[var(--muted)]">
-              <li><a href="/entrepreneurs" className="font-medium text-[var(--primary-hover)] hover:text-white">Artisans & entrepreneurs</a></li>
-              <li><a href="/entreprises" className="hover:text-white">Entreprises & PME</a></li>
+              <li><a href="/#tarifs" className="font-medium text-[var(--primary-hover)] hover:text-white">Les agents</a></li>
               <li><a href="/#cas-usage" className="hover:text-white">Cas d'usage</a></li>
               <li><a href="/#tarifs" className="hover:text-white">Tarifs</a></li>
               <li><a href="/#faq" className="hover:text-white">FAQ</a></li>
