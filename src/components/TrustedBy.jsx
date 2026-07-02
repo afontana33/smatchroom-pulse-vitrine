@@ -2,10 +2,10 @@ import { Users } from 'lucide-react';
 
 const CLIENTS = [
   "Tryba",
+  "BatInnov",
+  "JB Pilotage",
   "NextMove",
-  "Émargeo",
-  "Strato",
-  "Jb pilotage"
+  "Émargeo"
 ];
 
 export default function TrustedBy() {
@@ -23,7 +23,7 @@ export default function TrustedBy() {
           <div className="text-left">
             <p className="font-mono text-xl font-semibold text-white">+30</p>
             <p className="text-xs uppercase tracking-[0.1em] text-[var(--muted)]">
-              Entreprises accompagnées
+              Artisans & pros du bâtiment
             </p>
           </div>
         </div>
