@@ -1,4 +1,4 @@
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { Inter, JetBrains_Mono, Bricolage_Grotesque } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({
@@ -13,15 +13,21 @@ const jetbrains = JetBrains_Mono({
   display: "swap",
 });
 
+const bricolage = Bricolage_Grotesque({
+  variable: "--font-bricolage",
+  subsets: ["latin"],
+  display: "swap",
+});
+
 export const metadata = {
-  title: "SmatchRoom Pulse — Assistant IA sur-mesure pour artisans, commerces et entreprises",
+  title: "SmatchRoom Pulse — Des agents IA pour les artisans du bâtiment",
   description:
-    "Pulse conçoit et déploie un assistant IA taillé pour votre activité : artisan, restaurateur, indépendant ou PME. Il trouve vos clients, améliore votre visibilité et gère vos tâches répétitives. Opérationnel en 48h. À partir de 500 € + 150 €/mois.",
+    "Pulse conçoit et déploie des agents IA taillés pour les métiers du bâtiment : prospection de partenaires, relance de devis, qualification de leads, avis Google, conformité. Déployés en 48h sur votre infra (Node.js + Supabase).",
   metadataBase: new URL("https://pulse.smatchroom.com"),
   openGraph: {
-    title: "SmatchRoom Pulse — Assistant IA pour commerces et entreprises",
+    title: "SmatchRoom Pulse — Des agents IA pour le bâtiment",
     description:
-      "Un assistant IA sur-mesure pour votre métier. Artisans, restaurateurs, indépendants et PME. Opérationnel en 48h. À partir de 500 € + 150 €/mois.",
+      "Des agents IA qui bossent pour votre entreprise du bâtiment : prospection, relance de devis, RDV, SEO local. Déployés en 48h.",
     url: "https://pulse.smatchroom.com",
     siteName: "SmatchRoom Pulse",
     type: "website",
@@ -32,7 +38,7 @@ export default function RootLayout({ children }) {
   return (
     <html
       lang="fr"
-      className={`${inter.variable} ${jetbrains.variable} h-full antialiased`}
+      className={`${inter.variable} ${jetbrains.variable} ${bricolage.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>

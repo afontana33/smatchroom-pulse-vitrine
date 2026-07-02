@@ -1,17 +1,18 @@
 @import "tailwindcss";
 
 :root {
-  --background: #050508;
+  --background: #0a0a0c;
   --foreground: #f5f5f7;
-  --muted: #9aa0b0;
-  --primary: #a855f7;
-  --primary-hover: #c084fc;
-  --primary-soft: rgba(168, 85, 247, 0.15);
-  --primary-glow: rgba(168, 85, 247, 0.45);
-  --surface: #0d0d18;
-  --surface-2: #14142a;
-  --border: rgba(168, 85, 247, 0.18);
-  --border-strong: rgba(168, 85, 247, 0.4);
+  --muted: #9a9aa2;
+  --primary: #ff5a1f;
+  --primary-hover: #ff7c48;
+  --primary-soft: rgba(255, 90, 31, 0.15);
+  --primary-glow: rgba(255, 90, 31, 0.45);
+  --signal: #ffce3a;
+  --surface: #111114;
+  --surface-2: #191920;
+  --border: rgba(255, 90, 31, 0.18);
+  --border-strong: rgba(255, 90, 31, 0.42);
 }
 
 @theme inline {
@@ -26,6 +27,7 @@
   --color-border-strong: var(--border-strong);
   --font-sans: var(--font-inter);
   --font-mono: var(--font-jetbrains);
+  --font-display: var(--font-bricolage);
 }
 
 * {
@@ -42,13 +44,13 @@ html, body {
 
 body {
   background-image:
-    radial-gradient(800px circle at 20% 10%, rgba(168, 85, 247, 0.08), transparent 50%),
-    radial-gradient(700px circle at 80% 70%, rgba(120, 70, 200, 0.06), transparent 60%);
+    radial-gradient(800px circle at 20% 10%, rgba(255, 90, 31, 0.08), transparent 50%),
+    radial-gradient(700px circle at 80% 70%, rgba(255, 160, 60, 0.05), transparent 60%);
 }
 
 /* Utility: neon text glow */
 .glow-text {
-  text-shadow: 0 0 12px var(--primary-glow), 0 0 32px rgba(168, 85, 247, 0.25);
+  text-shadow: 0 0 12px var(--primary-glow), 0 0 32px rgba(255, 90, 31, 0.25);
 }
 
 /* Utility: glass card */
@@ -74,7 +76,7 @@ body {
 
 /* Utility: gradient violet → blanc texte */
 .gradient-text {
-  background: linear-gradient(180deg, #ffffff 0%, #c084fc 100%);
+  background: linear-gradient(180deg, #ffffff 0%, #ff7c48 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -82,9 +84,9 @@ body {
 
 /* Animated scrollbar in pulse violet */
 ::-webkit-scrollbar { width: 10px; }
-::-webkit-scrollbar-track { background: #050508; }
+::-webkit-scrollbar-track { background: #0a0a0c; }
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #a855f7, #6d28d9);
+  background: linear-gradient(180deg, #ff5a1f, #b23610);
   border-radius: 6px;
 }
 
@@ -105,4 +107,9 @@ body {
 @keyframes fadeIn {
   0% { opacity: 0; transform: translateY(4px); }
   100% { opacity: 1; transform: translateY(0); }
+}
+
+h1, h2 {
+  font-family: var(--font-bricolage), var(--font-inter), system-ui, sans-serif;
+  letter-spacing: -0.02em;
 }
