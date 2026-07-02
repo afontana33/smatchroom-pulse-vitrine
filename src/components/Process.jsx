@@ -6,28 +6,28 @@ const STEPS = [
     icon: Compass,
     title: 'Audit & Cadrage',
     description:
-      "30 min de call. On comprend votre activité, ce qui vous prend du temps, ce que vous voudriez automatiser. On vous dit honnêtement si on peut aider.",
+      "30 min de visio. On comprend votre activité de bâtiment, ce qui vous prend du temps (devis, prospection, relances) et ce qu'on peut automatiser. On vous dit honnêtement si on peut aider.",
   },
   {
     hour: 'H+12',
     icon: Cog,
     title: 'Conception',
     description:
-      "On choisit la meilleure approche pour votre cas. L'agent est conçu à partir de vos vraies données et de vos contraintes métier.",
+      "On choisit l'agent adapté à votre métier. Il est conçu à partir de vos vraies données : votre zone, vos clients types, vos partenaires.",
   },
   {
     hour: 'H+30',
     icon: GraduationCap,
     title: 'Apprentissage',
     description:
-      "L'agent apprend votre métier, votre ton, vos clients. On affine jusqu'à ce que le résultat soit à la hauteur. Pas avant.",
+      "L'agent apprend votre métier, votre ton, vos clients. On affine jusqu'à ce que le résultat tienne la route sur le terrain. Pas avant.",
   },
   {
     hour: 'H+48',
     icon: Rocket,
     title: 'Mise en route',
     description:
-      "L'agent est déployé et opérationnel. Vous le pilotez depuis un tableau de bord simple. On reste disponibles si besoin.",
+      "L'agent est déployé et opérationnel. Vous le pilotez depuis un tableau de bord simple, sur votre téléphone. On reste disponibles.",
   },
 ];
 
@@ -41,7 +41,8 @@ export default function Process() {
             <span className="gradient-text">48 heures.</span> Pas 6 mois.
           </h2>
           <p className="mx-auto mt-5 max-w-2xl text-balance text-[var(--muted)]">
-            On ne vend pas un POC. On déploie un agent qui rentre en production le 3ème jour.
+            On ne vend pas un POC. On déploie un agent qui rentre en production le 3ème jour,
+            pendant que vous continuez vos chantiers.
           </p>
         </div>
 
