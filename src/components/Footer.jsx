@@ -35,7 +35,7 @@ export default function Footer() {
               Navigation
             </p>
             <ul className="mt-4 space-y-2 text-sm text-[var(--muted)]">
-              <li><a href="/#tarifs" className="font-medium text-[var(--primary-hover)] hover:text-white">Les agents</a></li>
+              <li><a href="/#agents" className="font-medium text-[var(--primary-hover)] hover:text-white">Les agents</a></li>
               <li><a href="/#cas-usage" className="hover:text-white">Cas d'usage</a></li>
               <li><a href="/#tarifs" className="hover:text-white">Tarifs</a></li>
               <li><a href="/#faq" className="hover:text-white">FAQ</a></li>

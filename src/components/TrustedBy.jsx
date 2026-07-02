@@ -4,8 +4,7 @@ const CLIENTS = [
   "Tryba",
   "BatInnov",
   "JB Pilotage",
-  "NextMove",
-  "Émargeo"
+  "NextMove"
 ];
 
 export default function TrustedBy() {
