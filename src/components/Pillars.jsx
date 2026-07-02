@@ -1,17 +1,15 @@
 import { Search, BarChart3, Megaphone, Factory, ArrowRight } from 'lucide-react';
 
 const CUSTOM_EXAMPLES = [
-  'Support client',
-  'RH & Onboarding',
-  'Veille concurrentielle',
-  'Légal & Conformité',
-  'Finance & Reporting',
-  'Ops & Logistique',
-  'Procurement',
-  'Modération',
-  'QA & Tests',
-  'Data analyst',
-  'Recrutement',
+  'Relance de devis',
+  'Suivi de chantier',
+  'Avis Google',
+  'Attestations URSSAF',
+  'SAV & garanties',
+  'Planning poseurs',
+  'Facturation',
+  'Appels entrants',
+  'MaPrimeRénov',
   'Et le vôtre.',
 ];
 
@@ -19,37 +17,37 @@ const PILLARS = [
   {
     icon: Search,
     title: 'Moteur RankSniper',
-    domain: 'SEO',
-    tagline: 'Audit, sémantique et publication, 100% automatisés.',
+    domain: 'SEO local',
+    tagline: 'Visible sur Google quand on cherche un artisan.',
     bullets: [
-      'Extraction temps réel des failles SEO des concurrents sur vos requêtes cibles',
-      'Rédaction chirurgicale longue traîne (2 000+ mots) optimisée pour les LLM (GEO)',
-      'Passerelle Webhook & Upsert : injection directe dans votre CMS (Supabase, WordPress)',
-      'Balises JSON-LD structurelles automatisées (Article, FAQ, BreadcrumbList)',
+      'Analyse les requêtes locales (« couvreur Lille », « ITE 59 ») et les failles de vos concurrents',
+      'Rédige et publie des pages métier optimisées, sans que vous touchiez au clavier',
+      'Répond aux avis Google et pousse les demandes de devis vers vous',
+      'Balises structurées automatiques : vous remontez dans le pack local',
     ],
   },
   {
     icon: BarChart3,
     title: 'SmatchRoom Apex',
-    domain: 'Sales',
-    tagline: 'Moteur souverain de qualification par signaux faibles.',
+    domain: 'Prospection',
+    tagline: 'Un flux continu de chantiers qualifiés.',
     bullets: [
-      'Scoring prédictif B2B sur données légales (INSEE / INPI) : 0% hallucination, validation de sources cliquables.',
-      'Détection de vulnérabilités commerciales en temps réel : signaux faibles métiers croisés',
-      'Pipeline de leads autonome : qualification, personnalisation et envoi, sans intervention humaine',
-      'Délivrabilité industrielle : vos domaines et comptes LinkedIn restent hors radar',
+      'Sourcing sur données légales (INSEE / INPI) : syndics, agences, maîtres d\'œuvre de votre zone',
+      'Détecte les partenaires qui envoient du chantier et les contacte pour vous',
+      'Relance vos devis en attente par WhatsApp, au bon moment',
+      'Vos numéros restent protégés : cadence lissée, montée en charge anti-blocage',
     ],
   },
   {
     icon: Megaphone,
     title: 'Moteur Orchestrator',
-    domain: 'Marketing',
-    tagline: 'Campagnes et itérations multi-canal en autonomie.',
+    domain: 'Admin & Ops',
+    tagline: 'L\'administratif qui se fait tout seul.',
     bullets: [
-      'Idéation, copies publicitaires et briefs créatifs auto-générés',
-      'A/B testing continu basé sur les données réelles de conversion',
-      'FinOps Optimization : Prompt Caching natif (−90% sur les volumes lourds)',
-      'Synthèse perf hebdo + recommandations d\'itération',
+      'Qualifie les leads entrants et pose les RDV directement dans votre agenda',
+      'Vérifie les attestations (URSSAF, décennale) avant chaque chantier',
+      'Compare les devis fournisseurs et repère les écarts de prix',
+      'Synthèse hebdo : ce qui a été fait, ce qui attend votre décision',
     ],
   },
 ];
@@ -59,14 +57,13 @@ export default function Pillars() {
     <section id="agents" className="relative py-32 px-6">
       <div className="mx-auto max-w-7xl">
         <div className="mb-16 text-center">
-          <p className="eyebrow">3 moteurs propriétaires + tout le reste</p>
+          <p className="eyebrow">Vos agents, par métier du bâtiment</p>
           <h2 className="mt-3 text-balance text-4xl font-semibold tracking-tight md:text-5xl">
-            <span className="gradient-text">Ingénierie chirurgicale.</span> Pas de SaaS générique.
+            <span className="gradient-text">Du vrai code.</span> Pas un wrapper ChatGPT.
           </h2>
           <p className="mx-auto mt-5 max-w-2xl text-balance text-[var(--muted)]">
-            Trois moteurs propriétaires conçus, entraînés et opérés en interne. Pas de
-            wrapper ChatGPT, pas de pile no-code fragile. Du code, des bases de données,
-            des passerelles industrielles.
+            Des moteurs conçus, entraînés et opérés en interne. Pas de pile no-code fragile :
+            du code, des bases de données, des passerelles industrielles — adaptés au bâtiment.
           </p>
         </div>
 
@@ -119,9 +116,8 @@ export default function Pillars() {
                 Votre besoin n'est pas dans la liste ? <span className="gradient-text">On le construit.</span>
               </h3>
               <p className="mt-3 max-w-2xl text-sm text-[var(--muted)] md:text-base">
-                On est une usine. Si un agent IA peut exister, on le conçoit pour vous,
-                dans la limite de ce que la techno permet aujourd'hui. Mêmes 48h, même pipeline,
-                même garantie de mise en prod.
+                On est une usine à agents. Si un besoin de votre activité peut être automatisé,
+                on le conçoit pour vous. Mêmes 48h, même pipeline, même garantie de mise en prod.
               </p>
 
               <ul className="mt-5 flex flex-wrap gap-2">
