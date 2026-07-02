@@ -5,40 +5,36 @@ import { Plus, Minus } from 'lucide-react';
 
 const QUESTIONS = [
   {
-    q: "Je suis artisan / restaurateur. C'est fait pour moi ?",
-    a: "Oui, c'est même notre cible principale aujourd'hui. On a construit Émargeo, notre propre outil pour les restaurateurs, avec exactement cette approche. Un assistant qui gère ce qui vous prend du temps (trouver des clients, répondre aux demandes, automatiser les tâches répétitives) pendant que vous faites votre métier.",
+    q: "Je suis artisan du bâtiment. C'est fait pour moi ?",
+    a: "Oui, c'est exactement notre cible. Nos agents sont déjà en production chez des artisans du bâtiment (couverture, isolation, rénovation). Ils s'occupent de trouver des chantiers, relancer vos devis et gérer l'administratif pendant que vous êtes sur le terrain.",
   },
   {
-    q: "C'est quoi concrètement, un assistant IA pour mon commerce ?",
-    a: "C'est un programme qui travaille pour vous en continu, sans que vous ayez à le surveiller. Exemples concrets : il trouve de nouveaux clients dans votre zone, il publie du contenu sur votre site pour être mieux trouvé sur Google, il répond à des demandes de devis. Vous n'avez pas à lui donner des instructions à chaque fois : il sait ce qu'il a à faire.",
+    q: "Concrètement, un agent IA pour mon activité, ça fait quoi ?",
+    a: "C'est un programme qui travaille pour vous en continu, sans surveillance. Exemples : il contacte des syndics et agences pour vous apporter des chantiers, il relance par message les devis sans réponse, il répond aux avis Google, il vérifie les attestations avant un chantier. Vous n'avez pas à lui dire quoi faire à chaque fois.",
   },
   {
-    q: "Je ne suis pas à l'aise avec la technologie. Est-ce que c'est compliqué à utiliser ?",
-    a: "Non. On s'occupe de tout : la mise en place, le paramétrage, la mise en route. Vous avez accès à un tableau de bord simple pour voir ce que fait l'assistant. Si quelque chose ne va pas, vous nous appelez.",
+    q: "Je ne suis pas à l'aise avec l'informatique. C'est compliqué ?",
+    a: "Non. On s'occupe de tout : mise en place, paramétrage, mise en route. Vous avez un tableau de bord simple, accessible depuis votre téléphone, pour voir ce que fait l'agent. Si quelque chose cloche, vous nous appelez.",
   },
   {
-    q: "Concrètement, c'est quoi un agent IA Pulse pour une entreprise ?",
-    a: "Un programme autonome qui exécute une mission métier (SEO, Sales, Marketing) en utilisant des outils (APIs, CRMs, search, code). Il n'attend pas un prompt humain à chaque tâche : il observe, décide, agit, et rend compte. Pulse construit, entraîne et déploie ces agents sur votre infrastructure.",
+    q: "Ça marche avec WhatsApp ? Je risque un blocage de mon numéro ?",
+    a: "Oui, la prospection et les relances passent par WhatsApp. On protège votre numéro avec une montée en charge progressive et une cadence lissée (jamais de rafales). C'est justement pour ça qu'on code nos propres agents plutôt que d'utiliser un outil d'envoi de masse.",
   },
   {
-    q: "Quels modèles utilisez-vous ?",
-    a: "On choisit le modèle selon la mission : Claude pour le raisonnement long et la production de contenu, GPT pour les tools complexes, Mistral pour les déploiements souverains, et des modèles locaux (Llama, Qwen) pour les cas on-premise. Tout est interchangeable.",
+    q: "Mes données et celles de mes clients sont-elles protégées ?",
+    a: "Oui. Les agents tournent sur une infrastructure dédiée, pas sur un SaaS générique. On ne conserve que des métriques anonymisées, et on peut signer un accord de traitement des données (DPA) si vous le souhaitez.",
   },
   {
-    q: "Mes données quittent-elles mon SI ?",
-    a: "Par défaut non. Les agents tournent sur ton cloud (AWS, GCP, OVH, Scaleway) ou ton on-premise. On ne logge que des métriques anonymisées chez nous, et tu peux désactiver même ça. Pour les pilotes, on peut héberger côté Pulse avec un DPA en bonne et due forme.",
+    q: "Pourquoi 48h et pas plusieurs semaines ?",
+    a: "Parce qu'on part d'une bibliothèque d'agents déjà éprouvés. Le travail n'est pas de repartir de zéro, mais d'adapter une base solide à votre métier : votre zone, vos clients, vos partenaires. Audit le 1er jour, conception et entraînement le 2e, mise en production le 3e.",
   },
   {
-    q: "Pourquoi 48h et pas 2 semaines ?",
-    a: "Parce qu'on a une bibliothèque d'agents pré-architecturés. Le travail n'est pas de partir de zéro : c'est d'adapter une base éprouvée à ton contexte (data, ton, intégrations). Les 48h sont chronométrées : audit J1 matin, archi J1 après-midi, entraînement J2, prod J3 matin.",
+    q: "Je peux prendre un seul agent, ou il faut tout prendre ?",
+    a: "Un seul suffit. Vous composez votre équipe à la carte : commencez par l'agent qui vous soulage le plus (souvent Le Chasseur ou Le Gestionnaire), et ajoutez-en d'autres quand vous voyez les résultats.",
   },
   {
-    q: "Que se passe-t-il après les 48h ?",
-    a: "Tu peux gérer l'agent toi-même (on livre la doc et l'accès au dashboard) ou nous laisser le pilotage. La plupart de nos clients commencent en autonomie et reviennent vers nous au 1er pivot métier (nouvelle source de données, nouveau canal, etc.).",
-  },
-  {
-    q: "Et si l'agent ne convient pas ?",
-    a: "On refuse les missions qu'on ne pense pas pouvoir réussir. Pour celles qu'on prend, le pilote a un seuil de qualité contractuel sur ton pipeline d'évaluation. Si on ne l'atteint pas en 48h, on continue jusqu'à l'atteindre, sans surcoût.",
+    q: "Et si ça ne me convient pas ?",
+    a: "On refuse les missions qu'on ne pense pas pouvoir réussir. Pour celles qu'on prend, on cadre un objectif clair dès le départ. Si l'agent n'est pas au niveau à la mise en route, on continue de l'affiner sans surcoût jusqu'à ce qu'il le soit.",
   },
 ];
 
