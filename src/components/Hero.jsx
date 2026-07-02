@@ -1,7 +1,8 @@
 'use client';
 
 import dynamic from 'next/dynamic';
-import { ArrowRight, Sparkles, Store, Building2 } from 'lucide-react';
+import { ArrowRight, Sparkles } from 'lucide-react';
+import TerminalLive from './TerminalLive';
 
 const Hero3D = dynamic(() => import('./Hero3D'), {
   ssr: false,
@@ -10,58 +11,54 @@ const Hero3D = dynamic(() => import('./Hero3D'), {
 
 export default function Hero() {
   return (
-    <section className="relative h-screen min-h-[720px] w-full overflow-hidden">
+    <section className="relative min-h-screen w-full overflow-hidden">
       <div className="absolute inset-0 z-0">
         <Hero3D />
       </div>
 
-      <div className="pointer-events-none absolute inset-0 z-10 bg-[radial-gradient(circle_at_center,rgba(168,85,247,0.18),transparent_55%)]" />
+      <div className="pointer-events-none absolute inset-0 z-10 bg-[radial-gradient(circle_at_center,rgba(255,90,31,0.18),transparent_55%)]" />
 
-      <div className="relative z-20 flex h-full flex-col items-center justify-center px-6 text-center">
-        <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-[var(--border-strong)] bg-[var(--primary-soft)] px-4 py-1.5 font-mono text-xs uppercase tracking-[0.18em] text-[var(--primary-hover)] backdrop-blur">
-          <Sparkles size={14} />
-          <span>SmatchRoom · Pulse</span>
+      <div className="relative z-20 mx-auto flex min-h-screen max-w-7xl flex-col items-center justify-center gap-12 px-6 py-28 lg:flex-row lg:justify-between lg:text-left">
+        <div className="max-w-2xl text-center lg:text-left">
+          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[var(--border-strong)] bg-[var(--primary-soft)] px-4 py-1.5 font-mono text-xs uppercase tracking-[0.18em] text-[var(--primary-hover)] backdrop-blur">
+            <Sparkles size={14} />
+            <span>Agents IA · Bâtiment</span>
+          </div>
+
+          <h1 className="text-balance text-4xl font-semibold leading-[1.05] tracking-tight md:text-6xl lg:text-7xl">
+            <span className="gradient-text glow-text">Des agents IA qui bossent </span>
+            <span className="text-white">pour le bâtiment.</span>
+          </h1>
+
+          <p className="mt-6 max-w-xl text-balance text-lg text-[var(--muted)] md:text-xl">
+            Prospection, relance de devis, qualification de leads, prise de RDV.
+            Vos agents tournent <span className="font-medium text-white">24/7</span> pendant
+            que vous êtes sur le chantier. Conçus, codés et déployés en{' '}
+            <span className="font-mono text-white">48h</span> sur votre infra (Node.js + Supabase).
+          </p>
+
+          <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row lg:items-start">
+            <a
+              href="https://calendly.com/a-fontana-smatchroom/30min"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex items-center gap-3 rounded-2xl border border-[var(--primary)] bg-[var(--primary)] px-6 py-4 font-semibold text-black transition-all hover:bg-[var(--primary-hover)] hover:shadow-[0_0_40px_-5px_var(--primary-glow)]"
+            >
+              Réserver mon diagnostic (gratuit)
+              <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
+            </a>
+            <a
+              href="#tarifs"
+              className="inline-flex items-center gap-2 rounded-2xl border border-[var(--border-strong)] bg-[var(--surface-2)]/60 px-6 py-4 font-medium text-white backdrop-blur transition-all hover:border-[var(--primary)] hover:bg-white/5"
+            >
+              Voir les agents
+            </a>
+          </div>
         </div>
 
-        <h1 className="max-w-5xl text-balance text-4xl font-semibold leading-[1.05] tracking-tight md:text-6xl lg:text-7xl">
-          <span className="gradient-text glow-text">
-            L'écosystème d'agents IA industriels,{' '}
-          </span>
-          <span className="text-white">déployés sur votre infrastructure.</span>
-        </h1>
-
-        <p className="mx-auto mt-6 max-w-2xl text-balance text-lg text-[var(--muted)] md:text-xl">
-          SmatchRoom conçoit, code et stabilise vos pipelines d'automatisation et de scoring en{' '}
-          <span className="font-medium text-white">Node.js & Supabase</span>
-          {', zéro dépendance aux SaaS génériques. '}
-          <span className="font-mono text-white">Déployé en 48h.</span>
-        </p>
-
-        <div className="mt-10 flex flex-col items-stretch gap-4 sm:flex-row sm:items-center">
-          <a
-            href="/entreprises"
-            className="group flex items-center gap-3 rounded-2xl border border-[var(--primary)] bg-[var(--primary)] px-6 py-4 text-left font-medium text-black transition-all hover:bg-[var(--primary-hover)] hover:shadow-[0_0_40px_-5px_var(--primary-glow)]"
-          >
-            <Building2 size={20} className="flex-shrink-0" />
-            <div>
-              <div className="text-sm font-semibold leading-tight">Espace Entreprises & Agences</div>
-              <div className="text-xs font-normal opacity-70">Sur-mesure · Infrastructure dédiée</div>
-            </div>
-            <ArrowRight size={16} className="ml-auto transition-transform group-hover:translate-x-1" />
-          </a>
-          <a
-            href="/entrepreneurs"
-            className="group flex items-center gap-3 rounded-2xl border border-[var(--border-strong)] bg-[var(--surface-2)]/60 px-6 py-4 text-left font-medium text-white backdrop-blur transition-all hover:border-[var(--primary)] hover:bg-white/5"
-          >
-            <Store size={20} className="flex-shrink-0 text-[var(--primary-hover)]" />
-            <div>
-              <div className="text-sm font-semibold leading-tight">Espace Artisans & Commerçants</div>
-              <div className="text-xs font-normal text-[var(--muted)]">Packagé · Clé en main · 48h</div>
-            </div>
-            <ArrowRight size={16} className="ml-auto opacity-50 transition-transform group-hover:translate-x-1 group-hover:opacity-100" />
-          </a>
+        <div className="w-full max-w-lg lg:w-auto">
+          <TerminalLive />
         </div>
-
       </div>
     </section>
   );
