@@ -4,8 +4,7 @@ import { useState, useEffect } from 'react';
 import { Sparkles, Menu, X } from 'lucide-react';
 
 const LINKS = [
-  { href: '/entrepreneurs', label: 'Artisans', highlight: true },
-  { href: '/entreprises', label: 'Entreprises' },
+  { href: '#agents', label: 'Les agents' },
   { href: '#cas-usage', label: "Cas d'usage" },
   { href: '#tarifs', label: 'Tarifs' },
   { href: '/agent-ia', label: 'Ressources' },
@@ -45,11 +44,7 @@ export default function Nav() {
             <a
               key={l.href}
               href={l.href}
-              className={
-                l.highlight
-                  ? 'text-sm font-medium text-[var(--primary-hover)] transition-colors hover:text-white'
-                  : 'text-sm text-[var(--muted)] transition-colors hover:text-white'
-              }
+              className="text-sm text-[var(--muted)] transition-colors hover:text-white"
             >
               {l.label}
             </a>
@@ -62,7 +57,7 @@ export default function Nav() {
           rel="noopener noreferrer"
           className="hidden rounded-full bg-[var(--primary)] px-5 py-2 text-sm font-medium text-black transition-colors hover:bg-[var(--primary-hover)] md:inline-flex"
         >
-          Demander mon diagnostic
+          Réserver un créneau
         </a>
 
         <button
@@ -94,7 +89,7 @@ export default function Nav() {
               onClick={() => setMobileOpen(false)}
               className="mt-2 inline-flex items-center justify-center rounded-full bg-[var(--primary)] px-5 py-3 text-sm font-medium text-black"
             >
-              Demander mon diagnostic
+              Réserver un créneau
             </a>
           </nav>
         </div>
