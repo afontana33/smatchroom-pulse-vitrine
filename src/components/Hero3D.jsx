@@ -6,7 +6,7 @@ import { Points, PointMaterial } from '@react-three/drei';
 import { EffectComposer, Bloom, Vignette } from '@react-three/postprocessing';
 import * as THREE from 'three';
 
-function ParticleSphere({ color = '#a855f7', count = 4500, radius = [4, 11] }) {
+function ParticleSphere({ color = '#ff5a1f', count = 4500, radius = [4, 11] }) {
   const groupRef = useRef();
 
   const positions = useMemo(() => {
@@ -71,7 +71,7 @@ function FarParticles() {
       <Points positions={positions} stride={3} frustumCulled={false}>
         <PointMaterial
           transparent
-          color="#9bb0ff"
+          color="#ffb27a"
           size={0.008}
           sizeAttenuation
           depthWrite={false}
@@ -92,8 +92,8 @@ export default function Hero3D() {
       style={{ background: 'transparent' }}
     >
       <ambientLight intensity={0.3} />
-      <pointLight position={[6, 4, 4]} intensity={1.0} color="#a855f7" />
-      <pointLight position={[-6, -3, -4]} intensity={0.6} color="#6d28d9" />
+      <pointLight position={[6, 4, 4]} intensity={1.0} color="#ff5a1f" />
+      <pointLight position={[-6, -3, -4]} intensity={0.6} color="#ff5a1f" />
       <FarParticles />
       <ParticleSphere />
       <EffectComposer>
