@@ -94,7 +94,7 @@ export default function CGVPage() {
           <div className="mt-12 space-y-10">
             {ARTICLES.map(({ title, paragraphs, list }) => (
               <section key={title} className="glass rounded-2xl p-6 md:p-8">
-                <h2 className="text-lg font-semibold text-white">{title}</h2>
+                <h2 className="text-lg font-semibold text-[var(--foreground)]">{title}</h2>
                 {paragraphs?.map((p, i) => (
                   <p key={i} className="mt-3 text-sm leading-relaxed text-[var(--muted)]">
                     {p}

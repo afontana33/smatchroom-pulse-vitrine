@@ -1,22 +1,38 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Sparkles, Menu, X } from 'lucide-react';
+import { Menu, X, ArrowRight } from 'lucide-react';
 
 const LINKS = [
-  { href: '#agents', label: 'Les agents' },
-  { href: '#cas-usage', label: "Cas d'usage" },
-  { href: '#tarifs', label: 'Tarifs' },
+  { href: '/#agents', label: 'Les agents' },
+  { href: '/#demo', label: 'Démo' },
+  { href: '/#cas-usage', label: "Cas d'usage" },
+  { href: '/#tarifs', label: 'Tarifs' },
+  { href: '/grands-comptes', label: 'Grands Comptes', accent: true },
   { href: '/agent-ia', label: 'Ressources' },
-  { href: '/blog', label: 'Blog' },
 ];
+
+const CALENDLY = 'https://calendly.com/a-fontana-smatchroom/30min';
+
+function Wordmark() {
+  return (
+    <a href="/" className="inline-flex items-center gap-2.5 text-[var(--foreground)]">
+      <span className="relative flex h-7 w-7 items-center justify-center rounded-lg bg-[var(--primary)] text-white shadow-[0_6px_18px_-6px_var(--primary-glow)]">
+        <span className="h-2 w-2 animate-pulse-ring rounded-full bg-white" />
+      </span>
+      <span className="font-mono text-sm uppercase tracking-[0.2em]">
+        SmatchRoom <span className="text-[var(--primary-ink)]">Pulse</span>
+      </span>
+    </a>
+  );
+}
 
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 30);
+    const onScroll = () => setScrolled(window.scrollY > 24);
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
@@ -27,24 +43,24 @@ export default function Nav() {
       className={[
         'fixed inset-x-0 top-0 z-50 transition-all duration-300',
         scrolled
-          ? 'border-b border-[var(--border)] bg-black/60 backdrop-blur-md'
-          : 'bg-transparent',
+          ? 'border-b border-[var(--border)] bg-[rgba(246,244,239,0.82)] backdrop-blur-xl'
+          : 'border-b border-transparent bg-transparent',
       ].join(' ')}
     >
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-        <a href="#" className="inline-flex items-center gap-2 text-white">
-          <Sparkles size={18} className="text-[var(--primary-hover)]" />
-          <span className="font-mono text-sm uppercase tracking-[0.2em]">
-            SmatchRoom <span className="text-[var(--primary-hover)]">·</span> Pulse
-          </span>
-        </a>
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-3.5 sm:px-6">
+        <Wordmark />
 
-        <nav className="hidden items-center gap-8 md:flex">
+        <nav className="hidden items-center gap-7 lg:flex">
           {LINKS.map((l) => (
             <a
               key={l.href}
               href={l.href}
-              className="text-sm text-[var(--muted)] transition-colors hover:text-white"
+              className={[
+                'text-sm font-medium transition-colors',
+                l.accent
+                  ? 'text-[var(--steel)] hover:text-[var(--steel-hover)]'
+                  : 'text-[var(--muted-strong)] hover:text-[var(--foreground)]',
+              ].join(' ')}
             >
               {l.label}
             </a>
@@ -52,44 +68,52 @@ export default function Nav() {
         </nav>
 
         <a
-          href="https://calendly.com/a-fontana-smatchroom/30min"
+          href={CALENDLY}
           target="_blank"
           rel="noopener noreferrer"
-          className="hidden rounded-full bg-[var(--primary)] px-5 py-2 text-sm font-medium text-black transition-colors hover:bg-[var(--primary-hover)] md:inline-flex"
+          className="btn-primary hidden items-center gap-2 px-5 py-2.5 text-sm font-semibold lg:inline-flex"
         >
           Réserver un créneau
+          <ArrowRight size={15} />
         </a>
 
         <button
-          onClick={() => setMobileOpen(!mobileOpen)}
-          className="md:hidden"
-          aria-label="Toggle menu"
+          onClick={() => setMobileOpen((v) => !v)}
+          className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-[var(--border-strong)] bg-[var(--surface)] text-[var(--foreground)] lg:hidden"
+          aria-label="Menu"
+          aria-expanded={mobileOpen}
         >
-          {mobileOpen ? <X size={22} /> : <Menu size={22} />}
+          {mobileOpen ? <X size={20} /> : <Menu size={20} />}
         </button>
       </div>
 
       {mobileOpen && (
-        <div className="border-t border-[var(--border)] bg-black/90 px-6 py-6 backdrop-blur-md md:hidden">
-          <nav className="flex flex-col gap-4">
+        <div className="border-t border-[var(--border)] bg-[rgba(246,244,239,0.97)] px-5 py-6 backdrop-blur-xl lg:hidden">
+          <nav className="flex flex-col gap-1">
             {LINKS.map((l) => (
               <a
                 key={l.href}
                 href={l.href}
                 onClick={() => setMobileOpen(false)}
-                className="text-base text-[var(--muted)] hover:text-white"
+                className={[
+                  'rounded-xl px-3 py-3 text-base font-medium transition-colors',
+                  l.accent
+                    ? 'text-[var(--steel)]'
+                    : 'text-[var(--muted-strong)] hover:bg-[var(--surface-2)] hover:text-[var(--foreground)]',
+                ].join(' ')}
               >
                 {l.label}
               </a>
             ))}
             <a
-              href="https://calendly.com/a-fontana-smatchroom/30min"
+              href={CALENDLY}
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setMobileOpen(false)}
-              className="mt-2 inline-flex items-center justify-center rounded-full bg-[var(--primary)] px-5 py-3 text-sm font-medium text-black"
+              className="btn-primary mt-3 inline-flex items-center justify-center gap-2 px-5 py-3.5 text-sm font-semibold"
             >
               Réserver un créneau
+              <ArrowRight size={15} />
             </a>
           </nav>
         </div>

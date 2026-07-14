@@ -1,51 +1,37 @@
 import { Users } from 'lucide-react';
 
-const CLIENTS = [
-  "Tryba",
-  "BatInnov",
-  "JB Pilotage",
-  "NextMove"
-];
+const CLIENTS = ['Tryba', 'BatInnov', 'JB Pilotage', 'NextMove', 'HDS Solutions', 'Duvernell'];
 
 export default function TrustedBy() {
-  const scrollingList = [...CLIENTS, ...CLIENTS];
-
   return (
-    <section className="relative z-20 flex justify-center px-6 pb-20">
-      <div className="glass flex w-full max-w-4xl flex-col items-center justify-center gap-6 rounded-2xl px-8 py-6 sm:flex-row sm:justify-between">
-
-        {/* Compteur +30 */}
-        <div className="flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--surface-2)] ring-1 ring-[var(--border-strong)]">
-            <Users size={18} className="text-[var(--primary-hover)]" />
+    <section className="relative z-20 px-5 pb-4 sm:px-6">
+      <div className="mx-auto max-w-5xl">
+        <div className="glass flex flex-col items-center gap-6 rounded-2xl px-6 py-6 sm:flex-row sm:justify-between sm:px-8">
+          <div className="flex items-center gap-3">
+            <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[var(--primary-soft)] ring-1 ring-[var(--primary-line)]">
+              <Users size={18} className="text-[var(--primary-ink)]" />
+            </div>
+            <div className="text-left">
+              <p className="font-display text-2xl font-semibold text-[var(--foreground)]">+90</p>
+              <p className="text-xs uppercase tracking-[0.1em] text-[var(--muted)]">
+                Artisans &amp; entreprises du bâtiment
+              </p>
+            </div>
           </div>
-          <div className="text-left">
-            <p className="font-mono text-xl font-semibold text-white">+30</p>
-            <p className="text-xs uppercase tracking-[0.1em] text-[var(--muted)]">
-              Artisans & pros du bâtiment
-            </p>
-          </div>
-        </div>
 
-        <div className="hidden h-10 w-px bg-[var(--border-strong)] sm:block" />
+          <div className="hidden h-10 w-px bg-[var(--border-strong)] sm:block" />
 
-        {/* Défilement vertical */}
-        <div className="relative flex h-10 w-full items-center justify-center overflow-hidden sm:w-auto sm:min-w-[200px]">
-          <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-3 bg-gradient-to-b from-[rgba(20,20,42,0.9)] to-transparent" />
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-3 bg-gradient-to-t from-[rgba(20,20,42,0.9)] to-transparent" />
-
-          <div className="animate-scroll-vertical flex flex-col items-center gap-4 pt-10">
-            {scrollingList.map((client, index) => (
+          <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
+            {CLIENTS.map((c) => (
               <span
-                key={`${client}-${index}`}
-                className="font-mono text-lg font-medium text-[var(--primary-hover)]"
+                key={c}
+                className="font-mono text-sm font-medium text-[var(--muted-strong)]"
               >
-                {client}
+                {c}
               </span>
             ))}
           </div>
         </div>
-
       </div>
     </section>
   );

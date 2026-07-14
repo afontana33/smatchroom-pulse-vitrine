@@ -7,6 +7,7 @@ export default function sitemap() {
 
   const staticUrls = [
     { url: BASE, lastModified: new Date(), changeFrequency: 'weekly', priority: 1.0 },
+    { url: `${BASE}/grands-comptes`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.95 },
     { url: `${BASE}/entrepreneurs`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.95 },
     { url: `${BASE}/entreprises`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },
     { url: `${BASE}/blog`, lastModified: new Date(), changeFrequency: 'daily', priority: 0.8 },

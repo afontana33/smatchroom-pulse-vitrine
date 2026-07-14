@@ -1,8 +1,8 @@
-import { Inter, JetBrains_Mono, Bricolage_Grotesque } from "next/font/google";
+import { Manrope, JetBrains_Mono, Bricolage_Grotesque, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({
-  variable: "--font-inter",
+const manrope = Manrope({
+  variable: "--font-manrope",
   subsets: ["latin"],
   display: "swap",
 });
@@ -19,15 +19,23 @@ const bricolage = Bricolage_Grotesque({
   display: "swap",
 });
 
+const instrument = Instrument_Serif({
+  variable: "--font-instrument",
+  subsets: ["latin"],
+  weight: "400",
+  style: ["normal", "italic"],
+  display: "swap",
+});
+
 export const metadata = {
-  title: "SmatchRoom Pulse — Des agents IA pour les artisans du bâtiment",
+  title: "SmatchRoom Pulse — Agents IA pour les artisans & entreprises du bâtiment",
   description:
-    "Pulse conçoit et déploie des agents IA taillés pour les métiers du bâtiment : prospection de partenaires, relance de devis, qualification de leads, avis Google, conformité. Déployés en 48h sur votre infra (Node.js + Supabase).",
+    "Pulse conçoit et déploie des agents IA pour le bâtiment : prospection, relance de devis, qualification de leads, SEO local, conformité. Et l'Agent Chasseur Grands Comptes pour les PME/ETI qui visent les grands comptes. Déployés en 48h sur votre infra (Node.js + Supabase).",
   metadataBase: new URL("https://pulse.smatchroom.com"),
   openGraph: {
-    title: "SmatchRoom Pulse — Des agents IA pour le bâtiment",
+    title: "SmatchRoom Pulse — Agents IA pour le bâtiment",
     description:
-      "Des agents IA qui bossent pour votre entreprise du bâtiment : prospection, relance de devis, RDV, SEO local. Déployés en 48h.",
+      "Des agents IA qui travaillent pour votre entreprise du bâtiment : prospection, relance de devis, RDV, SEO local. Palier Grands Comptes pour les PME/ETI. Déployés en 48h.",
     url: "https://pulse.smatchroom.com",
     siteName: "SmatchRoom Pulse",
     type: "website",
@@ -38,7 +46,7 @@ export default function RootLayout({ children }) {
   return (
     <html
       lang="fr"
-      className={`${inter.variable} ${jetbrains.variable} ${bricolage.variable} h-full antialiased`}
+      className={`${manrope.variable} ${jetbrains.variable} ${bricolage.variable} ${instrument.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>

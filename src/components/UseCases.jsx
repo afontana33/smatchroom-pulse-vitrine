@@ -1,11 +1,12 @@
 import { Hammer, FileCheck, Search, ArrowUpRight } from 'lucide-react';
+import Reveal from './Reveal';
 
 const CASES = [
   {
     icon: Hammer,
     target: 'Le Chasseur',
     angle: 'Prospection',
-    title: 'Des partenaires d\'apport d\'affaires en pilote automatique.',
+    title: "Des partenaires d'apport d'affaires en pilote automatique.",
     metric: 'WhatsApp lissé · 0 blocage',
     description:
       "En production chez un couvreur à Lille : l'agent identifie syndics et agences, engage la conversation et relance, avec une cadence lissée qui protège le numéro.",
@@ -17,7 +18,7 @@ const CASES = [
     title: 'Les devis en attente relancés au bon moment.',
     metric: 'Relances automatiques',
     description:
-      "L'agent suit vos devis envoyés, relance les clients qui n'ont pas répondu et remonte les chantiers chauds. Fini les devis oubliés au fond de la boîte mail.",
+      "L'agent suit vos devis envoyés, relance les clients sans réponse et remonte les chantiers chauds. Fini les devis oubliés au fond de la boîte mail.",
   },
   {
     icon: Search,
@@ -32,46 +33,53 @@ const CASES = [
 
 export default function UseCases() {
   return (
-    <section id="cas-usage" className="relative py-32 px-6">
+    <section id="cas-usage" className="relative px-5 py-24 sm:px-6 sm:py-28">
       <div className="mx-auto max-w-7xl">
-        <div className="mb-16 text-center">
-          <p className="eyebrow">Cas d'usage · Déjà en production</p>
-          <h2 className="mt-3 text-balance text-4xl font-semibold tracking-tight md:text-5xl">
-            <span className="gradient-text">Nos agents tournent déjà</span> pour des artisans
-          </h2>
-          <p className="mx-auto mt-5 max-w-2xl text-balance text-[var(--muted)]">
-            Chaque agent ci-dessous est en production aujourd'hui, sur infrastructure réelle.
-            Pas de démo : des artisans du bâtiment qui s'en servent au quotidien.
-          </p>
-        </div>
+        <Reveal>
+          <div className="mb-6 flex items-center gap-4">
+            <span className="section-index">05 — Déjà en production</span>
+            <span className="h-px flex-1 bg-[var(--border-strong)]" />
+          </div>
+        </Reveal>
 
-        <div className="grid gap-6 md:grid-cols-3">
-          {CASES.map(({ icon: Icon, target, angle, title, metric, description }) => (
-            <article
-              key={title}
-              className="glass glass-hover group flex flex-col rounded-2xl p-7"
-            >
-              <div className="mb-5 flex items-center justify-between">
-                <div className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-[var(--primary-soft)] text-[var(--primary-hover)] ring-1 ring-[var(--border-strong)]">
-                  <Icon size={20} strokeWidth={1.8} />
+        <Reveal>
+          <div className="mb-14 max-w-2xl">
+            <h2 className="text-balance text-3xl font-semibold tracking-tight sm:text-4xl lg:text-5xl">
+              <span className="gradient-text">Nos agents tournent déjà</span> sur le terrain.
+            </h2>
+            <p className="mt-4 text-balance text-[var(--muted-strong)] sm:text-lg">
+              Chaque agent ci-dessous est en production aujourd&apos;hui, sur infrastructure réelle.
+              Pas de démo : des pros du bâtiment qui s&apos;en servent au quotidien.
+            </p>
+          </div>
+        </Reveal>
+
+        <div className="grid gap-5 md:grid-cols-3">
+          {CASES.map(({ icon: Icon, target, angle, title, metric, description }, i) => (
+            <Reveal key={title} delay={i * 90}>
+              <article className="card card-hover group flex h-full flex-col p-6 sm:p-7">
+                <div className="mb-5 flex items-center justify-between">
+                  <div className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-[var(--primary-soft)] text-[var(--primary-ink)] ring-1 ring-[var(--primary-line)]">
+                    <Icon size={20} strokeWidth={1.8} />
+                  </div>
+                  <span className="font-mono text-[0.62rem] uppercase tracking-[0.18em] text-[var(--muted)]">
+                    {angle}
+                  </span>
                 </div>
-                <span className="font-mono text-[0.65rem] uppercase tracking-[0.2em] text-[var(--muted)]">
-                  {angle}
-                </span>
-              </div>
-              <p className="font-mono text-xs uppercase tracking-[0.16em] text-[var(--primary)]">
-                {target}
-              </p>
-              <h3 className="mt-2 text-lg font-semibold text-white">{title}</h3>
-              <p className="mt-3 text-sm text-[var(--muted)]">{description}</p>
-              <div className="mt-6 flex items-center justify-between border-t border-[var(--border)] pt-4">
-                <span className="font-mono text-sm font-medium text-white">{metric}</span>
-                <ArrowUpRight
-                  size={16}
-                  className="text-[var(--primary-hover)] opacity-0 transition-all group-hover:translate-x-1 group-hover:opacity-100"
-                />
-              </div>
-            </article>
+                <p className="font-mono text-xs uppercase tracking-[0.14em] text-[var(--primary-ink)]">
+                  {target}
+                </p>
+                <h3 className="mt-2 text-lg font-semibold text-[var(--foreground)]">{title}</h3>
+                <p className="mt-3 flex-1 text-sm text-[var(--muted-strong)]">{description}</p>
+                <div className="mt-6 flex items-center justify-between border-t border-[var(--border)] pt-4">
+                  <span className="font-mono text-sm font-medium text-[var(--foreground)]">{metric}</span>
+                  <ArrowUpRight
+                    size={16}
+                    className="text-[var(--primary-ink)] opacity-0 transition-all group-hover:translate-x-0.5 group-hover:opacity-100"
+                  />
+                </div>
+              </article>
+            </Reveal>
           ))}
         </div>
       </div>

@@ -1,51 +1,46 @@
-import { Sparkles } from 'lucide-react';
-
 export default function Footer() {
   return (
-    <footer className="relative border-t border-[var(--border)] bg-[var(--surface)]/40 px-6 py-14">
+    <footer className="relative mt-auto border-t border-[var(--border)] bg-[var(--surface)] px-5 py-14 sm:px-6">
       <div className="mx-auto max-w-7xl">
         <div className="grid gap-10 md:grid-cols-4">
           {/* Brand */}
           <div className="md:col-span-2">
-            <div className="inline-flex items-center gap-2 text-white">
-              <Sparkles size={18} className="text-[var(--primary-hover)]" />
+            <div className="inline-flex items-center gap-2.5 text-[var(--foreground)]">
+              <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-[var(--primary)] text-white">
+                <span className="h-2 w-2 rounded-full bg-white" />
+              </span>
               <span className="font-mono text-sm uppercase tracking-[0.2em]">
-                SmatchRoom · Pulse
+                SmatchRoom <span className="text-[var(--primary-ink)]">Pulse</span>
               </span>
             </div>
-            <p className="mt-4 max-w-md text-sm text-[var(--muted)]">
-              L'usine à agents IA du groupe SmatchRoom, taillée pour les artisans du bâtiment.
-              Prospection, devis, RDV, SEO local — déployés en 48h sur votre infra.
+            <p className="mt-4 max-w-md text-sm text-[var(--muted-strong)]">
+              L&apos;usine à agents IA du groupe SmatchRoom, taillée pour les artisans et entreprises
+              du bâtiment. Prospection, devis, RDV, SEO local, et l&apos;Agent Chasseur Grands Comptes
+              pour les PME/ETI — déployés en 48h sur votre infra.
             </p>
           </div>
 
-          {/* Écosystème */}
           <div>
-            <p className="font-mono text-xs uppercase tracking-[0.18em] text-[var(--primary)]">
-              Écosystème
-            </p>
-            <ul className="mt-4 space-y-2 text-sm text-[var(--muted)]">
-              <li><a href="https://smatchroom.com" className="hover:text-white">smatchroom.com</a></li>
+            <p className="font-mono text-xs uppercase tracking-[0.18em] text-[var(--primary-ink)]">Écosystème</p>
+            <ul className="mt-4 space-y-2 text-sm text-[var(--muted-strong)]">
+              <li><a href="https://smatchroom.com" className="hover:text-[var(--foreground)]">smatchroom.com</a></li>
             </ul>
           </div>
 
-          {/* Navigation */}
           <div>
-            <p className="font-mono text-xs uppercase tracking-[0.18em] text-[var(--primary)]">
-              Navigation
-            </p>
-            <ul className="mt-4 space-y-2 text-sm text-[var(--muted)]">
-              <li><a href="/#agents" className="font-medium text-[var(--primary-hover)] hover:text-white">Les agents</a></li>
-              <li><a href="/#cas-usage" className="hover:text-white">Cas d'usage</a></li>
-              <li><a href="/#tarifs" className="hover:text-white">Tarifs</a></li>
-              <li><a href="/#faq" className="hover:text-white">FAQ</a></li>
-              <li><a href="/blog" className="hover:text-white">Blog</a></li>
-              <li><a href="https://calendly.com/a-fontana-smatchroom/30min" target="_blank" rel="noopener noreferrer" className="hover:text-white">Contact</a></li>
+            <p className="font-mono text-xs uppercase tracking-[0.18em] text-[var(--primary-ink)]">Navigation</p>
+            <ul className="mt-4 space-y-2 text-sm text-[var(--muted-strong)]">
+              <li><a href="/#agents" className="hover:text-[var(--foreground)]">Les agents</a></li>
+              <li><a href="/#cas-usage" className="hover:text-[var(--foreground)]">Cas d&apos;usage</a></li>
+              <li><a href="/#tarifs" className="hover:text-[var(--foreground)]">Tarifs</a></li>
+              <li><a href="/grands-comptes" className="font-medium text-[var(--steel)] hover:text-[var(--steel-hover)]">Grands Comptes</a></li>
+              <li><a href="/#faq" className="hover:text-[var(--foreground)]">FAQ</a></li>
+              <li><a href="/blog" className="hover:text-[var(--foreground)]">Blog</a></li>
+              <li><a href="https://calendly.com/a-fontana-smatchroom/30min" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--foreground)]">Contact</a></li>
             </ul>
           </div>
         </div>
 
-        {/* Mentions légales */}
         <div className="mt-12 grid gap-6 border-t border-[var(--border)] pt-8 text-xs text-[var(--muted)] md:grid-cols-[1fr_auto] md:items-end">
           <div className="space-y-1 font-mono">
             <p className="text-[var(--foreground)]">SMATCHROOM · SAS</p>
@@ -55,14 +50,14 @@ export default function Footer() {
             <p>NAF/APE 62.01Z — Programmation informatique</p>
             <p className="opacity-70">Immatriculée RNE/INPI · 31/07/2025</p>
           </div>
-          <div className="text-right">
+          <div className="text-left md:text-right">
             <p>© {new Date().getFullYear()} SmatchRoom — Tous droits réservés</p>
             <p className="mt-1 opacity-70">
-              <a href="/mentions-legales" className="hover:text-white">Mentions légales</a>
+              <a href="/mentions-legales" className="hover:text-[var(--foreground)]">Mentions légales</a>
               <span className="mx-2">·</span>
-              <a href="/confidentialite" className="hover:text-white">Confidentialité</a>
+              <a href="/confidentialite" className="hover:text-[var(--foreground)]">Confidentialité</a>
               <span className="mx-2">·</span>
-              <a href="/cgv" className="hover:text-white">CGV</a>
+              <a href="/cgv" className="hover:text-[var(--foreground)]">CGV</a>
             </p>
           </div>
         </div>

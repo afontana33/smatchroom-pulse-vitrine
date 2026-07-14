@@ -125,7 +125,7 @@ export default function InteractiveLab() {
     <section className="relative overflow-hidden px-6 py-28">
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(34,211,238,0.10),transparent_60%)]"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(255,90,31,0.08),transparent_60%)]"
       />
       <div className="relative mx-auto max-w-6xl">
         <div className="mb-14 text-center">
@@ -143,11 +143,11 @@ export default function InteractiveLab() {
           {/* Module 1 : Pulse Sentinel */}
           <div className="glass relative flex flex-col rounded-2xl p-7">
             <div className="mb-5 flex items-center gap-3">
-              <div className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-cyan-500/10 text-cyan-400 ring-1 ring-cyan-400/30">
+              <div className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-cyan-500/10 text-cyan-700 ring-1 ring-cyan-600/25">
                 <Search size={18} strokeWidth={1.8} />
               </div>
               <div>
-                <p className="font-semibold text-white">Moteur Pulse Sentinel</p>
+                <p className="font-semibold text-[var(--foreground)]">Moteur Pulse Sentinel</p>
                 <p className="text-xs text-[var(--muted)]">Détection d'intention par signaux faibles</p>
               </div>
             </div>
@@ -163,7 +163,7 @@ export default function InteractiveLab() {
                 setM2Status('idle');
                 setLogLines([]);
               }}
-              className="mb-4 w-full rounded-xl border border-[var(--border-strong)] bg-[var(--surface-2)] px-4 py-2.5 text-sm text-white outline-none focus:border-cyan-400"
+              className="mb-4 w-full rounded-xl border border-[var(--border-strong)] bg-[var(--surface-2)] px-4 py-2.5 text-sm text-[var(--foreground)] outline-none focus:border-cyan-500"
             >
               {Object.entries(SECTORS).map(([key, s]) => (
                 <option key={key} value={key} className="bg-[var(--surface-2)]">
@@ -175,7 +175,7 @@ export default function InteractiveLab() {
             <button
               onClick={runSentinel}
               disabled={m1Status === 'running'}
-              className="mb-4 inline-flex items-center justify-center gap-2 rounded-full bg-cyan-500 px-5 py-2.5 text-sm font-medium text-black transition-all hover:bg-cyan-400 disabled:opacity-60"
+              className="mb-4 inline-flex min-h-[40px] items-center justify-center gap-2 rounded-full bg-cyan-600 px-5 py-2.5 text-sm font-medium text-white transition-all hover:bg-cyan-500 disabled:opacity-60"
             >
               <Terminal size={15} />
               {m1Status === 'running' ? 'Scan en cours…' : 'Lancer le moteur Pulse Sentinel'}
@@ -185,7 +185,7 @@ export default function InteractiveLab() {
             {(m1Status === 'running' || m1Status === 'done') && (
               <div
                 ref={termRef}
-                className="mb-4 h-32 overflow-y-auto rounded-xl border border-cyan-400/20 bg-black/60 p-3 font-mono text-[0.7rem] leading-relaxed text-cyan-300"
+                className="terminal-dark mb-4 h-32 overflow-y-auto rounded-xl border border-cyan-400/20 p-3 font-mono text-[0.7rem] leading-relaxed text-cyan-300"
               >
                 {logLines.map((line, i) => (
                   <div key={i} className="animate-[fadeIn_0.2s_ease-in]">
@@ -199,27 +199,27 @@ export default function InteractiveLab() {
             {m1Status === 'done' && (
               <div className="animate-[fadeIn_0.4s_ease-in] rounded-xl border border-[var(--border-strong)] bg-[var(--surface-2)] p-4">
                 <div className="mb-3 flex items-center justify-between">
-                  <p className="font-semibold text-white">{data.leadName}</p>
-                  <span className="rounded-full bg-red-500/15 px-2.5 py-1 font-mono text-[0.65rem] text-red-400">
+                  <p className="font-semibold text-[var(--foreground)]">{data.leadName}</p>
+                  <span className="rounded-full bg-red-500/10 px-2.5 py-1 font-mono text-[0.65rem] text-red-600">
                     {data.score} · {data.scoreLabel}
                   </span>
                 </div>
                 <ul className="mb-3 space-y-1.5">
                   {data.signals.map((s, i) => (
                     <li key={i} className="flex items-start gap-2 text-xs text-[var(--muted)]">
-                      <CheckCircle2 size={13} className="mt-0.5 flex-shrink-0 text-cyan-400" />
+                      <CheckCircle2 size={13} className="mt-0.5 flex-shrink-0 text-cyan-600" />
                       {s}
                     </li>
                   ))}
                 </ul>
-                <p className="font-mono text-[0.65rem] uppercase tracking-[0.1em] text-cyan-400">
+                <p className="font-mono text-[0.65rem] uppercase tracking-[0.1em] text-cyan-700">
                   Source vérifiée et cliquable (simulée)
                 </p>
 
                 {m2Status === 'idle' && (
                   <button
                     onClick={runApex}
-                    className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-full bg-emerald-500 px-5 py-2.5 text-sm font-medium text-black transition-all hover:bg-emerald-400"
+                    className="mt-4 inline-flex min-h-[40px] w-full items-center justify-center gap-2 rounded-full bg-emerald-600 px-5 py-2.5 text-sm font-medium text-white transition-all hover:bg-emerald-500"
                   >
                     <Send size={14} />
                     Déclencher le pipeline Apex WhatsApp
@@ -232,11 +232,11 @@ export default function InteractiveLab() {
           {/* Module 2 : Apex WhatsApp mockup */}
           <div className="glass flex flex-col items-center justify-center rounded-2xl p-7">
             <div className="mb-5 flex w-full items-center gap-3">
-              <div className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-500/10 text-emerald-400 ring-1 ring-emerald-400/30">
+              <div className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-500/10 text-emerald-700 ring-1 ring-emerald-600/25">
                 <Rocket size={18} strokeWidth={1.8} />
               </div>
               <div>
-                <p className="font-semibold text-white">SmatchRoom Apex</p>
+                <p className="font-semibold text-[var(--foreground)]">SmatchRoom Apex</p>
                 <p className="text-xs text-[var(--muted)]">Outreach WhatsApp autonome</p>
               </div>
             </div>
@@ -276,7 +276,7 @@ export default function InteractiveLab() {
                   </div>
                 )}
                 {m2Status === 'idle' && (
-                  <p className="m-auto text-center text-xs text-[var(--muted)]">
+                  <p className="m-auto text-center text-xs text-[var(--on-ink-muted)]">
                     Lancez le scan Pulse Sentinel puis déclenchez Apex pour voir la conversation démarrer.
                   </p>
                 )}
@@ -288,11 +288,11 @@ export default function InteractiveLab() {
         {/* MODULE 3 : RankSniper */}
         <div className="glass relative mt-6 overflow-hidden rounded-2xl p-7">
           <div className="mb-5 flex items-center gap-3">
-            <div className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-[var(--primary-soft)] text-[var(--primary-hover)] ring-1 ring-[var(--border-strong)]">
+            <div className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-[var(--primary-soft)] text-[var(--primary-ink)] ring-1 ring-[var(--primary-line)]">
               <Wand2 size={18} strokeWidth={1.8} />
             </div>
             <div>
-              <p className="font-semibold text-white">Moteur RankSniper</p>
+              <p className="font-semibold text-[var(--foreground)]">Moteur RankSniper</p>
               <p className="text-xs text-[var(--muted)]">Aperçu du pipeline SEO chirurgical</p>
             </div>
           </div>
@@ -303,12 +303,12 @@ export default function InteractiveLab() {
               value={keyword}
               onChange={(e) => setKeyword(e.target.value)}
               placeholder="Entrez votre mot-clé cible (ex: agent ia recrutement)"
-              className="flex-1 rounded-xl border border-[var(--border-strong)] bg-[var(--surface-2)] px-4 py-2.5 text-sm text-white outline-none focus:border-[var(--primary)]"
+              className="flex-1 rounded-xl border border-[var(--border-strong)] bg-[var(--surface-2)] px-4 py-2.5 text-sm text-[var(--foreground)] outline-none focus:border-[var(--primary)]"
             />
             <button
               onClick={() => setSeoGenerated(true)}
               disabled={!keyword.trim()}
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-[var(--primary)] px-5 py-2.5 text-sm font-medium text-black transition-all hover:bg-[var(--primary-hover)] disabled:opacity-50"
+              className="inline-flex min-h-[40px] items-center justify-center gap-2 rounded-full bg-[var(--primary)] px-5 py-2.5 text-sm font-medium text-white transition-all hover:bg-[var(--primary-hover)] disabled:opacity-50"
             >
               <Code2 size={15} />
               Générer la structure
@@ -316,7 +316,7 @@ export default function InteractiveLab() {
           </div>
 
           {seoGenerated && keyword.trim() && (
-            <div className="mt-5 animate-[fadeIn_0.4s_ease-in] rounded-xl border border-[var(--border-strong)] bg-black/40 p-4 font-mono text-xs text-[var(--muted)]">
+            <div className="terminal-dark mt-5 animate-[fadeIn_0.4s_ease-in] rounded-xl p-4 font-mono text-xs text-[var(--on-ink-muted)]">
               <pre className="overflow-x-auto whitespace-pre-wrap">
 {`{
   "keyword": "${keyword.trim()}",
@@ -329,7 +329,7 @@ export default function InteractiveLab() {
   "geo": "${SEO_OUTPUT.geo}"
 }`}
               </pre>
-              <p className="mt-3 font-mono text-[0.65rem] uppercase tracking-[0.1em] text-[var(--primary-hover)]">
+              <p className="mt-3 font-mono text-[0.65rem] uppercase tracking-[0.1em] text-[var(--primary)]">
                 Structure prête à être injectée dans Supabase en 48h
               </p>
             </div>
@@ -342,7 +342,7 @@ export default function InteractiveLab() {
             href={CALENDLY}
             target="_blank"
             rel="noopener noreferrer"
-            className="group inline-flex max-w-xl items-center justify-center gap-2 rounded-full bg-[var(--primary)] px-8 py-4 text-center text-base font-medium text-black transition-all hover:bg-[var(--primary-hover)] hover:shadow-[0_0_40px_-5px_var(--primary-glow)]"
+            className="group inline-flex max-w-xl items-center justify-center gap-2 rounded-full bg-[var(--primary)] px-8 py-4 text-center text-base font-medium text-white transition-all hover:bg-[var(--primary-hover)] hover:shadow-[0_0_40px_-5px_var(--primary-glow)]"
           >
             <Calendar size={18} />
             Vous voulez voir ce pipeline tourner en direct sur vos propres cibles ? Réservez votre diagnostic
