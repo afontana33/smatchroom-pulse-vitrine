@@ -7,9 +7,10 @@ import Reveal from './Reveal';
 // Lien fiche Google (CID SmatchRoom) — pour « voir / laisser un avis ».
 const GOOGLE_URL = 'https://www.google.com/maps?cid=1742713614499117243';
 
-// Widget live : coller l'identifiant Elfsight (ex : "abc123..." depuis
-// la classe elfsight-app-<ID>) OU l'ID Trustindex. Laisser vide => carte CTA seule.
-const ELFSIGHT_APP_ID = '';
+// Widget live Elfsight : identifiant de la classe elfsight-app-<ID>.
+// Laisser vide => carte CTA seule.
+const ELFSIGHT_APP_ID = '68950da5-6244-4496-90a0-5886a38f64a2';
+const ELFSIGHT_PLATFORM = 'https://elfsightcdn.com/platform.js';
 
 function GoogleG({ size = 20 }) {
   return (
@@ -25,9 +26,9 @@ function GoogleG({ size = 20 }) {
 export default function GoogleReviews() {
   useEffect(() => {
     if (!ELFSIGHT_APP_ID) return;
-    if (document.querySelector('script[src*="static.elfsight.com/platform/platform.js"]')) return;
+    if (document.querySelector('script[src*="elfsightcdn.com/platform.js"]')) return;
     const s = document.createElement('script');
-    s.src = 'https://static.elfsight.com/platform/platform.js';
+    s.src = ELFSIGHT_PLATFORM;
     s.async = true;
     document.body.appendChild(s);
   }, []);
