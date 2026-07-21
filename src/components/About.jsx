@@ -19,6 +19,24 @@ const TRUST = [
   },
 ];
 
+// Pour ajouter/remplacer une photo : déposer l'image dans /public/team/<slug>.jpg
+// et passer `photo: '/team/<slug>.jpg'`. Sans photo, un avatar initiales s'affiche.
+const TEAM = [
+  { name: 'Alexis Fontana', role: 'Fondateur', slug: 'alexis', photo: '/team/alexis.jpg' },
+  { name: 'Manon', role: 'Co-fondatrice', slug: 'manon', photo: null },
+  { name: 'Laura', role: 'Directrice commerciale', slug: 'laura', photo: null },
+  { name: 'Noa', role: 'Alternant', slug: 'noa', photo: null },
+];
+
+function initials(name) {
+  return name
+    .split(' ')
+    .map((w) => w[0])
+    .join('')
+    .slice(0, 2)
+    .toUpperCase();
+}
+
 export default function About() {
   return (
     <section id="a-propos" className="relative scroll-mt-24 px-5 py-24 sm:px-6 sm:py-28">
@@ -30,7 +48,7 @@ export default function About() {
           </div>
         </Reveal>
 
-        <div className="grid gap-8 lg:grid-cols-[1.15fr_1fr] lg:items-center lg:gap-12">
+        <div className="grid gap-8 lg:grid-cols-[1.1fr_1fr] lg:gap-12">
           {/* Colonne texte */}
           <Reveal>
             <div>
@@ -77,39 +95,38 @@ export default function About() {
             </div>
           </Reveal>
 
-          {/* Colonne portrait — emplacement photo (fondateur / bureaux) */}
+          {/* Colonne équipe */}
           <Reveal delay={90}>
-            <figure className="relative">
-              {/*
-                Pour remplacer le visuel par une vraie photo (fondateur ou bureaux),
-                déposer l'image dans /public et remplacer ce bloc par :
-                <img src="/alexis-fontana.jpg" alt="Alexis Fontana, fondateur de SmatchRoom" className="aspect-[4/5] w-full rounded-2xl object-cover shadow-[var(--shadow-lg)]" />
-              */}
-              <div className="card grain relative overflow-hidden p-7 shadow-[var(--shadow-lg)] sm:p-8">
-                <div aria-hidden className="pointer-events-none absolute inset-0 -z-0 bg-[radial-gradient(120%_90%_at_15%_10%,var(--primary-soft),transparent_55%),radial-gradient(120%_90%_at_90%_100%,var(--steel-soft),transparent_55%)]" />
-                <div className="relative flex items-center gap-5">
-                  <img
-                    src="/alexis-fontana.jpg"
-                    alt="Alexis Fontana, fondateur du Groupe SmatchRoom"
-                    width={112}
-                    height={112}
-                    className="h-24 w-24 flex-shrink-0 rounded-2xl object-cover shadow-[var(--shadow-md)] ring-1 ring-[var(--border-strong)] sm:h-28 sm:w-28"
-                  />
-                  <figcaption>
-                    <p className="font-display text-2xl font-semibold text-[var(--foreground)]">Alexis Fontana</p>
-                    <p className="mt-1 text-sm text-[var(--muted-strong)]">Fondateur du Groupe SmatchRoom</p>
-                    <p className="mt-3 inline-flex items-center gap-2 rounded-full border border-[var(--border-strong)] bg-[var(--surface)] px-3 py-1.5 font-mono text-[0.66rem] uppercase tracking-[0.16em] text-[var(--muted-strong)]">
-                      <MapPin size={13} className="text-[var(--primary-ink)]" /> Bordeaux · France
-                    </p>
-                  </figcaption>
-                </div>
-                <blockquote className="relative mt-6 border-t border-[var(--border)] pt-6 text-lg leading-snug text-[var(--foreground)]">
-                  <span className="font-serif-it text-[var(--primary-ink)]">«&nbsp;</span>
-                  La machine prospecte, vous closez la vente.
-                  <span className="font-serif-it text-[var(--primary-ink)]">&nbsp;»</span>
-                </blockquote>
+            <div>
+              <p className="eyebrow mb-5">L&apos;équipe</p>
+              <div className="grid grid-cols-2 gap-4">
+                {TEAM.map((m) => (
+                  <figure key={m.slug} className="card grain relative flex flex-col items-center overflow-hidden p-6 text-center">
+                    <div aria-hidden className="pointer-events-none absolute inset-0 -z-0 bg-[radial-gradient(120%_80%_at_20%_0%,var(--primary-soft),transparent_60%)]" />
+                    {m.photo ? (
+                      <img
+                        src={m.photo}
+                        alt={`${m.name}, ${m.role} de SmatchRoom`}
+                        width={112}
+                        height={112}
+                        className="relative h-24 w-24 rounded-2xl object-cover shadow-[var(--shadow-md)] ring-1 ring-[var(--border-strong)]"
+                      />
+                    ) : (
+                      <div className="relative flex h-24 w-24 items-center justify-center rounded-2xl bg-[var(--surface-2)] ring-1 ring-[var(--border-strong)]">
+                        <span className="font-serif-it text-3xl text-[var(--primary-ink)]">{initials(m.name)}</span>
+                      </div>
+                    )}
+                    <figcaption className="relative mt-4">
+                      <p className="font-display text-lg font-semibold leading-tight text-[var(--foreground)]">{m.name}</p>
+                      <p className="mt-1 text-sm text-[var(--muted-strong)]">{m.role}</p>
+                    </figcaption>
+                  </figure>
+                ))}
               </div>
-            </figure>
+              <p className="mt-5 inline-flex items-center gap-2 rounded-full border border-[var(--border-strong)] bg-[var(--surface)] px-3 py-1.5 font-mono text-[0.66rem] uppercase tracking-[0.16em] text-[var(--muted-strong)]">
+                <MapPin size={13} className="text-[var(--primary-ink)]" /> Bordeaux · France
+              </p>
+            </div>
           </Reveal>
         </div>
       </div>

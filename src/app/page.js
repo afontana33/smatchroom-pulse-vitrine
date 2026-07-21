@@ -18,13 +18,13 @@ export default function Page() {
     <main className="flex flex-col">
       <Nav />
       <Hero />
+      <About />
       <TrustedBy />
       <Manifesto />
       <Pillars />
       <AgentDemo />
       <Process />
       <UseCases />
-      <About />
       <Pricing />
       <LeadsB2BCTA />
       <FAQ />
