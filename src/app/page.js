@@ -7,6 +7,7 @@ import AgentDemo from '@/components/AgentDemo';
 import Process from '@/components/Process';
 import UseCases from '@/components/UseCases';
 import About from '@/components/About';
+import GoogleReviews from '@/components/GoogleReviews';
 import Pricing from '@/components/Pricing';
 import LeadsB2BCTA from '@/components/LeadsB2BCTA';
 import FAQ from '@/components/FAQ';
@@ -25,6 +26,7 @@ export default function Page() {
       <AgentDemo />
       <Process />
       <UseCases />
+      <GoogleReviews />
       <Pricing />
       <LeadsB2BCTA />
       <FAQ />
