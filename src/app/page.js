@@ -6,6 +6,7 @@ import Pillars from '@/components/Pillars';
 import AgentDemo from '@/components/AgentDemo';
 import Process from '@/components/Process';
 import UseCases from '@/components/UseCases';
+import About from '@/components/About';
 import Pricing from '@/components/Pricing';
 import LeadsB2BCTA from '@/components/LeadsB2BCTA';
 import FAQ from '@/components/FAQ';
@@ -23,6 +24,7 @@ export default function Page() {
       <AgentDemo />
       <Process />
       <UseCases />
+      <About />
       <Pricing />
       <LeadsB2BCTA />
       <FAQ />
