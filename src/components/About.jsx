@@ -1,4 +1,4 @@
-import { MapPin, ShieldCheck, Code2 } from 'lucide-react';
+import { MapPin, ShieldCheck, Code2, MapPinned } from 'lucide-react';
 import Reveal from './Reveal';
 
 const TRUST = [
@@ -134,8 +134,21 @@ export default function About() {
                   </figure>
                 ))}
               </div>
-              <p className="mt-5 inline-flex items-center gap-2 rounded-full border border-[var(--border-strong)] bg-[var(--surface)] px-3 py-1.5 font-mono text-[0.66rem] uppercase tracking-[0.16em] text-[var(--muted-strong)]">
-                <MapPin size={13} className="text-[var(--primary-ink)]" /> Bordeaux · France
+              <div className="showcase-dark grain relative mt-4 flex items-center gap-4 overflow-hidden rounded-2xl p-5 sm:p-6">
+                <span className="relative flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-white/10 text-[#8fb4e0] ring-1 ring-white/15">
+                  <MapPinned size={22} strokeWidth={1.8} />
+                </span>
+                <div className="relative">
+                  <p className="font-display text-base font-semibold text-white sm:text-lg">
+                    Des commerciaux terrain partout en France
+                  </p>
+                  <p className="mt-1 text-sm text-[var(--on-ink-muted)]">
+                    Un interlocuteur dédié pour chaque secteur géographique, au plus près de vos clients.
+                  </p>
+                </div>
+              </div>
+              <p className="mt-4 inline-flex items-center gap-2 rounded-full border border-[var(--border-strong)] bg-[var(--surface)] px-3 py-1.5 font-mono text-[0.66rem] uppercase tracking-[0.16em] text-[var(--muted-strong)]">
+                <MapPin size={13} className="text-[var(--primary-ink)]" /> Siège · Bordeaux, France
               </p>
             </div>
           </Reveal>
