@@ -85,24 +85,29 @@ export default function About() {
                 déposer l'image dans /public et remplacer ce bloc par :
                 <img src="/alexis-fontana.jpg" alt="Alexis Fontana, fondateur de SmatchRoom" className="aspect-[4/5] w-full rounded-2xl object-cover shadow-[var(--shadow-lg)]" />
               */}
-              <div className="card grain relative flex aspect-[4/5] flex-col justify-between overflow-hidden p-7 shadow-[var(--shadow-lg)]">
+              <div className="card grain relative overflow-hidden p-7 shadow-[var(--shadow-lg)] sm:p-8">
                 <div aria-hidden className="pointer-events-none absolute inset-0 -z-0 bg-[radial-gradient(120%_90%_at_15%_10%,var(--primary-soft),transparent_55%),radial-gradient(120%_90%_at_90%_100%,var(--steel-soft),transparent_55%)]" />
-                <div className="relative">
+                <div className="relative flex items-center gap-5">
                   <img
                     src="/alexis-fontana.jpg"
                     alt="Alexis Fontana, fondateur du Groupe SmatchRoom"
-                    width={144}
-                    height={144}
-                    className="h-32 w-32 rounded-2xl object-cover shadow-[var(--shadow-md)] ring-1 ring-[var(--border-strong)] sm:h-36 sm:w-36"
+                    width={112}
+                    height={112}
+                    className="h-24 w-24 flex-shrink-0 rounded-2xl object-cover shadow-[var(--shadow-md)] ring-1 ring-[var(--border-strong)] sm:h-28 sm:w-28"
                   />
+                  <figcaption>
+                    <p className="font-display text-2xl font-semibold text-[var(--foreground)]">Alexis Fontana</p>
+                    <p className="mt-1 text-sm text-[var(--muted-strong)]">Fondateur du Groupe SmatchRoom</p>
+                    <p className="mt-3 inline-flex items-center gap-2 rounded-full border border-[var(--border-strong)] bg-[var(--surface)] px-3 py-1.5 font-mono text-[0.66rem] uppercase tracking-[0.16em] text-[var(--muted-strong)]">
+                      <MapPin size={13} className="text-[var(--primary-ink)]" /> Bordeaux · France
+                    </p>
+                  </figcaption>
                 </div>
-                <figcaption className="relative">
-                  <p className="font-display text-2xl font-semibold text-[var(--foreground)]">Alexis Fontana</p>
-                  <p className="mt-1 text-sm text-[var(--muted-strong)]">Fondateur du Groupe SmatchRoom</p>
-                  <p className="mt-4 inline-flex items-center gap-2 rounded-full border border-[var(--border-strong)] bg-[var(--surface)] px-3 py-1.5 font-mono text-[0.68rem] uppercase tracking-[0.16em] text-[var(--muted-strong)]">
-                    <MapPin size={13} className="text-[var(--primary-ink)]" /> Bordeaux · France
-                  </p>
-                </figcaption>
+                <blockquote className="relative mt-6 border-t border-[var(--border)] pt-6 text-lg leading-snug text-[var(--foreground)]">
+                  <span className="font-serif-it text-[var(--primary-ink)]">«&nbsp;</span>
+                  La machine prospecte, vous closez la vente.
+                  <span className="font-serif-it text-[var(--primary-ink)]">&nbsp;»</span>
+                </blockquote>
               </div>
             </figure>
           </Reveal>
