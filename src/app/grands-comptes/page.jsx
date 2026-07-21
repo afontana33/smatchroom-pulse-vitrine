@@ -9,14 +9,14 @@ import Reveal from '@/components/Reveal';
 const CALENDLY = 'https://calendly.com/a-fontana-smatchroom/30min';
 
 export const metadata = {
-  title: "Agent Chasseur IA Grands Comptes — Acquisition B2B pour PME/ETI industrie & BTP | SmatchRoom Pulse",
+  title: "Division Corporate & Grands Comptes — Ingénierie d'acquisition B2B sur-mesure | SmatchRoom Pulse",
   description:
-    "Un SDR IA autonome qui identifie, contacte et qualifie vos cibles Grands Comptes (promoteurs, gestionnaires de parcs, majors). Offre sur-mesure, tarif sur devis. Handoff vers vos commerciaux sur prospects chauds.",
+    "Infrastructure de prospection B2B sur-mesure pour les marchés de niche et réseaux d'envergure : luxe, éco-mobilité, SaaS, industrie de pointe, franchises, gros œuvre. Data engineering, cerveau IA dédié (RAG), frappe multicanale & handoff. Audit stratégique gratuit.",
   alternates: { canonical: 'https://pulse.smatchroom.com/grands-comptes' },
   openGraph: {
-    title: "Agent Chasseur IA Grands Comptes — SmatchRoom Pulse",
+    title: "Division Corporate & Grands Comptes — SmatchRoom Pulse",
     description:
-      "Automatisation de l'acquisition B2B « Grands Comptes » pour l'industrie et le BTP. Offre sur-mesure, tarif sur devis.",
+      "Ingénierie d'acquisition B2B sur-mesure pour les marchés de niche et réseaux d'envergure. Data engineering, IA dédiée (RAG), multicanal & handoff. Audit stratégique gratuit.",
     url: 'https://pulse.smatchroom.com/grands-comptes',
   },
 };
@@ -39,27 +39,32 @@ const CHALLENGES = [
   },
 ];
 
+const SECTORS = [
+  'Luxe', 'Éco-mobilité', 'Logiciels B2B (SaaS)', 'Industrie de pointe',
+  'Réseaux de franchises', 'Acteurs du gros œuvre',
+];
+
 const STEPS = [
   {
     n: '01',
     icon: Crosshair,
-    title: 'Ciblage chirurgical',
-    sub: 'Data extraction',
-    text: "On identifie les décideurs exacts de votre secteur sur votre zone de chalandise. Pas des entreprises génériques, mais les profils décisionnaires précis (directeurs de maintenance, responsables achats BTP).",
+    title: 'Data Engineering & Scraping chirurgical',
+    sub: 'Extraction sur-mesure',
+    text: "Nous créons des algorithmes sur-mesure pour extraire des bases de données complexes, introuvables sur le marché (ex : établissements haut de gamme avec accès maritime, passoires thermiques industrielles).",
   },
   {
     n: '02',
     icon: MessagesSquare,
-    title: 'Approche conversationnelle',
-    sub: 'WhatsApp & e-mail',
-    text: "L'agent engage la conversation de façon personnalisée et naturelle. Entraîné pour briser la glace, identifier un besoin (budgets, projets de renouvellement) et qualifier l'intérêt du prospect.",
+    title: 'Cerveau IA dédié (Architecture RAG)',
+    sub: 'Entraînement étanche',
+    text: "Votre agent est entraîné de manière étanche sur vos plaquettes commerciales, vos tarifs et vos contraintes techniques. Il répond aux objections de vos prospects de manière autonome.",
   },
   {
     n: '03',
     icon: Handshake,
-    title: 'Le handoff',
-    sub: 'Passage de relais',
-    text: "Dès qu'un prospect est chaud et demande un RDV, l'agent s'arrête et transfère la conversation à votre équipe avec un résumé du besoin. Vos commerciaux prennent le relais sur des prospects qualifiés.",
+    title: 'Frappe multicanale & Handoff',
+    sub: 'Cold-emailing · WhatsApp API',
+    text: "Cold-emailing à très haute délivrabilité, numéros WhatsApp API officiels, et transfert instantané (handoff) sur le CRM de votre direction commerciale dès que le prospect est chaud.",
   },
 ];
 
@@ -89,25 +94,47 @@ export default function GrandsComptesPage() {
 
         <div className="mx-auto max-w-4xl text-center">
           <span className="premium-badge inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 font-mono text-[0.62rem] uppercase tracking-[0.18em]">
-            <Crosshair size={13} /> Offre Corporate · PME / ETI
+            <Crosshair size={13} /> 👔 Division Corporate &amp; Grands Comptes
           </span>
           <h1 className="mx-auto mt-6 max-w-3xl text-balance text-[2.3rem] font-semibold leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl">
-            <span className="steel-grad">L&apos;Agent Chasseur IA</span> pour ouvrir vos{' '}
-            <span className="font-serif-it text-[var(--steel)]">grands comptes.</span>
+            <span className="steel-grad">L&apos;Ingénierie d&apos;Acquisition B2B</span> pour les marchés de niche et{' '}
+            <span className="font-serif-it text-[var(--steel)]">réseaux d&apos;envergure.</span>
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-balance text-base text-[var(--muted-strong)] sm:text-lg">
-            Automatisation de l&apos;acquisition B2B « Grands Comptes » pour l&apos;industrie et le BTP.
-            Un SDR IA autonome qui identifie, contacte et qualifie vos cibles stratégiques —
-            promoteurs, gestionnaires de parcs, majors de la construction.
+            Vous ciblez des décideurs inaccessibles — directeurs généraux, hôtellerie de luxe,
+            acheteurs publics — sur un territoire national ou international&nbsp;? Une solution
+            standardisée ne suffit pas. Nous concevons pour vous une{' '}
+            <span className="font-semibold text-[var(--foreground)]">infrastructure de prospection sur-mesure.</span>
           </p>
           <div className="mt-9 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center sm:justify-center">
             <a href={CALENDLY} target="_blank" rel="noopener noreferrer" className="btn-steel inline-flex items-center justify-center gap-2 px-6 py-4 text-base font-semibold">
-              <Calendar size={17} /> Planifier une démo (15 min)
+              <Calendar size={17} /> Demander un audit stratégique gratuit
             </a>
-            <a href="#modele" className="btn-ghost inline-flex items-center justify-center gap-2 px-6 py-4 text-base font-medium">
-              Voir le modèle économique
+            <a href="#ingenierie" className="btn-ghost inline-flex items-center justify-center gap-2 px-6 py-4 text-base font-medium">
+              Voir ce que comprend l&apos;ingénierie
             </a>
           </div>
+        </div>
+      </section>
+
+      {/* Pour qui ? — secteurs */}
+      <section className="relative px-5 pt-4 pb-8 sm:px-6">
+        <div className="mx-auto max-w-5xl">
+          <Reveal>
+            <div className="card grain relative overflow-hidden p-6 text-center sm:p-8">
+              <p className="eyebrow eyebrow-steel">Pour qui ?</p>
+              <div className="mt-5 flex flex-wrap items-center justify-center gap-2.5">
+                {SECTORS.map((s) => (
+                  <span
+                    key={s}
+                    className="rounded-full border border-[var(--steel-line)] bg-[var(--steel-soft)] px-4 py-2 text-sm font-medium text-[var(--muted-strong)]"
+                  >
+                    {s}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </Reveal>
         </div>
       </section>
 
@@ -124,7 +151,7 @@ export default function GrandsComptesPage() {
                 L&apos;acquisition B2B à froid <span className="steel-grad">s&apos;essouffle.</span>
               </h2>
               <p className="mt-4 text-[var(--muted-strong)] sm:text-lg">
-                Pour l&apos;industrie, la maintenance et la distribution BTP, l&apos;ouverture de nouveaux
+                Sur les marchés de niche et les réseaux d&apos;envergure, l&apos;ouverture de nouveaux
                 comptes est le principal moteur de croissance. Mais les méthodes traditionnelles atteignent leurs limites.
               </p>
             </div>
@@ -146,21 +173,21 @@ export default function GrandsComptesPage() {
         </div>
       </section>
 
-      {/* La solution — 3 étapes */}
-      <section className="relative px-5 py-20 sm:px-6 sm:py-24">
+      {/* L'ingénierie Corporate — 3 piliers */}
+      <section id="ingenierie" className="relative scroll-mt-24 px-5 py-20 sm:px-6 sm:py-24">
         <div className="mx-auto max-w-7xl">
           <Reveal>
             <div className="mb-12 max-w-2xl">
               <div className="mb-6 flex items-center gap-4">
-                <span className="section-index">02 — La solution</span>
+                <span className="section-index">02 — L&apos;ingénierie Corporate</span>
                 <span className="h-px flex-1 bg-[var(--border-strong)]" />
               </div>
               <h2 className="text-balance text-3xl font-semibold tracking-tight sm:text-4xl">
-                Un collaborateur numérique <span className="steel-grad">autonome.</span>
+                Ce que comprend <span className="steel-grad">l&apos;ingénierie Corporate.</span>
               </h2>
               <p className="mt-4 text-[var(--muted-strong)] sm:text-lg">
-                Paramétré sur-mesure pour identifier, contacter et qualifier vos cibles. Le cycle
-                de prospection tourne en 3 étapes, sans congés ni baisse de motivation.
+                Une infrastructure conçue de bout en bout pour votre marché : de l&apos;extraction de la
+                donnée jusqu&apos;au transfert du prospect chaud à vos commerciaux.
               </p>
             </div>
           </Reveal>
@@ -189,24 +216,29 @@ export default function GrandsComptesPage() {
           <Reveal>
             <div className="mb-12 max-w-2xl">
               <div className="mb-6 flex items-center gap-4">
-                <span className="section-index">03 — Modèle économique</span>
+                <span className="section-index">03 — Budget &amp; tarification</span>
                 <span className="h-px flex-1 bg-[var(--border-strong)]" />
               </div>
               <h2 className="text-balance text-3xl font-semibold tracking-tight sm:text-4xl">
-                Une fraction du coût d&apos;un commercial, <span className="steel-grad">un volume inégalable.</span>
+                Votre marché est unique, <span className="steel-grad">notre infrastructure aussi.</span>
               </h2>
+              <p className="mt-4 text-[var(--muted-strong)] sm:text-lg">
+                Le budget est établi sur-mesure : <span className="font-semibold text-[var(--foreground)]">frais
+                d&apos;ingénierie</span> (unique), <span className="font-semibold text-[var(--foreground)]">licence
+                mensuelle</span>, et <span className="font-semibold text-[var(--foreground)]">success fee éventuel</span>.
+              </p>
             </div>
           </Reveal>
 
           <div className="grid gap-5 lg:grid-cols-2">
             <Reveal>
               <div className="card flex h-full flex-col p-7 sm:p-9">
-                <p className="font-mono text-xs uppercase tracking-[0.16em] text-[var(--steel)]">Phase 1 · Paiement unique</p>
+                <p className="font-mono text-xs uppercase tracking-[0.16em] text-[var(--steel)]">Phase 1 · Frais d&apos;ingénierie</p>
                 <div className="mt-3 flex items-baseline gap-2">
                   <span className="font-display text-4xl font-semibold text-[var(--foreground)]">Sur devis</span>
-                  <span className="text-[var(--muted)]">Setup</span>
+                  <span className="text-[var(--muted)]">unique</span>
                 </div>
-                <p className="mt-2 text-sm text-[var(--muted-strong)]">Audit, déploiement et configuration.</p>
+                <p className="mt-2 text-sm text-[var(--muted-strong)]">Audit, data engineering, entraînement de l&apos;IA et déploiement.</p>
                 <ul className="mt-6 space-y-3">
                   {SETUP_ITEMS.map((it) => (
                     <li key={it} className="flex gap-2.5 text-sm text-[var(--muted-strong)]">
@@ -223,12 +255,12 @@ export default function GrandsComptesPage() {
                 <span className="premium-badge absolute right-6 top-6 rounded-full px-2.5 py-1 font-mono text-[0.58rem] uppercase tracking-[0.16em]">
                   Sans engagement
                 </span>
-                <p className="font-mono text-xs uppercase tracking-[0.16em] text-[var(--steel)]">Phase 2 · Abonnement</p>
+                <p className="font-mono text-xs uppercase tracking-[0.16em] text-[var(--steel)]">Phase 2 · Licence mensuelle</p>
                 <div className="mt-3 flex items-baseline gap-2">
                   <span className="font-display text-4xl font-semibold text-[var(--foreground)]">Sur devis</span>
                   <span className="text-[var(--muted)]">/ mois</span>
                 </div>
-                <p className="mt-2 text-sm text-[var(--muted-strong)]">Licence « SDR Autonome ».</p>
+                <p className="mt-2 text-sm text-[var(--muted-strong)]">Licence « SDR autonome » · success fee éventuel.</p>
                 <ul className="mt-6 space-y-3">
                   {LICENSE_ITEMS.map((it) => (
                     <li key={it} className="flex gap-2.5 text-sm text-[var(--muted-strong)]">
@@ -263,12 +295,12 @@ export default function GrandsComptesPage() {
           <div className="mx-auto max-w-4xl">
             <div className="card grain relative overflow-hidden p-8 text-center sm:p-12">
               <div aria-hidden className="pointer-events-none absolute -right-16 -top-16 h-64 w-64 rounded-full bg-[radial-gradient(circle,var(--steel-soft),transparent_65%)]" />
-              <p className="eyebrow eyebrow-steel">Planifier une démonstration</p>
+              <p className="eyebrow eyebrow-steel">Audit stratégique gratuit</p>
               <h2 className="mx-auto mt-4 max-w-2xl text-balance text-3xl font-semibold tracking-tight text-[var(--foreground)] sm:text-4xl">
-                15 minutes pour voir l&apos;agent en action.
+                30 minutes en visio pour cadrer votre marché.
               </h2>
               <a href={CALENDLY} target="_blank" rel="noopener noreferrer" className="btn-steel mx-auto mt-8 inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold">
-                <Calendar size={18} /> Réserver ma démo
+                <Calendar size={18} /> Demander mon audit stratégique gratuit
                 <ArrowRight size={16} />
               </a>
 

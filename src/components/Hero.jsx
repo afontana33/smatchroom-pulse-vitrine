@@ -1,97 +1,113 @@
-import { ArrowRight, Sparkles, CalendarCheck, TrendingUp } from 'lucide-react';
-import TerminalLive from './TerminalLive';
-
-const CALENDLY = 'https://calendly.com/a-fontana-smatchroom/30min';
+import { ArrowRight, Sparkles, Building2, Briefcase, Zap } from 'lucide-react';
 
 export default function Hero() {
   return (
     <section className="relative w-full overflow-hidden grain">
-      {/* Mesh premium clair */}
+      {/* Mesh premium clair — deux registres (orange BTP / acier Corporate) */}
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
         <div className="animate-mesh absolute -left-40 -top-40 h-[40rem] w-[40rem] rounded-full bg-[radial-gradient(circle,rgba(255,90,31,0.22),transparent_60%)] blur-3xl" />
-        <div className="animate-mesh absolute -right-32 top-10 h-[34rem] w-[34rem] rounded-full bg-[radial-gradient(circle,rgba(255,176,122,0.28),transparent_60%)] blur-3xl [animation-delay:-6s]" />
-        <div className="animate-mesh absolute bottom-0 left-1/3 h-[30rem] w-[30rem] rounded-full bg-[radial-gradient(circle,rgba(41,75,115,0.14),transparent_60%)] blur-3xl [animation-delay:-11s]" />
+        <div className="animate-mesh absolute -right-32 top-10 h-[34rem] w-[34rem] rounded-full bg-[radial-gradient(circle,rgba(255,176,122,0.24),transparent_60%)] blur-3xl [animation-delay:-6s]" />
+        <div className="animate-mesh absolute bottom-0 left-1/2 h-[32rem] w-[32rem] rounded-full bg-[radial-gradient(circle,rgba(41,75,115,0.16),transparent_60%)] blur-3xl [animation-delay:-11s]" />
       </div>
 
-      <div className="mx-auto flex max-w-7xl flex-col items-center gap-14 px-5 pb-20 pt-32 sm:px-6 sm:pt-36 lg:flex-row lg:items-center lg:gap-12 lg:pb-28 lg:pt-40">
-        {/* Colonne texte */}
-        <div className="w-full max-w-2xl text-center lg:text-left">
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[var(--border-strong)] bg-[var(--surface)] px-4 py-1.5 font-mono text-xs uppercase tracking-[0.16em] text-[var(--primary-ink)] shadow-sm">
-            <Sparkles size={14} />
-            <span>Agents IA · Artisans &amp; entreprises du bâtiment</span>
-          </div>
-
-          <h1 className="text-balance text-[2.5rem] font-semibold leading-[1.03] tracking-tight sm:text-6xl lg:text-[4.4rem]">
-            <span className="text-[var(--foreground)]">L&apos;IA qui </span>
-            <span className="gradient-text">trouve vos chantiers</span>
-            <span className="text-[var(--foreground)]"> pendant que vous êtes sur le terrain.</span>
-          </h1>
-
-          <p className="mx-auto mt-6 max-w-xl text-balance text-base text-[var(--muted-strong)] sm:text-lg lg:mx-0">
-            SmatchRoom Pulse conçoit des <span className="font-semibold text-[var(--foreground)]">collaborateurs numériques autonomes</span> pour
-            le bâtiment : prospection, relance de devis, qualification de leads, prise de RDV.
-            Ils tournent <span className="font-semibold text-[var(--foreground)]">24/7</span>, déployés en{' '}
-            <span className="font-mono text-[var(--primary-ink)]">48h</span> sur votre infra.
-          </p>
-
-          <div className="mt-9 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center sm:justify-center lg:justify-start">
-            <a
-              href={CALENDLY}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-primary inline-flex items-center justify-center gap-2 px-6 py-4 text-base font-semibold"
-            >
-              Réserver mon diagnostic (gratuit)
-              <ArrowRight size={17} />
-            </a>
-            <a
-              href="#tarifs"
-              className="btn-ghost inline-flex items-center justify-center gap-2 px-6 py-4 text-base font-medium"
-            >
-              Voir les agents &amp; tarifs
-            </a>
-          </div>
-
-          <div className="mt-9 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 lg:justify-start">
-            <div className="flex items-center gap-2">
-              <span className="font-display text-2xl font-semibold text-[var(--foreground)]">+90</span>
-              <span className="max-w-[9rem] text-left text-xs leading-tight text-[var(--muted)]">
-                Artisans &amp; entreprises accompagnés
-              </span>
-            </div>
-            <div className="h-8 w-px bg-[var(--border-strong)]" />
-            <div className="flex items-center gap-2">
-              <span className="font-display text-2xl font-semibold text-[var(--foreground)]">48h</span>
-              <span className="max-w-[9rem] text-left text-xs leading-tight text-[var(--muted)]">
-                De l&apos;audit à la mise en production
-              </span>
-            </div>
-          </div>
+      <div className="mx-auto flex max-w-5xl flex-col items-center px-5 pb-20 pt-32 text-center sm:px-6 sm:pt-40 lg:pb-28">
+        <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[var(--border-strong)] bg-[var(--surface)] px-4 py-1.5 font-mono text-xs uppercase tracking-[0.16em] text-[var(--primary-ink)] shadow-sm">
+          <Sparkles size={14} />
+          <span>Collaborateurs Numériques Autonomes</span>
         </div>
 
-        {/* Colonne showcase techno */}
-        <div className="relative w-full max-w-lg lg:max-w-md lg:flex-1">
-          <TerminalLive />
+        <h1 className="text-balance text-[2.5rem] font-semibold leading-[1.03] tracking-tight sm:text-6xl lg:text-[4.6rem]">
+          <span className="text-[var(--foreground)]">L&apos;Intelligence Artificielle qui </span>
+          <span className="gradient-text">prospecte et vend</span>
+          <span className="text-[var(--foreground)]"> à votre place.</span>
+        </h1>
 
-          {/* Cartes flottantes (masquées sur très petit écran) */}
-          <div className="animate-floaty absolute -left-4 -top-5 hidden items-center gap-3 rounded-2xl bg-[var(--surface)] px-4 py-3 shadow-lg ring-1 ring-[var(--border)] sm:flex">
-            <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-[var(--primary-soft)] text-[var(--primary-ink)]">
-              <TrendingUp size={17} />
-            </span>
-            <div className="text-left">
-              <p className="font-display text-sm font-semibold text-[var(--foreground)]">Lead qualifié</p>
-              <p className="text-[0.7rem] text-[var(--muted)]">à l&apos;instant · ITE 120m²</p>
+        <p className="mx-auto mt-6 max-w-2xl text-balance text-base text-[var(--muted-strong)] sm:text-lg">
+          SmatchRoom Pulse conçoit, entraîne et déploie des{' '}
+          <span className="font-semibold text-[var(--foreground)]">collaborateurs numériques autonomes</span>.
+          Ils travaillent <span className="font-mono text-[var(--primary-ink)]">24/7</span> sur votre infrastructure.
+        </p>
+
+        {/* Sélecteur de division */}
+        <p className="mt-12 font-mono text-xs uppercase tracking-[0.22em] text-[var(--muted)]">
+          Sélectionnez votre division
+        </p>
+
+        <div className="mt-5 grid w-full gap-4 sm:grid-cols-2">
+          {/* Division BTP — registre orange */}
+          <a
+            href="#btp"
+            className="card card-hover group relative flex flex-col overflow-hidden p-7 text-left ring-1 ring-[var(--primary-line)] sm:p-8"
+          >
+            <div aria-hidden className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full bg-[radial-gradient(circle,var(--primary-soft),transparent_65%)]" />
+            <div className="relative flex items-center gap-3">
+              <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-[var(--primary-soft)] text-[var(--primary-ink)] ring-1 ring-[var(--primary-line)]">
+                <Building2 size={22} strokeWidth={1.8} />
+              </span>
+              <span className="text-2xl" aria-hidden>🏗️</span>
             </div>
+            <h2 className="relative mt-5 text-2xl font-semibold tracking-tight text-[var(--foreground)]">
+              Division BTP &amp; Artisanat
+            </h2>
+            <p className="relative mt-2 flex-1 text-sm text-[var(--muted-strong)]">
+              Offres packagées, prêtes à déployer. Agents taillés pour les artisans, courtiers en
+              travaux et petites entreprises du bâtiment. Mise en production en 48h.
+            </p>
+            <span className="relative mt-6 inline-flex items-center gap-2 font-semibold text-[var(--primary-ink)]">
+              Voir les offres packagées
+              <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
+            </span>
+          </a>
+
+          {/* Division Corporate — registre acier / premium sombre */}
+          <a
+            href="/grands-comptes"
+            className="showcase-dark grain card-hover group relative flex flex-col overflow-hidden rounded-2xl p-7 text-left sm:p-8"
+          >
+            <div aria-hidden className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full bg-[radial-gradient(circle,rgba(143,180,224,0.18),transparent_65%)]" />
+            <div className="relative flex items-center gap-3">
+              <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-white/10 text-[#8fb4e0] ring-1 ring-white/15">
+                <Briefcase size={22} strokeWidth={1.8} />
+              </span>
+              <span className="text-2xl" aria-hidden>👔</span>
+            </div>
+            <h2 className="relative mt-5 text-2xl font-semibold tracking-tight text-white">
+              Division Corporate &amp; Sur-Mesure
+            </h2>
+            <p className="relative mt-2 flex-1 text-sm text-[var(--on-ink-muted)]">
+              Ingénierie d&apos;acquisition B2B pour les autres secteurs et les marchés de niche.
+              Infrastructure de prospection conçue sur-mesure. Audit &amp; devis.
+            </p>
+            <span className="relative mt-6 inline-flex items-center gap-2 font-semibold text-[#8fb4e0]">
+              Demander un audit
+              <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
+            </span>
+          </a>
+        </div>
+
+        {/* Preuves */}
+        <div className="mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
+          <div className="flex items-center gap-2">
+            <span className="font-display text-2xl font-semibold text-[var(--foreground)]">+90</span>
+            <span className="max-w-[9rem] text-left text-xs leading-tight text-[var(--muted)]">
+              Entreprises accompagnées
+            </span>
           </div>
-
-          <div className="animate-floaty absolute -bottom-5 -right-3 hidden items-center gap-3 rounded-2xl bg-[var(--surface)] px-4 py-3 shadow-lg ring-1 ring-[var(--border)] sm:flex [animation-delay:-3.5s]">
-            <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-[var(--steel-soft)] text-[var(--steel)]">
-              <CalendarCheck size={17} />
+          <div className="h-8 w-px bg-[var(--border-strong)]" />
+          <div className="flex items-center gap-2">
+            <span className="font-display text-2xl font-semibold text-[var(--foreground)]">48h</span>
+            <span className="max-w-[9rem] text-left text-xs leading-tight text-[var(--muted)]">
+              De l&apos;audit à la mise en production
             </span>
-            <div className="text-left">
-              <p className="font-display text-sm font-semibold text-[var(--foreground)]">RDV posé</p>
-              <p className="text-[0.7rem] text-[var(--muted)]">jeudi 14h · handoff</p>
-            </div>
+          </div>
+          <div className="h-8 w-px bg-[var(--border-strong)]" />
+          <div className="flex items-center gap-2">
+            <span className="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-[var(--primary-soft)] text-[var(--primary-ink)]">
+              <Zap size={16} />
+            </span>
+            <span className="max-w-[9rem] text-left text-xs leading-tight text-[var(--muted)]">
+              Sur votre infra, 24/7
+            </span>
           </div>
         </div>
       </div>

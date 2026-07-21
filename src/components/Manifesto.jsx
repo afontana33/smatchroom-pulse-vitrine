@@ -19,17 +19,18 @@ export default function Manifesto() {
             />
             <blockquote className="relative">
               <p className="text-balance text-xl font-medium leading-snug tracking-tight text-[var(--foreground)] sm:text-2xl lg:text-[2rem]">
-                Les agences vous facturent du <span className="font-serif-it text-[var(--primary-ink)]">temps humain</span>.
-                Les logiciels vous demandent de <span className="font-serif-it text-[var(--primary-ink)]">faire le travail vous-même</span>.
+                Les agences traditionnelles vous facturent du <span className="font-serif-it text-[var(--primary-ink)]">temps humain</span>.
+                Les logiciels classiques vous demandent de <span className="font-serif-it text-[var(--primary-ink)]">faire le travail vous-même</span>.
                 Nous, on code des collaborateurs numériques qui <span className="accent-text">le font à votre place</span>.
               </p>
             </blockquote>
 
             <p className="relative mt-6 max-w-2xl text-base text-[var(--muted-strong)] sm:text-lg">
-              SmatchRoom conçoit des agents IA autonomes pour le bâtiment. Ils prospectent,
-              relancent vos devis, qualifient vos leads et posent vos RDV — connectés à vos outils
-              (agenda, WhatsApp, site) et opérationnels 24h/24. Vous restez sur le chantier ;{' '}
-              <span className="font-semibold text-[var(--foreground)]">la machine trouve vos prochains chantiers.</span>
+              Que vous cherchiez à signer la <span className="font-semibold text-[var(--foreground)]">rénovation d&apos;une maison</span> ou
+              à vendre une <span className="font-semibold text-[var(--foreground)]">flotte de véhicules à 100 000 €</span>, la logique est
+              la même : nos agents prospectent, relancent, qualifient et posent les RDV — connectés à vos
+              outils et opérationnels 24h/24.{' '}
+              <span className="font-semibold text-[var(--foreground)]">La machine prospecte, vous closez la vente.</span>
             </p>
 
             <figcaption className="relative mt-8 flex items-center gap-3 border-t border-[var(--border)] pt-6">

@@ -1,4 +1,4 @@
-import { Search, BarChart3, Megaphone, Factory, ArrowRight } from 'lucide-react';
+import { Search, BarChart3, Megaphone, Factory, ArrowRight, ShieldCheck, Lock } from 'lucide-react';
 import Reveal from './Reveal';
 
 const CUSTOM_EXAMPLES = [
@@ -58,14 +58,41 @@ export default function Pillars() {
         </Reveal>
 
         <Reveal>
-          <div className="mb-14 max-w-2xl">
+          <div className="mb-10 max-w-2xl">
             <h2 className="text-balance text-3xl font-semibold tracking-tight sm:text-4xl lg:text-5xl">
               <span className="gradient-text">Du vrai code.</span> Pas un wrapper ChatGPT.
             </h2>
             <p className="mt-4 text-balance text-[var(--muted-strong)] sm:text-lg">
               Des moteurs conçus, entraînés et opérés en interne. Pas de pile no-code fragile :
-              du code, des bases de données, des passerelles industrielles — taillés pour le bâtiment.
+              du vrai code, des bases de données sécurisées (Supabase / Linux), des passerelles industrielles.
             </p>
+          </div>
+        </Reveal>
+
+        <Reveal delay={60}>
+          <div className="mb-12 grid gap-3 sm:grid-cols-2">
+            <div className="card flex items-start gap-3 p-5">
+              <span className="mt-0.5 inline-flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg bg-[var(--steel-soft)] text-[var(--steel)] ring-1 ring-[var(--steel-line)]">
+                <ShieldCheck size={18} strokeWidth={1.8} />
+              </span>
+              <div>
+                <p className="font-semibold text-[var(--foreground)]">Conformité &amp; RGPD</p>
+                <p className="mt-1 text-sm text-[var(--muted-strong)]">
+                  Prospection B2B respectant l&apos;intérêt légitime et la CNIL.
+                </p>
+              </div>
+            </div>
+            <div className="card flex items-start gap-3 p-5">
+              <span className="mt-0.5 inline-flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg bg-[var(--primary-soft)] text-[var(--primary-ink)] ring-1 ring-[var(--primary-line)]">
+                <Lock size={18} strokeWidth={1.8} />
+              </span>
+              <div>
+                <p className="font-semibold text-[var(--foreground)]">Protection des domaines</p>
+                <p className="mt-1 text-sm text-[var(--muted-strong)]">
+                  Cadence lissée, chauffe d&apos;adresses IP, protection totale de vos numéros et e-mails principaux.
+                </p>
+              </div>
+            </div>
           </div>
         </Reveal>
 

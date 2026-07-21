@@ -1,30 +1,31 @@
-import { ArrowRight, Search, ShoppingCart, FileCheck, MapPin, Headphones, ShieldCheck, Crosshair, Check } from 'lucide-react';
+import { ArrowRight, Search, FileCheck, MapPin, Headphones, ShieldCheck, Crosshair, Check } from 'lucide-react';
 import Reveal from './Reveal';
 
 const CALENDLY = 'https://calendly.com/a-fontana-smatchroom/30min';
 
 const AGENTS = [
-  { icon: Search, name: 'Le Chasseur', role: 'Prospection de partenaires B2B (syndics, agences…)', setup: 490, mrr: 190, highlighted: true },
-  { icon: ShoppingCart, name: "L'Acheteur", role: 'Analyse et comparaison des prix fournisseurs / devis', setup: 490, mrr: 190, highlighted: false },
-  { icon: FileCheck, name: 'Le Gestionnaire', role: 'Suivi et relance des devis en attente', setup: 390, mrr: 190, highlighted: false },
-  { icon: MapPin, name: 'Le Visiteur', role: 'SEO local et réponses aux avis Google', setup: 290, mrr: 149, highlighted: false },
-  { icon: Headphones, name: "L'Accueil 24/7", role: 'Prise en charge et qualification des leads entrants', setup: 290, mrr: 149, highlighted: false },
-  { icon: ShieldCheck, name: 'Le Contrôleur', role: 'Conformité, attestations URSSAF / décennale', setup: 290, mrr: 129, highlighted: false },
+  { icon: Search, name: 'Le Chasseur', role: 'Prospection de partenaires : syndics, agences, apporteurs d’affaires.', setup: 490, mrr: 190, highlighted: true },
+  { icon: FileCheck, name: 'Le Gestionnaire', role: 'Relance automatique de vos devis en attente.', setup: 390, mrr: 190, highlighted: false },
+  { icon: Headphones, name: "L'Accueil 24/7", role: 'Qualification des leads entrants quand vous êtes sur un toit.', setup: 290, mrr: 149, highlighted: false },
+  { icon: MapPin, name: 'Le Visiteur', role: 'SEO local et réponses aux avis Google (Fiche Maps).', setup: 290, mrr: 149, highlighted: false },
+  { icon: ShieldCheck, name: 'Le Contrôleur', role: 'Vérification conformité et attestations (URSSAF / décennale).', setup: 290, mrr: 129, highlighted: false },
 ];
 
 const GC_FEATURES = [
-  'Ciblage chirurgical des décideurs (directeurs techniques, chefs de parc, acheteurs)',
-  'Approche conversationnelle WhatsApp & e-mail, entraînée sur votre marché',
-  'Handoff : dès qu\'un prospect est chaud, l\'agent passe le relais à vos commerciaux',
+  'Data engineering & scraping chirurgical : des bases de données introuvables sur le marché',
+  'Cerveau IA dédié (architecture RAG), entraîné sur vos offres, vos tarifs et vos contraintes',
+  'Frappe multicanale & handoff instantané vers le CRM de vos commerciaux',
 ];
 
 export default function Pricing() {
   return (
-    <section id="tarifs" className="relative px-5 py-24 sm:px-6 sm:py-28">
+    <section id="btp" className="relative scroll-mt-24 px-5 py-24 sm:px-6 sm:py-28">
       <div className="mx-auto max-w-7xl">
         <Reveal>
-          <div className="mb-6 flex items-center gap-4">
-            <span className="section-index">06 — Tarifs</span>
+          <div id="tarifs" className="mb-6 flex scroll-mt-24 items-center gap-4">
+            <span className="section-index inline-flex items-center gap-2">
+              <span aria-hidden>🏗️</span> Division BTP &amp; Artisanat
+            </span>
             <span className="h-px flex-1 bg-[var(--border-strong)]" />
           </div>
         </Reveal>
@@ -32,11 +33,12 @@ export default function Pricing() {
         <Reveal>
           <div className="mb-14 max-w-2xl">
             <h2 className="text-balance text-3xl font-semibold tracking-tight sm:text-4xl lg:text-5xl">
-              <span className="gradient-text">Vos agents, à l&apos;unité.</span>
+              <span className="gradient-text">Saturez votre carnet de commandes</span> pendant que vous êtes sur le chantier.
             </h2>
             <p className="mt-4 text-balance text-[var(--muted-strong)] sm:text-lg">
-              Vous composez votre équipe. Un agent, plusieurs, ou un pack : chaque collaborateur
-              numérique a son rôle et son tarif clairs. Tarifs en euros HT.
+              Déploiement express en 48h. Nos agents sont taillés pour les artisans, courtiers en
+              travaux et petites entreprises du bâtiment. Vous composez votre équipe à l&apos;unité :
+              un agent, plusieurs, ou un pack. Tarifs en euros HT.
             </p>
           </div>
         </Reveal>
@@ -117,15 +119,15 @@ export default function Pricing() {
             <div className="relative grid gap-8 lg:grid-cols-[1.3fr_1fr] lg:items-center">
               <div>
                 <span className="premium-badge inline-flex items-center gap-2 rounded-full px-3 py-1 font-mono text-[0.62rem] uppercase tracking-[0.18em]">
-                  <Crosshair size={13} /> Palier PME / ETI · sur-mesure
+                  <Crosshair size={13} /> 👔 Division Corporate · autres secteurs
                 </span>
                 <h3 className="mt-4 text-2xl font-semibold tracking-tight text-white sm:text-3xl lg:text-4xl">
-                  L&apos;Agent Chasseur <span className="font-serif-it text-[#8fb4e0]">Grands Comptes</span>
+                  Vous n&apos;êtes pas dans le BTP&nbsp;? <span className="font-serif-it text-[#8fb4e0]">L&apos;offre sur-mesure.</span>
                 </h3>
                 <p className="mt-3 max-w-xl text-sm text-[var(--on-ink-muted)] sm:text-base">
-                  Pour les PME et ETI de l&apos;industrie & du BTP qui veulent ouvrir des grands comptes
-                  (promoteurs, gestionnaires de parcs, majors de la construction). Un SDR IA autonome
-                  qui prospecte, qualifie, et passe le relais à vos commerciaux sur des prospects chauds.
+                  L&apos;ingénierie d&apos;acquisition B2B pour les marchés de niche et réseaux d&apos;envergure :
+                  luxe, éco-mobilité, logiciels B2B (SaaS), industrie de pointe, réseaux de franchises,
+                  acteurs du gros œuvre. Une infrastructure de prospection conçue entièrement pour vous.
                 </p>
                 <ul className="mt-6 space-y-2.5">
                   {GC_FEATURES.map((f) => (

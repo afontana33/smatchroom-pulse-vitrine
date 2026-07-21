@@ -28,14 +28,14 @@ const instrument = Instrument_Serif({
 });
 
 export const metadata = {
-  title: "SmatchRoom Pulse — Agents IA pour les artisans & entreprises du bâtiment",
+  title: "SmatchRoom Pulse — L'IA qui prospecte et vend à votre place",
   description:
-    "Pulse conçoit et déploie des agents IA pour le bâtiment : prospection, relance de devis, qualification de leads, SEO local, conformité. Et l'Agent Chasseur Grands Comptes pour les PME/ETI qui visent les grands comptes. Déployés en 48h sur votre infra (Node.js + Supabase).",
+    "Des collaborateurs numériques autonomes, déployés sur votre infra 24/7. Division BTP & Artisanat : agents packagés (prospection, relance de devis, SEO local, conformité), déployés en 48h. Division Corporate & Sur-Mesure : ingénierie d'acquisition B2B pour les autres secteurs (luxe, SaaS, industrie, franchises).",
   metadataBase: new URL("https://pulse.smatchroom.com"),
   openGraph: {
-    title: "SmatchRoom Pulse — Agents IA pour le bâtiment",
+    title: "SmatchRoom Pulse — L'IA qui prospecte et vend à votre place",
     description:
-      "Des agents IA qui travaillent pour votre entreprise du bâtiment : prospection, relance de devis, RDV, SEO local. Palier Grands Comptes pour les PME/ETI. Déployés en 48h.",
+      "Deux divisions : BTP & Artisanat (offres packagées, 48h) et Corporate & Sur-Mesure (ingénierie d'acquisition B2B pour les autres secteurs). Des collaborateurs numériques autonomes, 24/7 sur votre infra.",
     url: "https://pulse.smatchroom.com",
     siteName: "SmatchRoom Pulse",
     type: "website",
