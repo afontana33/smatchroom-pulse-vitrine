@@ -64,7 +64,7 @@ export default function About() {
                   <span className="font-semibold text-[var(--foreground)]">ingénieurs en acquisition B2B.</span>
                 </p>
                 <p>
-                  Fondée par <span className="font-semibold text-[var(--foreground)]">Alexis Fontana</span>,
+                  Fondée par <span className="font-semibold text-[var(--foreground)]">Alexis</span>,
                   notre entreprise est née d&apos;une conviction simple : le talent de vos équipes
                   commerciales ou de vos artisans ne devrait plus être gaspillé dans la prospection à
                   froid, le tri de bases de données ou les relances sans fin. Votre véritable valeur
