@@ -22,7 +22,7 @@ const TRUST = [
 // Pour ajouter/remplacer une photo : déposer l'image dans /public/team/<slug>.jpg
 // et passer `photo: '/team/<slug>.jpg'`. Sans photo, un avatar initiales s'affiche.
 const TEAM = [
-  { name: 'Alexis Fontana', role: 'Fondateur', slug: 'alexis', photo: '/team/alexis.jpg' },
+  { name: 'Alexis', role: 'Fondateur', slug: 'alexis', photo: '/team/alexis.jpg' },
   { name: 'Manon', role: 'Co-fondatrice', slug: 'manon', photo: '/team/manon.jpg' },
   { name: 'Laura', role: 'Directrice commerciale', slug: 'laura', photo: '/team/laura.jpg' },
   { name: 'Noa', role: 'Alternant', slug: 'noa', photo: '/team/noa.jpg' },
@@ -143,7 +143,7 @@ export default function About() {
                     Des commerciaux terrain partout en France
                   </p>
                   <p className="mt-1 text-sm text-[var(--on-ink-muted)]">
-                    Un interlocuteur dédié pour chaque secteur géographique, au plus près de vos clients.
+                    Un interlocuteur dédié pour chaque secteur géographique, au plus près de nos clients.
                   </p>
                 </div>
               </div>
