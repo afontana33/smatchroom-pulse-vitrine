@@ -85,10 +85,16 @@ export default function About() {
                 déposer l'image dans /public et remplacer ce bloc par :
                 <img src="/alexis-fontana.jpg" alt="Alexis Fontana, fondateur de SmatchRoom" className="aspect-[4/5] w-full rounded-2xl object-cover shadow-[var(--shadow-lg)]" />
               */}
-              <div className="card grain relative flex aspect-[4/5] flex-col justify-end overflow-hidden p-7 shadow-[var(--shadow-lg)]">
+              <div className="card grain relative flex aspect-[4/5] flex-col justify-between overflow-hidden p-7 shadow-[var(--shadow-lg)]">
                 <div aria-hidden className="pointer-events-none absolute inset-0 -z-0 bg-[radial-gradient(120%_90%_at_15%_10%,var(--primary-soft),transparent_55%),radial-gradient(120%_90%_at_90%_100%,var(--steel-soft),transparent_55%)]" />
-                <div aria-hidden className="pointer-events-none absolute right-6 top-6 font-serif-it text-7xl text-[var(--primary)]/25 select-none">
-                  SR
+                <div className="relative">
+                  <img
+                    src="/alexis-fontana.jpg"
+                    alt="Alexis Fontana, fondateur du Groupe SmatchRoom"
+                    width={144}
+                    height={144}
+                    className="h-32 w-32 rounded-2xl object-cover shadow-[var(--shadow-md)] ring-1 ring-[var(--border-strong)] sm:h-36 sm:w-36"
+                  />
                 </div>
                 <figcaption className="relative">
                   <p className="font-display text-2xl font-semibold text-[var(--foreground)]">Alexis Fontana</p>
