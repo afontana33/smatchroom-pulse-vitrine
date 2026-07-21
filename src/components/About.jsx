@@ -23,9 +23,9 @@ const TRUST = [
 // et passer `photo: '/team/<slug>.jpg'`. Sans photo, un avatar initiales s'affiche.
 const TEAM = [
   { name: 'Alexis Fontana', role: 'Fondateur', slug: 'alexis', photo: '/team/alexis.jpg' },
-  { name: 'Manon', role: 'Co-fondatrice', slug: 'manon', photo: null },
-  { name: 'Laura', role: 'Directrice commerciale', slug: 'laura', photo: null },
-  { name: 'Noa', role: 'Alternant', slug: 'noa', photo: null },
+  { name: 'Manon', role: 'Co-fondatrice', slug: 'manon', photo: '/team/manon.jpg' },
+  { name: 'Laura', role: 'Directrice commerciale', slug: 'laura', photo: '/team/laura.jpg' },
+  { name: 'Noa', role: 'Alternant', slug: 'noa', photo: '/team/noa.jpg' },
 ];
 
 function initials(name) {
