@@ -101,24 +101,35 @@ export default function About() {
               <p className="eyebrow mb-5">L&apos;équipe</p>
               <div className="grid grid-cols-2 gap-4">
                 {TEAM.map((m) => (
-                  <figure key={m.slug} className="card grain relative flex flex-col items-center overflow-hidden p-6 text-center">
-                    <div aria-hidden className="pointer-events-none absolute inset-0 -z-0 bg-[radial-gradient(120%_80%_at_20%_0%,var(--primary-soft),transparent_60%)]" />
-                    {m.photo ? (
-                      <img
-                        src={m.photo}
-                        alt={`${m.name}, ${m.role} de SmatchRoom`}
-                        width={112}
-                        height={112}
-                        className="relative h-24 w-24 rounded-2xl object-cover shadow-[var(--shadow-md)] ring-1 ring-[var(--border-strong)]"
+                  <figure
+                    key={m.slug}
+                    className="card card-hover grain group relative flex flex-col items-center overflow-hidden p-6 text-center transition-all duration-300"
+                  >
+                    <div aria-hidden className="pointer-events-none absolute inset-0 -z-0 bg-[radial-gradient(120%_80%_at_20%_0%,var(--primary-soft),transparent_60%)] opacity-70 transition-opacity duration-300 group-hover:opacity-100" />
+                    <div className="relative">
+                      <div
+                        aria-hidden
+                        className="absolute -inset-1.5 rounded-2xl bg-[conic-gradient(from_140deg,var(--primary),var(--steel),var(--primary))] opacity-0 blur-[6px] transition-opacity duration-300 group-hover:opacity-60"
                       />
-                    ) : (
-                      <div className="relative flex h-24 w-24 items-center justify-center rounded-2xl bg-[var(--surface-2)] ring-1 ring-[var(--border-strong)]">
-                        <span className="font-serif-it text-3xl text-[var(--primary-ink)]">{initials(m.name)}</span>
-                      </div>
-                    )}
-                    <figcaption className="relative mt-4">
+                      {m.photo ? (
+                        <img
+                          src={m.photo}
+                          alt={`${m.name}, ${m.role} de SmatchRoom`}
+                          width={128}
+                          height={128}
+                          className="relative h-28 w-28 rounded-2xl object-cover shadow-[var(--shadow-md)] ring-1 ring-[var(--border-strong)] transition-transform duration-300 group-hover:scale-[1.04]"
+                        />
+                      ) : (
+                        <div className="relative flex h-28 w-28 items-center justify-center rounded-2xl bg-[var(--surface-2)] ring-1 ring-[var(--border-strong)] transition-transform duration-300 group-hover:scale-[1.04]">
+                          <span className="font-serif-it text-4xl text-[var(--primary-ink)]">{initials(m.name)}</span>
+                        </div>
+                      )}
+                    </div>
+                    <figcaption className="relative mt-5">
                       <p className="font-display text-lg font-semibold leading-tight text-[var(--foreground)]">{m.name}</p>
-                      <p className="mt-1 text-sm text-[var(--muted-strong)]">{m.role}</p>
+                      <p className="mt-2 inline-block rounded-full bg-[var(--primary-soft)] px-2.5 py-1 font-mono text-[0.6rem] uppercase tracking-[0.14em] text-[var(--primary-ink)]">
+                        {m.role}
+                      </p>
                     </figcaption>
                   </figure>
                 ))}
