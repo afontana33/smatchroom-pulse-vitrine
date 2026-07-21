@@ -14,9 +14,9 @@ export default function Footer() {
               </span>
             </div>
             <p className="mt-4 max-w-md text-sm text-[var(--muted-strong)]">
-              L&apos;usine à agents IA du groupe SmatchRoom, taillée pour les artisans et entreprises
-              du bâtiment. Prospection, devis, RDV, SEO local, et l&apos;Agent Chasseur Grands Comptes
-              pour les PME/ETI — déployés en 48h sur votre infra.
+              L&apos;usine à agents IA du groupe SmatchRoom. Division BTP &amp; Artisanat : agents packagés
+              déployés en 48h. Division Corporate &amp; Sur-Mesure : ingénierie d&apos;acquisition B2B pour
+              les autres secteurs. Des collaborateurs numériques autonomes, 24/7 sur votre infra.
             </p>
           </div>
 
