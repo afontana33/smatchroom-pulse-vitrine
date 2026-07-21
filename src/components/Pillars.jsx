@@ -14,7 +14,7 @@ const PILLARS = [
     domain: 'SEO local',
     tagline: 'Visible sur Google quand on cherche un artisan.',
     bullets: [
-      'Analyse les requêtes locales (« couvreur Lille », « ITE 59 ») et les failles concurrentes',
+      'Analyse les requêtes locales de votre métier (« isolation Bordeaux », « rénovation Nantes »…) et les failles concurrentes',
       'Rédige et publie des pages métier optimisées, sans que vous touchiez au clavier',
       'Répond aux avis Google et pousse les demandes de devis vers vous',
       'Balises structurées automatiques : vous remontez dans le pack local',

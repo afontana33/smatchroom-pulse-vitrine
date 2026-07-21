@@ -27,10 +27,10 @@ const AGENTS = [
     tagline: 'Prospection de partenaires d’apport d’affaires.',
     steps: ['Ciblage INSEE / INPI', 'Prise de contact', 'Relance intelligente', 'Handoff'],
     script: [
-      { kind: 'system', text: 'Sourcing : 42 syndics ciblés · Lille (59)', step: 0 },
-      { kind: 'agent', text: "Bonjour, je travaille avec un couvreur du secteur, dispo sous 48h. Vous arrive-t-il d'avoir des toitures à confier en urgence ?", step: 1 },
+      { kind: 'system', text: 'Sourcing : 42 syndics & agences ciblés · votre secteur', step: 0 },
+      { kind: 'agent', text: "Bonjour, je travaille avec un artisan du bâtiment du secteur, dispo sous 48h. Vous arrive-t-il d'avoir des chantiers à confier en urgence ?", step: 1 },
       { kind: 'prospect', text: 'Ça nous arrive, oui. Vous êtes qui exactement ?', step: 1 },
-      { kind: 'agent', text: 'Une entreprise de couverture basée à Lille. Je vous mets en relation avec le gérant ?', step: 2 },
+      { kind: 'agent', text: 'Une entreprise du bâtiment de votre secteur. Je vous mets en relation avec le gérant ?', step: 2 },
       { kind: 'prospect', text: "Ok, qu'il m'appelle.", step: 2 },
       { kind: 'system', text: '✓ Lead chaud → transféré au gérant', step: 3 },
     ],
@@ -58,9 +58,9 @@ const AGENTS = [
     tagline: 'SEO local et réponses aux avis Google.',
     steps: ['Analyse requêtes locales', 'Rédaction page métier', 'Publication', 'Avis Google'],
     script: [
-      { kind: 'log', text: "$ rank analyze 'couvreur Lille'", step: 0 },
+      { kind: 'log', text: "$ rank analyze 'votre métier + votre ville'", step: 0 },
       { kind: 'log', text: '→ 3 failles concurrents détectées', step: 0 },
-      { kind: 'log', text: '✓ page publiée : /couvreur-zinc-lille', step: 2 },
+      { kind: 'log', text: '✓ page publiée : /votre-metier-votre-ville', step: 2 },
       { kind: 'log', text: '✓ 4 avis Google répondus · note 4,8★', step: 3 },
       { kind: 'system', text: 'Position locale : #7 → #2 en 3 semaines', step: 3 },
     ],
@@ -280,7 +280,7 @@ export default function AgentDemo() {
           </div>
 
           {/* Device animé */}
-          <div className="terminal-dark flex min-h-[420px] flex-col overflow-hidden rounded-2xl">
+          <div className="terminal-dark flex h-[480px] flex-col overflow-hidden rounded-2xl">
             <div className="flex items-center gap-3 border-b border-white/10 bg-white/[0.03] px-4 py-3">
               <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/10 text-white">
                 <agent.icon size={16} />

@@ -11,12 +11,12 @@ const CALENDLY = 'https://calendly.com/a-fontana-smatchroom/30min';
 export const metadata = {
   title: "Agent Chasseur IA Grands Comptes — Acquisition B2B pour PME/ETI industrie & BTP | SmatchRoom Pulse",
   description:
-    "Un SDR IA autonome qui identifie, contacte et qualifie vos cibles Grands Comptes (promoteurs, gestionnaires de parcs, majors). Setup 1 800 € HT + 490 € HT/mois. Handoff vers vos commerciaux sur prospects chauds.",
+    "Un SDR IA autonome qui identifie, contacte et qualifie vos cibles Grands Comptes (promoteurs, gestionnaires de parcs, majors). Offre sur-mesure, tarif sur devis. Handoff vers vos commerciaux sur prospects chauds.",
   alternates: { canonical: 'https://pulse.smatchroom.com/grands-comptes' },
   openGraph: {
     title: "Agent Chasseur IA Grands Comptes — SmatchRoom Pulse",
     description:
-      "Automatisation de l'acquisition B2B « Grands Comptes » pour l'industrie et le BTP. Setup 1 800 € HT + 490 € HT/mois.",
+      "Automatisation de l'acquisition B2B « Grands Comptes » pour l'industrie et le BTP. Offre sur-mesure, tarif sur devis.",
     url: 'https://pulse.smatchroom.com/grands-comptes',
   },
 };
@@ -203,8 +203,8 @@ export default function GrandsComptesPage() {
               <div className="card flex h-full flex-col p-7 sm:p-9">
                 <p className="font-mono text-xs uppercase tracking-[0.16em] text-[var(--steel)]">Phase 1 · Paiement unique</p>
                 <div className="mt-3 flex items-baseline gap-2">
-                  <span className="font-display text-4xl font-semibold text-[var(--foreground)]">1 800 €</span>
-                  <span className="text-[var(--muted)]">HT · Setup</span>
+                  <span className="font-display text-4xl font-semibold text-[var(--foreground)]">Sur devis</span>
+                  <span className="text-[var(--muted)]">Setup</span>
                 </div>
                 <p className="mt-2 text-sm text-[var(--muted-strong)]">Audit, déploiement et configuration.</p>
                 <ul className="mt-6 space-y-3">
@@ -225,8 +225,8 @@ export default function GrandsComptesPage() {
                 </span>
                 <p className="font-mono text-xs uppercase tracking-[0.16em] text-[var(--steel)]">Phase 2 · Abonnement</p>
                 <div className="mt-3 flex items-baseline gap-2">
-                  <span className="font-display text-4xl font-semibold text-[var(--foreground)]">490 €</span>
-                  <span className="text-[var(--muted)]">HT / mois</span>
+                  <span className="font-display text-4xl font-semibold text-[var(--foreground)]">Sur devis</span>
+                  <span className="text-[var(--muted)]">/ mois</span>
                 </div>
                 <p className="mt-2 text-sm text-[var(--muted-strong)]">Licence « SDR Autonome ».</p>
                 <ul className="mt-6 space-y-3">

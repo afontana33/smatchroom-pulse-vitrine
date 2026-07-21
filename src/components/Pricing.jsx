@@ -140,16 +140,16 @@ export default function Pricing() {
               <div className="rounded-2xl border border-white/12 bg-white/[0.04] p-6 sm:p-7">
                 <div className="flex items-end justify-between gap-4 border-b border-white/10 pb-5">
                   <div>
-                    <p className="font-mono text-[0.62rem] uppercase tracking-[0.16em] text-[var(--on-ink-muted)]">Setup (unique)</p>
-                    <p className="font-display text-2xl font-semibold text-white">1 800 € <span className="text-sm font-normal text-[var(--on-ink-muted)]">HT</span></p>
+                    <p className="font-mono text-[0.62rem] uppercase tracking-[0.16em] text-[var(--on-ink-muted)]">Tarif</p>
+                    <p className="font-display text-2xl font-semibold text-white">Sur devis</p>
                   </div>
                   <div className="text-right">
-                    <p className="font-mono text-[0.62rem] uppercase tracking-[0.16em] text-[var(--on-ink-muted)]">Licence</p>
-                    <p className="font-display text-2xl font-semibold text-[#8fb4e0]">490 € <span className="text-sm font-normal text-[var(--on-ink-muted)]">HT/mois</span></p>
+                    <p className="font-mono text-[0.62rem] uppercase tracking-[0.16em] text-[var(--on-ink-muted)]">Engagement</p>
+                    <p className="font-display text-2xl font-semibold text-[#8fb4e0]">Aucun</p>
                   </div>
                 </div>
                 <p className="mt-4 text-xs text-[var(--on-ink-muted)]">
-                  Sans engagement de durée. ROI conçu pour s&apos;autofinancer dès le premier compte ouvert.
+                  Offre sur-mesure, adaptée à votre marché et vos objectifs. ROI conçu pour s&apos;autofinancer dès le premier compte ouvert.
                 </p>
                 <a href="/grands-comptes" className="btn-steel mt-5 inline-flex w-full items-center justify-center gap-2 px-6 py-3.5 font-semibold">
                   Découvrir l&apos;offre Grands Comptes

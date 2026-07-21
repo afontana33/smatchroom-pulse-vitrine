@@ -10,7 +10,7 @@ const QUESTIONS = [
   },
   {
     q: "Je suis une PME/ETI, quelle est la différence avec le palier Grands Comptes ?",
-    a: "Les 6 agents à l'unité sont pensés pour les artisans et TPE. Le palier Grands Comptes (1 800 € HT + 490 € HT/mois) est un SDR IA sur-mesure pour les PME/ETI qui veulent ouvrir de gros comptes (promoteurs, gestionnaires de parcs, majors). Entraîné sur votre vocabulaire technique et vos objections, il cible les décideurs précis et passe le relais à vos commerciaux dès qu'un prospect est chaud.",
+    a: "Les 6 agents à l'unité sont pensés pour les artisans et TPE. Le palier Grands Comptes (offre sur-mesure, tarif sur devis) est un SDR IA pour les PME/ETI qui veulent ouvrir de gros comptes (promoteurs, gestionnaires de parcs, majors). Entraîné sur votre vocabulaire technique et vos objections, il cible les décideurs précis et passe le relais à vos commerciaux dès qu'un prospect est chaud.",
   },
   {
     q: "Concrètement, un agent IA pour mon activité, ça fait quoi ?",

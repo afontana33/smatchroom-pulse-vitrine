@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 
 const LINES = [
   { p: '$ pulse run --agent=chasseur', t: 'cmd' },
-  { p: '→ 42 couvreurs identifiés · Lille (59)', t: 'out' },
+  { p: '→ 42 syndics & agences identifiés · votre secteur', t: 'out' },
   { p: '✓ WhatsApp envoyé — relance devis #402', t: 'ok' },
   { p: '→ lead qualifié : ITE 120m² · MaPrimeRénov', t: 'out' },
   { p: '$ pulse run --agent=grands-comptes', t: 'cmd' },
@@ -44,7 +44,7 @@ export default function TerminalLive() {
           online
         </span>
       </div>
-      <div className="min-h-[196px] space-y-1.5 px-4 py-4">
+      <div className="h-[300px] space-y-1.5 overflow-hidden px-4 py-4">
         {LINES.slice(0, count).map((line, i) => (
           <p key={i} className={COLOR[line.t]}>
             {line.p}

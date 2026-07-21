@@ -9,7 +9,7 @@ const CASES = [
     title: "Des partenaires d'apport d'affaires en pilote automatique.",
     metric: 'WhatsApp lissé · 0 blocage',
     description:
-      "En production chez un couvreur à Lille : l'agent identifie syndics et agences, engage la conversation et relance, avec une cadence lissée qui protège le numéro.",
+      "En production chez des artisans du bâtiment : l'agent identifie syndics, agences et maîtres d'œuvre, engage la conversation et relance, avec une cadence lissée qui protège le numéro.",
   },
   {
     icon: FileCheck,
