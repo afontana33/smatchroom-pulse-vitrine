@@ -9,7 +9,11 @@ const GOOGLE_URL = 'https://www.google.com/maps?cid=1742713614499117243';
 
 // Widget live Elfsight : identifiant de la classe elfsight-app-<ID>.
 // Laisser vide => carte CTA seule.
-const ELFSIGHT_APP_ID = '58f511d2-cd7c-4ccf-b3c4-02f0179c6ba4';
+// VIDÉ le 2026-07-31 : les deux comptes Elfsight ont épuisé le quota de vues du
+// plan gratuit (« APP_VIEWS_LIMIT_REACHED » en console), le widget ne s'affichait
+// plus du tout et laissait un trou dans la page. On sert la carte CTA en attendant
+// de mettre les vrais avis en dur.
+const ELFSIGHT_APP_ID = '';
 const ELFSIGHT_PLATFORM = 'https://elfsightcdn.com/platform.js';
 
 function GoogleG({ size = 20 }) {
