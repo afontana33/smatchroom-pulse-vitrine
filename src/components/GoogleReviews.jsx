@@ -9,7 +9,7 @@ const GOOGLE_URL = 'https://www.google.com/maps?cid=1742713614499117243';
 
 // Widget live Elfsight : identifiant de la classe elfsight-app-<ID>.
 // Laisser vide => carte CTA seule.
-const ELFSIGHT_APP_ID = '68950da5-6244-4496-90a0-5886a38f64a2';
+const ELFSIGHT_APP_ID = '58f511d2-cd7c-4ccf-b3c4-02f0179c6ba4';
 const ELFSIGHT_PLATFORM = 'https://elfsightcdn.com/platform.js';
 
 function GoogleG({ size = 20 }) {
