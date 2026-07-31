@@ -35,6 +35,13 @@ export const metadata = {
   description:
     "Des collaborateurs numériques autonomes, déployés sur votre infra 24/7. Division BTP & Artisanat : agents packagés (prospection, relance de devis, SEO local, conformité), déployés en 48h. Division Corporate & Sur-Mesure : ingénierie d'acquisition B2B pour les autres secteurs (luxe, SaaS, industrie, franchises).",
   metadataBase: new URL("https://pulse.smatchroom.com"),
+  // Vérification de domaine Meta : rendue côté serveur dans le <head> statique,
+  // condition pour que Meta la voie (une balise injectée en JS n'est pas lue).
+  verification: {
+    other: {
+      "facebook-domain-verification": "nflavfb11d2knm89zrqctk2bendkbp",
+    },
+  },
   openGraph: {
     title: "SmatchRoom Pulse — L'IA qui prospecte et vend à votre place",
     description:
