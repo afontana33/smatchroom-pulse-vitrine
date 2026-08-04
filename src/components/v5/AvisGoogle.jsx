@@ -25,8 +25,11 @@ import { DepthLayer, Rise, TiltCard, useLightMode } from './motion';
 
 /* Fiche Google SmatchRoom (CID). REVIEWS_URL ouvre directement le panneau d'avis. */
 const GOOGLE_URL = 'https://www.google.com/maps?cid=1742713614499117243';
+/* Lien fourni par Alexis le 2026-08-04, réduit à sa partie stable : le fragment
+   ouvre l'onglet « avis » du panneau Google. Les paramètres de session de
+   l'URL d'origine (ei, sxsrf, sca_esv) expirent, ne pas les remettre. */
 const REVIEWS_URL =
-  'https://www.google.com/search?q=Smatchroom+Avis&rldimm=1742713614499117243&tbm=lcl&hl=fr-FR#lkt=LocalPoiReviews';
+  'https://www.google.com/search?q=smatchroom&hl=fr-FR#mpd=~9189610799963746125/customers/reviews';
 
 /* Identifiant de la classe elfsight-app-<ID>. Vide = pas de widget. */
 const ELFSIGHT_APP_ID = '';
@@ -82,7 +85,7 @@ export default function AvisGoogle() {
     >
       {/* depth 1 — lueur froide côté gauche, en contrepoint de la section précédente */}
       <DepthLayer depth={1} amplitude={130} className="pointer-events-none absolute inset-0">
-        <div className="absolute -left-28 top-1/3 h-[30rem] w-[30rem] rounded-full bg-[radial-gradient(circle,rgba(41,75,115,0.16),transparent_66%)] blur-3xl" />
+        <div className="absolute -left-28 top-1/3 h-[30rem] w-[30rem] rounded-full bg-[radial-gradient(circle,rgba(41,75,115,0.16),transparent_66%)]" />
       </DepthLayer>
 
       {/* depth 2 — guillemet géant en filigrane */}

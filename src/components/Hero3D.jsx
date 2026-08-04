@@ -1,12 +1,11 @@
 'use client';
 
-import { useRef, useMemo } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Points, PointMaterial } from '@react-three/drei';
-import { EffectComposer, Bloom, Vignette } from '@react-three/postprocessing';
 import * as THREE from 'three';
 
-function ParticleSphere({ color = '#ff5a1f', count = 4500, radius = [4, 11] }) {
+function ParticleSphere({ color = '#ff6b2c', count = 3200, radius = [4, 11] }) {
   const groupRef = useRef();
 
   const positions = useMemo(() => {
@@ -34,10 +33,10 @@ function ParticleSphere({ color = '#ff5a1f', count = 4500, radius = [4, 11] }) {
         <PointMaterial
           transparent
           color={color}
-          size={0.022}
+          size={0.028}
           sizeAttenuation
           depthWrite={false}
-          opacity={0.85}
+          opacity={0.9}
           blending={THREE.AdditiveBlending}
         />
       </Points>
@@ -48,7 +47,7 @@ function ParticleSphere({ color = '#ff5a1f', count = 4500, radius = [4, 11] }) {
 function FarParticles() {
   const ref = useRef();
   const positions = useMemo(() => {
-    const count = 3500;
+    const count = 2200;
     const arr = new Float32Array(count * 3);
     for (let i = 0; i < count; i++) {
       const r = 22 + Math.random() * 30;
@@ -72,10 +71,10 @@ function FarParticles() {
         <PointMaterial
           transparent
           color="#ffb27a"
-          size={0.008}
+          size={0.011}
           sizeAttenuation
           depthWrite={false}
-          opacity={0.3}
+          opacity={0.45}
           blending={THREE.AdditiveBlending}
         />
       </Points>
@@ -83,23 +82,61 @@ function FarParticles() {
   );
 }
 
+/**
+ * Sphère de particules du hero.
+ *
+ * Deux mesures de perf commandent ce fichier :
+ *   - le rendu est mis en pause dès que le hero quitte l'écran ou que l'onglet
+ *     passe en arrière-plan (`frameloop: 'never'`). Sans ça la boucle WebGL
+ *     tournait pendant tout le scroll : 2 fps dans le corps de page ;
+ *   - plus de post-traitement (EffectComposer + Bloom). Cette seule passe
+ *     coûtait 20 fps sur le hero (2 fps avec, 22 sans). Le halo vient de
+ *     particules plus grosses en blending additif, et la vignette est refaite
+ *     en CSS statique dans HeroV5.
+ */
 export default function Hero3D() {
+  const holder = useRef(null);
+  const [actif, setActif] = useState(true);
+
+  useEffect(() => {
+    const el = holder.current;
+    if (!el) return;
+
+    let visible = true;
+    const maj = () => setActif(visible && document.visibilityState === 'visible');
+
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        visible = entry.isIntersecting;
+        maj();
+      },
+      /* un peu de marge pour que la sphère tourne déjà quand on remonte */
+      { rootMargin: '10% 0px' }
+    );
+    io.observe(el);
+    document.addEventListener('visibilitychange', maj);
+
+    return () => {
+      io.disconnect();
+      document.removeEventListener('visibilitychange', maj);
+    };
+  }, []);
+
   return (
-    <Canvas
-      camera={{ position: [0, 0, 12], fov: 55 }}
-      dpr={[1, 1.5]}
-      gl={{ antialias: true, alpha: true }}
-      style={{ background: 'transparent' }}
-    >
-      <ambientLight intensity={0.3} />
-      <pointLight position={[6, 4, 4]} intensity={1.0} color="#ff5a1f" />
-      <pointLight position={[-6, -3, -4]} intensity={0.6} color="#ff5a1f" />
-      <FarParticles />
-      <ParticleSphere />
-      <EffectComposer>
-        <Bloom luminanceThreshold={0.1} luminanceSmoothing={0.025} intensity={1.4} />
-        <Vignette offset={0.32} darkness={0.7} />
-      </EffectComposer>
-    </Canvas>
+    <div ref={holder} className="h-full w-full">
+      <Canvas
+        frameloop={actif ? 'always' : 'never'}
+        camera={{ position: [0, 0, 12], fov: 55 }}
+        dpr={[1, 1.25]}
+        gl={{ antialias: false, alpha: true, powerPreference: 'high-performance' }}
+        style={{ background: 'transparent' }}
+      >
+        <ambientLight intensity={0.3} />
+        <pointLight position={[6, 4, 4]} intensity={1.0} color="#ff5a1f" />
+        <pointLight position={[-6, -3, -4]} intensity={0.6} color="#ff5a1f" />
+        <FarParticles />
+        <ParticleSphere />
+      </Canvas>
+    </div>
   );
 }

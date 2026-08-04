@@ -57,7 +57,7 @@ export default function Timeline48h() {
     >
       {/* depth 1 — halo froid : registre « atelier technique » */}
       <DepthLayer depth={1} amplitude={120} className="pointer-events-none absolute inset-0">
-        <div className="absolute -left-20 top-1/3 h-[30rem] w-[30rem] rounded-full bg-[radial-gradient(circle,var(--steel-soft),transparent_65%)] blur-3xl" />
+        <div className="absolute -left-20 top-1/3 h-[30rem] w-[30rem] rounded-full bg-[radial-gradient(circle,var(--steel-soft),transparent_65%)]" />
       </DepthLayer>
 
       <div className="relative z-[4] mx-auto max-w-5xl">

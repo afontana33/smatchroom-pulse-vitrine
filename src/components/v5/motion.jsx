@@ -14,14 +14,18 @@
 import { useRef, useEffect, useState } from 'react';
 import { motion, useScroll, useTransform, useSpring, useReducedMotion } from 'framer-motion';
 
-/* Facteurs de parallaxe par niveau de profondeur. */
+/* Facteurs de parallaxe par niveau de profondeur.
+   Pas de `blur` ici : un filtre CSS sur une couche qui bouge fait repeindre
+   toute la surface floutée à chaque frame (mesuré : 23 → 46 fps sur le bas de
+   la landing rien qu'en le retirant). La profondeur se joue sur la vitesse et
+   l'opacité des dégradés, qui sont déjà doux. */
 export const DEPTH = {
-  0: { factor: 0.1, blur: 8, scale: 1.06 },
-  1: { factor: 0.25, blur: 4, scale: 1.04 },
-  2: { factor: 0.5, blur: 0, scale: 1 },
-  3: { factor: 0.8, blur: 0, scale: 1 },
-  4: { factor: 1, blur: 0, scale: 1 },
-  5: { factor: 1.2, blur: 0, scale: 1 },
+  0: { factor: 0.1, scale: 1.06 },
+  1: { factor: 0.25, scale: 1.04 },
+  2: { factor: 0.5, scale: 1 },
+  3: { factor: 0.8, scale: 1 },
+  4: { factor: 1, scale: 1 },
+  5: { factor: 1.2, scale: 1 },
 };
 
 /** Vrai sur un appareil tactile : on y allège tous les effets. */
@@ -56,7 +60,7 @@ export function DepthLayer({ depth = 2, children, className = '', amplitude = 12
     offset: ['start end', 'end start'],
   });
 
-  const { factor, blur } = DEPTH[depth] ?? DEPTH[2];
+  const { factor } = DEPTH[depth] ?? DEPTH[2];
   const raw = useTransform(scrollYProgress, [0, 1], [amplitude * factor, -amplitude * factor]);
   const y = useSpring(raw, { stiffness: 90, damping: 30, mass: 0.4 });
 
@@ -69,7 +73,6 @@ export function DepthLayer({ depth = 2, children, className = '', amplitude = 12
       className={className}
       style={{
         y: light ? 0 : y,
-        filter: blur ? `blur(${blur}px)` : undefined,
         zIndex: depth,
         ...style,
       }}

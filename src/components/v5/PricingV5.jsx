@@ -79,7 +79,7 @@ export default function PricingV5() {
     <section id="tarifs" className="relative isolate scroll-mt-24 overflow-hidden px-5 py-28 sm:px-6 sm:py-36">
       {/* depth 1 — nappe centrée sous la colonne mise en avant */}
       <DepthLayer depth={1} amplitude={130} className="pointer-events-none absolute inset-0">
-        <div className="absolute left-1/2 top-1/3 h-[36rem] w-[36rem] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,var(--primary-soft),transparent_68%)] blur-3xl" />
+        <div className="absolute left-1/2 top-1/3 h-[36rem] w-[36rem] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,var(--primary-soft),transparent_68%)]" />
       </DepthLayer>
 
       <div className="relative z-[4] mx-auto max-w-7xl">

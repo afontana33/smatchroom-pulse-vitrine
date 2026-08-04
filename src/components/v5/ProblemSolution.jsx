@@ -34,7 +34,7 @@ export default function ProblemSolution() {
     <section id="probleme" className="relative isolate scroll-mt-24 overflow-hidden px-5 py-28 sm:px-6 sm:py-36">
       {/* depth 1 — halo discret côté solution */}
       <DepthLayer depth={1} amplitude={120} className="pointer-events-none absolute inset-0">
-        <div className="absolute right-0 top-1/3 h-[30rem] w-[30rem] rounded-full bg-[radial-gradient(circle,var(--primary-soft),transparent_65%)] blur-3xl" />
+        <div className="absolute right-0 top-1/3 h-[30rem] w-[30rem] rounded-full bg-[radial-gradient(circle,var(--primary-soft),transparent_65%)]" />
       </DepthLayer>
 
       {/* depth 2 — trait vertical qui sépare les deux régimes */}

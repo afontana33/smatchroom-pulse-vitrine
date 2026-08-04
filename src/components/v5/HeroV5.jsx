@@ -48,9 +48,9 @@ export default function HeroV5() {
 
       {/* depth 1 — atmosphère : glows additifs */}
       <DepthLayer depth={1} amplitude={160} className="pointer-events-none absolute inset-0">
-        <div className="absolute -left-40 top-0 h-[42rem] w-[42rem] rounded-full bg-[radial-gradient(circle,rgba(255,90,31,0.30),transparent_65%)] blur-[90px] mix-blend-screen" />
-        <div className="absolute -right-32 top-24 h-[36rem] w-[36rem] rounded-full bg-[radial-gradient(circle,rgba(255,176,122,0.20),transparent_65%)] blur-[90px] mix-blend-screen [animation-delay:-6s]" />
-        <div className="absolute bottom-0 left-1/3 h-[34rem] w-[34rem] rounded-full bg-[radial-gradient(circle,rgba(41,75,115,0.34),transparent_65%)] blur-[90px] mix-blend-screen [animation-delay:-11s]" />
+        <div className="absolute -left-40 top-0 h-[42rem] w-[42rem] rounded-full bg-[radial-gradient(circle,rgba(255,90,31,0.30),transparent_65%)] mix-blend-screen" />
+        <div className="absolute -right-32 top-24 h-[36rem] w-[36rem] rounded-full bg-[radial-gradient(circle,rgba(255,176,122,0.20),transparent_65%)] mix-blend-screen [animation-delay:-6s]" />
+        <div className="absolute bottom-0 left-1/3 h-[34rem] w-[34rem] rounded-full bg-[radial-gradient(circle,rgba(41,75,115,0.34),transparent_65%)] mix-blend-screen [animation-delay:-11s]" />
       </DepthLayer>
 
       {/* depth 2 — grille technique */}
@@ -77,6 +77,13 @@ export default function HeroV5() {
           <Hero3D />
         </motion.div>
       )}
+
+      {/* vignette, au-dessus du décor mais sous le contenu. Elle remplace la passe
+          Vignette du post-traitement WebGL, qui coûtait trop cher. */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 z-[3] bg-[radial-gradient(ellipse_65%_60%_at_50%_45%,transparent_40%,rgba(8,7,10,0.6))]"
+      />
 
       {/* depth 4 — contenu */}
       <motion.div

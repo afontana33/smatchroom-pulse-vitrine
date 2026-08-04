@@ -58,7 +58,7 @@ export default function AgentFleet() {
     <section id="agents" className="relative isolate scroll-mt-24 overflow-hidden px-5 py-28 sm:px-6 sm:py-36">
       {/* depth 1 — nappe orange derrière la carte centrale */}
       <DepthLayer depth={1} amplitude={140} className="pointer-events-none absolute inset-0">
-        <div className="absolute left-1/2 top-40 h-[34rem] w-[34rem] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,var(--primary-soft),transparent_68%)] blur-3xl" />
+        <div className="absolute left-1/2 top-40 h-[34rem] w-[34rem] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,var(--primary-soft),transparent_68%)]" />
       </DepthLayer>
 
       {/* depth 2 — pointillés de fond */}
@@ -163,7 +163,7 @@ export default function AgentFleet() {
           <div className="showcase-dark grain relative mt-8 overflow-hidden rounded-2xl p-8 sm:p-10">
             <div
               aria-hidden
-              className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-[radial-gradient(circle,rgba(143,180,224,0.20),transparent_65%)] blur-2xl"
+              className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-[radial-gradient(circle,rgba(143,180,224,0.20),transparent_65%)]"
             />
             <div className="relative flex flex-col items-start gap-7 lg:flex-row lg:items-center lg:justify-between">
               <div className="max-w-2xl">
