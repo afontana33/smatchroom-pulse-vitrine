@@ -68,7 +68,7 @@ export default function About() {
                   notre entreprise est née d&apos;une conviction simple : le talent de vos équipes
                   commerciales ou de vos artisans ne devrait plus être gaspillé dans la prospection à
                   froid, le tri de bases de données ou les relances sans fin. Votre véritable valeur
-                  ajoutée est sur le terrain — le conseil, la négociation, l&apos;expertise métier.
+                  ajoutée est sur le terrain : le conseil, la négociation, l&apos;expertise métier.
                 </p>
                 <p>
                   C&apos;est pourquoi nous concevons nos propres technologies en interne : extraction de
@@ -77,7 +77,7 @@ export default function About() {
                 </p>
                 <p className="text-[var(--foreground)]">
                   <span className="font-semibold">Notre mission :</span> la machine gère la prospection de
-                  masse pour que vous vous concentriez sur l&apos;essentiel — l&apos;humain et le closing.
+                  masse pour que vous vous concentriez sur l&apos;essentiel : l&apos;humain et le closing.
                 </p>
               </div>
 

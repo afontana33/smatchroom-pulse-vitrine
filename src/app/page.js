@@ -4,6 +4,7 @@ import TrustedBy from '@/components/TrustedBy';
 import ProblemSolution from '@/components/v5/ProblemSolution';
 import AgentFleet from '@/components/v5/AgentFleet';
 import AgentDemo from '@/components/AgentDemo';
+import About from '@/components/About';
 import SocialProof from '@/components/v5/SocialProof';
 import AvisGoogle from '@/components/v5/AvisGoogle';
 import Timeline48h from '@/components/v5/Timeline48h';
@@ -22,9 +23,9 @@ import Footer from '@/components/Footer';
  * → encre (CTA final). Les blocs sombres cadrent le parcours et cassent la
  * monotonie du milieu de page.
  *
- * La démo interactive et la FAQ sont les seules sections héritées de la v4 :
- * elles portent de la fonction (preuve jouable, levée d'objections) que les
- * sections v5 ne remplacent pas.
+ * Trois sections sont héritées de la v4 parce qu'aucune section v5 ne porte leur
+ * fonction : la démo interactive (preuve jouable), « À propos » (l'équipe et les
+ * commerciaux terrain) et la FAQ (levée d'objections).
  */
 export default function Page() {
   return (
@@ -36,6 +37,7 @@ export default function Page() {
       <AgentFleet />
       <AgentDemo />
       <SocialProof />
+      <About />
       <AvisGoogle />
       <Timeline48h />
       <TechDiff />

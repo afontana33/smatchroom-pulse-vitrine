@@ -76,7 +76,7 @@ const AGENTS = [
       { kind: 'log', text: '$ compare devis-fournisseurs --lot=ITE', step: 0 },
       { kind: 'log', text: '→ 5 devis analysés · isolant + fixations', step: 1 },
       { kind: 'log', text: '⚠ écart +12 % détecté chez Fournisseur B', step: 2 },
-      { kind: 'system', text: '✓ Reco : Fournisseur A — économie 640 € sur le lot', step: 3 },
+      { kind: 'system', text: '✓ Reco : Fournisseur A · économie 640 € sur le lot', step: 3 },
     ],
   },
   {
@@ -90,7 +90,7 @@ const AGENTS = [
       { kind: 'prospect', text: 'Bonjour, je cherche un devis pour isoler mes combles.', step: 0 },
       { kind: 'agent', text: "Avec plaisir ! C'est pour une résidence principale ? Quelle surface environ ?", step: 1 },
       { kind: 'prospect', text: 'Oui, résidence principale, environ 60 m².', step: 1 },
-      { kind: 'agent', text: 'Parfait — vous êtes probablement éligible MaPrimeRénov. Un RDV mardi 10h vous irait ?', step: 2 },
+      { kind: 'agent', text: 'Parfait, vous êtes probablement éligible MaPrimeRénov. Un RDV mardi 10h vous irait ?', step: 2 },
       { kind: 'system', text: '✓ Lead qualifié · RDV posé dans l’agenda', step: 3 },
     ],
   },
@@ -197,7 +197,7 @@ export default function AgentDemo() {
           </h2>
           <p className="mt-4 text-balance text-[var(--muted-strong)] sm:text-lg">
             Choisissez un agent : on rejoue, étape par étape, comment il identifie, contacte
-            et qualifie — puis passe le relais. Reconstitution fidèle d’un déroulé réel.
+            et qualifie, puis passe le relais. Reconstitution fidèle d’un déroulé réel.
           </p>
         </div>
 

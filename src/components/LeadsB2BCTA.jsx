@@ -12,7 +12,7 @@ export default function LeadsB2BCTA() {
             </h2>
             <p className="mt-4 text-lg leading-relaxed text-[var(--muted)]">
               Recevez chaque matin les <strong className="text-[var(--foreground)]">appels d'offres publics du bâtiment</strong> en
-              France et au Luxembourg — marchés à forte valeur, contacts et liens de dépôt officiels.
+              France et au Luxembourg · marchés à forte valeur, contacts et liens de dépôt officiels.
               Data 100&nbsp;% officielle (TED / UE), <strong className="text-[var(--foreground)]">3 leads offerts</strong> pour démarrer.
             </p>
           </div>
@@ -22,7 +22,7 @@ export default function LeadsB2BCTA() {
             rel="noopener"
             className="btn-primary inline-flex shrink-0 items-center justify-center rounded-xl px-7 py-4 text-base font-semibold"
           >
-            Cliquez ici — découvrir les chantiers →
+            Cliquez ici · découvrir les chantiers →
           </a>
         </div>
       </div>

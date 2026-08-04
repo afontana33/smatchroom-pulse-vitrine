@@ -10,6 +10,7 @@ const LINKS = [
   { href: '/#cas-clients', label: 'Résultats' },
   { href: '/#avis', label: 'Avis' },
   { href: '/#tarifs', label: 'Tarifs' },
+  { href: '/#a-propos', label: 'À propos' },
   { href: '/grands-comptes', label: 'Grands Comptes', accent: true },
   { href: '/agent-ia', label: 'Ressources' },
 ];

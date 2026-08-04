@@ -46,13 +46,13 @@ export default function Footer() {
           <div className="space-y-1 font-mono">
             <p className="text-[var(--foreground)]">SMATCHROOM · SAS</p>
             <p>5 rue Fénelon · 33000 Bordeaux · France</p>
-            <p>SIREN 989 883 509 — SIRET 989 883 509 00014</p>
+            <p>SIREN 989 883 509 · SIRET 989 883 509 00014</p>
             <p>TVA intracommunautaire : FR01 989 883 509</p>
-            <p>NAF/APE 62.01Z — Programmation informatique</p>
+            <p>NAF/APE 62.01Z · Programmation informatique</p>
             <p className="opacity-70">Immatriculée RNE/INPI · 31/07/2025</p>
           </div>
           <div className="text-left md:text-right">
-            <p>© {new Date().getFullYear()} SmatchRoom — Tous droits réservés</p>
+            <p>© {new Date().getFullYear()} SmatchRoom · Tous droits réservés</p>
             <p className="mt-1 opacity-70">
               <a href="/mentions-legales" className="hover:text-[var(--foreground)]">Mentions légales</a>
               <span className="mx-2">·</span>
