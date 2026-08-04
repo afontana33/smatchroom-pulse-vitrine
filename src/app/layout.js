@@ -31,7 +31,7 @@ const instrument = Instrument_Serif({
 });
 
 export const metadata = {
-  title: "SmatchRoom Pulse — L'IA qui prospecte et vend à votre place",
+  title: "SmatchRoom Pulse · L'IA qui prospecte et vend à votre place",
   description:
     "Des collaborateurs numériques autonomes, déployés sur votre infra 24/7. Division BTP & Artisanat : agents packagés (prospection, relance de devis, SEO local, conformité), déployés en 48h. Division Corporate & Sur-Mesure : ingénierie d'acquisition B2B pour les autres secteurs (luxe, SaaS, industrie, franchises).",
   metadataBase: new URL("https://pulse.smatchroom.com"),
@@ -43,7 +43,7 @@ export const metadata = {
     },
   },
   openGraph: {
-    title: "SmatchRoom Pulse — L'IA qui prospecte et vend à votre place",
+    title: "SmatchRoom Pulse · L'IA qui prospecte et vend à votre place",
     description:
       "Deux divisions : BTP & Artisanat (offres packagées, 48h) et Corporate & Sur-Mesure (ingénierie d'acquisition B2B pour les autres secteurs). Des collaborateurs numériques autonomes, 24/7 sur votre infra.",
     url: "https://pulse.smatchroom.com",
