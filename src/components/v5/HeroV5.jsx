@@ -98,9 +98,9 @@ export default function HeroV5() {
             parts={[
               { text: 'L’Intelligence Artificielle ', from: 'left' },
               { text: 'qui prospecte, ', from: 'right' },
-              { text: 'relance', from: 'up', className: 'gradient-text' },
+              { text: 'relance', from: 'up', className: 'gradient-text-ink' },
               { text: ' et ', from: 'up' },
-              { text: 'vend', from: 'up', className: 'gradient-text' },
+              { text: 'vend', from: 'up', className: 'gradient-text-ink' },
               { text: ' à votre place.', from: 'left' },
             ]}
           />

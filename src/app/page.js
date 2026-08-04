@@ -29,7 +29,7 @@ import Footer from '@/components/Footer';
 export default function Page() {
   return (
     <main className="flex flex-col">
-      <Nav />
+      <Nav overDark />
       <HeroV5 />
       <TrustedBy />
       <ProblemSolution />

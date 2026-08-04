@@ -56,8 +56,9 @@ export default function FinalCTA() {
           <SplitConverge
             parts={[
               { text: 'Prêt à remplir ', from: 'left' },
-              { text: 'votre carnet de commandes', from: 'up', className: 'gradient-text' },
-              { text: ' ?', from: 'right' },
+              /* Le « ? » reste collé au dernier mot : en fragment séparé il tombait
+                 seul sur une ligne (chaque fragment est un inline-block). */
+              { text: 'votre carnet de commandes ?', from: 'up', className: 'gradient-text-ink' },
             ]}
           />
         </h2>

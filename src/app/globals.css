@@ -169,6 +169,14 @@ h1, h2, h3 {
   background-clip: text;
   color: transparent;
 }
+/* Même dégradé, registre encre. On part d'un orange clair et non du blanc :
+   sur fond sombre un départ blanc fait lire le mot comme à moitié effacé. */
+.gradient-text-ink {
+  background: linear-gradient(115deg, #ffc59b 0%, var(--primary) 92%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
 .accent-text { color: var(--primary-ink); }
 .steel-grad {
   background: linear-gradient(115deg, var(--foreground) 30%, var(--steel) 110%);
