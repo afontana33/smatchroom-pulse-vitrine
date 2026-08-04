@@ -3,13 +3,14 @@
 import { useState, useEffect } from 'react';
 import { Menu, X, ArrowRight } from 'lucide-react';
 
+/* Ancres calées sur les sections de la landing v5 (voir src/app/page.js). */
 const LINKS = [
   { href: '/#agents', label: 'Les agents' },
   { href: '/#demo', label: 'Démo' },
-  { href: '/#cas-usage', label: "Cas d'usage" },
+  { href: '/#cas-clients', label: 'Résultats' },
+  { href: '/#avis', label: 'Avis' },
   { href: '/#tarifs', label: 'Tarifs' },
   { href: '/grands-comptes', label: 'Grands Comptes', accent: true },
-  { href: '/#a-propos', label: 'À propos' },
   { href: '/agent-ia', label: 'Ressources' },
 ];
 

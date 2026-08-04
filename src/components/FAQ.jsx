@@ -68,7 +68,7 @@ export default function FAQ() {
     <section id="faq" className="relative px-5 py-24 sm:px-6 sm:py-28">
       <div className="mx-auto max-w-4xl">
         <div className="mb-10 flex items-center gap-4">
-          <span className="section-index">07 — Questions</span>
+          <span className="section-index">Questions</span>
           <span className="h-px flex-1 bg-[var(--border-strong)]" />
         </div>
         <h2 className="mb-10 text-balance text-3xl font-semibold tracking-tight sm:text-4xl lg:text-5xl">

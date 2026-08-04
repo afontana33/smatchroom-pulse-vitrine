@@ -31,7 +31,8 @@ export default function Footer() {
             <p className="font-mono text-xs uppercase tracking-[0.18em] text-[var(--primary-ink)]">Navigation</p>
             <ul className="mt-4 space-y-2 text-sm text-[var(--muted-strong)]">
               <li><a href="/#agents" className="hover:text-[var(--foreground)]">Les agents</a></li>
-              <li><a href="/#cas-usage" className="hover:text-[var(--foreground)]">Cas d&apos;usage</a></li>
+              <li><a href="/#cas-clients" className="hover:text-[var(--foreground)]">Résultats</a></li>
+              <li><a href="/#avis" className="hover:text-[var(--foreground)]">Avis clients</a></li>
               <li><a href="/#tarifs" className="hover:text-[var(--foreground)]">Tarifs</a></li>
               <li><a href="/grands-comptes" className="font-medium text-[var(--steel)] hover:text-[var(--steel-hover)]">Grands Comptes</a></li>
               <li><a href="/#faq" className="hover:text-[var(--foreground)]">FAQ</a></li>

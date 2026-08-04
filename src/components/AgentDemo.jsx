@@ -188,7 +188,7 @@ export default function AgentDemo() {
     <section id="demo" className="relative px-5 py-24 sm:px-6 sm:py-28">
       <div className="mx-auto max-w-7xl">
         <div className="mb-6 flex items-center gap-4">
-          <span className="section-index">03 — Démo</span>
+          <span className="section-index">Démo</span>
           <span className="h-px flex-1 bg-[var(--border-strong)]" />
         </div>
         <div className="mb-10 max-w-2xl">

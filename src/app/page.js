@@ -1,36 +1,48 @@
 import Nav from '@/components/Nav';
-import Hero from '@/components/Hero';
+import HeroV5 from '@/components/v5/HeroV5';
 import TrustedBy from '@/components/TrustedBy';
-import Manifesto from '@/components/Manifesto';
-import Pillars from '@/components/Pillars';
+import ProblemSolution from '@/components/v5/ProblemSolution';
+import AgentFleet from '@/components/v5/AgentFleet';
 import AgentDemo from '@/components/AgentDemo';
-import Process from '@/components/Process';
-import UseCases from '@/components/UseCases';
-import About from '@/components/About';
-import GoogleReviews from '@/components/GoogleReviews';
-import Pricing from '@/components/Pricing';
+import SocialProof from '@/components/v5/SocialProof';
+import AvisGoogle from '@/components/v5/AvisGoogle';
+import Timeline48h from '@/components/v5/Timeline48h';
+import TechDiff from '@/components/v5/TechDiff';
+import PricingV5 from '@/components/v5/PricingV5';
 import LeadsB2BCTA from '@/components/LeadsB2BCTA';
 import FAQ from '@/components/FAQ';
-import ContactCTA from '@/components/ContactCTA';
+import FinalCTA from '@/components/v5/FinalCTA';
 import Footer from '@/components/Footer';
 
+/**
+ * Landing v5 — parcours cinématique.
+ *
+ * Alternance de registres voulue : encre (hero) → clair (problème, agents,
+ * démo, résultats, avis, process) → encre (technologie) → clair (tarifs, FAQ)
+ * → encre (CTA final). Les blocs sombres cadrent le parcours et cassent la
+ * monotonie du milieu de page.
+ *
+ * La démo interactive et la FAQ sont les seules sections héritées de la v4 :
+ * elles portent de la fonction (preuve jouable, levée d'objections) que les
+ * sections v5 ne remplacent pas.
+ */
 export default function Page() {
   return (
     <main className="flex flex-col">
       <Nav />
-      <Hero />
-      <About />
+      <HeroV5 />
       <TrustedBy />
-      <Manifesto />
-      <Pillars />
+      <ProblemSolution />
+      <AgentFleet />
       <AgentDemo />
-      <Process />
-      <UseCases />
-      <GoogleReviews />
-      <Pricing />
+      <SocialProof />
+      <AvisGoogle />
+      <Timeline48h />
+      <TechDiff />
+      <PricingV5 />
       <LeadsB2BCTA />
       <FAQ />
-      <ContactCTA />
+      <FinalCTA />
       <Footer />
     </main>
   );
