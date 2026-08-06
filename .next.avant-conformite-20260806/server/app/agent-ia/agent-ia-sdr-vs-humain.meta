@@ -1,0 +1,16 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/agent-ia/layout,_N_T_/agent-ia/[slug]/layout,_N_T_/agent-ia/[slug]/page,_N_T_/agent-ia/agent-ia-sdr-vs-humain"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/agent-ia/$d$slug/__PAGE__",
+    "/agent-ia/$d$slug",
+    "/agent-ia",
+    "/_index",
+    "/_head"
+  ]
+}

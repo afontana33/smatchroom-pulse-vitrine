@@ -1,6 +1,6 @@
 # Audit de conformité · pulse.smatchroom.com
 
-> **Statut : phases 0 et 1 faites.**
+> **Statut : phases 0 à 8 faites et déployées en production le 6 août 2026.**
 > Document de travail interne. Les analyses juridiques qu'il contient sont des constats
 > techniques, pas un avis juridique. Validation par un avocat requise avant mise en ligne
 > des documents produits aux phases suivantes.
@@ -321,13 +321,13 @@ chantier distinct.
 |---|---|---|
 | 0 | Inventaire | ✅ Fait — en attente de validation |
 | 1 | Traceurs et cookies | ✅ Fait (option B, Tarteaucitron auto-hébergé) |
-| 2 | CGV Services + CGU | ⏸ Bloquée : questions 1, 7, 8, 9 |
-| 3 | Politique de confidentialité | ⏸ Bloquée : question 12 |
-| 4 | Mentions légales | ⏸ Bloquée : questions 1, 4, 5 |
-| 5 | Transparence IA | ⏸ À faire |
-| 6 | Allégations marketing | ⏸ Bloquée : questions 10, 11 |
-| 7 | Documents `legal/` | ⏸ À faire |
-| 8 | Nettoyage CGV Produits | ⏸ Bloquée : questions 1, 13, 14 |
+| 2 | CGV Services + CGU | ✅ CGV faites · CGU non créées (question 8) |
+| 3 | Politique de confidentialité | ✅ Réécrite intégralement |
+| 4 | Mentions légales | ✅ Rapatriées et corrigées |
+| 5 | Transparence IA | ✅ Fait |
+| 6 | Allégations marketing | ✅ Fait |
+| 7 | Documents `legal/` | ✅ 4 brouillons produits |
+| 8 | Nettoyage CGV Produits | ✅ Fait sauf vérification Stripe (question 13) |
 
 
 ---
@@ -370,3 +370,108 @@ auto-hébergé**, rapatriement des routes nginx dans Next.js, redirection 301 de
 conditionnellement » comme le suggérait le brief, elle a été supprimée. Il n'existe pas de moyen
 de recueillir un consentement sans JavaScript ; conserver un repli `noscript` reviendrait à
 tracer précisément les visiteurs qui ne peuvent pas consentir.
+
+---
+
+## 11. Phases 2 à 8 · ce qui a été fait
+
+| Phase | Avant | Après |
+|---|---|---|
+| 2 · CGV | Seules CGV servies : Élite Dev Kit, en TTC. Aucun cadre pour l'abonnement. Une page CGV B2B existait dans le dépôt, masquée par nginx | `/cgv-services` (19 articles), `/cgv-produits`, `/cgv` en page d'aiguillage. Gabarit `LegalPage` partagé |
+| 2 · CGU | Inexistantes | **Non créées.** Voir la restriction ci-dessous |
+| 2 · Prix | HT sur la home, TTC dans les CGV, sans explication | Mentions HT explicites dans les CGV Services, tableau des formules, article 4 des CGV Produits expliquant pourquoi l'un est HT et l'autre TTC |
+| 3 · Confidentialité | 7 sections, aucune base légale, aucune durée chiffrée, aucun destinataire nommé, 3 droits sur 8 | 13 sections, tableau par traitement (finalité, données, base légale, durée, destinataires), rôles responsable / sous-traitant séparés, liste nominative des sous-traitants, transferts et mécanismes, 8 droits, modalités et délai d'un mois, réclamation CNIL, section article 14 |
+| 4 · Mentions légales | HTML pandoc servi par nginx, cookies faux, section données divergente, téléphones absents | Rapatriées dans Next.js, cookies corrigés, section données remplacée par un renvoi vers `/confidentialite`, téléphones en placeholder, mention des marques neutralisée |
+| 5 · Transparence IA | Inexistante | `/transparence-ia`, lien dans le footer, pilier dédié dans « Sous le capot », question dédiée en FAQ |
+| 6 · Allégations | « Sécurité absolue », « Conformité stricte RGPD et CNIL », « Infrastructure conforme RGPD », « 100 % de la technique », « garantie de déploiement » | « Mesures de sécurité renforcées », « Infrastructure dédiée, traitement encadré par un accord de sous-traitance », « la technique de bout en bout », « engagement de mise en production ». Aucun « garanti », « absolu » ni « 100 % » réintroduit |
+| 6 · Avis | « 5,0 · Avis vérifiés sur notre fiche Google », sans nombre d'avis et sans aucun avis affiché | « Note de notre fiche Google » + mention art. L.111-7-2 C. conso : avis non sélectionnés, non modérés, non rémunérés, vérification relevant de Google |
+| 6 · FAQ | « on peut signer un DPA si vous le souhaitez » | Le DPA est présenté comme systématique et obligatoire |
+| 7 · Documents | Aucun | `legal/dpa-sous-traitance.md`, `legal/registre-traitements.md`, `legal/mention-article-14.md`, `legal/checklist-prospection.md` |
+| 8 · CGV Produits | Renvoi ODR, art. 11 pointant vers les mentions légales | ODR supprimée (plateforme fermée le 20/07/2025, règlement UE 2024/3228), art. 11 pointant vers `/confidentialite`, médiateur CNPM conservé |
+| Routage | 4 routes servies en HTML statique, masquant Next.js | `location =` retirés, `/privacy` → 301 `/confidentialite`, `/support` → 301 `/mentions-legales`. Anciens fichiers conservés dans `legal/_sources-nginx/` |
+| Sitemap | Aucune page légale | Les 7 pages légales référencées |
+
+### Vérification finale en production
+
+Chargement de `https://pulse.smatchroom.com/` en session neuve, onglet réseau ouvert :
+**zéro requête vers un domaine tiers**. Toutes les routes légales répondent 200, `/privacy` et
+`/support` répondent 301 vers les bonnes cibles.
+
+### Restrictions assumées
+
+1. **CGU non créées.** Elles supposent un tableau de bord accessible en ligne. La FAQ en mentionne
+   un, mais aucune URL n'existe dans le dépôt et aucun lien du site n'y mène. Rédiger des
+   conditions d'utilisation pour un service dont je ne peux pas confirmer l'existence
+   reviendrait à inventer. → question ouverte n°8.
+2. **Variante `noscript` du pixel supprimée** plutôt qu'encapsulée : sans JavaScript, aucun
+   consentement ne peut être recueilli.
+3. **Découpe des commits non tenue** : les phases 2 à 7 sont dans un seul commit (`ea413fa`),
+   les fichiers ayant été écrits d'un seul tenant à la demande.
+4. **Case de renoncement Stripe non vérifiée** : question ouverte n°13.
+
+---
+
+## 12. Liste consolidée des [[À COMPLÉTER]]
+
+Aucun n'a été rempli par une valeur plausible. Tous sont visibles dans le rendu public des pages
+concernées et doivent être traités avant de considérer les documents comme finaux.
+
+| # | Information manquante | Où |
+|---|---|---|
+| 1 | Numéro de téléphone de contact de l'éditeur (art. 6 III LCEN) | `/mentions-legales`, `/cgv-services` art. 2, `/cgv-produits` art. 2, `/transparence-ia` |
+| 2 | Numéro de téléphone de l'hébergeur Hostinger (art. 6 III LCEN) | `/mentions-legales` |
+| 3 | Statut réel de chaque marque, avec numéro et date de dépôt INPI | `/mentions-legales` |
+| 4 | Point de départ du délai de 48h et conséquence d'un dépassement | `/cgv-services` art. 4 |
+| 5 | Date d'entrée en vigueur des CGV Services | `/cgv-services` |
+| 6 | Localisation du centre de données du VPS Hostinger | `/confidentialite`, DPA, registre |
+| 7 | Région du projet Supabase | `/confidentialite`, DPA, registre |
+| 8 | Fournisseur du modèle d'IA : raison sociale exacte, hébergement, transferts | `/confidentialite`, DPA, registre |
+| 9 | Fournisseur d'acheminement des messages instantanés | `/confidentialite`, DPA, registre |
+| 10 | Fournisseur d'acheminement des courriels sortants | `/confidentialite`, DPA, registre |
+| 11 | Vérification, prestataire par prestataire, du mécanisme de transfert invoqué | `/confidentialite` § 7 |
+| 12 | Délai de reprise humaine après « HUMAIN » | `/transparence-ia`, `legal/mention-article-14.md` |
+| 13 | Confirmation par avocat que les agents ne sont pas des systèmes à haut risque | `/transparence-ia` |
+| 14 | Mécanisme du lien de désinscription courriel | `legal/mention-article-14.md` |
+| 15 | Forme juridique et adresse exactes de chaque client responsable de traitement | `legal/mention-article-14.md`, registre section B |
+| 16 | Identité du client signataire du DPA | `legal/dpa-sous-traitance.md` |
+| 17 | Existence d'une prospection téléphonique vocale (obligation Bloctel) | `legal/checklist-prospection.md` |
+| 18 | Salariés et alternants : traitement RH à documenter | `legal/registre-traitements.md` A8 |
+| 19 | Confirmation client par client de la section B du registre | `legal/registre-traitements.md` |
+
+## 13. Questions ouvertes restant à trancher
+
+Les questions 1, 2 et 3 du § 7 ont été tranchées. Restent :
+
+| # | Question |
+|---|---|
+| 4 | Téléphones éditeur et hébergeur (voir § 12) |
+| 5 | Statut réel des cinq marques |
+| 6 | Il n'y a **aucun formulaire** sur le site : la mention de confidentialité exigée par la phase 3 n'a pas de cible. Faut-il l'ajouter sous les boutons Calendly ? |
+| 7 | Le prix « 500 € HT » de `/entrepreneurs` ne correspond à aucune grille (home : 300 € + 190 €/mois). Lequel fait foi ? Le composant `Pricing.jsx` (290 € + 129 €/mois, non monté) doit-il être supprimé ? |
+| 8 | Le tableau de bord client existe-t-il en ligne, et à quelle URL ? Conditionne les CGU |
+| 9 | Point de départ du délai de 48h |
+| 10 | Habitat Multi Services figure parmi les logos alors que l'agent n'a jamais été mis en production. Prestation réellement réalisée ? |
+| 11 | Base des « +90 artisans accompagnés » et des « +300 décideurs contactés par semaine » : définition et période |
+| 12 | Liste des sous-traitants à confirmer (voir § 12, lignes 6 à 10) |
+| 13 | La case de renoncement au droit de rétractation existe-t-elle dans le tunnel Stripe ? Vérifiable en lecture seule via l'API Stripe sur autorisation |
+| 14 | Agrément CECMC du médiateur CNPM en cours de validité ? |
+| 15 | **Nouveau** : `/support` redirige vers `/mentions-legales`. Si les stores Apple ou Google pointent vers cette URL pour SmatchRoom App, la cible est mauvaise. Où doit pointer cette redirection ? |
+| 16 | **Nouveau** : les autorisations écrites des 8 références clients et des 2 témoignages nominatifs (§ 5.3) restent à obtenir. Les trois plus exposés : Habitat Multi Services, « Mathieu · Isolation by Tryba », Tryba |
+
+## 14. Points relevant d'un avocat plutôt que d'une correction technique
+
+1. **Base légale de la prospection vers les personnes physiques** exerçant en nom propre (artisans,
+   auto-entrepreneurs, entreprises individuelles). C'est le point le plus exposé : si l'analyse de
+   `legal/checklist-prospection.md` est exacte, une partie des envois actuels repose sur une base
+   légale qui ne tient pas, et la question du sort des campagnes déjà envoyées se pose.
+2. **Qualification des rôles** responsable de traitement et sous-traitant, en particulier lorsque
+   SMATCHROOM source elle-même les données pour le compte d'un client.
+3. **Nécessité d'une analyse d'impact** au sens de l'article 35 du RGPD.
+4. **Relecture du DPA**, notamment les articles responsabilité, audit et sous-traitance ultérieure.
+5. **Opposabilité de la clause d'exclusion du droit de rétractation** des CGV Produits, subordonnée
+   à l'existence effective de la case Stripe.
+6. **Qualification au regard de l'AI Act** : fournisseur, déployeur, ou les deux, et conséquences.
+7. **Clause de résiliation anticipée** de la formule Partenaire (remboursement du setup offert) :
+   risque de requalification en clause pénale.
+8. **Suffisance de la mention courte** utilisée en messagerie instantanée au regard de l'article 14.
+9. **Formulation des allégations de conformité** acceptables en communication commerciale.

@@ -1,0 +1,7 @@
+:HL["/_next/static/chunks/0114cx.tw.fzq.css","style"]
+:HL["/_next/static/media/017d9bea37084d9b-s.p.179.vsfvxa6t5.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/70bc3e132a0a741e-s.p.1409xf.ylxg8g.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/7ebf22b5a21034f8-s.p.10_7676vm7pyy.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/a343f882a40d2cc9-s.p.0kho-wj7-y-w1.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/e41d5df559864f9e-s.p.0gq7fw9.sy_5..woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"solutions","param":null,"prefetchHints":0,"slots":{"children":{"name":"slug","param":{"type":"d","key":"agent-sdr","siblings":null},"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}},"staleTime":300,"buildId":"3VYD9SioMRIxf-I2zDDAS"}
