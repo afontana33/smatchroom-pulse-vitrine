@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import LandingNav from "@/components/landing/LandingNav";
+import Footer from "@/components/Footer";
 
 const offres = [
   {
@@ -145,6 +146,7 @@ export default function ArtisansPage() {
           </div>
         </div>
       </section>
+      <Footer />
     </div>
   );
 }

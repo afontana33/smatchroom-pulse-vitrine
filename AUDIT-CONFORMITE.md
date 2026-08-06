@@ -1,6 +1,6 @@
 # Audit de conformité · pulse.smatchroom.com
 
-> **Statut : Phase 0 · inventaire.** Aucune modification de code n'a été faite à ce stade.
+> **Statut : phases 0 et 1 faites.**
 > Document de travail interne. Les analyses juridiques qu'il contient sont des constats
 > techniques, pas un avis juridique. Validation par un avocat requise avant mise en ligne
 > des documents produits aux phases suivantes.
@@ -320,7 +320,7 @@ chantier distinct.
 | Phase | Objet | Statut |
 |---|---|---|
 | 0 | Inventaire | ✅ Fait — en attente de validation |
-| 1 | Traceurs et cookies | ⏸ Bloquée : questions 2 et 3 |
+| 1 | Traceurs et cookies | ✅ Fait (option B, Tarteaucitron auto-hébergé) |
 | 2 | CGV Services + CGU | ⏸ Bloquée : questions 1, 7, 8, 9 |
 | 3 | Politique de confidentialité | ⏸ Bloquée : question 12 |
 | 4 | Mentions légales | ⏸ Bloquée : questions 1, 4, 5 |
@@ -328,3 +328,45 @@ chantier distinct.
 | 6 | Allégations marketing | ⏸ Bloquée : questions 10, 11 |
 | 7 | Documents `legal/` | ⏸ À faire |
 | 8 | Nettoyage CGV Produits | ⏸ Bloquée : questions 1, 13, 14 |
+
+
+---
+
+## 10. Phase 1 · traceurs et cookies · avant / après
+
+Décisions prises : **option B** (pixel conservé derrière consentement), CMP **Tarteaucitron
+auto-hébergé**, rapatriement des routes nginx dans Next.js, redirection 301 de `/privacy` et
+`/support`.
+
+| Point | Avant | Après |
+|---|---|---|
+| Meta Pixel | `layout.js:76-87`, `afterInteractive`, sur toutes les routes, sans consentement | Déclaré comme service Tarteaucitron dans `src/components/CookieConsent.jsx`, exécuté uniquement après acceptation |
+| Variante `noscript` | `<img src="facebook.com/tr?…">` rendue dans le HTML initial | Supprimée. Sans JavaScript, pas de consentement possible donc pas de traceur |
+| `facebook-domain-verification` | Présente, non commentée | Conservée (balise inerte, aucune requête), avec un commentaire précisant quand la retirer |
+| CMP | Aucun | Tarteaucitron 1.34.0, auto-hébergé dans `public/tarteaucitron/`. Aucun CDN ni éditeur tiers, donc aucun sous-traitant supplémentaire |
+| Consentement implicite | Sans objet | `highPrivacy: true` : ni le défilement ni la navigation ne valent acceptation |
+| Parité des CTA | Sans objet | Mesuré au rendu : « Tout accepter » et « Tout refuser » font 214 × 41 px, 14 px, graisse 600, même fond et même couleur. « Personnaliser » est volontairement secondaire |
+| Réglage par finalité | Aucun | Panneau détaillé, un réglage par service, `cookieslist: true` |
+| Durée du choix | Sans objet | 182 jours (`tarteaucitronForceExpire`), conforme à la recommandation CNIL de 6 mois |
+| Révocation | Impossible | Lien « Gérer mes cookies » (`#cookies`) dans le footer, présent sur toutes les pages |
+| Pages sans footer | 5 pages sans aucun lien légal | `<Footer />` ajouté à `/partenaires`, `/entreprises`, `/entrepreneurs`, `/scale`, `/artisans` |
+| Politique cookies | Inexistante | `/politique-cookies` : un tableau par traceur (nom, éditeur, finalité, durée, transfert hors UE), traceurs exemptés séparés, statut de Calendly explicité |
+| Section Cookies des mentions légales | « Aucun cookie de tracking publicitaire n'est déposé » (faux) | Réécrite : `pulse_consent` (6 mois) et Meta Pixel `_fbp` (90 jours, après acceptation), renvoi vers `/politique-cookies` |
+| Poids du catalogue Tarteaucitron | Sans objet | 196 Ko réduits à 910 octets : `scripts/sync-tarteaucitron.mjs` extrait le seul service utilisé |
+
+### Vérifications exécutées (build de test isolé, port 3099)
+
+| Test | Résultat |
+|---|---|
+| Chargement initial, onglet réseau | 0 requête vers `facebook.com` ou `connect.facebook.net`. Seuls les 4 assets Tarteaucitron, servis par notre domaine |
+| `window.fbq` avant choix | `undefined` |
+| Cookie avant choix | `pulse_consent=!facebookpixel=wait` (cookie du CMP, exempté) |
+| Clic « Tout refuser » | `pulse_consent=!facebookpixel=false`, toujours 0 requête Meta |
+| Lien « Gérer mes cookies » du footer | Rouvre le panneau |
+| Clic « Tout accepter » | `connect.facebook.net/en_US/fbevents.js` chargé, et pas avant |
+| `next build` | 36 pages générées, aucune erreur |
+
+**Restriction assumée** : la variante `noscript` du pixel n'a pas été « encapsulée
+conditionnellement » comme le suggérait le brief, elle a été supprimée. Il n'existe pas de moyen
+de recueillir un consentement sans JavaScript ; conserver un repli `noscript` reviendrait à
+tracer précisément les visiteurs qui ne peuvent pas consentir.

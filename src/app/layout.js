@@ -1,8 +1,6 @@
-import Script from "next/script";
 import { Manrope, JetBrains_Mono, Bricolage_Grotesque, Instrument_Serif } from "next/font/google";
+import CookieConsent from "@/components/CookieConsent";
 import "./globals.css";
-
-const META_PIXEL_ID = "1366680321464821";
 
 const manrope = Manrope({
   variable: "--font-manrope",
@@ -37,6 +35,9 @@ export const metadata = {
   metadataBase: new URL("https://pulse.smatchroom.com"),
   // Vérification de domaine Meta : rendue côté serveur dans le <head> statique,
   // condition pour que Meta la voie (une balise injectée en JS n'est pas lue).
+  // Balise inerte : elle ne déclenche aucune requête et ne dépose aucun cookie,
+  // elle n'est donc pas soumise au consentement. À supprimer le jour où le
+  // Meta Pixel est retiré et où plus aucun actif Meta ne pointe vers le domaine.
   verification: {
     other: {
       "facebook-domain-verification": "nflavfb11d2knm89zrqctk2bendkbp",
@@ -71,29 +72,11 @@ export default function RootLayout({ children }) {
         </a>
         {children}
 
-        {/* Meta Pixel — chargé sur toutes les routes depuis le layout racine.
-            Script inline : l'id est obligatoire pour que Next puisse le suivre. */}
-        <Script id="meta-pixel" strategy="afterInteractive">
-          {`!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '${META_PIXEL_ID}');
-fbq('track', 'PageView');`}
-        </Script>
-        <noscript>
-          <img
-            height="1"
-            width="1"
-            style={{ display: "none" }}
-            alt=""
-            src={`https://www.facebook.com/tr?id=${META_PIXEL_ID}&ev=PageView&noscript=1`}
-          />
-        </noscript>
+        {/* Le Meta Pixel n'est plus chargé ici. Il est déclaré comme service
+            Tarteaucitron dans CookieConsent et ne s'exécute qu'après acceptation.
+            La variante <noscript> a été retirée : sans JavaScript, aucun
+            consentement ne peut être recueilli, donc aucun traceur ne doit partir. */}
+        <CookieConsent />
       </body>
     </html>
   );

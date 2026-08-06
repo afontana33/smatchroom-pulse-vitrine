@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import LandingNav from "@/components/landing/LandingNav";
+import Footer from "@/components/Footer";
 
 const secteurs = [
   "Agence Web", "Développement Web", "Webflow / Shopify",
@@ -114,6 +115,7 @@ export default function PartenairesPage() {
           </div>
         </motion.div>
       </section>
+      <Footer />
     </div>
   );
 }

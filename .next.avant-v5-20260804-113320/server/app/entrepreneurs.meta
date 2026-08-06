@@ -1,0 +1,15 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/entrepreneurs/layout,_N_T_/entrepreneurs/page,_N_T_/entrepreneurs"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/entrepreneurs/__PAGE__",
+    "/entrepreneurs",
+    "/_index",
+    "/_head"
+  ]
+}

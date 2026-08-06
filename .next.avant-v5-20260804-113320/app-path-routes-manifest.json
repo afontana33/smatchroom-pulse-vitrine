@@ -1,0 +1,21 @@
+{
+  "/_global-error/page": "/_global-error",
+  "/_not-found/page": "/_not-found",
+  "/agent-ia/[slug]/page": "/agent-ia/[slug]",
+  "/agent-ia/page": "/agent-ia",
+  "/artisans/page": "/artisans",
+  "/blog/[slug]/page": "/blog/[slug]",
+  "/blog/page": "/blog",
+  "/cgv/page": "/cgv",
+  "/confidentialite/page": "/confidentialite",
+  "/entrepreneurs/page": "/entrepreneurs",
+  "/entreprises/page": "/entreprises",
+  "/favicon.ico/route": "/favicon.ico",
+  "/grands-comptes/page": "/grands-comptes",
+  "/page": "/",
+  "/partenaires/page": "/partenaires",
+  "/robots.txt/route": "/robots.txt",
+  "/scale/page": "/scale",
+  "/sitemap.xml/route": "/sitemap.xml",
+  "/solutions/[slug]/page": "/solutions/[slug]"
+}

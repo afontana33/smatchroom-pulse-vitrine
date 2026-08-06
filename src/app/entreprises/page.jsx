@@ -1,6 +1,7 @@
 import { ArrowRight, Check, Building2, Calendar, Server, Code2, Shield, GitBranch, Database, Cpu } from 'lucide-react';
 import InteractiveLab from '@/components/InteractiveLab';
 import Reveal from '@/components/Reveal';
+import Footer from '@/components/Footer';
 
 export const metadata = {
   title: 'Agents IA industriels pour entreprises & agences — SmatchRoom Pulse',
@@ -305,6 +306,7 @@ export default function EntreprisesPage() {
           </Reveal>
         </div>
       </section>
+      <Footer />
     </main>
   );
 }

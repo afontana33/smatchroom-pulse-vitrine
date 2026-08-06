@@ -53,12 +53,19 @@ export default function Footer() {
           </div>
           <div className="text-left md:text-right">
             <p>© {new Date().getFullYear()} SmatchRoom · Tous droits réservés</p>
-            <p className="mt-1 opacity-70">
+            <p className="mt-1 flex flex-wrap justify-start gap-x-2 gap-y-1 opacity-70 md:justify-end">
               <a href="/mentions-legales" className="hover:text-[var(--foreground)]">Mentions légales</a>
-              <span className="mx-2">·</span>
+              <span aria-hidden>·</span>
               <a href="/confidentialite" className="hover:text-[var(--foreground)]">Confidentialité</a>
-              <span className="mx-2">·</span>
+              <span aria-hidden>·</span>
               <a href="/cgv" className="hover:text-[var(--foreground)]">CGV</a>
+              <span aria-hidden>·</span>
+              <a href="/politique-cookies" className="hover:text-[var(--foreground)]">Politique cookies</a>
+              <span aria-hidden>·</span>
+              {/* Ouvre le panneau Tarteaucitron : voir CONSENT_HASH dans CookieConsent.jsx.
+                  Ce lien est l'unique moyen de revenir sur un choix, il doit rester
+                  présent sur toutes les pages. */}
+              <a href="#cookies" className="hover:text-[var(--foreground)]">Gérer mes cookies</a>
             </p>
           </div>
         </div>

@@ -1,5 +1,6 @@
 import { ArrowRight, Check, HardHat, Mail, MapPin, Calendar } from 'lucide-react';
 import Reveal from '@/components/Reveal';
+import Footer from '@/components/Footer';
 
 export const metadata = {
   title: 'Pulse pour les artisans du bâtiment — SmatchRoom Pulse',
@@ -285,6 +286,7 @@ export default function CommercesPage() {
           </Reveal>
         </div>
       </section>
+      <Footer />
     </main>
   );
 }

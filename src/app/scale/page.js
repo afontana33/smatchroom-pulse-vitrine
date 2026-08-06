@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import LandingNav from "@/components/landing/LandingNav";
+import Footer from "@/components/Footer";
 
 const secteurs = [
   "SaaS B2B", "Startup Tech", "Agence NoCode",
@@ -112,6 +113,7 @@ export default function ScalePage() {
           <p className="text-[var(--muted)] text-sm mt-4">Alexis Fontana · SmatchRoom Pulse · Bordeaux</p>
         </motion.div>
       </section>
+      <Footer />
     </div>
   );
 }

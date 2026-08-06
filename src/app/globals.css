@@ -365,3 +365,92 @@ h1, h2, h3 {
   }
   .reveal { opacity: 1; transform: none; }
 }
+
+/* ---------- Bandeau de consentement (Tarteaucitron) ----------
+   Tarteaucitron injecte sa feuille de style dynamiquement, donc après
+   globals.css dans la cascade. Les sélecteurs ci-dessous sont volontairement
+   sur-spécifiés (html body …) pour reprendre la main sans !important.
+
+   Règle à ne pas casser : « Tout accepter » (#tarteaucitronPersonalize2) et
+   « Tout refuser » (#tarteaucitronAllDenied2) partagent exactement la même
+   déclaration. Même taille, même graisse, même rayon, même contraste. La CNIL
+   demande que refuser soit aussi simple qu'accepter ; styler un seul des deux
+   suffirait à rendre le bandeau non conforme. */
+
+html body #tarteaucitronRoot #tarteaucitronAlertBig {
+  background: var(--ink);
+  color: var(--on-ink);
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  box-shadow: 0 -8px 40px -12px rgba(0, 0, 0, 0.5);
+  padding: 20px 24px;
+}
+
+html body #tarteaucitronRoot #tarteaucitronDisclaimerAlert {
+  color: var(--on-ink);
+  font-size: 0.875rem;
+  line-height: 1.55;
+}
+
+html body #tarteaucitronRoot #tarteaucitronAlertBig #tarteaucitronPersonalize2,
+html body #tarteaucitronRoot #tarteaucitronAlertBig #tarteaucitronAllDenied2 {
+  background: var(--primary);
+  color: #fff;
+  border: 1px solid var(--primary);
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 0.875rem !important;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0;
+  margin: 4px 6px 4px 0;
+  min-width: 11rem;
+  padding: 11px 18px;
+  text-align: center;
+  text-transform: none;
+}
+
+html body #tarteaucitronRoot #tarteaucitronAlertBig #tarteaucitronPersonalize2:hover,
+html body #tarteaucitronRoot #tarteaucitronAlertBig #tarteaucitronAllDenied2:hover {
+  background: var(--primary-hover);
+  border-color: var(--primary-hover);
+}
+
+/* « Personnaliser » est secondaire : il ouvre le réglage par finalité, il ne
+   vaut ni acceptation ni refus. Il reste lisible mais ne concurrence pas les
+   deux CTA principaux. */
+html body #tarteaucitronRoot #tarteaucitronAlertBig #tarteaucitronCloseAlert {
+  background: transparent;
+  color: var(--on-ink);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin: 4px 6px 4px 0;
+  min-width: 11rem;
+  padding: 11px 18px;
+}
+
+html body #tarteaucitronRoot #tarteaucitron #tarteaucitronServices .tarteaucitronTitle,
+html body #tarteaucitronRoot #tarteaucitron #tarteaucitronClosePanel {
+  background: var(--ink);
+  font-family: var(--font-manrope), system-ui, sans-serif;
+}
+
+html body #tarteaucitronRoot a#tarteaucitronPrivacyUrl,
+html body #tarteaucitronRoot button#tarteaucitronPrivacyUrl {
+  background: transparent;
+  color: var(--on-ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+@media (max-width: 640px) {
+  html body #tarteaucitronRoot #tarteaucitronAlertBig #tarteaucitronPersonalize2,
+  html body #tarteaucitronRoot #tarteaucitronAlertBig #tarteaucitronAllDenied2,
+  html body #tarteaucitronRoot #tarteaucitronAlertBig #tarteaucitronCloseAlert {
+    display: block;
+    width: 100%;
+    margin: 6px 0 0;
+  }
+}
