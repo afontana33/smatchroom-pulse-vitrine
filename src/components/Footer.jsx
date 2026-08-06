@@ -58,9 +58,13 @@ export default function Footer() {
               <span aria-hidden>·</span>
               <a href="/confidentialite" className="hover:text-[var(--foreground)]">Confidentialité</a>
               <span aria-hidden>·</span>
-              <a href="/cgv" className="hover:text-[var(--foreground)]">CGV</a>
+              <a href="/cgv-services" className="hover:text-[var(--foreground)]">CGV Services</a>
+              <span aria-hidden>·</span>
+              <a href="/cgv-produits" className="hover:text-[var(--foreground)]">CGV Produits</a>
               <span aria-hidden>·</span>
               <a href="/politique-cookies" className="hover:text-[var(--foreground)]">Politique cookies</a>
+              <span aria-hidden>·</span>
+              <a href="/transparence-ia" className="hover:text-[var(--foreground)]">Transparence IA</a>
               <span aria-hidden>·</span>
               {/* Ouvre le panneau Tarteaucitron : voir CONSENT_HASH dans CookieConsent.jsx.
                   Ce lien est l'unique moyen de revenir sur un choix, il doit rester

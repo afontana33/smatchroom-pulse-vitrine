@@ -26,7 +26,11 @@ const QUESTIONS = [
   },
   {
     q: "Mes données et celles de mes clients sont-elles protégées ?",
-    a: "Oui. Les agents tournent sur une infrastructure dédiée, pas sur un SaaS générique. On ne conserve que des métriques anonymisées, et on peut signer un accord de traitement des données (DPA) si vous le souhaitez.",
+    a: "Oui. Les agents tournent sur une infrastructure dédiée, pas sur un SaaS générique, et les données d'un client ne sont jamais mutualisées avec celles d'un autre. Un accord de traitement des données (DPA) conforme à l'article 28 du RGPD est annexé au contrat et signé systématiquement : ce n'est pas une option, c'est une obligation dès lors qu'on traite des données pour votre compte.",
+  },
+  {
+    q: "Est-ce que les gens savent qu'ils parlent à une IA ?",
+    a: "Oui, et c'est obligatoire. Depuis le 2 août 2026, l'article 50 du règlement européen sur l'IA impose d'informer toute personne qui interagit avec un système d'IA. Nos agents l'indiquent dès le premier message, permettent de s'y opposer en répondant « STOP » et de basculer sur un humain en répondant « HUMAIN ». Cette mention ne peut pas être retirée à la demande d'un client : c'est écrit dans nos conditions de service.",
   },
   {
     q: "Pourquoi 48h et pas plusieurs semaines ?",

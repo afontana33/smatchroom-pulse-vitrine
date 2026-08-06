@@ -76,9 +76,9 @@ export default function Pillars() {
                 <ShieldCheck size={18} strokeWidth={1.8} />
               </span>
               <div>
-                <p className="font-semibold text-[var(--foreground)]">Conformité &amp; RGPD</p>
+                <p className="font-semibold text-[var(--foreground)]">Prospection encadrée</p>
                 <p className="mt-1 text-sm text-[var(--muted-strong)]">
-                  Prospection B2B respectant l&apos;intérêt légitime et la CNIL.
+                  Ciblage B2B, base légale documentée, opposition traitée en un mot.
                 </p>
               </div>
             </div>
@@ -142,7 +142,7 @@ export default function Pillars() {
                 </h3>
                 <p className="mt-3 max-w-2xl text-sm text-[var(--on-ink-muted)] sm:text-base">
                   Si un besoin de votre activité peut être automatisé, on le conçoit pour vous.
-                  Mêmes 48h, même pipeline, même garantie de mise en production.
+                  Mêmes 48h, même pipeline, même engagement de mise en production.
                 </p>
                 <ul className="mt-5 flex flex-wrap gap-2">
                   {CUSTOM_EXAMPLES.map((label) => (

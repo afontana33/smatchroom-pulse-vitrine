@@ -10,7 +10,7 @@ const TRUST = [
   {
     icon: ShieldCheck,
     title: 'Sécurité',
-    text: 'Infrastructure conforme RGPD et protection stricte de vos données.',
+    text: 'Infrastructure dédiée, traitement encadré par un accord de sous-traitance et mesures de sécurité renforcées.',
   },
   {
     icon: Code2,

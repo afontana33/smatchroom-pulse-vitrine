@@ -9,19 +9,24 @@
  */
 
 import { motion } from 'framer-motion';
-import { KeyRound, ShieldCheck, Users } from 'lucide-react';
+import { Bot, KeyRound, ShieldCheck, Users } from 'lucide-react';
 import { DepthLayer, WordLight, Rise, useLightMode } from './motion';
 
 const PILLARS = [
   {
     icon: KeyRound,
     title: 'Service clé en main',
-    text: 'Vous ne touchez à aucun ordinateur. Nous gérons 100 % de la technique : sourcing des données, rédaction, routage, supervision.',
+    text: 'Vous ne touchez à aucun ordinateur. Nous gérons la technique de bout en bout : sourcing des données, rédaction, routage, supervision.',
   },
   {
     icon: ShieldCheck,
-    title: 'Sécurité absolue',
-    text: 'Cadence de prospection lissée pour protéger vos adresses et vos numéros. Conformité stricte RGPD et CNIL.',
+    title: 'Mesures de sécurité renforcées',
+    text: 'Cadence de prospection lissée pour protéger vos adresses et vos numéros. Infrastructure dédiée, traitement encadré par un accord de sous-traitance signé avec vous.',
+  },
+  {
+    icon: Bot,
+    title: 'Agents identifiés comme automatisés',
+    text: 'Nos agents indiquent dès le premier message qu’ils sont automatisés, permettent de s’y opposer en un mot et de joindre un humain. Voir la page transparence sur l’IA.',
   },
   {
     icon: Users,

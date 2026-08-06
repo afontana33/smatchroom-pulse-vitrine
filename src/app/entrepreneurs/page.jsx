@@ -194,7 +194,8 @@ export default function CommercesPage() {
               <p className="text-xs text-[var(--muted)]">
                 * Le tarif exact est confirmé lors du diagnostic de cadrage (30 min, offert). Il peut varier selon la complexité de votre besoin. Voir nos{' '}
                 <a href="/cgv" className="underline hover:text-[var(--foreground)]">CGV</a>{' '}
-                pour les détails, notamment concernant la garantie de déploiement sous 48h.
+                pour les détails, notamment concernant le délai de déploiement de 48h, son point de
+                départ et ses conditions.
               </p>
             </div>
           </Reveal>

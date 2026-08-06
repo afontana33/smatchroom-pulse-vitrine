@@ -1,0 +1,247 @@
+/*
+ * ⚠ BROUILLON — document juridique non validé.
+ *
+ * Rédigé en interne dans le cadre de la mise en conformité de pulse.smatchroom.com
+ * (phase 2). Il doit être relu et validé par un avocat avant d'être opposable aux
+ * clients. Voir AUDIT-CONFORMITE.md à la racine du dépôt.
+ *
+ * Points laissés ouverts, marqués [[À COMPLÉTER]] dans le texte rendu : ils ne
+ * doivent pas atteindre la production en l'état. Ne pas les remplacer par une
+ * valeur plausible sans validation d'Alexis.
+ *
+ * Cohérence documentaire à maintenir avec :
+ *   - /confidentialite (mêmes sous-traitants, mêmes durées, mêmes finalités)
+ *   - /mentions-legales (mêmes coordonnées)
+ *   - legal/dpa-sous-traitance.md (l'article 15 y renvoie)
+ */
+
+import LegalPage from '@/components/LegalPage';
+
+export const metadata = {
+  title: 'CGV Services · SmatchRoom Pulse',
+  description:
+    "Conditions générales de vente et de service applicables aux abonnements d'agents IA de SmatchRoom Pulse, entre professionnels.",
+};
+
+const TODO_48H = '[[À COMPLÉTER : point de départ du délai de 48h et conséquence en cas de dépassement]]';
+
+const ARTICLES = [
+  {
+    title: 'Article 1 · Objet et champ d’application',
+    paragraphs: [
+      "Les présentes conditions générales de vente et de service (les « CGV Services ») régissent la fourniture par SMATCHROOM SAS (le « Prestataire ») de prestations d'abonnement à des agents logiciels automatisés (les « Agents ») destinés à la prospection commerciale, à la relance et aux tâches connexes, au bénéfice de ses clients (le « Client »).",
+      "Le contrat est conclu exclusivement entre professionnels. Le Client déclare souscrire pour les besoins de son activité professionnelle. Les dispositions du Code de la consommation propres aux contrats conclus avec des consommateurs ne s'appliquent pas, notamment le droit de rétractation de quatorze jours. Certaines dispositions de ce code demeurent néanmoins applicables aux relations entre professionnels, et les présentes ne sauraient y déroger.",
+      "Les CGV Services ne couvrent pas la vente de contenus numériques téléchargeables (Élite Dev Kit), régie par des conditions distinctes accessibles à l'adresse /cgv-produits.",
+      "Toute commande emporte acceptation sans réserve des présentes. Elles prévalent sur les conditions d'achat du Client, sauf accord écrit contraire.",
+    ],
+  },
+  {
+    title: 'Article 2 · Identification du Prestataire',
+    list: [
+      'SMATCHROOM SAS, société par actions simplifiée au capital de 1 000 euros',
+      'Siège social : 5 rue Fénelon, 33000 Bordeaux, France',
+      'RCS Bordeaux 989 883 509 · SIRET 989 883 509 00014',
+      'TVA intracommunautaire : FR01 989 883 509',
+      'Code NAF/APE : 62.01Z, programmation informatique',
+      'Président et directeur de la publication : Alexis Fontana',
+      'Courriel : a.fontana@smatchroom.fr',
+      'Téléphone : [[À COMPLÉTER : numéro de téléphone de contact de l’éditeur]]',
+    ],
+  },
+  {
+    title: 'Article 3 · Description de la prestation',
+    paragraphs: [
+      "Le Prestataire conçoit, paramètre, héberge et exploite pour le compte du Client un ou plusieurs Agents. Un Agent est un programme qui identifie des cibles à partir de sources de données, rédige et envoie des messages sur les canaux convenus (messagerie instantanée, courriel), traite les réponses reçues et restitue au Client les échanges et leurs résultats.",
+      "Le périmètre exact de chaque Agent (canaux, secteurs, zone géographique, volumes, contenus des messages) est arrêté dans le devis ou le bon de commande signé, qui prévaut sur toute description commerciale figurant sur le site.",
+    ],
+    list: [
+      'Ce qui est fourni : la conception de l’Agent, son paramétrage, son hébergement sur l’infrastructure du Prestataire, son exploitation, sa supervision et ses ajustements pendant la durée de l’abonnement, ainsi que l’accès aux échanges et aux résultats produits.',
+      "Ce qui n'est pas fourni, sauf mention contraire au devis : la prise de rendez-vous par un commercial humain, la négociation et la conclusion des ventes du Client, la fourniture des comptes et abonnements tiers nécessaires (numéro de téléphone, boîte de messagerie, outils du Client), la rédaction des offres commerciales du Client, ni aucune prestation de conseil juridique.",
+      "Obligation de moyens : le Prestataire s'engage à mettre en œuvre les moyens techniques et humains nécessaires à la bonne exécution de la prestation. Il ne souscrit aucune obligation de résultat. Il ne garantit ni un nombre de réponses, ni un nombre de rendez-vous, ni un volume de contrats ou de chiffre d'affaires. Les résultats obtenus par d'autres clients ne constituent pas un engagement.",
+      "Le Prestataire peut faire évoluer les composants techniques des Agents (modèles d'intelligence artificielle, fournisseurs d'acheminement, sources de données) dès lors que le service rendu reste substantiellement équivalent.",
+    ],
+  },
+  {
+    title: 'Article 4 · Commande, devis et entrée en vigueur',
+    paragraphs: [
+      "Toute prestation fait l'objet d'un devis écrit précisant le périmètre, la formule retenue, les prix et la durée. Le devis est valable trente jours à compter de son émission.",
+      "Le contrat est formé à la date de réception par le Prestataire du devis accepté par le Client, ou à défaut à la date de règlement des frais de mise en service. L'accord de traitement des données annexé aux présentes est réputé signé à la même date.",
+      "La mise en production intervient dans un délai de quarante-huit heures. " + TODO_48H,
+      "Le délai ne court pas tant que le Client n'a pas fourni l'ensemble des éléments et accès mentionnés à l'article 9. Tout retard imputable au Client en décale le terme d'autant.",
+    ],
+  },
+  {
+    title: 'Article 5 · Prix',
+    paragraphs: [
+      "Les prix sont exprimés en euros et hors taxes. La taxe sur la valeur ajoutée au taux en vigueur, soit 20 % à la date des présentes, s'y ajoute. Pour les clients professionnels établis dans l'Union européenne hors de France et disposant d'un numéro de TVA intracommunautaire valide, la facture est émise hors taxes par autoliquidation.",
+      "Les prix affichés sur le site le sont également hors taxes et à titre indicatif. Seul le devis accepté fait foi.",
+    ],
+    table: {
+      head: ['Formule', 'Mise en service', 'Abonnement', 'Durée'],
+      rows: [
+        ['Liberté', '300 € HT, une seule fois', '190 € HT par mois', 'Sans engagement'],
+        ['Partenaire', 'Offerte', '190 € HT par mois', 'Engagement de 6 mois'],
+        ['Ingénierie Corporate', 'Sur devis', 'Sur devis', 'Définie au devis'],
+      ],
+    },
+    list: [
+      "Les frais de mise en service couvrent le cadrage, la conception de l'Agent, son paramétrage, la constitution de la base de cibles initiale, les tests et la mise en production. Ils correspondent à un travail effectué une fois et ne sont pas remboursables une fois la mise en production intervenue.",
+      "L'abonnement mensuel couvre l'hébergement, l'exploitation, la supervision, les ajustements courants, ainsi que les coûts d'usage des services tiers nécessaires au fonctionnement de l'Agent, dans les limites de volume prévues au devis.",
+      "Ne sont pas couverts : les dépassements de volume, l'ouverture d'un canal supplémentaire, la refonte du périmètre à la demande du Client, et les abonnements souscrits par le Client en son nom propre.",
+      "Le Prestataire peut réviser ses tarifs une fois par an. Toute révision est notifiée par écrit au moins soixante jours avant sa prise d'effet. Le Client qui la refuse peut résilier sans indemnité avant cette date.",
+    ],
+  },
+  {
+    title: 'Article 6 · Modalités de paiement et échéances',
+    list: [
+      "Les frais de mise en service sont exigibles à la commande, avant tout démarrage des travaux.",
+      "L'abonnement est facturé mensuellement à terme à échoir, à la date anniversaire de la mise en production.",
+      "Les factures sont payables à trente jours à compter de leur date d'émission, par virement bancaire ou par prélèvement via Stripe Payments Europe Ltd.",
+      "Aucun escompte n'est accordé en cas de paiement anticipé.",
+    ],
+  },
+  {
+    title: 'Article 7 · Retard de paiement',
+    paragraphs: [
+      "Conformément à l'article L.441-10 du Code de commerce, tout retard de paiement entraîne de plein droit, sans qu'un rappel soit nécessaire, l'exigibilité de pénalités de retard calculées sur le montant toutes taxes comprises de la facture impayée, au taux d'intérêt appliqué par la Banque centrale européenne à son opération de refinancement la plus récente majoré de dix points de pourcentage.",
+      "Le Client est en outre redevable de plein droit d'une indemnité forfaitaire pour frais de recouvrement de quarante euros par facture impayée. Lorsque les frais de recouvrement exposés sont supérieurs à ce montant, le Prestataire peut demander une indemnisation complémentaire sur justification.",
+      "Après une mise en demeure restée sans effet pendant quinze jours, le Prestataire peut suspendre l'exécution de la prestation. La suspension ne dispense pas le Client du paiement des échéances à échoir pendant la période d'engagement.",
+    ],
+  },
+  {
+    title: 'Article 8 · Durée, reconduction et résiliation',
+    list: [
+      "Formule Liberté : le contrat est conclu pour une durée d'un mois, reconduit tacitement de mois en mois. Chacune des parties peut y mettre fin par écrit, courriel avec accusé de réception compris, moyennant un préavis de trente jours avant l'échéance mensuelle en cours. Les frais de mise en service restent acquis au Prestataire.",
+      "Formule Partenaire : le contrat est conclu pour une durée ferme de six mois à compter de la mise en production, puis reconduit tacitement de mois en mois selon les règles de la formule Liberté. La résiliation à l'échéance de la période ferme s'effectue par écrit moyennant un préavis de trente jours.",
+      "Résiliation anticipée de la formule Partenaire à l'initiative du Client : les mensualités restant à courir jusqu'au terme de la période ferme deviennent immédiatement exigibles, et les frais de mise en service offerts, d'un montant de 300 € HT, redeviennent dus. Cette contrepartie est la stricte compensation de la gratuité consentie en considération de l'engagement.",
+      "Résiliation pour manquement : en cas de manquement grave d'une partie à ses obligations, non réparé dans les trente jours suivant une mise en demeure écrite, l'autre partie peut résilier de plein droit, sans indemnité et sans préjudice de tout dommage et intérêt.",
+      "Résiliation immédiate par le Prestataire : le Prestataire peut résilier sans préavis, sans indemnité et sans remboursement des sommes déjà versées s'il constate que le Client utilise la prestation en violation de la réglementation applicable, notamment en matière de prospection et de protection des données, ou qu'il lui a transmis des données obtenues illicitement.",
+      "En cas de résiliation anticipée par le Prestataire pour un motif qui ne lui est pas imputable, les frais de mise en service restent acquis. Les abonnements payés d'avance et non consommés sont remboursés au prorata.",
+    ],
+  },
+  {
+    title: 'Article 9 · Obligations du Client',
+    list: [
+      "Fournir en temps utile les accès, comptes, numéros, boîtes de messagerie, éléments de marque et informations nécessaires à la conception et à l'exploitation de l'Agent, et les maintenir actifs pendant toute la durée du contrat.",
+      "Garantir l'exactitude et la licéité des données et contenus qu'il transmet, notamment des fichiers de prospects, et disposer du droit de les faire traiter.",
+      "Respecter la réglementation applicable à sa propre prospection, en particulier le règlement (UE) 2016/679, la loi Informatique et Libertés et l'article L.34-5 du code des postes et des communications électroniques. Le Client demeure responsable de traitement pour les données de prospection qu'il fait traiter. Il lui appartient d'établir la base légale de ses campagnes, de tenir son registre, d'informer les personnes concernées et de traiter leurs demandes d'exercice de droits, le Prestataire l'assistant dans les conditions prévues à l'accord de traitement des données.",
+      "Désigner un interlocuteur unique, et traiter dans un délai raisonnable les demandes de validation qui lui sont soumises.",
+      "Ne pas contourner, reproduire, décompiler ni faire reproduire par un tiers les Agents ou leurs configurations.",
+      "Régler les factures aux échéances convenues.",
+    ],
+    note: "Le Prestataire refuse toute cible, tout contenu ou toute cadence qui lui paraîtrait contraire à la réglementation ou aux conditions d'utilisation des canaux employés. Ce refus ne constitue pas un manquement de sa part.",
+  },
+  {
+    title: 'Article 10 · Obligations du Prestataire',
+    list: [
+      "Concevoir, paramétrer et mettre en production l'Agent conformément au devis accepté.",
+      "Exploiter et superviser l'Agent pendant la durée de l'abonnement, et procéder aux ajustements courants nécessaires à son bon fonctionnement.",
+      "Informer le Client sans délai de tout incident significatif affectant la prestation, notamment la suspension d'un compte, d'un numéro ou d'un canal par un fournisseur tiers.",
+      "Faire en sorte que les messages émis par les Agents indiquent leur caractère automatisé et permettent à leur destinataire de s'y opposer et de joindre un interlocuteur humain, conformément à l'article 50 du règlement (UE) 2024/1689 et à l'article 21 du règlement (UE) 2016/679.",
+      "Mettre en œuvre les mesures techniques et organisationnelles décrites à l'accord de traitement des données.",
+      "Restituer et supprimer les données dans les conditions prévues à l'article 13.",
+    ],
+  },
+  {
+    title: 'Article 11 · Propriété intellectuelle',
+    list: [
+      "Le Prestataire demeure titulaire de l'ensemble des droits portant sur les Agents, leur code, leur architecture, leurs bibliothèques de messages, leurs méthodes et leurs outils, y compris sur les développements réalisés à l'occasion de la prestation. Le Client n'acquiert aucun droit de propriété sur ces éléments.",
+      "Le Client bénéficie, pendant la durée du contrat, d'un droit d'usage personnel, non exclusif, non cessible et non transférable de l'Agent déployé pour son compte, pour les besoins de sa seule activité. Ce droit prend fin de plein droit à l'expiration du contrat.",
+      "Les configurations propres au Client, c'est-à-dire les paramètres reflétant ses cibles, sa zone, son offre et son vocabulaire, lui sont restituées en fin de contrat dans les conditions de l'article 13. Le moteur qui les exécute reste la propriété du Prestataire.",
+      "Les données produites par l'exploitation de l'Agent, à savoir la liste des cibles contactées, les messages échangés et les réponses reçues, appartiennent au Client.",
+      "Le Client conserve la pleine propriété de sa marque, de ses signes distinctifs et des contenus qu'il transmet, et concède au Prestataire le droit de les utiliser aux seules fins d'exécuter la prestation.",
+      "Toute citation du nom, du logo ou d'un témoignage du Client à des fins de référence commerciale est subordonnée à son autorisation écrite préalable, révocable à tout moment.",
+    ],
+  },
+  {
+    title: 'Article 12 · Confidentialité',
+    paragraphs: [
+      "Chaque partie s'engage à ne pas divulguer les informations confidentielles de l'autre dont elle aurait connaissance à l'occasion du contrat, à ne les utiliser que pour son exécution, et à en restreindre l'accès aux seules personnes qui ont besoin d'en connaître.",
+      "Cet engagement produit ses effets pendant la durée du contrat et pendant trois ans après son terme. Il ne couvre pas les informations publiques, celles déjà licitement détenues, ni celles dont la communication est exigée par la loi ou par une autorité compétente.",
+    ],
+  },
+  {
+    title: 'Article 13 · Réversibilité et sort des données en fin de contrat',
+    list: [
+      "À compter de la date d'effet de la résiliation, le Client dispose de trente jours pour demander par écrit la restitution de ses données.",
+      "La restitution porte sur la liste des cibles contactées, l'historique des messages échangés et les réponses reçues, ainsi que sur les paramètres de configuration propres au Client. Elle est effectuée au format CSV pour les données tabulaires et JSON pour les configurations, par un lien de téléchargement sécurisé.",
+      "Elle intervient dans un délai de quinze jours ouvrés suivant la demande. Elle est réalisée une fois sans frais ; toute restitution supplémentaire ou tout format spécifique fait l'objet d'un devis.",
+      "À l'expiration du délai de trente jours, ou dans les quinze jours suivant la restitution si elle a été demandée, le Prestataire supprime les données du Client de ses systèmes de production, à l'exception de celles qu'il doit conserver au titre d'une obligation légale, notamment les pièces comptables conservées dix ans, et des sauvegardes techniques qui sont détruites selon leur cycle de rotation, dans un délai maximal de trente jours.",
+      "Le Prestataire atteste par écrit de la suppression sur demande du Client.",
+      "La restitution est subordonnée au paiement intégral des sommes échues. Le Prestataire ne peut retenir les données au-delà de ce qui est nécessaire au recouvrement.",
+    ],
+  },
+  {
+    title: 'Article 14 · Responsabilité',
+    list: [
+      "Le Prestataire répond des dommages directs résultant d'un manquement prouvé à ses obligations. Il n'est pas responsable des dommages indirects, notamment la perte d'exploitation, la perte de chance, la perte de clientèle, l'atteinte à l'image ou le manque à gagner.",
+      "Le Prestataire n'est pas responsable des conséquences d'une suspension, d'une restriction ou d'un bannissement décidé par un fournisseur tiers, notamment un opérateur de messagerie instantanée ou un fournisseur de courrier électronique, dès lors qu'il a respecté les cadences et pratiques convenues.",
+      "Il n'est pas davantage responsable de l'inexactitude des données publiques utilisées comme source, ni des conséquences des instructions, contenus ou cibles imposés par le Client contre son avis exprimé par écrit.",
+      "La responsabilité totale du Prestataire, tous préjudices et tous faits générateurs confondus, est plafonnée au montant hors taxes effectivement payé par le Client au titre des douze mois précédant le fait générateur.",
+      "Ces limitations ne s'appliquent ni en cas de faute lourde ou dolosive, ni en cas de dommage corporel, ni dans les cas où la loi les écarte.",
+      "Le Client garantit le Prestataire contre toute réclamation d'un tiers, y compris une autorité de contrôle, qui trouverait sa cause dans le non-respect par le Client de ses propres obligations, notamment celles de l'article 9.",
+    ],
+  },
+  {
+    title: 'Article 15 · Données personnelles et sous-traitance',
+    paragraphs: [
+      "Dans le cadre de l'exploitation des Agents, le Prestataire traite des données à caractère personnel pour le compte du Client et agit à ce titre en qualité de sous-traitant au sens de l'article 28 du règlement (UE) 2016/679. Le Client agit en qualité de responsable de traitement.",
+      "Un accord de traitement des données est annexé aux présentes et en fait partie intégrante. Il est signé concomitamment au contrat. Il précise l'objet, la durée, la nature et la finalité du traitement, les catégories de données et de personnes concernées, les obligations du Prestataire, la liste des sous-traitants ultérieurs autorisés, les mesures de sécurité, l'assistance en cas de demande d'exercice de droits, la notification des violations, le sort des données en fin de contrat et les modalités d'audit.",
+      "Pour les traitements que le Prestataire met en œuvre pour son propre compte, notamment la gestion de ses prospects, de ses clients et de son site, il agit en qualité de responsable de traitement. Ces traitements sont décrits dans la politique de confidentialité accessible à l'adresse /confidentialite.",
+    ],
+  },
+  {
+    title: 'Article 16 · Transparence sur l’usage de l’intelligence artificielle',
+    paragraphs: [
+      "Les messages émis par les Agents sont générés par un système d'intelligence artificielle. Conformément à l'article 50 du règlement (UE) 2024/1689, applicable depuis le 2 août 2026, leurs destinataires en sont informés dès la première interaction et disposent d'un moyen simple de s'opposer à être contactés et de joindre un interlocuteur humain.",
+      "Le Client s'interdit de demander la suppression ou l'atténuation de ces mentions. Le Prestataire refusera toute instruction en ce sens.",
+      "Les modalités sont détaillées à l'adresse /transparence-ia.",
+    ],
+  },
+  {
+    title: 'Article 17 · Force majeure',
+    paragraphs: [
+      "Aucune partie n'est responsable d'un manquement causé par un événement de force majeure au sens de l'article 1218 du Code civil. Sont notamment visées les défaillances massives d'infrastructures tierces, les attaques informatiques de grande ampleur et les décisions d'autorités publiques rendant l'exécution impossible.",
+      "La partie empêchée en informe l'autre sans délai. Les obligations sont suspendues pendant la durée de l'empêchement. Si celui-ci se prolonge au-delà de soixante jours, chaque partie peut résilier de plein droit par écrit, sans indemnité.",
+    ],
+  },
+  {
+    title: 'Article 18 · Dispositions diverses',
+    list: [
+      "Le Prestataire peut modifier les présentes. La version applicable est celle en vigueur au jour de la commande. Toute modification en cours de contrat est notifiée par écrit soixante jours avant sa prise d'effet ; le Client qui la refuse peut résilier sans indemnité avant cette date.",
+      "Si une stipulation est jugée nulle ou inapplicable, les autres demeurent en vigueur.",
+      "Le fait pour une partie de ne pas se prévaloir d'un manquement ne vaut pas renonciation.",
+      "Le Client ne peut céder le contrat sans l'accord écrit préalable du Prestataire.",
+    ],
+  },
+  {
+    title: 'Article 19 · Droit applicable et juridiction',
+    paragraphs: [
+      "Les présentes sont régies par le droit français.",
+      "Les parties s'efforceront de résoudre amiablement tout différend. À défaut d'accord dans un délai de trente jours à compter de la première réclamation écrite, tout litige relatif à la formation, l'interprétation, l'exécution ou la rupture du contrat relève de la compétence exclusive du tribunal de commerce de Bordeaux, y compris en référé, en cas de pluralité de défendeurs ou d'appel en garantie.",
+    ],
+  },
+];
+
+export default function CGVServicesPage() {
+  return (
+    <LegalPage
+      eyebrow="Cadre contractuel"
+      title="Conditions générales de vente et de service"
+      subtitle="Abonnements d'agents IA · contrat entre professionnels"
+      dates={["Date d'entrée en vigueur : [[À COMPLÉTER : date de mise en ligne validée]]", 'Dernière mise à jour : 6 août 2026']}
+      intro={
+        <>
+          Ces conditions s&apos;appliquent aux abonnements d&apos;agents IA. La vente de
+          l&apos;Élite Dev Kit, contenu numérique téléchargeable, relève de conditions
+          distinctes disponibles sur la page{' '}
+          <a href="/cgv-produits" className="font-medium text-[var(--primary-ink)] underline underline-offset-2">
+            CGV Produits numériques
+          </a>
+          .
+        </>
+      }
+      sections={ARTICLES}
+    />
+  );
+}

@@ -121,10 +121,23 @@ export default function AvisGoogle() {
                   <Stars size={14} />
                 </span>
                 <span className="text-sm text-[var(--muted-strong)]">
-                  Avis vérifiés sur notre fiche Google
+                  Note de notre fiche Google
                   {RATING.count ? ` · ${RATING.count} avis` : ''}
                 </span>
               </div>
+
+              {/* Information sur le traitement des avis, art. L.111-7-2 du Code
+                  de la consommation. Le texte doit rester exact : si un jour les
+                  avis sont collectés, filtrés ou sollicités autrement, il faut le
+                  réécrire, pas le laisser en l'état. */}
+              <p className="mt-4 max-w-2xl text-xs leading-relaxed text-[var(--muted)]">
+                Ces avis sont déposés librement par nos clients sur notre fiche Google, à laquelle
+                nous ne pouvons ni ajouter, ni supprimer, ni réordonner un avis. Nous ne les
+                sélectionnons pas, ne les modérons pas et ne rémunérons pas leur publication. La
+                note est celle calculée par Google à la date de dernière mise à jour de cette page.
+                Aucune vérification de l&apos;achat n&apos;est effectuée par SMATCHROOM&nbsp;: le
+                contrôle relève de Google.
+              </p>
             </div>
 
             <div className="flex flex-shrink-0 flex-wrap gap-3">
