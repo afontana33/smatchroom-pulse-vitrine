@@ -26,7 +26,7 @@ const PILLARS = [
   {
     icon: Bot,
     title: 'Agents identifiés comme automatisés',
-    text: 'Nos agents indiquent dès le premier message qu’ils sont automatisés, permettent de s’y opposer en un mot et de joindre un humain. Voir la page transparence sur l’IA.',
+    text: 'L’agent indique dès le premier message qu’il est automatisé, permet de s’y opposer en un mot et de joindre un humain. Voir la page transparence sur l’IA.',
   },
   {
     icon: Users,

@@ -80,10 +80,10 @@ export default function FinalCTA() {
             <ArrowRight size={17} className="transition-transform group-hover:translate-x-1" />
           </a>
           <a
-            href="#agents"
+            href="#piliers"
             className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/18 bg-white/[0.05] px-7 py-4 text-sm font-semibold text-white backdrop-blur-md transition-colors hover:border-white/35 hover:bg-white/[0.1]"
           >
-            Revoir les agents
+            Revoir les trois briques
           </a>
         </div>
 

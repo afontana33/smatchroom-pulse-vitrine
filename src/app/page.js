@@ -2,6 +2,7 @@ import Nav from '@/components/Nav';
 import HeroV5 from '@/components/v5/HeroV5';
 import TrustedBy from '@/components/TrustedBy';
 import ProblemSolution from '@/components/v5/ProblemSolution';
+import Piliers from '@/components/v5/Piliers';
 import AgentFleet from '@/components/v5/AgentFleet';
 import AgentDemo from '@/components/AgentDemo';
 import About from '@/components/About';
@@ -34,6 +35,7 @@ export default function Page() {
       <HeroV5 />
       <TrustedBy />
       <ProblemSolution />
+      <Piliers />
       <AgentFleet />
       <AgentDemo />
       <SocialProof />

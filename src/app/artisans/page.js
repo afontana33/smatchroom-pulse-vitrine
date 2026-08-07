@@ -5,47 +5,45 @@ import Footer from "@/components/Footer";
 
 const offres = [
   {
-    nom: "Starter",
-    prix: "290€",
-    periode: "/mois",
-    desc: "Pour démarrer et tester sans risque.",
+    nom: "Liberté",
+    prix: "300€",
+    periode: "de création, puis 190€/mois",
+    desc: "Sans engagement, résiliable à tout moment.",
     features: [
-      "Agent de réponse aux devis automatique",
-      "Publication Google (2×/semaine)",
-      "Rapport mensuel d'activité",
-      "Support email",
+      "Agent Chasseur déployé en 48h",
+      "Prospection et réponse aux demandes entrantes",
+      "Relance des devis restés sans réponse",
+      "Supervision et ajustements inclus",
     ],
-    cta: "Commencer",
+    cta: "Démarrer sans engagement",
     highlight: false,
   },
   {
-    nom: "Pro",
-    prix: "490€",
-    periode: "/mois",
-    desc: "Pour les artisans qui veulent remplir leur carnet.",
+    nom: "Partenaire",
+    prix: "190€",
+    periode: "/mois, création offerte",
+    desc: "Engagement 6 mois. Vous économisez 300 € HT de setup.",
     features: [
-      "Tout Starter inclus",
-      "Prospection WhatsApp automatique",
-      "Relances clients intelligentes",
-      "Remontée Google Maps optimisée",
-      "Support prioritaire",
+      "Tout Liberté inclus",
+      "Frais de création offerts (300 € HT)",
+      "6 mois pour laisser l'algorithme verrouiller votre marché",
+      "Priorité sur les ajustements et les nouveaux canaux",
     ],
-    cta: "Je veux le Pro",
+    cta: "Choisir la formule Partenaire",
     highlight: true,
   },
   {
-    nom: "Sur mesure",
+    nom: "Ingénierie Corporate",
     prix: "Devis",
     periode: "",
-    desc: "Pour les besoins spécifiques ou plusieurs corps de métier.",
+    desc: "Marchés de niche, forts volumes ou intégration à vos outils.",
     features: [
-      "Tout Pro inclus",
-      "Intégration avec vos outils existants",
-      "Agent vocal (prise d'appels)",
-      "Tableau de bord personnalisé",
-      "Accompagnement dédié",
+      "Data engineering et sourcing sur-mesure",
+      "IA entraînée sur vos documents techniques",
+      "Intégration CRM et handoff instantané",
+      "Audit stratégique de 30 min offert",
     ],
-    cta: "Nous contacter",
+    cta: "Demander un audit",
     highlight: false,
   },
 ];
@@ -75,7 +73,7 @@ export default function ArtisansPage() {
             <span className="gradient-text">Nous gérons le reste.</span>
           </motion.h1>
           <motion.p initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }} className="text-xl text-[var(--muted-strong)] mb-10 max-w-2xl mx-auto">
-            Devis, relances, Google, prospection — tout tourne automatiquement. Vous recevez les clients. Opérationnel en 48h, sans rien changer à votre façon de travailler.
+            Agent IA, site et fiche Google, publicité Meta : tout tourne automatiquement. Vous recevez les clients. Opérationnel en 48h, sans rien changer à votre façon de travailler.
           </motion.p>
           <motion.a initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4 }} href="https://calendly.com/a-fontana-smatchroom/30min" target="_blank" rel="noopener noreferrer" className="btn-primary inline-block px-8 py-4 font-semibold text-lg">
             Audit gratuit — 30 min →
@@ -85,12 +83,12 @@ export default function ArtisansPage() {
 
       <section className="py-16 px-5 sm:px-6">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-2xl font-bold text-center mb-12">Ce que Pulse fait pour vous</h2>
+          <h2 className="text-2xl font-bold text-center mb-12">Les trois briques de votre digitalisation</h2>
           <div className="grid md:grid-cols-3 gap-6">
             {[
-              { icon: "📩", title: "Devis automatiques", desc: "Chaque demande reçoit une réponse personnalisée en moins d'une heure, même la nuit." },
-              { icon: "📍", title: "Visibilité Google", desc: "L'agent publie du contenu en votre nom chaque semaine. Vous remontez sur \"plombier urgence [ville]\"." },
-              { icon: "📱", title: "Prospection WhatsApp", desc: "L'agent contacte de nouveaux clients potentiels dans votre zone, de manière humaine et ciblée." },
+              { icon: "🤖", title: "L'Agent Chasseur", desc: "Il prospecte les entreprises de votre secteur et répond à vos demandes entrantes en moins d'une minute, 7j/7." },
+              { icon: "🌐", title: "Site & fiche Google", desc: "Un site clair et votre fiche établissement Google créée puis tenue à jour : photos, horaires, zone d'intervention, avis." },
+              { icon: "🎬", title: "Acquisition Meta", desc: "On filme vos chantiers et on gère votre publicité Facebook et Instagram pour attirer des clients particuliers." },
             ].map((item, i) => (
               <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.1 }} viewport={{ once: true }} className="card card-hover p-6">
                 <div className="text-3xl mb-3">{item.icon}</div>
@@ -120,7 +118,7 @@ export default function ArtisansPage() {
       <section className="py-20 px-5 sm:px-6">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-3xl font-bold text-center mb-4">Tarifs clairs, sans surprise</h2>
-          <p className="text-[var(--muted)] text-center mb-12">Sans engagement. Résiliable à tout moment.</p>
+          <p className="text-[var(--muted)] text-center mb-12">Tous les montants sont en euros hors taxes. Les briques Sites et Acquisition Meta sont facturées à part.</p>
           <div className="grid md:grid-cols-3 gap-6">
             {offres.map((o, i) => (
               <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.1 }} viewport={{ once: true }} className={`card p-8 relative ${o.highlight ? "ring-2 ring-[var(--primary)] shadow-[var(--shadow-glow)]" : "card-hover"}`}>

@@ -29,9 +29,9 @@ const instrument = Instrument_Serif({
 });
 
 export const metadata = {
-  title: "SmatchRoom Pulse · L'IA qui prospecte et vend à votre place",
+  title: "SmatchRoom Pulse · La digitalisation des entreprises",
   description:
-    "Des collaborateurs numériques autonomes, déployés sur votre infra 24/7. Division BTP & Artisanat : agents packagés (prospection, relance de devis, SEO local, conformité), déployés en 48h. Division Corporate & Sur-Mesure : ingénierie d'acquisition B2B pour les autres secteurs (luxe, SaaS, industrie, franchises).",
+    "Trois briques pour digitaliser votre entreprise : l'Agent Chasseur, une IA qui prospecte et répond aux demandes 24/7 ; votre site et votre fiche établissement Google ; l'acquisition Meta avec Pulse Terrain (vidéo de chantier et publicité Facebook / Instagram). Division Corporate pour le sur-mesure.",
   metadataBase: new URL("https://pulse.smatchroom.com"),
   // Vérification de domaine Meta : rendue côté serveur dans le <head> statique,
   // condition pour que Meta la voie (une balise injectée en JS n'est pas lue).
@@ -44,9 +44,9 @@ export const metadata = {
     },
   },
   openGraph: {
-    title: "SmatchRoom Pulse · L'IA qui prospecte et vend à votre place",
+    title: "SmatchRoom Pulse · La digitalisation des entreprises",
     description:
-      "Deux divisions : BTP & Artisanat (offres packagées, 48h) et Corporate & Sur-Mesure (ingénierie d'acquisition B2B pour les autres secteurs). Des collaborateurs numériques autonomes, 24/7 sur votre infra.",
+      "Agent IA, site et fiche établissement Google, acquisition Meta : les trois briques pour être trouvé, être rappelé et ne rater aucune demande.",
     url: "https://pulse.smatchroom.com",
     siteName: "SmatchRoom Pulse",
     type: "website",

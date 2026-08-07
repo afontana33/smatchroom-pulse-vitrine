@@ -14,9 +14,10 @@ export default function Footer() {
               </span>
             </div>
             <p className="mt-4 max-w-md text-sm text-[var(--muted-strong)]">
-              L&apos;usine à agents IA du groupe SmatchRoom. Division BTP &amp; Artisanat : agents packagés
-              déployés en 48h. Division Corporate &amp; Sur-Mesure : ingénierie d&apos;acquisition B2B pour
-              les autres secteurs. Des collaborateurs numériques autonomes, 24/7 sur votre infra.
+              La digitalisation des entreprises, par le groupe SmatchRoom. Trois briques : l&apos;Agent
+              Chasseur qui prospecte et répond 24/7, le site et la fiche établissement Google qui
+              vous font exister, et l&apos;acquisition Meta qui vous amène des clients particuliers.
+              Pour les besoins hors périmètre, la division Corporate conçoit du sur-mesure.
             </p>
           </div>
 
@@ -30,10 +31,13 @@ export default function Footer() {
           <div>
             <p className="font-mono text-xs uppercase tracking-[0.18em] text-[var(--primary-ink)]">Navigation</p>
             <ul className="mt-4 space-y-2 text-sm text-[var(--muted-strong)]">
-              <li><a href="/#agents" className="hover:text-[var(--foreground)]">Les agents</a></li>
+              <li><a href="/#piliers" className="hover:text-[var(--foreground)]">Nos briques</a></li>
+              <li><a href="/#agents" className="hover:text-[var(--foreground)]">Agent IA</a></li>
+              <li><a href="/sites" className="hover:text-[var(--foreground)]">Sites &amp; fiche Google</a></li>
               <li><a href="/#cas-clients" className="hover:text-[var(--foreground)]">Résultats</a></li>
               <li><a href="/#avis" className="hover:text-[var(--foreground)]">Avis clients</a></li>
               <li><a href="/#tarifs" className="hover:text-[var(--foreground)]">Tarifs</a></li>
+              <li><a href="/pulse-terrain" className="hover:text-[var(--foreground)]">Acquisition Meta</a></li>
               <li><a href="/grands-comptes" className="font-medium text-[var(--steel)] hover:text-[var(--steel-hover)]">Grands Comptes</a></li>
               <li><a href="/#faq" className="hover:text-[var(--foreground)]">FAQ</a></li>
               <li><a href="/blog" className="hover:text-[var(--foreground)]">Blog</a></li>

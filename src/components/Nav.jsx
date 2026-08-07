@@ -3,14 +3,13 @@
 import { useState, useEffect } from 'react';
 import { Menu, X, ArrowRight } from 'lucide-react';
 
-/* Ancres calées sur les sections de la landing v5 (voir src/app/page.js). */
+/* Le menu suit les trois briques de la digitalisation (voir src/app/page.js). */
 const LINKS = [
-  { href: '/#agents', label: 'Les agents' },
-  { href: '/#demo', label: 'Démo' },
-  { href: '/#cas-clients', label: 'Résultats' },
-  { href: '/#avis', label: 'Avis' },
+  { href: '/#piliers', label: 'Nos briques' },
+  { href: '/#agents', label: 'Agent IA' },
+  { href: '/sites', label: 'Sites' },
+  { href: '/pulse-terrain', label: 'Acquisition Meta' },
   { href: '/#tarifs', label: 'Tarifs' },
-  { href: '/#a-propos', label: 'À propos' },
   { href: '/grands-comptes', label: 'Grands Comptes', accent: true },
   { href: '/agent-ia', label: 'Ressources' },
 ];

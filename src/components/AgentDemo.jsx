@@ -2,13 +2,13 @@
 
 import { useEffect, useRef, useState } from 'react';
 import {
-  Search, FileCheck, MapPin, ShoppingCart, Headphones, ShieldCheck, Crosshair,
+  Search, FileCheck, Headphones,
   MessageCircle, Mail, Terminal, Star, ArrowRight, Check,
 } from 'lucide-react';
 
 /**
- * Démo interactive : on choisit un agent et on regarde un déroulé animé
- * de son fonctionnement (canal + étapes + conversation/log rejoués).
+ * Démo interactive : trois situations du même agent, rejouées en animation
+ * (canal + étapes + conversation). Ce n'est plus un sélecteur de catalogue.
  */
 
 const CHANNEL = {
@@ -18,13 +18,15 @@ const CHANNEL = {
   google: { icon: Star, label: 'Google', tone: 'text-amber-400' },
 };
 
+/* Un seul agent, trois situations. Les onglets ne choisissent plus un agent
+   du catalogue : ils montrent ce que le Chasseur fait dans la journée. */
 const AGENTS = [
   {
-    id: 'chasseur',
-    name: 'Le Chasseur',
+    id: 'prospection',
+    name: 'Prospection',
     icon: Search,
     channel: 'whatsapp',
-    tagline: 'Prospection de partenaires d’apport d’affaires.',
+    tagline: 'Il va chercher les entreprises de votre secteur.',
     steps: ['Ciblage INSEE / INPI', 'Prise de contact', 'Relance intelligente', 'Handoff'],
     script: [
       { kind: 'system', text: 'Sourcing : 42 syndics & agences ciblés · votre secteur', step: 0 },
@@ -36,55 +38,11 @@ const AGENTS = [
     ],
   },
   {
-    id: 'gestionnaire',
-    name: 'Le Gestionnaire',
-    icon: FileCheck,
-    channel: 'whatsapp',
-    tagline: 'Relance des devis en attente, au bon moment.',
-    steps: ['Détection devis dormants', 'Relance personnalisée', 'Réponse client', 'Chantier relancé'],
-    script: [
-      { kind: 'system', text: '3 devis sans réponse depuis 7 jours', step: 0 },
-      { kind: 'agent', text: "Bonjour M. Martin, je reviens vers vous pour le devis d'isolation (2 400 €). On planifie les travaux ?", step: 1 },
-      { kind: 'prospect', text: "Ah oui, j'avais complètement oublié. On peut en parler cette semaine ?", step: 2 },
-      { kind: 'agent', text: 'Bien sûr. Jeudi 14h vous conviendrait ?', step: 2 },
-      { kind: 'system', text: '✓ RDV proposé · devis #402 relancé', step: 3 },
-    ],
-  },
-  {
-    id: 'visiteur',
-    name: 'Le Visiteur',
-    icon: MapPin,
-    channel: 'terminal',
-    tagline: 'SEO local et réponses aux avis Google.',
-    steps: ['Analyse requêtes locales', 'Rédaction page métier', 'Publication', 'Avis Google'],
-    script: [
-      { kind: 'log', text: "$ rank analyze 'votre métier + votre ville'", step: 0 },
-      { kind: 'log', text: '→ 3 failles concurrents détectées', step: 0 },
-      { kind: 'log', text: '✓ page publiée : /votre-metier-votre-ville', step: 2 },
-      { kind: 'log', text: '✓ 4 avis Google répondus · note 4,8★', step: 3 },
-      { kind: 'system', text: 'Position locale : #7 → #2 en 3 semaines', step: 3 },
-    ],
-  },
-  {
-    id: 'acheteur',
-    name: "L'Acheteur",
-    icon: ShoppingCart,
-    channel: 'terminal',
-    tagline: 'Analyse et comparaison des prix fournisseurs.',
-    steps: ['Réception des devis', 'Analyse comparative', 'Écarts détectés', 'Recommandation'],
-    script: [
-      { kind: 'log', text: '$ compare devis-fournisseurs --lot=ITE', step: 0 },
-      { kind: 'log', text: '→ 5 devis analysés · isolant + fixations', step: 1 },
-      { kind: 'log', text: '⚠ écart +12 % détecté chez Fournisseur B', step: 2 },
-      { kind: 'system', text: '✓ Reco : Fournisseur A · économie 640 € sur le lot', step: 3 },
-    ],
-  },
-  {
-    id: 'accueil',
-    name: "L'Accueil 24/7",
+    id: 'entrant',
+    name: 'Demande entrante',
     icon: Headphones,
     channel: 'whatsapp',
-    tagline: 'Qualification des leads entrants, jour et nuit.',
+    tagline: 'Il répond aux demandes en moins d’une minute, jour et nuit.',
     steps: ['Message entrant', 'Qualification', 'Éligibilité aides', 'RDV posé'],
     script: [
       { kind: 'prospect', text: 'Bonjour, je cherche un devis pour isoler mes combles.', step: 0 },
@@ -95,35 +53,22 @@ const AGENTS = [
     ],
   },
   {
-    id: 'controleur',
-    name: 'Le Contrôleur',
-    icon: ShieldCheck,
-    channel: 'terminal',
-    tagline: 'Conformité : attestations URSSAF / décennale.',
-    steps: ['Contrôle du chantier', 'Vérif décennale', 'Alerte URSSAF', 'Notification gérant'],
+    id: 'relance',
+    name: 'Relance de devis',
+    icon: FileCheck,
+    channel: 'whatsapp',
+    tagline: 'Il rattrape les devis restés sans réponse.',
+    steps: ['Détection devis dormants', 'Relance personnalisée', 'Réponse client', 'Chantier relancé'],
     script: [
-      { kind: 'log', text: '$ check conformité --chantier=88', step: 0 },
-      { kind: 'log', text: '→ attestation décennale : valide ✓', step: 1 },
-      { kind: 'log', text: '⚠ URSSAF : attestation expire dans 6 jours', step: 2 },
-      { kind: 'system', text: '✓ Alerte + relance envoyées au gérant', step: 3 },
-    ],
-  },
-  {
-    id: 'grands-comptes',
-    name: 'Grands Comptes',
-    icon: Crosshair,
-    channel: 'email',
-    tagline: 'SDR IA pour ouvrir vos grands comptes (PME/ETI).',
-    steps: ['Ciblage décideurs', 'Approche', 'Qualification', 'Handoff commercial'],
-    script: [
-      { kind: 'system', text: 'Ciblage : 3 directeurs techniques · gros œuvre', step: 0 },
-      { kind: 'agent', text: 'Bonjour, nous aidons les majors du BTP à sécuriser leurs approvisionnements. Auriez-vous 15 min pour en échanger ?', step: 1 },
-      { kind: 'prospect', text: 'Envoyez-moi des infos par mail, je regarde.', step: 2 },
-      { kind: 'agent', text: "C'est fait. Je vous propose aussi un créneau jeudi 14h avec notre responsable ?", step: 2 },
-      { kind: 'system', text: '✓ RDV posé · handoff à votre commercial', step: 3 },
+      { kind: 'system', text: '3 devis sans réponse depuis 7 jours', step: 0 },
+      { kind: 'agent', text: "Bonjour M. Martin, je reviens vers vous pour le devis d'isolation (2 400 €). On planifie les travaux ?", step: 1 },
+      { kind: 'prospect', text: "Ah oui, j'avais complètement oublié. On peut en parler cette semaine ?", step: 2 },
+      { kind: 'agent', text: 'Bien sûr. Jeudi 14h vous conviendrait ?', step: 2 },
+      { kind: 'system', text: '✓ RDV proposé · devis #402 relancé', step: 3 },
     ],
   },
 ];
+
 
 function Bubble({ msg }) {
   if (msg.kind === 'system') {
@@ -196,12 +141,13 @@ export default function AgentDemo() {
             <span className="gradient-text">Regardez un agent travailler.</span>
           </h2>
           <p className="mt-4 text-balance text-[var(--muted-strong)] sm:text-lg">
-            Choisissez un agent : on rejoue, étape par étape, comment il identifie, contacte
-            et qualifie, puis passe le relais. Reconstitution fidèle d’un déroulé réel.
+            Trois situations de la journée de l’Agent Chasseur, rejouées étape par étape :
+            comment il identifie, contacte et qualifie, puis passe le relais. Reconstitution
+            fidèle d’un déroulé réel.
           </p>
         </div>
 
-        {/* Sélecteur d'agents */}
+        {/* Sélecteur de situation */}
         <div className="-mx-5 mb-8 flex snap-x gap-2.5 overflow-x-auto px-5 pb-2 sm:mx-0 sm:flex-wrap sm:px-0 sm:overflow-visible">
           {AGENTS.map((a, i) => {
             const Icon = a.icon;
@@ -274,7 +220,7 @@ export default function AgentDemo() {
               rel="noopener noreferrer"
               className="btn-ghost group mt-auto inline-flex items-center justify-center gap-2 px-5 py-3 text-sm font-medium"
             >
-              Voir cet agent sur mes données
+              Voir l’agent sur mes données
               <ArrowRight size={15} className="transition-transform group-hover:translate-x-1" />
             </a>
           </div>

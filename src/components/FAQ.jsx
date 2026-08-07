@@ -6,11 +6,11 @@ import { Plus, Minus } from 'lucide-react';
 const QUESTIONS = [
   {
     q: "Je suis artisan du bâtiment. C'est fait pour moi ?",
-    a: "Oui, c'est exactement notre cible. Nos agents sont déjà en production chez des artisans du bâtiment (couverture, isolation, rénovation). Ils s'occupent de trouver des chantiers, relancer vos devis et gérer l'administratif pendant que vous êtes sur le terrain.",
+    a: "Oui, c'est exactement notre cible. Notre agent est déjà en production chez des artisans du bâtiment (couverture, isolation, rénovation). Ils s'occupent de trouver des chantiers, relancer vos devis et gérer l'administratif pendant que vous êtes sur le terrain.",
   },
   {
     q: "Je suis une PME/ETI, quelle est la différence avec le palier Grands Comptes ?",
-    a: "Les 6 agents à l'unité sont pensés pour les artisans et TPE. Le palier Grands Comptes (offre sur-mesure, tarif sur devis) est un SDR IA pour les PME/ETI qui veulent ouvrir de gros comptes (promoteurs, gestionnaires de parcs, majors). Entraîné sur votre vocabulaire technique et vos objections, il cible les décideurs précis et passe le relais à vos commerciaux dès qu'un prospect est chaud.",
+    a: "L'Agent Chasseur, le site et l'acquisition Meta sont pensés pour les artisans et TPE. Le palier Grands Comptes (offre sur-mesure, tarif sur devis) est un SDR IA pour les PME/ETI qui veulent ouvrir de gros comptes (promoteurs, gestionnaires de parcs, majors). Entraîné sur votre vocabulaire technique et vos objections, il cible les décideurs précis et passe le relais à vos commerciaux dès qu'un prospect est chaud.",
   },
   {
     q: "Concrètement, un agent IA pour mon activité, ça fait quoi ?",
@@ -26,7 +26,7 @@ const QUESTIONS = [
   },
   {
     q: "Mes données et celles de mes clients sont-elles protégées ?",
-    a: "Oui. Les agents tournent sur une infrastructure dédiée, pas sur un SaaS générique, et les données d'un client ne sont jamais mutualisées avec celles d'un autre. Un accord de traitement des données (DPA) conforme à l'article 28 du RGPD est annexé au contrat et signé systématiquement : ce n'est pas une option, c'est une obligation dès lors qu'on traite des données pour votre compte.",
+    a: "Oui. L'agent tourne sur une infrastructure dédiée, pas sur un SaaS générique, et les données d'un client ne sont jamais mutualisées avec celles d'un autre. Un accord de traitement des données (DPA) conforme à l'article 28 du RGPD est annexé au contrat et signé systématiquement : ce n'est pas une option, c'est une obligation dès lors qu'on traite des données pour votre compte.",
   },
   {
     q: "Est-ce que les gens savent qu'ils parlent à une IA ?",
@@ -34,7 +34,7 @@ const QUESTIONS = [
   },
   {
     q: "Pourquoi 48h et pas plusieurs semaines ?",
-    a: "Parce qu'on part d'une bibliothèque d'agents déjà éprouvés. Le travail n'est pas de repartir de zéro, mais d'adapter une base solide à votre métier : votre zone, vos clients, vos partenaires. Audit le 1er jour, conception et entraînement le 2e, mise en production le 3e.",
+    a: "Parce qu'on part d'un agent déjà éprouvé chez d'autres entreprises. Le travail n'est pas de repartir de zéro, mais d'adapter une base solide à votre métier : votre zone, vos clients, vos partenaires. Audit le 1er jour, conception et entraînement le 2e, mise en production le 3e.",
   },
   {
     q: "Et si ça ne me convient pas ?",

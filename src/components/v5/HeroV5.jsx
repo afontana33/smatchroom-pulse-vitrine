@@ -97,18 +97,15 @@ export default function HeroV5() {
           className="mb-7 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.06] px-4 py-1.5 font-mono text-[0.68rem] uppercase tracking-[0.2em] text-[#ffb27a] backdrop-blur-md"
         >
           <Zap size={13} className="fill-[#ffb27a]" />
-          L&apos;ingénierie d&apos;acquisition B2B
+          Digitalisation des entreprises
         </motion.span>
 
         <h1 className="text-balance text-[2.6rem] font-semibold leading-[1.02] tracking-tight text-white sm:text-6xl lg:text-[4.7rem]">
           <SplitConverge
             parts={[
-              { text: 'L’Intelligence Artificielle ', from: 'left' },
-              { text: 'qui prospecte, ', from: 'right' },
-              { text: 'relance', from: 'up', className: 'gradient-text-ink' },
-              { text: ' et ', from: 'up' },
-              { text: 'vend', from: 'up', className: 'gradient-text-ink' },
-              { text: ' à votre place.', from: 'left' },
+              { text: 'On digitalise ', from: 'left' },
+              { text: 'votre entreprise ', from: 'right' },
+              { text: 'de bout en bout.', from: 'up', className: 'gradient-text-ink' },
             ]}
           />
         </h1>
@@ -119,11 +116,12 @@ export default function HeroV5() {
           transition={{ duration: 0.9, delay: 0.55, ease: [0.16, 1, 0.3, 1] }}
           className="mx-auto mt-7 max-w-2xl text-balance text-base leading-relaxed text-[var(--on-ink-muted)] sm:text-lg"
         >
-          Artisans, prestataires de services ou entreprises B2B : arrêtez de perdre votre temps à
-          chercher des clients. SmatchRoom conçoit, entraîne et déploie vos{' '}
-          <span className="font-semibold text-white">collaborateurs numériques autonomes</span>. Ils
-          travaillent <span className="font-mono text-[#ffb27a]">24h/24</span> pour sédentariser
-          votre chiffre d&apos;affaires.
+          Trois briques pour rendre votre entreprise visible et joignable : un{' '}
+          <span className="font-semibold text-white">agent IA</span> qui prospecte et répond à votre
+          place, un <span className="font-semibold text-white">site et une fiche établissement</span>{' '}
+          qui vous font exister sur Google, et l&apos;
+          <span className="font-semibold text-white">acquisition Meta</span> qui vous amène des
+          clients particuliers.
         </motion.p>
 
         <motion.div
@@ -133,10 +131,10 @@ export default function HeroV5() {
           className="mt-10 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center sm:justify-center"
         >
           <a
-            href="#agents"
+            href="#piliers"
             className="btn-primary group inline-flex items-center justify-center gap-2.5 px-7 py-4 text-[0.95rem] font-semibold"
           >
-            Découvrir nos agents
+            Voir les trois briques
             <ArrowRight size={17} className="transition-transform group-hover:translate-x-1" />
           </a>
           <a

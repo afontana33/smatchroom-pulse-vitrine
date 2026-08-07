@@ -5,11 +5,11 @@ import Footer from '@/components/Footer';
 export const metadata = {
   title: 'Pulse pour les artisans du bâtiment — SmatchRoom Pulse',
   description:
-    "Un agent IA qui démarche vos apporteurs d'affaires (notaires, syndics, maîtres d'œuvre, architectes) pendant que vous êtes sur vos chantiers. À partir de 500 € + 150 €/mois.",
+    "Un agent IA qui démarche vos apporteurs d'affaires (notaires, syndics, maîtres d'œuvre, architectes) pendant que vous êtes sur vos chantiers. 300 € HT de création puis 190 € HT/mois, sans engagement.",
   openGraph: {
     title: 'Pulse pour les artisans du bâtiment',
     description:
-      "L'agent IA qui prospecte vos apporteurs d'affaires et remplit votre agenda. Opérationnel sous 48h. À partir de 500 € + 150 €/mois.",
+      "L'agent IA qui prospecte vos apporteurs d'affaires et remplit votre agenda. Opérationnel sous 48h. 300 € HT de création puis 190 € HT/mois, sans engagement.",
   },
 };
 
@@ -18,21 +18,21 @@ const CALENDLY = 'https://calendly.com/a-fontana-smatchroom/30min';
 const BENEFITS = [
   {
     icon: HardHat,
-    nickname: 'Le Chasseur',
+    nickname: 'Brique 1 · Agent IA',
     title: "L'Agent de Prospection B2B (Votre commercial virtuel)",
     desc: "L'agent Pulse scanne votre région, identifie les meilleurs apporteurs d'affaires (notaires, régies de copropriété, maîtres d'œuvre, architectes, constructeurs) et engage la conversation directement par mail ou WhatsApp avec votre numéro. Il qualifie l'intérêt et vous transfère le contact chaud. Vous n'avez plus qu'à signer le partenariat.",
   },
   {
     icon: Mail,
-    nickname: 'Le Gestionnaire',
+    nickname: 'Brique 1 · Agent IA',
     title: 'Une réactivité commerciale maximale (Zéro lead perdu)',
     desc: "Un client ou un partenaire vous contacte pour un devis ? L'agent interne traite les messages entrants en moins d'une heure, répond aux questions basiques et met à jour votre agenda. Vos clients obtiennent une réponse immédiate, même quand vous êtes sur une échelle ou en rendez-vous.",
   },
   {
     icon: MapPin,
-    nickname: 'Le Visiteur',
-    title: 'Un ancrage local puissant sur Google (SEO)',
-    desc: "L'agent optimise votre présence locale pour que votre entreprise ressorte en premier dans votre ville lorsque les professionnels ou les particuliers cherchent votre corps de métier en urgence.",
+    nickname: 'Brique 2 · Site & fiche Google',
+    title: 'Un ancrage local puissant sur Google',
+    desc: "On crée votre site et votre fiche établissement Google, puis on les tient à jour : photos de chantier, horaires, zone d'intervention, réponses aux avis. C'est ce qui vous fait ressortir dans votre ville quand un professionnel ou un particulier cherche votre corps de métier en urgence.",
   },
 ];
 
@@ -65,9 +65,9 @@ export default function CommercesPage() {
           </p>
           <div className="mt-8 flex flex-col items-center gap-3">
             <div className="text-xl font-semibold text-[var(--foreground)]">
-              À partir de <span className="text-[var(--primary-ink)]">500 €</span> d'installation{' '}
+              <span className="text-[var(--primary-ink)]">300 €</span> de création{' '}
               <span className="text-[var(--muted)]">+</span>{' '}
-              <span className="text-[var(--primary-ink)]">150 €/mois</span>
+              <span className="text-[var(--primary-ink)]">190 €/mois</span>
             </div>
             <a
               href={CALENDLY}
@@ -160,25 +160,24 @@ export default function CommercesPage() {
             <div className="card p-8 md:p-10">
               <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-end sm:gap-8">
                 <div>
-                  <p className="text-sm text-[var(--muted)]">Installation</p>
-                  <p className="text-4xl font-semibold text-[var(--foreground)]">500 € HT<span className="text-lg font-normal text-[var(--muted)]"> / par agent</span></p>
+                  <p className="text-sm text-[var(--muted)]">Frais de création (setup)</p>
+                  <p className="text-4xl font-semibold text-[var(--foreground)]">300 € HT</p>
                   <p className="text-xs text-[var(--muted)]">une seule fois</p>
                 </div>
                 <div className="hidden text-3xl text-[var(--border-strong)] sm:block">+</div>
                 <div>
                   <p className="text-sm text-[var(--muted)]">Abonnement mensuel</p>
-                  <p className="text-4xl font-semibold text-[var(--foreground)]">150 €<span className="text-lg font-normal text-[var(--muted)]">/mois HT / par agent</span></p>
+                  <p className="text-4xl font-semibold text-[var(--foreground)]">190 €<span className="text-lg font-normal text-[var(--muted)]">/mois HT</span></p>
                   <p className="text-xs text-[var(--muted)]">sans engagement</p>
                 </div>
               </div>
               <ul className="mb-8 space-y-3">
                 {[
-                  'Agent conçu sur-mesure pour votre corps de métier',
+                  'Agent Chasseur entraîné sur votre corps de métier et votre zone',
                   'Opérationnel sous 48h après le premier appel',
                   'Tableau de bord simple pour suivre ce qu\'il fait',
                   'Support disponible si vous avez une question',
                   'Vous pouvez arrêter quand vous voulez',
-                  'Vous choisissez l\'agent prioritaire pour votre activité (possibilité de cumuler plusieurs agents ensuite)',
                 ].map((f) => (
                   <li key={f} className="flex items-center gap-3 text-sm text-[var(--muted-strong)]">
                     <Check size={15} className="flex-shrink-0 text-[var(--primary-ink)]" strokeWidth={2.5} />
@@ -188,7 +187,7 @@ export default function CommercesPage() {
               </ul>
               <div className="mb-8 rounded-xl border border-[var(--border-strong)] bg-[var(--surface-2)] p-5">
                 <p className="text-sm text-[var(--muted-strong)]">
-                  Sur une année complète, le déploiement de votre premier agent Pulse vous coûte <span className="font-medium text-[var(--foreground)]">2 300 € HT</span>. Un seul chantier moyen décroché grâce à un partenaire (rénovation, électricité, menuiserie, peinture, plomberie) oscille entre <span className="font-medium text-[var(--foreground)]">3 000 € et 15 000 €</span>. Il suffit d'un seul contrat ou de quelques rendez-vous générés par l'IA dans l'année pour que l'agent soit 100 % rentabilisé. Tout le reste, c'est du bénéfice pur pour votre entreprise.
+                  Sur une année complète, le déploiement de votre Agent Chasseur vous coûte <span className="font-medium text-[var(--foreground)]">2 580 € HT</span>. Un seul chantier moyen décroché grâce à un partenaire (rénovation, électricité, menuiserie, peinture, plomberie) oscille entre <span className="font-medium text-[var(--foreground)]">3 000 € et 15 000 €</span>. Il suffit d'un seul contrat ou de quelques rendez-vous générés par l'IA dans l'année pour que l'agent soit 100 % rentabilisé. Tout le reste, c'est du bénéfice pur pour votre entreprise.
                 </p>
               </div>
               <p className="text-xs text-[var(--muted)]">
