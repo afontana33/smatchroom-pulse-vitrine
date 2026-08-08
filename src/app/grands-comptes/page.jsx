@@ -94,7 +94,7 @@ export default function GrandsComptesPage() {
 
         <div className="mx-auto max-w-4xl text-center">
           <span className="premium-badge inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 font-mono text-[0.62rem] uppercase tracking-[0.18em]">
-            <Crosshair size={13} /> 👔 Division Corporate &amp; Grands Comptes
+            <Crosshair size={13} /> Division Corporate &amp; Grands Comptes
           </span>
           <h1 className="mx-auto mt-6 max-w-3xl text-balance text-[2.3rem] font-semibold leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl">
             <span className="steel-grad">L&apos;Ingénierie d&apos;Acquisition B2B</span> pour les marchés de niche et{' '}
@@ -196,7 +196,6 @@ export default function GrandsComptesPage() {
             {STEPS.map(({ n, icon: Icon, title, sub, text }, i) => (
               <Reveal key={n} delay={i * 90}>
                 <div className="card grain relative flex h-full flex-col overflow-hidden p-6 sm:p-7">
-                  <span className="absolute right-5 top-4 font-display text-4xl font-semibold text-[var(--steel-soft)]">{n}</span>
                   <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-[var(--steel-soft)] text-[var(--steel)] ring-1 ring-[var(--steel-line)]">
                     <Icon size={22} strokeWidth={1.8} />
                   </div>

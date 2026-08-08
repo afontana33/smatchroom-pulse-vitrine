@@ -16,7 +16,6 @@ import { DepthLayer, Rise, TiltCard, useLightMode } from './motion';
 const CALENDLY = 'https://calendly.com/a-fontana-smatchroom/30min';
 
 const CHASSEUR = {
-  emoji: '🤖',
   icon: Crosshair,
   tag: 'Notre agent',
   role: 'Prospection et réponse aux demandes, en pilote automatique.',
@@ -93,9 +92,6 @@ export default function AgentFleet() {
                   <div className="mt-6 flex items-center gap-3">
                     <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-[var(--primary-soft)] text-[var(--primary-ink)] ring-1 ring-[var(--primary-line)] transition-transform duration-500 group-hover:scale-110">
                       <CHASSEUR.icon size={21} strokeWidth={1.8} />
-                    </span>
-                    <span className="text-2xl" aria-hidden>
-                      {CHASSEUR.emoji}
                     </span>
                   </div>
 

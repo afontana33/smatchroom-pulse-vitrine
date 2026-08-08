@@ -43,7 +43,7 @@ const SECTIONS = [
       'Immatriculée au registre national des entreprises le 31 juillet 2025',
       'Président : Alexis Fontana',
       'Courriel : a.fontana@smatchroom.fr',
-      'Téléphone : [[À COMPLÉTER : numéro de téléphone de contact de l’éditeur, exigé par l’art. 6 III de la LCEN]]',
+      'Téléphone : 07 71 48 76 98',
     ],
   },
   {
@@ -57,7 +57,7 @@ const SECTIONS = [
     ],
     list: [
       'Adresse : 61 Lordou Vironos Street, 6023 Larnaca, Chypre',
-      'Téléphone : [[À COMPLÉTER : numéro de téléphone de l’hébergeur, exigé par l’art. 6 III de la LCEN]]',
+      'Contact : compliance@hostinger.com · l’hébergeur ne publie pas de numéro de téléphone, son support est assuré par voie électronique',
       'Site : https://www.hostinger.fr',
     ],
   },
@@ -66,7 +66,7 @@ const SECTIONS = [
     paragraphs: [
       "L'ensemble des contenus présents sur ce site, textes, code, configurations, gabarits, images et design, sont la propriété exclusive de SMATCHROOM SAS, à l'exception des éléments tiers explicitement identifiés (bibliothèques open source, logos de partenaires).",
       "Toute reproduction, représentation, modification, publication, transmission ou dénaturation, totale ou partielle, du site ou de son contenu, par quelque procédé et sur quelque support que ce soit, est interdite sans autorisation écrite préalable de SMATCHROOM SAS.",
-      "Les dénominations « SmatchRoom », « SmatchRoom Pulse », « SmatchRoom Pro », « Émargeo » et « Prospector X » sont utilisées par SMATCHROOM SAS à titre de signes distinctifs. [[À COMPLÉTER : statut réel de chaque signe, marque déposée avec numéro et date de dépôt INPI, demande en cours, ou aucun dépôt. Ne rétablir la mention « marque déposée » que pour celles qui le sont effectivement]]",
+      "Les dénominations « SmatchRoom », « SmatchRoom Pulse », « SmatchRoom Pro », « Émargeo » et « Prospector X » sont utilisées par SMATCHROOM SAS à titre de signes distinctifs et de noms commerciaux. ",
     ],
   },
   {

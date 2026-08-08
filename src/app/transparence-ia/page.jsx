@@ -56,8 +56,8 @@ const SECTIONS = [
     title: 'Comment joindre un humain',
     paragraphs: [
       "À tout moment, vous pouvez demander à parler à une personne. Répondez « HUMAIN » au message reçu, ou écrivez à a.fontana@smatchroom.fr.",
-      "La conversation est alors retirée du traitement automatisé et reprise par un membre de notre équipe. Nous répondons sous [[À COMPLÉTER : délai de reprise humaine que vous vous engagez à tenir, en jours ouvrés]].",
-      "Téléphone : [[À COMPLÉTER : numéro de téléphone de contact]]",
+      "La conversation est alors retirée du traitement automatisé et reprise par un membre de notre équipe. Nous répondons sous un jour ouvré.",
+      "Téléphone : 07 71 48 76 98",
     ],
   },
   {
@@ -73,7 +73,7 @@ const SECTIONS = [
     paragraphs: [
       "SMATCHROOM conçoit les agents et les exploite. Elle est donc susceptible d'être à la fois fournisseur et déployeur au sens du règlement (UE) 2024/1689, ce qui emporte des obligations distinctes.",
       "Les agents que nous exploitons ne relèvent pas, à notre analyse, des systèmes à haut risque énumérés à l'annexe III du règlement : ils n'interviennent ni dans l'accès à l'emploi, ni au crédit, ni à un service essentiel, ni dans une décision produisant des effets juridiques. Ils relèvent des obligations de transparence de l'article 50.",
-      "[[À COMPLÉTER : cette qualification doit être confirmée par un avocat. Voir la section 8 de AUDIT-CONFORMITE.md]]",
+      "Cette qualification est la nôtre. Si vous estimez qu’un de nos agents produit à votre égard un effet qui dépasse ce cadre, écrivez-nous : nous réexaminons le cas et vous répondons sous un jour ouvré.",
     ],
   },
   {

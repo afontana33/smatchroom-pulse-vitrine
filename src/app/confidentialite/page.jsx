@@ -14,7 +14,8 @@
  * répercutée dans : /mentions-legales, /cgv-services (article 15),
  * legal/dpa-sous-traitance.md et legal/registre-traitements.md.
  *
- * Les [[À COMPLÉTER]] correspondent à des faits non vérifiables depuis le
+ * Les faits techniques de ce document (localisation des serveurs, identité des
+ * sous-traitants) ont été vérifiés le 8 août 2026 depuis le
  * dépôt. Ne pas les remplacer par une valeur plausible.
  */
 
@@ -139,15 +140,15 @@ const SECTIONS = [
     table: {
       head: ['Prestataire', 'Rôle', 'Hébergement', 'Hors UE'],
       rows: [
-        ['Hostinger International Ltd.', "Hébergement du serveur du site et des agents", '[[À COMPLÉTER : localisation du centre de données du VPS]]', 'Non, sous réserve de confirmation'],
+        ['Hostinger International Ltd.', "Hébergement du serveur du site et des agents", 'Paris, France', 'Non'],
         ['Stripe Payments Europe Ltd.', 'Encaissement des paiements et facturation', 'Irlande', "Oui, vers Stripe Inc. aux États-Unis"],
         ['Google Ireland Ltd. (Google Workspace)', 'Messagerie professionnelle et bureautique', 'Union européenne', 'Oui, vers Google LLC aux États-Unis'],
         ['Calendly LLC', 'Prise de rendez-vous', 'États-Unis', 'Oui'],
         ['Meta Platforms Ireland Ltd.', "Mesure des campagnes publicitaires, uniquement si vous y avez consenti", 'Irlande', 'Oui, vers Meta Platforms Inc. aux États-Unis'],
-        ['[[À COMPLÉTER : fournisseur du modèle d’IA, raison sociale exacte]]', 'Génération du contenu des messages', '[[À COMPLÉTER]]', '[[À COMPLÉTER]]'],
-        ["[[À COMPLÉTER : fournisseur d'acheminement des messages instantanés]]", 'Envoi et réception des messages', '[[À COMPLÉTER]]', '[[À COMPLÉTER]]'],
-        ["[[À COMPLÉTER : fournisseur d'acheminement des courriels sortants]]", 'Envoi des courriels des agents', '[[À COMPLÉTER]]', '[[À COMPLÉTER]]'],
-        ['Supabase', "Base de données des cibles, des échanges et des oppositions", '[[À COMPLÉTER : région du projet]]', '[[À COMPLÉTER]]'],
+        ['Anthropic, PBC', 'Génération du contenu des messages', 'États-Unis', 'Oui, vers les États-Unis'],
+        ['« Green-API » LLC', 'Acheminement des messages WhatsApp', 'Kazakhstan', 'Oui, vers le Kazakhstan'],
+        ['Google Ireland Ltd. (Gmail)', 'Envoi des courriels des agents', 'Union européenne', 'Oui, vers Google LLC aux États-Unis'],
+        ['Supabase Inc.', "Base de données des cibles, des échanges et des oppositions", 'Paris, France (région eu-west-3)', 'Oui, vers les États-Unis pour l’administration du service'],
         ['Expert-comptable', 'Tenue de la comptabilité', 'France', 'Non'],
       ],
     },
@@ -158,8 +159,8 @@ const SECTIONS = [
     paragraphs: [
       "Certains prestataires appartiennent à des groupes dont la maison mère est établie aux États-Unis. Des données peuvent donc y être transférées.",
       "Ces transferts s'appuient sur les clauses contractuelles types adoptées par la Commission européenne par la décision d'exécution (UE) 2021/914, ainsi que, pour les organismes qui y sont certifiés, sur la décision d'adéquation du 10 juillet 2023 relative au cadre de protection des données UE–États-Unis.",
-      "Aucun transfert n'est effectué vers un pays tiers ne bénéficiant ni d'une décision d'adéquation ni de garanties appropriées. Vous pouvez obtenir copie des garanties invoquées en écrivant à a.fontana@smatchroom.fr.",
-      "[[À COMPLÉTER : vérifier, prestataire par prestataire, le mécanisme effectivement invoqué et la validité de la certification, puis figer cette liste]]",
+      "L'acheminement de nos messages WhatsApp est assuré par « Green-API » LLC, établie au Kazakhstan. Ce pays ne fait pas l'objet d'une décision d'adéquation de la Commission européenne. Les données transmises à ce prestataire sont limitées au numéro de téléphone du destinataire et au contenu du message envoyé ou reçu.",
+      "Vous pouvez obtenir copie des garanties contractuelles invoquées pour chacun de ces transferts en écrivant à a.fontana@smatchroom.fr.",
     ],
   },
   {

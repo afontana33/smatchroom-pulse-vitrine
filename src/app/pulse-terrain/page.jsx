@@ -310,9 +310,6 @@ export default function PulseTerrainPage() {
                     featured ? 'ring-2 ring-[var(--primary)]' : 'card-hover',
                   ].join(' ')}
                 >
-                  <span className="absolute right-6 top-5 font-display text-4xl font-semibold text-[var(--primary-soft)]">
-                    {n}
-                  </span>
                   <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-[var(--primary-soft)] text-[var(--primary-ink)] ring-1 ring-[var(--primary-line)]">
                     <Icon size={22} strokeWidth={1.8} />
                   </div>

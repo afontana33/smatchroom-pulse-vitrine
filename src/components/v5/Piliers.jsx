@@ -15,7 +15,6 @@ import { DepthLayer, Rise, TiltCard, useLightMode } from './motion';
 const PILIERS = [
   {
     key: 'agent',
-    n: '01',
     icon: Bot,
     label: 'Agent IA',
     title: 'L’Agent Chasseur',
@@ -26,7 +25,6 @@ const PILIERS = [
   },
   {
     key: 'site',
-    n: '02',
     icon: Globe,
     label: 'Site & fiche établissement',
     title: 'Exister sur Google',
@@ -37,7 +35,6 @@ const PILIERS = [
   },
   {
     key: 'meta',
-    n: '03',
     icon: Clapperboard,
     label: 'Acquisition Meta',
     title: 'Pulse Terrain',
@@ -82,7 +79,7 @@ export default function Piliers() {
         </Rise>
 
         <div className="grid gap-6 lg:grid-cols-3">
-          {PILIERS.map(({ key, n, icon: Icon, label, title, text, href, cta }, i) => (
+          {PILIERS.map(({ key, icon: Icon, label, title, text, href, cta }, i) => (
             <motion.div
               key={key}
               initial={light ? { opacity: 0 } : { opacity: 0, y: 60 }}
@@ -92,9 +89,6 @@ export default function Piliers() {
             >
               <TiltCard className="h-full">
                 <article className="card card-hover grain group relative flex h-full flex-col overflow-hidden p-7 sm:p-8">
-                  <span className="absolute right-6 top-5 font-display text-4xl font-semibold text-[var(--primary-soft)]">
-                    {n}
-                  </span>
                   <div className="mb-6 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-[var(--primary-soft)] text-[var(--primary-ink)] ring-1 ring-[var(--primary-line)] transition-transform duration-500 group-hover:scale-110">
                     <Icon size={21} strokeWidth={1.8} />
                   </div>

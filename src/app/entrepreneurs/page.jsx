@@ -108,9 +108,6 @@ export default function CommercesPage() {
                     <div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-[var(--primary-soft)] text-[var(--primary-ink)] ring-1 ring-[var(--primary-line)]">
                       <Icon size={22} strokeWidth={1.8} />
                     </div>
-                    <span className="font-mono text-xs uppercase tracking-[0.18em] text-[var(--muted)]">
-                      Agent {String(i + 1).padStart(2, '0')}
-                    </span>
                   </div>
                   <p className="font-mono text-xs uppercase tracking-[0.18em] text-[var(--primary-ink)]">
                     {nickname}

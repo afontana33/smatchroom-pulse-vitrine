@@ -19,7 +19,6 @@ const PLANS = [
   {
     key: 'liberte',
     icon: Unlock,
-    emoji: '👉',
     name: 'Liberté',
     badge: 'Sans engagement',
     pitch: 'Idéal pour tester la puissance de l’IA en toute flexibilité.',
@@ -37,7 +36,6 @@ const PLANS = [
   {
     key: 'partenaire',
     icon: Sparkles,
-    emoji: '⭐',
     name: 'Partenaire',
     badge: 'Le choix n°1',
     pitch: 'Idéal pour s’implanter durablement sur votre secteur et lisser votre budget.',
@@ -55,7 +53,6 @@ const PLANS = [
   {
     key: 'corporate',
     icon: Building2,
-    emoji: '🏢',
     name: 'Ingénierie Corporate',
     badge: 'PME & Grands Comptes',
     pitch: 'L’infrastructure sur-mesure pour les marchés de niche et les forts volumes.',
@@ -103,7 +100,7 @@ export default function PricingV5() {
         </Rise>
 
         <div className="grid gap-6 lg:grid-cols-3 lg:items-center">
-          {PLANS.map(({ key, icon: Icon, emoji, name, badge, pitch, setup, mrr, total, features, cta, featured }, i) => (
+          {PLANS.map(({ key, icon: Icon, name, badge, pitch, setup, mrr, total, features, cta, featured }, i) => (
             <motion.div
               key={key}
               initial={light ? { opacity: 0 } : { opacity: 0, y: 60 }}
@@ -143,9 +140,6 @@ export default function PricingV5() {
                       ].join(' ')}
                     >
                       <Icon size={19} strokeWidth={1.8} />
-                    </span>
-                    <span className="text-xl" aria-hidden>
-                      {emoji}
                     </span>
                   </div>
 

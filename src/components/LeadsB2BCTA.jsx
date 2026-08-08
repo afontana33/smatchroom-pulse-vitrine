@@ -5,7 +5,7 @@ export default function LeadsB2BCTA() {
         <div className="flex flex-col items-start gap-8 p-8 sm:p-12 lg:flex-row lg:items-center lg:justify-between">
           <div className="max-w-2xl">
             <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-[var(--border-strong)] bg-[var(--background)] px-4 py-1.5 font-mono text-xs uppercase tracking-[0.16em] text-[var(--primary-ink)]">
-              🏗️ SmatchRoom Leads B2B
+              SmatchRoom Leads B2B
             </div>
             <h2 className="text-3xl font-bold leading-tight tracking-tight text-[var(--foreground)] sm:text-4xl">
               Vous cherchez des chantiers gros œuvre&nbsp;?

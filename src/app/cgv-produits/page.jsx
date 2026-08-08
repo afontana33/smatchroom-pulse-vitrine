@@ -45,7 +45,7 @@ const ARTICLES = [
       'Siège social : 5 rue Fénelon, 33000 Bordeaux, France',
       'RCS Bordeaux 989 883 509 · TVA intracommunautaire FR01 989 883 509',
       'Courriel : a.fontana@smatchroom.fr',
-      'Téléphone : [[À COMPLÉTER : numéro de téléphone de contact de l’éditeur]]',
+      'Téléphone : 07 71 48 76 98',
     ],
   },
   {

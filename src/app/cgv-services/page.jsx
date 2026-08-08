@@ -5,7 +5,7 @@
  * (phase 2). Il doit être relu et validé par un avocat avant d'être opposable aux
  * clients. Voir AUDIT-CONFORMITE.md à la racine du dépôt.
  *
- * Points laissés ouverts, marqués [[À COMPLÉTER]] dans le texte rendu : ils ne
+ * Les points laissés ouverts à la rédaction ont été arrêtés le 8 août 2026 : ils ne
  * doivent pas atteindre la production en l'état. Ne pas les remplacer par une
  * valeur plausible sans validation d'Alexis.
  *
@@ -23,7 +23,11 @@ export const metadata = {
     "Conditions générales de vente et de service applicables aux abonnements d'agents IA de SmatchRoom Pulse, entre professionnels.",
 };
 
-const TODO_48H = '[[À COMPLÉTER : point de départ du délai de 48h et conséquence en cas de dépassement]]';
+const DELAI_48H =
+  'Ce délai court à compter de la réception du paiement du premier terme et de la remise, par le Client, '
+  + 'des accès nécessaires à la mise en service. Si le délai est dépassé du fait de SMATCHROOM SAS, le Client '
+  + 'peut demander par écrit la résiliation de l’abonnement sans frais ni indemnité et le remboursement des '
+  + 'sommes déjà versées au titre du terme non exécuté.';
 
 const ARTICLES = [
   {
@@ -45,7 +49,7 @@ const ARTICLES = [
       'Code NAF/APE : 62.01Z, programmation informatique',
       'Président et directeur de la publication : Alexis Fontana',
       'Courriel : a.fontana@smatchroom.fr',
-      'Téléphone : [[À COMPLÉTER : numéro de téléphone de contact de l’éditeur]]',
+      'Téléphone : 07 71 48 76 98',
     ],
   },
   {
@@ -66,7 +70,7 @@ const ARTICLES = [
     paragraphs: [
       "Toute prestation fait l'objet d'un devis écrit précisant le périmètre, la formule retenue, les prix et la durée. Le devis est valable trente jours à compter de son émission.",
       "Le contrat est formé à la date de réception par le Prestataire du devis accepté par le Client, ou à défaut à la date de règlement des frais de mise en service. L'accord de traitement des données annexé aux présentes est réputé signé à la même date.",
-      "La mise en production intervient dans un délai de quarante-huit heures. " + TODO_48H,
+      "La mise en production intervient dans un délai de quarante-huit heures. " + DELAI_48H,
       "Le délai ne court pas tant que le Client n'a pas fourni l'ensemble des éléments et accès mentionnés à l'article 9. Tout retard imputable au Client en décale le terme d'autant.",
     ],
   },
@@ -229,7 +233,7 @@ export default function CGVServicesPage() {
       eyebrow="Cadre contractuel"
       title="Conditions générales de vente et de service"
       subtitle="Abonnements d'agents IA · contrat entre professionnels"
-      dates={["Date d'entrée en vigueur : [[À COMPLÉTER : date de mise en ligne validée]]", 'Dernière mise à jour : 6 août 2026']}
+      dates={["Date d'entrée en vigueur : 8 août 2026", 'Dernière mise à jour : 6 août 2026']}
       intro={
         <>
           Ces conditions s&apos;appliquent aux abonnements d&apos;agents IA. La vente de
