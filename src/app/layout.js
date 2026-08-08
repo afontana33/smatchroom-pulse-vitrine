@@ -66,7 +66,6 @@ export default function RootLayout({ children }) {
           rel="noopener"
           className="fixed inset-x-0 top-0 z-[60] flex h-10 items-center justify-center gap-1.5 bg-orange-600 px-4 text-center text-xs font-semibold text-white hover:bg-orange-500 transition-colors sm:text-sm"
         >
-          <span aria-hidden>🏗️</span>
           <span>Vous cherchez des <span className="underline underline-offset-2">leads B2B</span> · marchés publics bâtiment France &amp; Luxembourg&nbsp;?</span>
           <span className="whitespace-nowrap font-bold">Cliquez ici →</span>
         </a>

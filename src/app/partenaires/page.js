@@ -10,10 +10,10 @@ const secteurs = [
 ];
 
 const avantages = [
-  { icon: "🏷️", title: "Marque blanche totale", desc: "Notre technologie, votre nom. Vos clients ne voient que votre agence." },
-  { icon: "💰", title: "Nouvelle ligne de revenus", desc: "Proposez une offre IA sans recruter ni former. On s'occupe de tout." },
-  { icon: "⚙️", title: "Zéro technique pour vous", desc: "On déploie, on maintient, on fait évoluer. Vous vendez et on livre." },
-  { icon: "📊", title: "Dashboard partenaire", desc: "Suivez l'activité de vos clients en temps réel depuis un seul endroit." },
+  { icon: "", title: "Marque blanche totale", desc: "Notre technologie, votre nom. Vos clients ne voient que votre agence." },
+  { icon: "", title: "Nouvelle ligne de revenus", desc: "Proposez une offre IA sans recruter ni former. On s'occupe de tout." },
+  { icon: "", title: "Zéro technique pour vous", desc: "On déploie, on maintient, on fait évoluer. Vous vendez et on livre." },
+  { icon: "", title: "Dashboard partenaire", desc: "Suivez l'activité de vos clients en temps réel depuis un seul endroit." },
 ];
 
 const etapes = [
@@ -35,18 +35,14 @@ export default function PartenairesPage() {
         </div>
 
         <div className="max-w-4xl mx-auto text-center">
-          <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="chip inline-flex items-center gap-2 px-3.5 py-1.5 font-mono text-[0.62rem] uppercase tracking-[0.18em] mb-8">
-            🚀 Partenaires & Agences
+          <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="chip inline-flex items-center gap-2 px-3.5 py-1.5 font-mono text-[0.62rem] uppercase tracking-[0.18em] mb-8"> Partenaires & Agences
           </motion.span>
-          <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="text-balance text-[2.3rem] sm:text-5xl md:text-6xl font-semibold mb-6 leading-[1.05] tracking-tight">
-            Vous gérez des clients.<br />
+          <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="text-balance text-[2.3rem] sm:text-5xl md:text-6xl font-semibold mb-6 leading-[1.05] tracking-tight"> Vous gérez des clients.<br />
             <span className="gradient-text">Proposez-leur l&#39;IA.</span>
           </motion.h1>
-          <motion.p initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }} className="text-balance text-base sm:text-xl text-[var(--muted-strong)] mb-10 max-w-2xl mx-auto">
-            Intégrez notre infrastructure IA en marque blanche et ajoutez une nouvelle offre à votre catalogue — sans recruter, sans former, sans risque technique.
+          <motion.p initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }} className="text-balance text-base sm:text-xl text-[var(--muted-strong)] mb-10 max-w-2xl mx-auto"> Intégrez notre infrastructure IA en marque blanche et ajoutez une nouvelle offre à votre catalogue — sans recruter, sans former, sans risque technique.
           </motion.p>
-          <motion.a initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4 }} href="https://calendly.com/a-fontana-smatchroom/30min" target="_blank" rel="noopener noreferrer" className="btn-primary inline-flex items-center justify-center gap-2 px-8 py-4 text-base sm:text-lg font-semibold">
-            Discuter du partenariat →
+          <motion.a initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4 }} href="https://calendly.com/a-fontana-smatchroom/30min" target="_blank" rel="noopener noreferrer" className="btn-primary inline-flex items-center justify-center gap-2 px-8 py-4 text-base sm:text-lg font-semibold"> Discuter du partenariat →
           </motion.a>
         </div>
       </section>
@@ -108,8 +104,7 @@ export default function PartenairesPage() {
           <div className="relative">
             <h2 className="text-balance text-2xl sm:text-3xl font-semibold tracking-tight mb-4">Parlons de votre agence</h2>
             <p className="text-[var(--muted-strong)] mb-8">Tarification sur devis selon votre volume clients. Partenariat exclusif par zone géographique possible.</p>
-            <a href="https://calendly.com/a-fontana-smatchroom/30min" target="_blank" rel="noopener noreferrer" className="btn-primary inline-flex items-center justify-center gap-2 px-8 py-4 text-base sm:text-lg font-semibold">
-              Demander un devis partenaire →
+            <a href="https://calendly.com/a-fontana-smatchroom/30min" target="_blank" rel="noopener noreferrer" className="btn-primary inline-flex items-center justify-center gap-2 px-8 py-4 text-base sm:text-lg font-semibold"> Demander un devis partenaire →
             </a>
             <p className="text-[var(--muted)] text-sm mt-4">Alexis Fontana · SmatchRoom Pulse · Bordeaux</p>
           </div>

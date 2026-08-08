@@ -10,10 +10,10 @@ const secteurs = [
 ];
 
 const capabilities = [
-  { icon: "🎯", title: "Scoring de leads sur signaux faibles", desc: "Notre moteur analyse en continu les signaux d'achat de vos cibles : offres d'emploi, changements de stack, levées de fonds, données légales." },
-  { icon: "🤖", title: "Agents SDR autonomes", desc: "Automatisez la qualification, les relances et le reporting de vos équipes commerciales. Vos SDR se concentrent sur les deals chauds." },
-  { icon: "🔌", title: "Intégration dans votre stack", desc: "Node.js, API REST, Webhooks — on branche notre moteur sur vos outils existants (CRM, Slack, Notion, email) en quelques jours." },
-  { icon: "🛡️", title: "Anti-hallucination validé", desc: "Chaque donnée produite par l'IA inclut un score de confiance et une source cliquable. Zéro donnée inventée." },
+  { icon: "", title: "Scoring de leads sur signaux faibles", desc: "Notre moteur analyse en continu les signaux d'achat de vos cibles : offres d'emploi, changements de stack, levées de fonds, données légales." },
+  { icon: "", title: "Agents SDR autonomes", desc: "Automatisez la qualification, les relances et le reporting de vos équipes commerciales. Vos SDR se concentrent sur les deals chauds." },
+  { icon: "", title: "Intégration dans votre stack", desc: "Node.js, API REST, Webhooks — on branche notre moteur sur vos outils existants (CRM, Slack, Notion, email) en quelques jours." },
+  { icon: "", title: "Anti-hallucination validé", desc: "Chaque donnée produite par l'IA inclut un score de confiance et une source cliquable. Zéro donnée inventée." },
 ];
 
 export default function ScalePage() {
@@ -28,18 +28,14 @@ export default function ScalePage() {
         </div>
 
         <div className="max-w-4xl mx-auto text-center">
-          <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[var(--primary-line)] bg-[var(--primary-soft)] text-[var(--primary-ink)] text-sm mb-8">
-            ⚡ Scale &amp; Tech
+          <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[var(--primary-line)] bg-[var(--primary-soft)] text-[var(--primary-ink)] text-sm mb-8"> Scale &amp; Tech
           </motion.span>
-          <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 leading-tight tracking-tight">
-            Votre stack mérite<br />
+          <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 leading-tight tracking-tight"> Votre stack mérite<br />
             <span className="gradient-text">une vraie infrastructure IA.</span>
           </motion.h1>
-          <motion.p initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }} className="text-lg sm:text-xl text-[var(--muted-strong)] mb-10 max-w-2xl mx-auto">
-            On intervient en build freelance, consulting CTO externe ou partenariat technique pour brancher notre moteur de scoring IA directement dans votre produit.
+          <motion.p initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }} className="text-lg sm:text-xl text-[var(--muted-strong)] mb-10 max-w-2xl mx-auto"> On intervient en build freelance, consulting CTO externe ou partenariat technique pour brancher notre moteur de scoring IA directement dans votre produit.
           </motion.p>
-          <motion.a initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4 }} href="https://calendly.com/a-fontana-smatchroom/30min" target="_blank" rel="noopener noreferrer" className="btn-primary inline-flex items-center justify-center px-8 py-4 text-lg font-semibold">
-            Call technique — 30 min →
+          <motion.a initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4 }} href="https://calendly.com/a-fontana-smatchroom/30min" target="_blank" rel="noopener noreferrer" className="btn-primary inline-flex items-center justify-center px-8 py-4 text-lg font-semibold"> Call technique — 30 min →
           </motion.a>
         </div>
       </section>
@@ -107,8 +103,7 @@ export default function ScalePage() {
           <div aria-hidden className="pointer-events-none absolute -right-16 -top-16 h-64 w-64 rounded-full bg-[radial-gradient(circle,var(--primary-soft),transparent_65%)]" />
           <h2 className="text-3xl font-bold mb-4 tracking-tight text-[var(--foreground)]">Parlons architecture</h2>
           <p className="text-[var(--muted-strong)] mb-8">Un call technique de 30 min pour comprendre votre stack et voir comment notre moteur peut s&#39;y brancher. Tout sur devis, sans engagement.</p>
-          <a href="https://calendly.com/a-fontana-smatchroom/30min" target="_blank" rel="noopener noreferrer" className="btn-primary inline-flex items-center justify-center px-8 py-4 text-lg font-semibold">
-            Réserver le call technique →
+          <a href="https://calendly.com/a-fontana-smatchroom/30min" target="_blank" rel="noopener noreferrer" className="btn-primary inline-flex items-center justify-center px-8 py-4 text-lg font-semibold"> Réserver le call technique →
           </a>
           <p className="text-[var(--muted)] text-sm mt-4">Alexis Fontana · SmatchRoom Pulse · Bordeaux</p>
         </motion.div>
