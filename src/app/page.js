@@ -1,3 +1,6 @@
+import { existsSync } from 'node:fs';
+import { join } from 'node:path';
+
 import Nav from '@/components/Nav';
 import HeroLp from '@/components/lp/HeroLp';
 import Thesis from '@/components/lp/Thesis';
@@ -38,11 +41,27 @@ import Footer from '@/components/Footer';
  * Ce qui reste retiré volontairement : la démo interactive, la section
  * technologie, la timeline 48h et le terminal live.
  */
+/* Médias du hero constatés à la construction et non au navigateur : une source
+   absente coûterait une requête en 404, et un poster absent laisserait une bande
+   vide. Tant que hero.mp4 et hero-poster.jpg ne sont pas déposés dans
+   public/photos, le hero sert la photo actuelle et ne référence aucune vidéo. */
+function heroMedia() {
+  const has = (f) => existsSync(join(process.cwd(), 'public', 'photos', f));
+  const hasPoster = has('hero-poster.jpg');
+  return {
+    poster: hasPoster ? '/photos/hero-poster.jpg' : '/photos/hero-maison.webp',
+    hasVideo: has('hero.mp4'),
+    hasWebm: has('hero.webm'),
+  };
+}
+
 export default function Page() {
+  const hero = heroMedia();
+
   return (
     <main className="flex flex-col">
       <Nav />
-      <HeroLp />
+      <HeroLp {...hero} />
       <Thesis />
       <TeamLp />
       <Piliers />
