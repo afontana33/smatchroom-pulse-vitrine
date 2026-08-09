@@ -25,7 +25,12 @@ const PILIERS = [
     title: 'Il prospecte pendant que vous travaillez',
     photo: '/photos/agent.webp',
     alt: "Chef de chantier en gilet de sécurité, téléphone à la main devant un chantier",
-    text: "Votre agent contacte les entreprises de votre secteur, écrit des messages personnalisés un par un, et répond aux réponses en moins d'une minute, 7j/7. Vous n'intervenez que sur les gens réellement intéressés.",
+    /* Le message est l'apport d'affaires, pas la prospection dans le vide : l'agent
+       va chercher ceux qui ont déjà les clients (agences immobilières, cabinets
+       d'assurance, architectes, syndics), pas les clients un par un. Ne pas
+       revenir à « contacte les entreprises de votre secteur », c'est plus vague
+       et ça ne dit pas ce que le partenaire apporte. */
+    text: "Votre agent contacte les partenaires qui ont déjà votre clientèle sous la main, agences immobilières, cabinets d'assurance, architectes ou syndics, pour qu'ils vous apportent leur portefeuille. Il écrit des messages personnalisés un par un et répond en moins d'une minute, 7j/7. Vous n'intervenez que sur les gens réellement intéressés.",
     points: [
       'Par WhatsApp et par email, à votre nom',
       'Votre zone, vos métiers cibles, votre discours',
