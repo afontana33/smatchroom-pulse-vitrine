@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Menu, X, ArrowRight } from 'lucide-react';
+import { Menu, X, ArrowRight, Phone } from 'lucide-react';
 
 /* Le site tient en une page : le menu ne pointe que sur ses ancres, plus le
    blog et les ressources qui restent des pages à part. Ne pas y remettre de
@@ -12,10 +12,18 @@ const LINKS = [
   { href: '/#piliers', label: 'Nos offres' },
   { href: '/#resultats', label: 'Résultats' },
   { href: '/#avis', label: 'Avis' },
+  { href: '/#questions', label: 'Questions' },
   { href: '/blog', label: 'Blog' },
 ];
 
 const CALENDLY = 'https://calendly.com/a-fontana-smatchroom/30min';
+
+/* Deuxième chemin de conversion, assumé : une partie de la cible (artisans,
+   dirigeants de TPE) n'ouvrira jamais un agenda pour choisir un créneau, elle
+   appelle. Le numéro doit rester lisible en clair, pas caché derrière une icône :
+   beaucoup le composent sur un fixe au lieu de cliquer. */
+export const TEL_DISPLAY = '07 71 48 76 98';
+export const TEL_HREF = 'tel:+33771487698';
 
 function Wordmark({ onDark = false }) {
   return (
@@ -56,7 +64,7 @@ export default function Nav({ overDark = false }) {
   return (
     <header
       className={[
-        'fixed inset-x-0 top-10 z-50 transition-all duration-300',
+        'fixed inset-x-0 top-0 z-50 transition-all duration-300',
         scrolled
           ? 'border-b border-[var(--border)] bg-[rgba(246,244,239,0.82)] backdrop-blur-xl'
           : 'border-b border-transparent bg-transparent',
@@ -86,14 +94,43 @@ export default function Nav({ overDark = false }) {
           ))}
         </nav>
 
+        <div className="hidden items-center gap-4 lg:flex">
+          <a
+            href={TEL_HREF}
+            className={[
+              'inline-flex items-center gap-2 text-[0.95rem] font-semibold tracking-tight transition-colors',
+              onDark ? 'text-white hover:text-[#ffb27a]' : 'text-[var(--foreground)] hover:text-[var(--primary-ink)]',
+            ].join(' ')}
+          >
+            <Phone size={15} strokeWidth={2.4} className={onDark ? 'text-[#ffb27a]' : 'text-[var(--primary-ink)]'} />
+            {TEL_DISPLAY}
+          </a>
+          <a
+            href={CALENDLY}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-primary inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold"
+          >
+            Réserver un créneau
+            <ArrowRight size={15} />
+          </a>
+        </div>
+
+        {/* Sur mobile le numéro sort du menu burger : un appel ne doit jamais
+            demander d'ouvrir un menu d'abord. */}
         <a
-          href={CALENDLY}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="btn-primary hidden items-center gap-2 px-5 py-2.5 text-sm font-semibold lg:inline-flex"
+          href={TEL_HREF}
+          aria-label={`Appeler le ${TEL_DISPLAY}`}
+          className={[
+            'inline-flex h-10 items-center gap-2 rounded-xl border px-3 text-sm font-semibold lg:hidden',
+            onDark
+              ? 'border-white/25 bg-white/10 text-white backdrop-blur-md'
+              : 'border-[var(--primary)] bg-[var(--primary-soft)] text-[var(--primary-ink)]',
+          ].join(' ')}
         >
-          Réserver un créneau
-          <ArrowRight size={15} />
+          <Phone size={15} strokeWidth={2.4} />
+          <span className="hidden sm:inline">{TEL_DISPLAY}</span>
+          <span className="sm:hidden">Appeler</span>
         </a>
 
         <button
@@ -130,11 +167,19 @@ export default function Nav({ overDark = false }) {
               </a>
             ))}
             <a
+              href={TEL_HREF}
+              onClick={() => setMobileOpen(false)}
+              className="mt-3 inline-flex items-center justify-center gap-2.5 rounded-xl border border-[var(--primary)] bg-[var(--primary-soft)] px-5 py-3.5 text-base font-bold tracking-tight text-[var(--primary-ink)]"
+            >
+              <Phone size={17} strokeWidth={2.4} />
+              {TEL_DISPLAY}
+            </a>
+            <a
               href={CALENDLY}
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setMobileOpen(false)}
-              className="btn-primary mt-3 inline-flex items-center justify-center gap-2 px-5 py-3.5 text-sm font-semibold"
+              className="btn-primary mt-2 inline-flex items-center justify-center gap-2 px-5 py-3.5 text-sm font-semibold"
             >
               Réserver un créneau
               <ArrowRight size={15} />

@@ -11,6 +11,15 @@
 
 import { motion, useReducedMotion } from 'framer-motion';
 
+/**
+ * `quote` : la phrase du client, dans SES mots, recueillie et validée par lui.
+ *
+ * Volontairement à `null` tant qu'on ne l'a pas. Un chiffre seul se lit comme un
+ * argument de vendeur, une phrase de client se lit comme une preuve, mais une
+ * phrase écrite à sa place est un faux témoignage : même règle que pour les avis
+ * Google (voir AvisLp), on n'en fabrique aucune. Dès qu'on a la phrase, on la
+ * recopie ici mot pour mot, sans la lisser, et le bloc apparaît tout seul.
+ */
 const CAS = [
   {
     metric: '12',
@@ -18,6 +27,7 @@ const CAS = [
     sector: 'Artisanat & BTP',
     client: 'Mathieu · Isolation by Tryba',
     text: 'Douze apporteurs d’affaires verrouillés sur sa zone, et déjà cinq demandes de devis générées sans qu’il décroche son téléphone.',
+    quote: null,
   },
   {
     metric: '3',
@@ -25,6 +35,7 @@ const CAS = [
     sector: 'Prestation de services',
     client: 'Antoine D. · Nettoyage B2B',
     text: 'Trois contrats d’entretien récurrents signés auprès de cabinets médicaux, en moins de 45 jours.',
+    quote: null,
   },
   {
     metric: '13',
@@ -32,6 +43,7 @@ const CAS = [
     sector: 'Couverture · Lille',
     client: 'David · couvreur à Lille',
     text: 'Treize partenariats d’apport d’affaires noués et deux demandes de devis, en un mois.',
+    quote: null,
   },
 ];
 
@@ -106,9 +118,18 @@ export default function Preuves() {
                     {c.sector}
                   </p>
                 </div>
-                <p className="text-[0.98rem] leading-relaxed text-[var(--muted-strong)]">
-                  {c.text}
-                </p>
+                <div>
+                  <p className="text-[0.98rem] leading-relaxed text-[var(--muted-strong)]">
+                    {c.text}
+                  </p>
+                  {c.quote && (
+                    <blockquote className="mt-4 border-l-2 border-[var(--primary)] pl-4">
+                      <p className="font-serif-it text-lg leading-snug text-[var(--foreground)] sm:text-xl">
+                        « {c.quote} »
+                      </p>
+                    </blockquote>
+                  )}
+                </div>
               </div>
             </Rise>
           ))}

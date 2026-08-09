@@ -5,6 +5,7 @@ import TeamLp from '@/components/lp/TeamLp';
 import Piliers from '@/components/lp/Piliers';
 import Preuves from '@/components/lp/Preuves';
 import AvisLp from '@/components/lp/AvisLp';
+import FaqLp from '@/components/lp/FaqLp';
 import FinalCtaLp from '@/components/lp/FinalCtaLp';
 import Footer from '@/components/Footer';
 
@@ -22,9 +23,12 @@ import Footer from '@/components/Footer';
  * avis). La preuve arrive après le prix : elle sert à lever le doute, pas à
  * créer l'envie.
  *
- * Ce qui a été retiré volontairement : la démo interactive, la section
- * technologie, la timeline 48h, la FAQ et le terminal live. Le brief est une
- * page de conversion, pas une documentation produit.
+ * La FAQ est revenue (FaqLp), juste avant le dernier appel : elle ne documente
+ * pas le produit, elle lève les trois objections qui font reporter la prise de
+ * rendez-vous. La retirer fait perdre des réservations.
+ *
+ * Ce qui reste retiré volontairement : la démo interactive, la section
+ * technologie, la timeline 48h et le terminal live.
  */
 export default function Page() {
   return (
@@ -36,6 +40,7 @@ export default function Page() {
       <Piliers />
       <Preuves />
       <AvisLp />
+      <FaqLp />
       <FinalCtaLp />
       <Footer />
     </main>

@@ -31,12 +31,27 @@ const PILIERS = [
       'Votre zone, vos métiers cibles, votre discours',
       'Les rendez-vous atterrissent dans votre agenda',
     ],
-    price: {
-      main: '300 € HT',
-      mainNote: 'de création, une seule fois',
-      then: '190 € HT / mois',
-      extra: 'Sans engagement. Création offerte si vous partez sur 6 mois.',
-    },
+    /* Deux formules côte à côte et non un prix avec une note en bas de bloc :
+       la formule Partenaire (création offerte contre 6 mois) était écrite en petit
+       sous le tarif, donc invisible alors que c'est celle qu'on veut voir choisie.
+       Un seul prix fait réfléchir, deux prix font comparer puis choisir. */
+    options: [
+      {
+        label: 'À la carte',
+        setup: '300 € HT',
+        setupNote: 'de création, une seule fois',
+        then: '190 € HT / mois',
+        note: 'Sans engagement, vous arrêtez quand vous voulez.',
+      },
+      {
+        label: 'Partenaire',
+        badge: 'Le plus choisi',
+        setup: '0 €',
+        setupNote: 'création offerte',
+        then: '190 € HT / mois',
+        note: 'Vous partez sur 6 mois, on offre les 300 € de création.',
+      },
+    ],
   },
   {
     k: '02',
@@ -168,20 +183,57 @@ export default function Piliers() {
                       ))}
                     </ul>
 
-                    <div className="mt-8 rounded-2xl border border-[var(--border-strong)] bg-[var(--surface)] p-6">
-                      <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-                        <span className="font-display text-3xl font-semibold tracking-tight text-[var(--foreground)]">
-                          {p.price.main}
-                        </span>
-                        <span className="text-sm text-[var(--muted)]">{p.price.mainNote}</span>
+                    {p.options ? (
+                      <div className="mt-8 grid gap-3 sm:grid-cols-2">
+                        {p.options.map((o) => (
+                          <div
+                            key={o.label}
+                            className={[
+                              'relative rounded-2xl border p-5',
+                              o.badge
+                                ? 'border-[var(--primary)] bg-[var(--primary-soft)]'
+                                : 'border-[var(--border-strong)] bg-[var(--surface)]',
+                            ].join(' ')}
+                          >
+                            <div className="flex items-center justify-between gap-2">
+                              <p className="font-mono text-[0.62rem] uppercase tracking-[0.18em] text-[var(--muted)]">
+                                {o.label}
+                              </p>
+                              {o.badge && (
+                                <span className="rounded-full bg-[var(--primary)] px-2.5 py-1 font-mono text-[0.56rem] uppercase tracking-[0.14em] text-white">
+                                  {o.badge}
+                                </span>
+                              )}
+                            </div>
+                            <p className="mt-4 font-display text-3xl font-semibold tracking-tight text-[var(--foreground)]">
+                              {o.setup}
+                            </p>
+                            <p className="mt-0.5 text-sm text-[var(--muted)]">{o.setupNote}</p>
+                            <p className="mt-3 text-lg font-semibold text-[var(--primary-ink)]">
+                              puis {o.then}
+                            </p>
+                            <p className="mt-3 text-sm leading-relaxed text-[var(--muted-strong)]">
+                              {o.note}
+                            </p>
+                          </div>
+                        ))}
                       </div>
-                      <div className="mt-2 flex flex-wrap items-baseline gap-x-3">
-                        <span className="text-xl font-semibold text-[var(--primary-ink)]">
-                          puis {p.price.then}
-                        </span>
+                    ) : (
+                      <div className="mt-8 rounded-2xl border border-[var(--border-strong)] bg-[var(--surface)] p-6">
+                        <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                          <span className="font-display text-3xl font-semibold tracking-tight text-[var(--foreground)]">
+                            {p.price.main}
+                          </span>
+                          <span className="text-sm text-[var(--muted)]">{p.price.mainNote}</span>
+                        </div>
+                        <div className="mt-2 flex flex-wrap items-baseline gap-x-3">
+                          <span className="text-xl font-semibold text-[var(--primary-ink)]">
+                            puis {p.price.then}
+                          </span>
+                        </div>
+                        <p className="mt-3 text-sm text-[var(--muted-strong)]">{p.price.extra}</p>
                       </div>
-                      <p className="mt-3 text-sm text-[var(--muted-strong)]">{p.price.extra}</p>
-                    </div>
+                    )}
                   </div>
                 </Rise>
               </article>

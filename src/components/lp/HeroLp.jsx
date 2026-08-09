@@ -51,7 +51,7 @@ export default function HeroLp() {
   return (
     <section className="relative isolate w-full overflow-hidden">
       <motion.div
-        className="relative z-10 mx-auto grid max-w-7xl grid-cols-1 gap-10 px-5 pb-12 pt-32 sm:px-6 sm:pb-14 sm:pt-40 lg:grid-cols-12 lg:pt-44"
+        className="relative z-10 mx-auto grid max-w-7xl grid-cols-1 gap-10 px-5 pb-12 pt-28 sm:px-6 sm:pb-14 sm:pt-32 lg:grid-cols-12 lg:pt-36"
         variants={animate ? container : undefined}
         initial={animate ? 'hidden' : false}
         animate={animate ? 'visible' : undefined}
@@ -117,9 +117,13 @@ export default function HeroLp() {
             aria-hidden
             className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-t from-[var(--background)] via-transparent to-transparent"
           />
+          {/* Photo choisie pour le sujet, pas pour le décor : deux artisans sur un
+              chantier qui regardent un écran. Le gros oeuvre vu du dessus qui était
+              là avant montrait du béton et personne, donc ne racontait ni le client
+              ni l'acquisition. Ne pas remettre une photo de matière. */}
           <img
-            src="/photos/chantier.webp"
-            alt="Chantier de gros oeuvre vu du dessus, plusieurs compagnons au travail"
+            src="/photos/acquisition.webp"
+            alt="Deux artisans sur un chantier de rénovation consultent une tablette ensemble"
             width={2000}
             height={1325}
             fetchPriority="high"

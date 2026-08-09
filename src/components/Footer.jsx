@@ -19,6 +19,13 @@ export default function Footer() {
               7j/7, le site et la fiche établissement Google qui vous font exister, l&apos;acquisition
               Meta qui vous amène des clients particuliers.
             </p>
+            <a
+              href="tel:+33771487698"
+              className="mt-5 inline-flex items-baseline gap-2 font-display text-xl font-bold tracking-tight text-[var(--foreground)] hover:text-[var(--primary-ink)]"
+            >
+              07 71 48 76 98
+              <span className="text-xs font-normal text-[var(--muted)]">lun. au ven. · 9h à 19h</span>
+            </a>
           </div>
 
           <div>
@@ -36,12 +43,31 @@ export default function Footer() {
               <li><a href="/#piliers" className="hover:text-[var(--foreground)]">Nos offres et nos prix</a></li>
               <li><a href="/#resultats" className="hover:text-[var(--foreground)]">Résultats</a></li>
               <li><a href="/#avis" className="hover:text-[var(--foreground)]">Avis clients</a></li>
+              <li><a href="/#questions" className="hover:text-[var(--foreground)]">Questions fréquentes</a></li>
               <li><a href="/blog" className="hover:text-[var(--foreground)]">Blog</a></li>
               <li><a href="/agent-ia" className="hover:text-[var(--foreground)]">Ressources agent IA</a></li>
               <li><a href="https://calendly.com/a-fontana-smatchroom/30min" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--foreground)]">Contact</a></li>
             </ul>
           </div>
         </div>
+
+        {/* Renvoi vers leadb2b.smatchroom.com. Il était en bandeau fixe tout en haut
+            de page, avant le titre : un lien sortant vers un autre domaine placé là
+            fait partir le visiteur avant qu'il ait lu quoi que ce soit. Sa place est
+            ici, une fois la page lue. Ne pas le remonter dans le layout. */}
+        <a
+          href="https://leadb2b.smatchroom.com"
+          target="_blank"
+          rel="noopener"
+          className="mt-12 flex flex-col gap-1 rounded-2xl border border-[var(--border-strong)] bg-[var(--surface-2)] px-6 py-5 transition-colors hover:border-[var(--primary)] sm:flex-row sm:items-center sm:justify-between"
+        >
+          <span className="text-sm font-semibold text-[var(--foreground)]">
+            Vous cherchez des leads B2B sur les marchés publics du bâtiment&nbsp;?
+          </span>
+          <span className="whitespace-nowrap text-sm font-semibold text-[var(--primary-ink)]">
+            France &amp; Luxembourg · voir leadb2b →
+          </span>
+        </a>
 
         <div className="mt-12 grid gap-6 border-t border-[var(--border)] pt-8 text-xs text-[var(--muted)] md:grid-cols-[1fr_auto] md:items-end">
           <div className="space-y-1 font-mono">

@@ -17,11 +17,15 @@
 
 import { Star, ArrowUpRight, PenLine } from 'lucide-react';
 
+/* Un seul format d'URL pour les deux boutons : `maps?cid=`, qui ouvre la fiche
+   de façon fiable sur tous les navigateurs et dans l'application Google Maps.
+   L'ancienne URL « voir les avis » passait par /search avec un fragment
+   `#mpd=~…/customers/reviews` : ce fragment est interprété en JavaScript par
+   Google et ne survit ni à tous les navigateurs ni aux webviews. Ne pas le
+   remettre, et ne pas remettre non plus les paramètres de session (ei, sxsrf,
+   sca_esv) qui expirent. */
 const GOOGLE_URL = 'https://www.google.com/maps?cid=1742713614499117243';
-/* Le fragment ouvre l'onglet « avis » du panneau Google. Les paramètres de
-   session de l'URL d'origine (ei, sxsrf, sca_esv) expirent : ne pas les remettre. */
-const REVIEWS_URL =
-  'https://www.google.com/search?q=smatchroom&hl=fr-FR#mpd=~9189610799963746125/customers/reviews';
+const REVIEWS_URL = GOOGLE_URL;
 
 const AVIS = [];
 const RATING = { score: '5,0', count: null };
