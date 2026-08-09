@@ -128,7 +128,9 @@ export default function HeroLp() {
             height={1325}
             fetchPriority="high"
             decoding="async"
-            className="aspect-[2/1] w-full object-cover object-center sm:aspect-[9/4]"
+            /* Cadrage bas et non centré : en 9/4 le centrage coupait l'écran que les
+               deux artisans regardent, c'est-à-dire le sujet de la photo. */
+            className="aspect-[2/1] w-full object-cover object-[center_62%] sm:aspect-[9/4]"
           />
         </div>
       </motion.div>
