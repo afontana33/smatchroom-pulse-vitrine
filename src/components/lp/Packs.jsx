@@ -131,30 +131,42 @@ export default function Packs() {
           </div>
         </Rise>
 
-        {/* items-stretch + h-full sur la carte : les quatre cartes d'une même ligne
-            font la même hauteur, et le bloc prix est poussé en bas par mt-auto,
-            donc les prix s'alignent entre cartes malgré des listes inégales. */}
-        <div className="grid grid-cols-1 items-stretch gap-6 md:grid-cols-2 xl:grid-cols-4">
-          {PACKS.map((p, i) => (
-            <Rise key={p.name} delay={i * 0.06} className="h-full">
+        {/* Alignement des cartes en `subgrid` : chaque carte occupe les cinq mêmes
+            pistes de la grille parente (badge, nom, accroche, inclusions, prix),
+            donc les blocs de prix se retrouvent sur la même ligne d'une carte à
+            l'autre même quand les listes d'inclusions n'ont pas le même nombre de
+            points. Un simple `mt-auto` alignerait le bas des cartes, pas les prix.
+            La piste des inclusions est en 1fr, c'est elle qui absorbe l'écart. */}
+        <Rise>
+          <div className="grid grid-cols-1 items-stretch gap-6 md:grid-cols-2 md:grid-rows-[auto_auto_auto_1fr_auto] xl:grid-cols-4">
+            {PACKS.map((p) => (
               <article
+                key={p.name}
                 className={[
                   'flex h-full flex-col rounded-2xl bg-[var(--surface)] p-7',
+                  'md:row-span-5 md:grid md:grid-rows-subgrid md:gap-0',
                   p.badge
                     ? 'border-2 border-[var(--primary)] shadow-[var(--shadow-lg)]'
                     : 'border border-[var(--border-strong)]',
                 ].join(' ')}
               >
-                <div className="flex min-h-7 items-start justify-between gap-3">
-                  <h3 className="font-display text-2xl font-semibold leading-tight tracking-tight text-[var(--foreground)] sm:text-[1.75rem]">
-                    {p.name}
-                  </h3>
-                  {p.badge && (
-                    <span className="flex-shrink-0 rounded-full bg-[var(--primary)] px-2.5 py-1 font-mono text-[0.56rem] uppercase tracking-[0.14em] text-white">
+                {/* Le badge est sur sa propre ligne au-dessus du nom, et non à côté :
+                    à côté, il rognait la largeur disponible et « La Machine » passait
+                    sur deux lignes alors que le nom doit rester l'élément le plus
+                    lisible de la carte. */}
+                <div className="mb-3 flex items-start">
+                  {p.badge ? (
+                    <span className="rounded-full bg-[var(--primary)] px-2.5 py-1 font-mono text-[0.56rem] uppercase tracking-[0.14em] text-white">
                       {p.badge}
                     </span>
+                  ) : (
+                    <span aria-hidden className="block h-[1.375rem]" />
                   )}
                 </div>
+
+                <h3 className="font-display text-2xl font-semibold leading-tight tracking-tight text-[var(--foreground)] sm:text-[1.75rem]">
+                  {p.name}
+                </h3>
 
                 <p className="mt-2 font-mono text-[0.62rem] uppercase leading-relaxed tracking-[0.16em] text-[var(--muted)]">
                   {p.sub}
@@ -195,7 +207,7 @@ export default function Packs() {
                   ))}
                 </ul>
 
-                <div className="mt-auto pt-8">
+                <div className="mt-auto flex h-full flex-col pt-8 md:mt-0">
                   <p className="font-display text-3xl font-semibold tracking-tight text-[var(--foreground)]">
                     {p.setup}
                   </p>
@@ -213,8 +225,10 @@ export default function Packs() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={`Réserver un créneau de 30 minutes pour le pack ${p.name}`}
+                    /* mt-auto : la note de bas de carte n'a pas la même longueur d'un
+                       pack à l'autre, sans ça les boutons se décalent verticalement. */
                     className={[
-                      'mt-5 inline-flex w-full items-center justify-center gap-2 px-5 py-3 text-sm font-semibold',
+                      'mt-5 inline-flex w-full items-center justify-center gap-2 px-5 py-3 text-sm font-semibold md:mt-auto md:pt-3',
                       p.badge ? 'btn-primary' : 'btn-ghost',
                     ].join(' ')}
                   >
@@ -223,9 +237,9 @@ export default function Packs() {
                   </a>
                 </div>
               </article>
-            </Rise>
-          ))}
-        </div>
+            ))}
+          </div>
+        </Rise>
 
         <Rise delay={0.05}>
           <div className="mt-12 flex flex-col items-start justify-between gap-6 rounded-2xl border border-[var(--border-strong)] bg-[var(--surface-2)] p-7 sm:p-8 lg:flex-row lg:items-center">
