@@ -64,9 +64,9 @@ export default function AgentClients() {
           <div>
             <Rise delay={0.05}>
               <h2 className="max-w-2xl text-balance text-3xl font-semibold leading-[1.1] tracking-tight text-white sm:text-4xl lg:text-[3rem]">
-                Vos clients ne sont pas sur Google Maps.{' '}
+                Vous recherchez des clients B2B,{' '}
                 <span className="font-serif-it font-normal text-[#ffb27a]">
-                  On construit la liste.
+                  nous créons votre commercial digital.
                 </span>
               </h2>
 

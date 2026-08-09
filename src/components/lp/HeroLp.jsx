@@ -117,20 +117,21 @@ export default function HeroLp() {
             aria-hidden
             className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-t from-[var(--background)] via-transparent to-transparent"
           />
-          {/* Photo choisie pour le sujet, pas pour le décor : deux artisans sur un
-              chantier qui regardent un écran. Le gros oeuvre vu du dessus qui était
-              là avant montrait du béton et personne, donc ne racontait ni le client
-              ni l'acquisition. Ne pas remettre une photo de matière. */}
+          {/* Deux photos ont été écartées avant celle-ci : le gros oeuvre vu du
+              dessus (du béton, personne, aucun client) et deux artisans sur une
+              tablette (le sujet ne portait pas). Celle-ci montre un chantier chez
+              un particulier en lumière chaude, c'est-à-dire le client au bout de
+              la chaîne. Ne pas revenir à une photo de matière. */}
           <img
-            src="/photos/acquisition.webp"
-            alt="Deux artisans sur un chantier de rénovation consultent une tablette ensemble"
+            src="/photos/hero-maison.webp"
+            alt="Deux artisans au travail sur le chantier d'une maison, en fin de journée"
             width={2000}
             height={1325}
             fetchPriority="high"
             decoding="async"
-            /* Cadrage bas et non centré : en 9/4 le centrage coupait l'écran que les
-               deux artisans regardent, c'est-à-dire le sujet de la photo. */
-            className="aspect-[2/1] w-full object-cover object-[center_62%] sm:aspect-[9/4]"
+            /* Cadrage légèrement haut : en 9/4, c'est la bande où se trouvent les
+               deux artisans et la maison, le premier plan de gravats ne dit rien. */
+            className="aspect-[2/1] w-full object-cover object-[center_38%] sm:aspect-[9/4]"
           />
         </div>
       </motion.div>
