@@ -6,12 +6,10 @@ export default function sitemap() {
   const articles = listAllPublished();
 
   const staticUrls = [
+    /* Site en page unique : les anciennes pages produit sont supprimées et
+       redirigées (next.config.mjs). Ne pas les remettre ici, un sitemap qui
+       déclare des URL en 301 fait perdre du budget de crawl. */
     { url: BASE, lastModified: new Date(), changeFrequency: 'weekly', priority: 1.0 },
-    { url: `${BASE}/grands-comptes`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.95 },
-    { url: `${BASE}/entrepreneurs`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.95 },
-    { url: `${BASE}/sites`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.95 },
-    { url: `${BASE}/pulse-terrain`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.95 },
-    { url: `${BASE}/entreprises`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },
     { url: `${BASE}/blog`, lastModified: new Date(), changeFrequency: 'daily', priority: 0.8 },
     { url: `${BASE}/agent-ia`, lastModified: new Date(), changeFrequency: 'daily', priority: 0.9 },
     // Pages légales : indexables, et attendues par les moteurs comme signal de sérieux.

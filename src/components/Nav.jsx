@@ -3,15 +3,16 @@
 import { useState, useEffect } from 'react';
 import { Menu, X, ArrowRight } from 'lucide-react';
 
-/* Le menu suit les trois briques de la digitalisation (voir src/app/page.js). */
+/* Le site tient en une page : le menu ne pointe que sur ses ancres, plus le
+   blog et les ressources qui restent des pages à part. Ne pas y remettre de
+   page produit, elles ont été supprimées (voir les redirections 301 dans
+   next.config.mjs). */
 const LINKS = [
-  { href: '/#piliers', label: 'Nos briques' },
-  { href: '/#agents', label: 'Agent IA' },
-  { href: '/sites', label: 'Sites' },
-  { href: '/pulse-terrain', label: 'Acquisition Meta' },
-  { href: '/#tarifs', label: 'Tarifs' },
-  { href: '/grands-comptes', label: 'Grands Comptes', accent: true },
-  { href: '/agent-ia', label: 'Ressources' },
+  { href: '/#qui-sommes-nous', label: 'Qui nous sommes' },
+  { href: '/#piliers', label: 'Nos offres' },
+  { href: '/#resultats', label: 'Résultats' },
+  { href: '/#avis', label: 'Avis' },
+  { href: '/blog', label: 'Blog' },
 ];
 
 const CALENDLY = 'https://calendly.com/a-fontana-smatchroom/30min';

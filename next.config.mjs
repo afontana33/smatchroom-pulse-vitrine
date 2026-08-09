@@ -15,14 +15,29 @@ const nextConfig = {
   turbopack: {
     root: path.resolve('.'),
   },
+  /**
+   * Le site est passé en page unique. Les anciennes pages produit et segment
+   * sont supprimées : chacune redirige en 301 vers l'ancre qui a repris son
+   * contenu, pour ne pas perdre le référencement acquis ni casser les liens
+   * envoyés en prospection. Ne pas transformer ces 301 en 404.
+   */
   async redirects() {
-    return [
-      {
-        source: '/commerces',
-        destination: '/entrepreneurs',
-        permanent: true,
-      },
+    const gone = [
+      ['/sites', '/#piliers'],
+      ['/pulse-terrain', '/#piliers'],
+      ['/grands-comptes', '/#piliers'],
+      ['/entreprises', '/#piliers'],
+      ['/entrepreneurs', '/'],
+      ['/commerces', '/'],
+      ['/artisans', '/'],
+      ['/scale', '/'],
+      ['/partenaires', '/'],
     ];
+    return gone.map(([source, destination]) => ({
+      source,
+      destination,
+      permanent: true,
+    }));
   },
 };
 

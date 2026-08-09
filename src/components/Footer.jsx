@@ -14,10 +14,10 @@ export default function Footer() {
               </span>
             </div>
             <p className="mt-4 max-w-md text-sm text-[var(--muted-strong)]">
-              La digitalisation des entreprises, par le groupe SmatchRoom. Trois briques : l&apos;Agent
-              Chasseur qui prospecte et répond 24/7, le site et la fiche établissement Google qui
-              vous font exister, et l&apos;acquisition Meta qui vous amène des clients particuliers.
-              Pour les besoins hors périmètre, la division Corporate conçoit du sur-mesure.
+              Nous digitalisons et automatisons la recherche de clients, de l&apos;artisan seul à la
+              grande entreprise. Trois piliers&nbsp;: les agents IA qui prospectent et répondent
+              7j/7, le site et la fiche établissement Google qui vous font exister, l&apos;acquisition
+              Meta qui vous amène des clients particuliers.
             </p>
           </div>
 
@@ -31,16 +31,13 @@ export default function Footer() {
           <div>
             <p className="font-mono text-xs uppercase tracking-[0.18em] text-[var(--primary-ink)]">Navigation</p>
             <ul className="mt-4 space-y-2 text-sm text-[var(--muted-strong)]">
-              <li><a href="/#piliers" className="hover:text-[var(--foreground)]">Nos briques</a></li>
-              <li><a href="/#agents" className="hover:text-[var(--foreground)]">Agent IA</a></li>
-              <li><a href="/sites" className="hover:text-[var(--foreground)]">Sites &amp; fiche Google</a></li>
-              <li><a href="/#cas-clients" className="hover:text-[var(--foreground)]">Résultats</a></li>
+              <li><a href="/#qui-sommes-nous" className="hover:text-[var(--foreground)]">Qui nous sommes</a></li>
+              <li><a href="/#equipe" className="hover:text-[var(--foreground)]">L&apos;équipe</a></li>
+              <li><a href="/#piliers" className="hover:text-[var(--foreground)]">Nos offres et nos prix</a></li>
+              <li><a href="/#resultats" className="hover:text-[var(--foreground)]">Résultats</a></li>
               <li><a href="/#avis" className="hover:text-[var(--foreground)]">Avis clients</a></li>
-              <li><a href="/#tarifs" className="hover:text-[var(--foreground)]">Tarifs</a></li>
-              <li><a href="/pulse-terrain" className="hover:text-[var(--foreground)]">Acquisition Meta</a></li>
-              <li><a href="/grands-comptes" className="font-medium text-[var(--steel)] hover:text-[var(--steel-hover)]">Grands Comptes</a></li>
-              <li><a href="/#faq" className="hover:text-[var(--foreground)]">FAQ</a></li>
               <li><a href="/blog" className="hover:text-[var(--foreground)]">Blog</a></li>
+              <li><a href="/agent-ia" className="hover:text-[var(--foreground)]">Ressources agent IA</a></li>
               <li><a href="https://calendly.com/a-fontana-smatchroom/30min" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--foreground)]">Contact</a></li>
             </ul>
           </div>
