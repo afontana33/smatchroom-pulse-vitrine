@@ -41,6 +41,8 @@ export default function Footer() {
               <li><a href="/#qui-sommes-nous" className="hover:text-[var(--foreground)]">Qui nous sommes</a></li>
               <li><a href="/#equipe" className="hover:text-[var(--foreground)]">L&apos;équipe</a></li>
               <li><a href="/#piliers" className="hover:text-[var(--foreground)]">Nos offres et nos prix</a></li>
+              <li><a href="/#packs" className="hover:text-[var(--foreground)]">Nos packs</a></li>
+              <li><a href="/#agent-clients" className="hover:text-[var(--foreground)]">Agent Clients (B2B)</a></li>
               <li><a href="/#resultats" className="hover:text-[var(--foreground)]">Résultats</a></li>
               <li><a href="/#avis" className="hover:text-[var(--foreground)]">Avis clients</a></li>
               <li><a href="/#questions" className="hover:text-[var(--foreground)]">Questions fréquentes</a></li>

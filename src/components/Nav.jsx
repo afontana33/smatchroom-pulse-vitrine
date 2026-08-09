@@ -10,6 +10,7 @@ import { Menu, X, ArrowRight, Phone } from 'lucide-react';
 const LINKS = [
   { href: '/#qui-sommes-nous', label: 'Qui nous sommes' },
   { href: '/#piliers', label: 'Nos offres' },
+  { href: '/#packs', label: 'Nos packs' },
   { href: '/#resultats', label: 'Résultats' },
   { href: '/#avis', label: 'Avis' },
   { href: '/#questions', label: 'Questions' },
@@ -73,7 +74,9 @@ export default function Nav({ overDark = false }) {
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-3.5 sm:px-6">
         <Wordmark onDark={onDark} />
 
-        <nav className="hidden items-center gap-7 lg:flex">
+        {/* gap réduit en lg : avec sept ancres, le numéro et le bouton, la barre
+            se serrait juste sous 1280px. */}
+        <nav className="hidden items-center gap-5 lg:flex xl:gap-7">
           {LINKS.map((l) => (
             <a
               key={l.href}

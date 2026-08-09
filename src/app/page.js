@@ -3,6 +3,8 @@ import HeroLp from '@/components/lp/HeroLp';
 import Thesis from '@/components/lp/Thesis';
 import TeamLp from '@/components/lp/TeamLp';
 import Piliers from '@/components/lp/Piliers';
+import Packs from '@/components/lp/Packs';
+import AgentClients from '@/components/lp/AgentClients';
 import Preuves from '@/components/lp/Preuves';
 import AvisLp from '@/components/lp/AvisLp';
 import FaqLp from '@/components/lp/FaqLp';
@@ -23,6 +25,12 @@ import Footer from '@/components/Footer';
  * avis). La preuve arrive après le prix : elle sert à lever le doute, pas à
  * créer l'envie.
  *
+ * Piliers décrit les trois briques, Packs les assemble en quatre points
+ * d'entrée avec le prix du montage, AgentClients traite à part les entreprises
+ * qui vendent à des entreprises. Les trois se suivent et ne se répètent pas :
+ * ne pas remettre de description de brique dans Packs, ni de pack dans
+ * AgentClients.
+ *
  * La FAQ est revenue (FaqLp), juste avant le dernier appel : elle ne documente
  * pas le produit, elle lève les trois objections qui font reporter la prise de
  * rendez-vous. La retirer fait perdre des réservations.
@@ -38,6 +46,8 @@ export default function Page() {
       <Thesis />
       <TeamLp />
       <Piliers />
+      <Packs />
+      <AgentClients />
       <Preuves />
       <AvisLp />
       <FaqLp />
