@@ -138,13 +138,16 @@ export default function Packs() {
             points. Un simple `mt-auto` alignerait le bas des cartes, pas les prix.
             La piste des inclusions est en 1fr, c'est elle qui absorbe l'écart. */}
         <Rise>
-          <div className="grid grid-cols-1 items-stretch gap-6 md:grid-cols-2 md:grid-rows-[auto_auto_auto_1fr_auto] xl:grid-cols-4">
+          <div className="grid grid-cols-1 items-stretch gap-6 md:grid-cols-2 md:grid-rows-[auto_auto_auto_auto_1fr_auto] xl:grid-cols-4">
             {PACKS.map((p) => (
               <article
                 key={p.name}
                 className={[
                   'flex h-full flex-col rounded-2xl bg-[var(--surface)] p-7',
-                  'md:row-span-5 md:grid md:grid-rows-subgrid md:gap-0',
+                  /* row-span doit valoir exactement le nombre d'enfants de l'article
+                     (badge, nom, sous-titre, accroche, inclusions, prix) : une piste
+                     de moins et le bloc prix se superpose à la liste. */
+                  'md:row-span-6 md:grid md:grid-rows-subgrid md:gap-0',
                   p.badge
                     ? 'border-2 border-[var(--primary)] shadow-[var(--shadow-lg)]'
                     : 'border border-[var(--border-strong)]',
