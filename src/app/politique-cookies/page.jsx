@@ -9,6 +9,12 @@
  * les services déclarés dans src/components/CookieConsent.jsx et générés par
  * scripts/sync-tarteaucitron.mjs. Un traceur ajouté au code sans ligne ici rend
  * cette page fausse.
+ *
+ * Le tableau EXEMPTES couvre en plus la mesure d'audience de
+ * src/components/Analytics.jsx, qui ne passe pas par Tarteaucitron parce
+ * qu'elle ne dépose aucun cookie. Si Analytics.jsx cesse d'être anonyme
+ * (croisement avec le pixel, `identify`, envoi à un tiers), cette ligne doit
+ * remonter dans TRACEURS et le service doit devenir refusable.
  */
 
 import Nav from '@/components/Nav';
@@ -40,6 +46,16 @@ const TRACEURS = [
 /** Traceurs exemptés de consentement (art. 82 loi Informatique et Libertés). */
 const EXEMPTES = [
   {
+    nom: 'aucun cookie',
+    service: 'Umami (auto-hébergé)',
+    editeur: 'SMATCHROOM SAS (France)',
+    finalite:
+      "Mesure d'audience : nombre de visites, pages consultées, site ou réseau social d'où vous arrivez, type d'appareil, pays. Sert à savoir quels contenus et quels canaux fonctionnent. Aucun cookie n'est déposé et votre adresse IP n'est pas conservée : elle sert uniquement à calculer une empreinte anonyme, renouvelée chaque jour, qui permet de ne pas compter deux fois la même visite. Aucun profil publicitaire, aucun suivi d'un site à l'autre.",
+    duree: 'Statistiques agrégées conservées 13 mois',
+    horsUE: "Non. Outil installé sur notre propre serveur en France, aucune donnée transmise à un tiers.",
+    consentement: false,
+  },
+  {
     nom: 'pulse_consent',
     service: 'Tarteaucitron (auto-hébergé)',
     editeur: 'SMATCHROOM SAS (France)',
@@ -56,7 +72,7 @@ const SECTIONS = [
     title: "Ce que cette page couvre",
     paragraphs: [
       "Un cookie est un fichier déposé sur votre appareil lors de la consultation d'un site. La même réglementation s'applique aux techniques équivalentes : pixels invisibles, balises, stockage local. Le terme « traceur » les désigne toutes dans cette page.",
-      "Nous n'utilisons aujourd'hui aucun outil de mesure d'audience, aucun outil d'analyse de comportement (heatmap, enregistrement de session) et aucun réseau publicitaire autre que celui listé ci-dessous.",
+      "Nous utilisons un outil de mesure d'audience installé sur notre propre serveur, décrit ci-dessous, qui ne dépose aucun cookie. Nous n'utilisons aucun outil d'analyse de comportement (heatmap, enregistrement de session) et aucun réseau publicitaire autre que celui listé ci-dessous.",
     ],
   },
   {
@@ -158,8 +174,11 @@ export default function PolitiqueCookiesPage() {
               <h2 className="text-lg font-semibold">Traceurs déposés sans consentement</h2>
               <p className="mt-3 text-sm leading-relaxed text-[var(--muted)]">
                 L&apos;article 82 de la loi Informatique et Libertés dispense de consentement les
-                traceurs strictement nécessaires. Un seul entre dans ce cas : celui qui mémorise
-                votre choix. Sans lui, nous serions obligés de vous reposer la question à chaque page.
+                traceurs strictement nécessaires, ainsi que la mesure d&apos;audience anonyme qui
+                sert uniquement à produire des statistiques pour notre compte. Deux cas ici : le
+                cookie qui mémorise votre choix, sans lequel nous serions obligés de vous reposer
+                la question à chaque page, et notre compteur de visites, qui ne dépose rien sur
+                votre appareil et ne permet pas de vous identifier.
               </p>
               <TableTraceurs rows={EXEMPTES} />
             </section>

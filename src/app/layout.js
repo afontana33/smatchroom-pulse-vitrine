@@ -1,4 +1,5 @@
 import { Manrope, JetBrains_Mono, Bricolage_Grotesque, Instrument_Serif } from "next/font/google";
+import Analytics from "@/components/Analytics";
 import CookieConsent from "@/components/CookieConsent";
 import PixelEvents from "@/components/PixelEvents";
 import "./globals.css";
@@ -74,6 +75,10 @@ export default function RootLayout({ children }) {
         {/* Évènements standard Meta (Lead, Contact). Inertes tant que le pixel
             n'a pas été autorisé : PixelEvents ne fait rien si fbq n'existe pas. */}
         <PixelEvents />
+        {/* Mesure d'audience Umami : sans consentement requis (cookieless,
+            auto-hébergée), donc chargée directement et non via Tarteaucitron.
+            Le raisonnement complet est dans le composant. */}
+        <Analytics />
         <CookieConsent />
       </body>
     </html>
