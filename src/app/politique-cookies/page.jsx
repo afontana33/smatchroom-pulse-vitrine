@@ -20,7 +20,7 @@ export const metadata = {
     "Liste des traceurs déposés sur pulse.smatchroom.com : éditeur, finalité, durée de conservation et transferts hors Union européenne.",
 };
 
-const MAJ = '6 août 2026';
+const MAJ = '10 août 2026';
 
 /** Traceurs soumis au consentement. */
 const TRACEURS = [
@@ -29,7 +29,7 @@ const TRACEURS = [
     service: 'Meta Pixel',
     editeur: 'Meta Platforms Ireland Limited (Irlande)',
     finalite:
-      "Mesure de l'audience des campagnes publicitaires diffusées sur les services Meta (Facebook, Instagram) et constitution d'audiences de reciblage.",
+      "Mesure de l'audience des campagnes publicitaires diffusées sur les services Meta (Facebook, Instagram) et constitution d'audiences de reciblage. Remonte également deux actions de conversion : l'ouverture de la page de réservation Calendly et le clic sur le numéro de téléphone, avec l'adresse de la page d'où part le clic.",
     duree: '90 jours',
     horsUE:
       "Oui. Meta Platforms Ireland Limited transfère des données à Meta Platforms, Inc. (États-Unis). Meta invoque le Data Privacy Framework UE–États-Unis et des clauses contractuelles types.",

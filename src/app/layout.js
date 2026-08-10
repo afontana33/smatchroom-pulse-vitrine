@@ -1,5 +1,6 @@
 import { Manrope, JetBrains_Mono, Bricolage_Grotesque, Instrument_Serif } from "next/font/google";
 import CookieConsent from "@/components/CookieConsent";
+import PixelEvents from "@/components/PixelEvents";
 import "./globals.css";
 
 const manrope = Manrope({
@@ -70,6 +71,9 @@ export default function RootLayout({ children }) {
             Tarteaucitron dans CookieConsent et ne s'exécute qu'après acceptation.
             La variante <noscript> a été retirée : sans JavaScript, aucun
             consentement ne peut être recueilli, donc aucun traceur ne doit partir. */}
+        {/* Évènements standard Meta (Lead, Contact). Inertes tant que le pixel
+            n'a pas été autorisé : PixelEvents ne fait rien si fbq n'existe pas. */}
+        <PixelEvents />
         <CookieConsent />
       </body>
     </html>
