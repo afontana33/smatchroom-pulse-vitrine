@@ -31,7 +31,7 @@
 
 import { useEffect } from 'react';
 
-const META_PIXEL_ID = '1366680321464821';
+const META_PIXEL_ID = '1726028198959218';
 
 /** Durée de conservation du choix. La CNIL recommande 6 mois au maximum. */
 const CONSENT_LIFETIME_DAYS = 182;
