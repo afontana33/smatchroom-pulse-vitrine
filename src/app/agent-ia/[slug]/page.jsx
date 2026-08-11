@@ -3,6 +3,8 @@ import { listArticles, readArticle } from '@/lib/content';
 import Article from '@/components/Article';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
+import JsonLd from '@/components/JsonLd';
+import { articleGraph } from '@/lib/article-schema';
 
 export function generateStaticParams() {
   return listArticles('agent-ia').map((a) => ({ slug: a.slug }));
@@ -15,6 +17,7 @@ export async function generateMetadata({ params }) {
   return {
     title: article.frontmatter.metaTitle || article.frontmatter.title,
     description: article.frontmatter.metaDescription,
+    alternates: { canonical: `/agent-ia/${slug}` },
   };
 }
 
@@ -26,6 +29,7 @@ export default async function AgentIaArticle({ params }) {
   const { default: MdxContent } = await import(`@/content/agent-ia/${slug}.mdx`);
   return (
     <>
+      <JsonLd data={articleGraph(article)} />
       <Nav />
       <Article article={article} mdxContent={<MdxContent />} related={related} />
       <Footer />

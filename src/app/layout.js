@@ -2,6 +2,8 @@ import { Manrope, JetBrains_Mono, Bricolage_Grotesque, Instrument_Serif } from "
 import Analytics from "@/components/Analytics";
 import CookieConsent from "@/components/CookieConsent";
 import PixelEvents from "@/components/PixelEvents";
+import JsonLd from "@/components/JsonLd";
+import { graph, organizationSchema, websiteSchema } from "@/lib/schema";
 import "./globals.css";
 
 const manrope = Manrope({
@@ -62,6 +64,12 @@ export default function RootLayout({ children }) {
       className={`${manrope.variable} ${jetbrains.variable} ${bricolage.variable} ${instrument.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
+        {/* Identité de l'entreprise et du site, sur toutes les pages. Les nœuds
+            propres à une page (WebPage, Service, FAQPage, Breadcrumb) sont
+            ajoutés par la page elle-même et se raccrochent à ces deux-là par
+            leur `@id`. Ne pas dupliquer l'organisation dans une page : deux
+            déclarations concurrentes de la même entité s'annulent. */}
+        <JsonLd data={graph([organizationSchema(), websiteSchema()])} />
         {/* Le bandeau « leads B2B · marchés publics » a été retiré du haut de page :
             c'était un lien sortant vers un autre domaine placé avant même le titre,
             donc une fuite de trafic payé. Il vit maintenant en bas, dans le Footer,

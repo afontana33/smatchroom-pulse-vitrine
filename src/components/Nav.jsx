@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { Menu, X, ArrowRight, Phone } from 'lucide-react';
+import { TEL_DISPLAY, TEL_HREF } from '@/lib/contact';
 
 /* Le site tient en une page : le menu ne pointe que sur ses ancres, plus le
    blog et les ressources qui restent des pages à part. Ne pas y remettre de
@@ -22,9 +23,12 @@ const CALENDLY = 'https://calendly.com/a-fontana-smatchroom/30min';
 /* Deuxième chemin de conversion, assumé : une partie de la cible (artisans,
    dirigeants de TPE) n'ouvrira jamais un agenda pour choisir un créneau, elle
    appelle. Le numéro doit rester lisible en clair, pas caché derrière une icône :
-   beaucoup le composent sur un fixe au lieu de cliquer. */
-export const TEL_DISPLAY = '07 71 48 76 98';
-export const TEL_HREF = 'tel:+33771487698';
+   beaucoup le composent sur un fixe au lieu de cliquer.
+
+   La valeur vit maintenant dans lib/contact.js, partagée avec les données
+   structurées. Réexportée ici parce que la moitié des composants de la page
+   l'importe depuis Nav : casser ces imports n'apporterait rien. */
+export { TEL_DISPLAY, TEL_HREF };
 
 function Wordmark({ onDark = false }) {
   return (

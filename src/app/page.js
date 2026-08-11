@@ -14,6 +14,11 @@ import AvisLp from '@/components/lp/AvisLp';
 import FaqLp from '@/components/lp/FaqLp';
 import FinalCtaLp from '@/components/lp/FinalCtaLp';
 import Footer from '@/components/Footer';
+import JsonLd from '@/components/JsonLd';
+import { QUESTIONS } from '@/lib/faq';
+import { ALL_OFFERS } from '@/lib/offers';
+import { SITE_URL } from '@/lib/contact';
+import { faqSchema, graph, serviceSchema, webPageSchema } from '@/lib/schema';
 
 /**
  * Landing unique.
@@ -62,11 +67,41 @@ function heroMedia() {
   };
 }
 
+/* Canonique déclarée page par page et pas dans le layout : une canonique posée
+   dans le layout ferait pointer toutes les pages du site vers l'accueil. */
+export const metadata = {
+  alternates: { canonical: '/' },
+};
+
 export default function Page() {
   const hero = heroMedia();
 
+  /* Les neuf prestations vendues, avec leur prix. L'accueil est la page qui les
+     porte toutes : c'est donc ici que le catalogue est déclaré, pas en morceaux
+     sur des pages qui n'existent plus. */
+  const services = ALL_OFFERS.map((o) =>
+    serviceSchema({
+      name: o.name,
+      description: o.description,
+      setup: o.setup,
+      monthly: o.monthly,
+    })
+  );
+
   return (
     <main className="flex flex-col">
+      <JsonLd
+        data={graph([
+          webPageSchema({
+            url: `${SITE_URL}/`,
+            name: 'SmatchRoom Pulse · On va chercher vos clients à votre place',
+            description:
+              "Agence d'automatisation et d'IA pour artisans, TPE et PME : agents IA qui prospectent et répondent 7j/7, sites et fiches établissement Google, acquisition Meta. Prix affichés.",
+          }),
+          faqSchema(QUESTIONS),
+          ...services,
+        ])}
+      />
       <Nav />
       <HeroLp {...hero} />
       <Thesis />

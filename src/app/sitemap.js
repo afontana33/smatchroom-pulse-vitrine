@@ -1,9 +1,29 @@
 import { listAllPublished } from '@/lib/content';
+import { METIERS, VILLES } from '@/lib/seo-local';
 
 const BASE = 'https://pulse.smatchroom.com';
 
 export default function sitemap() {
   const articles = listAllPublished();
+
+  /* Pages métier et ville : priorité 0.8, au même niveau que le blog et
+     au-dessus des articles. Ce sont des pages de conversion, pas du contenu
+     d'appoint. Elles se déduisent de lib/seo-local.js, donc ajouter une entrée
+     là-bas suffit à la déclarer ici. */
+  const localUrls = [
+    { url: `${BASE}/metiers`, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE}/agence-ia`, changeFrequency: 'monthly', priority: 0.8 },
+    ...METIERS.map((m) => ({
+      url: `${BASE}/metiers/${m.slug}`,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    })),
+    ...VILLES.map((v) => ({
+      url: `${BASE}/agence-ia/${v.slug}`,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    })),
+  ].map((u) => ({ ...u, lastModified: new Date() }));
 
   const staticUrls = [
     /* Site en page unique : les anciennes pages produit sont supprimées et
@@ -29,5 +49,5 @@ export default function sitemap() {
     priority: a.cluster === 'solutions' ? 0.9 : 0.7,
   }));
 
-  return [...staticUrls, ...dynamicUrls];
+  return [...staticUrls, ...localUrls, ...dynamicUrls];
 }
