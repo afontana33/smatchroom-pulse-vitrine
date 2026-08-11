@@ -8,6 +8,7 @@ import TeamLp from '@/components/lp/TeamLp';
 import Piliers from '@/components/lp/Piliers';
 import Packs from '@/components/lp/Packs';
 import AgentClients from '@/components/lp/AgentClients';
+import AutresAgents from '@/components/lp/AutresAgents';
 import Preuves from '@/components/lp/Preuves';
 import AvisLp from '@/components/lp/AvisLp';
 import FaqLp from '@/components/lp/FaqLp';
@@ -33,6 +34,12 @@ import Footer from '@/components/Footer';
  * qui vendent à des entreprises. Les trois se suivent et ne se répètent pas :
  * ne pas remettre de description de brique dans Packs, ni de pack dans
  * AgentClients.
+ *
+ * AutresAgents arrive juste après : les cinq agents complémentaires (relance de
+ * devis, accueil, visibilité, conformité, achats) avec leur prix de fabrication
+ * et leur mensuel. Sa place est là et pas plus haut : on ne présente la famille
+ * qu'une fois l'agent de prospection compris, sinon le visiteur choisit entre
+ * six agents avant d'avoir saisi ce que fait le premier.
  *
  * La FAQ est revenue (FaqLp), juste avant le dernier appel : elle ne documente
  * pas le produit, elle lève les trois objections qui font reporter la prise de
@@ -67,6 +74,7 @@ export default function Page() {
       <Piliers />
       <Packs />
       <AgentClients />
+      <AutresAgents />
       <Preuves />
       <AvisLp />
       <FaqLp />
