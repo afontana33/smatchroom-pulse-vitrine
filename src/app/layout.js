@@ -54,6 +54,16 @@ export const metadata = {
     url: "https://pulse.smatchroom.com",
     siteName: "SmatchRoom Pulse",
     type: "website",
+    /* Pas de `images` ici : les fichiers app/opengraph-image.jpg et
+       app/twitter-image.jpg s'en chargent. La convention de fichier est
+       préférable parce que Next lit les dimensions réelles du fichier et
+       versionne l'URL, alors qu'une liste écrite à la main peut mentir sur la
+       taille et casse silencieusement le jour où l'image change. */
+  },
+  twitter: {
+    /* À déclarer : sans cette ligne le défaut est `summary`, soit une vignette
+       carrée rognée. L'image est fournie par app/twitter-image.jpg. */
+    card: "summary_large_image",
   },
 };
 

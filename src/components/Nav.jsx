@@ -36,9 +36,20 @@ function Wordmark({ onDark = false }) {
       href="/"
       className={`inline-flex items-center gap-2.5 ${onDark ? 'text-white' : 'text-[var(--foreground)]'}`}
     >
-      <span className="relative flex h-7 w-7 items-center justify-center rounded-lg bg-[var(--primary)] text-white shadow-[0_6px_18px_-6px_var(--primary-glow)]">
-        <span className="h-2 w-2 animate-pulse-ring rounded-full bg-white" />
-      </span>
+      {/* Pictogramme seul, pas le logo complet : celui-ci porte déjà le
+          wordmark « SmatchRoom Pulse » et sa baseline, ce qui doublerait le
+          texte à droite et sortirait illisible sous 60 px de haut.
+          Servi à 224 px pour 28 px affichés, donc net jusqu'en densité 3x.
+          `alt` vide et `aria-hidden` : le nom suit en texte juste à côté, un
+          alt le ferait annoncer deux fois par un lecteur d'écran. */}
+      <img
+        src="/brand/pulse-picto.png"
+        alt=""
+        aria-hidden
+        width={277}
+        height={224}
+        className="h-7 w-auto shrink-0"
+      />
       <span className="font-mono text-sm uppercase tracking-[0.2em]">
         SmatchRoom{' '}
         <span className={onDark ? 'text-[#ffb27a]' : 'text-[var(--primary-ink)]'}>Pulse</span>

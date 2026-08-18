@@ -6,9 +6,16 @@ export default function Footer() {
           {/* Brand */}
           <div className="md:col-span-2">
             <div className="inline-flex items-center gap-2.5 text-[var(--foreground)]">
-              <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-[var(--primary)] text-white">
-                <span className="h-2 w-2 rounded-full bg-white" />
-              </span>
+              {/* Même pictogramme que le header, voir le commentaire dans
+                  Nav.jsx pour le choix du picto plutôt que du logo complet. */}
+              <img
+                src="/brand/pulse-picto.png"
+                alt=""
+                aria-hidden
+                width={277}
+                height={224}
+                className="h-7 w-auto shrink-0"
+              />
               <span className="font-mono text-sm uppercase tracking-[0.2em]">
                 SmatchRoom <span className="text-[var(--primary-ink)]">Pulse</span>
               </span>

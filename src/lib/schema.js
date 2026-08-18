@@ -66,6 +66,18 @@ export function organizationSchema() {
     name: SITE_NAME,
     legalName: LEGAL.legalName,
     url: SITE_URL,
+    /* Logo de l'organisation, lu par Google pour le panneau de connaissance et
+       les résultats de marque. Contraintes de Google : URL absolue, image
+       accessible aux robots, fond opaque et au moins 112 px de côté. Le
+       pictogramme détouré ne convient pas ici (transparence), c'est la version
+       aplatie sur blanc qui est servie. */
+    logo: {
+      '@type': 'ImageObject',
+      url: `${SITE_URL}/brand/pulse-logo-512.png`,
+      width: 512,
+      height: 512,
+    },
+    image: `${SITE_URL}/brand/pulse-logo-512.png`,
     description:
       "Agence d'automatisation et d'intelligence artificielle pour les artisans, les TPE et les PME : agents IA qui prospectent et répondent, sites et fiches établissement Google, acquisition Meta.",
     telephone: TEL_E164,
