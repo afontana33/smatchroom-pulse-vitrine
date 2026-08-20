@@ -33,9 +33,16 @@ const instrument = Instrument_Serif({
 });
 
 export const metadata = {
-  title: "SmatchRoom Pulse · On va chercher vos clients à votre place",
+  /* Le titre porte d'abord ce qui se cherche, puis la promesse. L'ancien titre
+     n'ouvrait que sur « On va chercher vos clients à votre place » : bon à
+     l'oreille, invisible pour quelqu'un qui tape « agence de prospection » ou
+     « site internet artisan ». Ces deux requêtes sont celles de nos clients,
+     qui ne cherchent jamais « agent IA ». */
+  title: "Prospection B2B et site internet artisan · SmatchRoom Pulse",
+  /* Sous 160 caractères : au-delà, Google coupe et choisit lui-même la fin.
+     L'ancienne description en faisait 261, dont personne ne voyait la moitié. */
   description:
-    "Nous digitalisons et automatisons la recherche de clients, de l'artisan seul à la grande entreprise. Trois piliers : agents IA qui prospectent et répondent 7j/7, site et fiche établissement Google, acquisition Meta. Prix affichés, en place en 48 heures.",
+    "Agence de prospection B2B et de digitalisation pour artisans, TPE et PME : prospection automatisée, site internet et fiche Google. Prix affichés.",
   metadataBase: new URL("https://pulse.smatchroom.com"),
   // Vérification de domaine Meta : rendue côté serveur dans le <head> statique,
   // condition pour que Meta la voie (une balise injectée en JS n'est pas lue).
@@ -48,6 +55,8 @@ export const metadata = {
     },
   },
   openGraph: {
+    /* Le partage social garde la promesse en tête : personne ne partage un
+       titre écrit pour un moteur. */
     title: "SmatchRoom Pulse · On va chercher vos clients à votre place",
     description:
       "Agents IA, site et fiche établissement Google, acquisition Meta : les trois piliers pour être trouvé, être rappelé et ne rater aucune demande.",
