@@ -215,6 +215,17 @@ export default async function VillePage({ params }) {
 
         <Section>
           <LinkGrid
+            titre="Aller plus loin"
+            intro="Le détail des deux prestations, hors de la zone d'intervention."
+            links={[
+              { href: '/prospection-b2b', label: 'La prospection B2B en détail' },
+              { href: '/site-web-artisan', label: 'Site internet et fiche Google' },
+            ]}
+          />
+        </Section>
+
+        <Section>
+          <LinkGrid
             titre="Tous les métiers"
             links={METIERS.map((m) => ({ href: `/metiers/${m.slug}`, label: m.label }))}
           />

@@ -11,6 +11,11 @@ export default function sitemap() {
      d'appoint. Elles se déduisent de lib/seo-local.js, donc ajouter une entrée
      là-bas suffit à la déclarer ici. */
   const localUrls = [
+    /* Les deux pages de service passent en 0.9 : ce sont elles qui portent les
+       requêtes commerciales (« agence de prospection B2B », « site internet
+       artisan »), que la landing ne pouvait pas cibler sans se contredire. */
+    { url: `${BASE}/prospection-b2b`, changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${BASE}/site-web-artisan`, changeFrequency: 'monthly', priority: 0.9 },
     { url: `${BASE}/metiers`, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${BASE}/agence-ia`, changeFrequency: 'monthly', priority: 0.8 },
     ...METIERS.map((m) => ({

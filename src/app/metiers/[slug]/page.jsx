@@ -229,6 +229,17 @@ export default async function MetierPage({ params }) {
 
         <Section>
           <LinkGrid
+            titre="Aller plus loin"
+            intro="La prospection n'est qu'une des trois briques. Les deux autres pages détaillent le reste."
+            links={[
+              { href: '/prospection-b2b', label: 'La prospection B2B en détail' },
+              { href: '/site-web-artisan', label: 'Site internet et fiche Google' },
+            ]}
+          />
+        </Section>
+
+        <Section>
+          <LinkGrid
             titre="Les autres métiers"
             links={METIERS.filter((x) => x.slug !== m.slug).map((x) => ({
               href: `/metiers/${x.slug}`,
