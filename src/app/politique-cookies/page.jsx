@@ -46,7 +46,7 @@ const TRACEURS = [
     service: 'Google Ads (gtag.js)',
     editeur: 'Google Ireland Limited (Irlande)',
     finalite:
-      "Mesure des conversions issues des campagnes publicitaires diffusées sur les services Google (Recherche, Display, YouTube) : permet de rattacher une visite, puis une prise de rendez-vous, au clic publicitaire qui l'a précédée. Sert également à constituer des audiences de reciblage.",
+      "Mesure des conversions issues des campagnes publicitaires diffusées sur les services Google (Recherche, Display, YouTube) : permet de rattacher une visite, puis une prise de rendez-vous, au clic publicitaire qui l'a précédée. Remonte une action de conversion : l'ouverture de la page de réservation Calendly. Sert également à constituer des audiences de reciblage.",
     duree: '90 jours',
     horsUE:
       "Oui. Google Ireland Limited transfère des données à Google LLC (États-Unis). Google invoque le Data Privacy Framework UE–États-Unis et des clauses contractuelles types.",

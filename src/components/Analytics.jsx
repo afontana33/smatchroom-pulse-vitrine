@@ -51,7 +51,7 @@ export default function Analytics() {
 
       const href = link.getAttribute('href') || '';
 
-      // Mêmes deux conversions que le Meta Pixel (voir [PixelEvents]) : le site
+      // Mêmes deux conversions que les régies (voir [ConversionEvents]) : le site
       // n'a ni formulaire, ni panier. `page` permet de savoir quelle page
       // déclenche les prises de rendez-vous, pas seulement combien il y en a.
       if (href.startsWith('tel:')) {
