@@ -1,7 +1,7 @@
 import { Manrope, JetBrains_Mono, Bricolage_Grotesque, Instrument_Serif } from "next/font/google";
 import Analytics from "@/components/Analytics";
 import CookieConsent from "@/components/CookieConsent";
-import PixelEvents from "@/components/PixelEvents";
+import ConversionEvents from "@/components/ConversionEvents";
 import JsonLd from "@/components/JsonLd";
 import { graph, organizationSchema, websiteSchema } from "@/lib/schema";
 import "./globals.css";
@@ -99,9 +99,10 @@ export default function RootLayout({ children }) {
             Tarteaucitron dans CookieConsent et ne s'exécute qu'après acceptation.
             La variante <noscript> a été retirée : sans JavaScript, aucun
             consentement ne peut être recueilli, donc aucun traceur ne doit partir. */}
-        {/* Évènements standard Meta (Lead, Contact). Inertes tant que le pixel
-            n'a pas été autorisé : PixelEvents ne fait rien si fbq n'existe pas. */}
-        <PixelEvents />
+        {/* Conversions Meta (Lead, Contact) et Google Ads (Prise de rendez-vous).
+            Inertes tant que le traceur correspondant n'a pas été autorisé :
+            ConversionEvents ne fait rien si fbq ou gtag n'existe pas. */}
+        <ConversionEvents />
         {/* Mesure d'audience Umami : sans consentement requis (cookieless,
             auto-hébergée), donc chargée directement et non via Tarteaucitron.
             Le raisonnement complet est dans le composant. */}
