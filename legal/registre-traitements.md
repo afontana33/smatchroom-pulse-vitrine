@@ -95,12 +95,12 @@ Article 30.1 du RGPD. Traitements dont SMATCHROOM détermine les finalités et l
 
 | Rubrique | Contenu |
 |---|---|
-| Finalité | Mesurer l'audience des campagnes publicitaires Meta et constituer des audiences de reciblage |
+| Finalité | Mesurer l'audience des campagnes publicitaires Meta et Google Ads, et constituer des audiences de reciblage |
 | Base légale | Consentement (art. 6.1.a), recueilli via le bandeau |
 | Personnes concernées | Visiteurs du site ayant accepté |
-| Catégories de données | Identifiant de navigateur (`_fbp`), pages consultées, adresse IP |
-| Destinataires | Meta Platforms Ireland Ltd. |
-| Transferts hors UE | Oui : Meta Platforms Inc. (États-Unis) |
+| Catégories de données | Identifiants de navigateur (`_fbp`, `_gcl_au`), pages consultées, adresse IP |
+| Destinataires | Meta Platforms Ireland Ltd., Google Ireland Ltd. |
+| Transferts hors UE | Oui : Meta Platforms Inc. et Google LLC (États-Unis) |
 | Durée de conservation | 90 jours pour le cookie ; 6 mois pour la preuve du choix (`pulse_consent`) |
 | Mesures de sécurité | Aucun déclenchement avant consentement, révocation permanente depuis le footer |
 

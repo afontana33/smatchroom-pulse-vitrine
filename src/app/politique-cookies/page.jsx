@@ -26,7 +26,7 @@ export const metadata = {
     "Liste des traceurs déposés sur pulse.smatchroom.com : éditeur, finalité, durée de conservation et transferts hors Union européenne.",
 };
 
-const MAJ = '10 août 2026';
+const MAJ = '23 août 2026';
 
 /** Traceurs soumis au consentement. */
 const TRACEURS = [
@@ -39,6 +39,17 @@ const TRACEURS = [
     duree: '90 jours',
     horsUE:
       "Oui. Meta Platforms Ireland Limited transfère des données à Meta Platforms, Inc. (États-Unis). Meta invoque le Data Privacy Framework UE–États-Unis et des clauses contractuelles types.",
+    consentement: true,
+  },
+  {
+    nom: '_gcl_au',
+    service: 'Google Ads (gtag.js)',
+    editeur: 'Google Ireland Limited (Irlande)',
+    finalite:
+      "Mesure des conversions issues des campagnes publicitaires diffusées sur les services Google (Recherche, Display, YouTube) : permet de rattacher une visite, puis une prise de rendez-vous, au clic publicitaire qui l'a précédée. Sert également à constituer des audiences de reciblage.",
+    duree: '90 jours',
+    horsUE:
+      "Oui. Google Ireland Limited transfère des données à Google LLC (États-Unis). Google invoque le Data Privacy Framework UE–États-Unis et des clauses contractuelles types.",
     consentement: true,
   },
 ];
@@ -72,7 +83,7 @@ const SECTIONS = [
     title: "Ce que cette page couvre",
     paragraphs: [
       "Un cookie est un fichier déposé sur votre appareil lors de la consultation d'un site. La même réglementation s'applique aux techniques équivalentes : pixels invisibles, balises, stockage local. Le terme « traceur » les désigne toutes dans cette page.",
-      "Nous utilisons un outil de mesure d'audience installé sur notre propre serveur, décrit ci-dessous, qui ne dépose aucun cookie. Nous n'utilisons aucun outil d'analyse de comportement (heatmap, enregistrement de session) et aucun réseau publicitaire autre que celui listé ci-dessous.",
+      "Nous utilisons un outil de mesure d'audience installé sur notre propre serveur, décrit ci-dessous, qui ne dépose aucun cookie. Nous n'utilisons aucun outil d'analyse de comportement (heatmap, enregistrement de session) et aucun réseau publicitaire autre que ceux listés ci-dessous.",
     ],
   },
   {

@@ -11,9 +11,10 @@
  *
  *   1. Aucun traceur non essentiel n'est exécuté avant une action explicite.
  *      `highPrivacy: true` désactive le consentement implicite (pas de
- *      « en continuant votre navigation vous acceptez »), et le Meta Pixel
- *      n'est plus dans le layout : il n'existe que comme service Tarteaucitron,
- *      déclenché par `job.push('facebookpixel')` une fois le consentement donné.
+ *      « en continuant votre navigation vous acceptez »), et ni le Meta Pixel
+ *      ni le tag Google Ads ne sont dans le layout : ils n'existent que comme
+ *      services Tarteaucitron, déclenchés par `job.push(…)` une fois le
+ *      consentement donné.
  *   2. Il n'y a plus de variante `<noscript>` du pixel. Sans JavaScript, le
  *      consentement ne peut pas être recueilli, donc le traceur ne doit pas
  *      partir : l'absence de repli est le comportement correct, pas un oubli.
@@ -32,6 +33,14 @@
 import { useEffect } from 'react';
 
 const META_PIXEL_ID = '1726028198959218';
+
+/* Tag Google Ads (gtag.js). Chargé par le service `googleads` du catalogue
+   Tarteaucitron, jamais depuis le layout : la balise dépose `_gcl_au`, elle est
+   donc soumise au consentement au même titre que le pixel Meta. Conséquence
+   assumée : tant qu'aucun visiteur n'a accepté, le vérificateur de balise de
+   Google Ads la déclare inactive. C'est le comportement attendu, pas une
+   panne. */
+const GOOGLE_ADS_ID = 'AW-18405700898';
 
 /** Durée de conservation du choix. La CNIL recommande 6 mois au maximum. */
 const CONSENT_LIFETIME_DAYS = 182;
@@ -53,7 +62,7 @@ export default function CookieConsent() {
     // que l'intitulé corresponde à la page réellement ouverte.
     window.tarteaucitronCustomText = {
       alertBigPrivacy:
-        'Nous utilisons un traceur publicitaire Meta pour mesurer nos campagnes. Il ne sera déposé que si vous l’acceptez. Refuser ne dégrade aucune fonctionnalité du site.',
+        'Nous utilisons deux traceurs publicitaires, Meta et Google Ads, pour mesurer nos campagnes. Ils ne seront déposés que si vous les acceptez. Refuser ne dégrade aucune fonctionnalité du site.',
       privacyUrl: 'Voir la politique cookies',
     };
 
@@ -103,7 +112,8 @@ export default function CookieConsent() {
       });
 
       tac.user.facebookpixelId = META_PIXEL_ID;
-      (tac.job = tac.job || []).push('facebookpixel');
+      tac.user.googleadsId = GOOGLE_ADS_ID;
+      (tac.job = tac.job || []).push('facebookpixel', 'googleads');
     };
 
     document.head.appendChild(script);

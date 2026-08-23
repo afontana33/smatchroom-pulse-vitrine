@@ -8,11 +8,11 @@
  *   npm run sync:tarteaucitron
  *
  * Le catalogue officiel `tarteaucitron.services.min.js` pèse ~196 Ko et décrit
- * plusieurs centaines de services dont un seul nous concerne. On en extrait le
- * bloc `facebookpixel` verbatim plutôt que de servir le fichier entier sur
- * chaque page. Toute nouvelle intégration (Google Analytics, YouTube, Calendly
- * embarqué…) doit être ajoutée à SERVICES ci-dessous, sinon le service restera
- * introuvable pour le CMP.
+ * plusieurs centaines de services dont deux nous concernent. On en extrait les
+ * blocs `facebookpixel` et `googleads` verbatim plutôt que de servir le fichier
+ * entier sur chaque page. Toute nouvelle intégration (Google Analytics,
+ * YouTube, Calendly embarqué…) doit être ajoutée à SERVICES ci-dessous, sinon
+ * le service restera introuvable pour le CMP.
  */
 
 import { mkdirSync, copyFileSync, readFileSync, writeFileSync } from 'node:fs';
@@ -24,7 +24,7 @@ const SRC = join(ROOT, 'node_modules', 'tarteaucitronjs');
 const DEST = join(ROOT, 'public', 'tarteaucitron');
 
 /** Services du catalogue officiel à embarquer. */
-const SERVICES = ['facebookpixel'];
+const SERVICES = ['facebookpixel', 'googleads'];
 
 const FILES = [
   ['tarteaucitron.min.js', 'tarteaucitron.min.js'],
