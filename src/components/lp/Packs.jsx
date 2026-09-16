@@ -247,7 +247,7 @@ export default function Packs() {
         <Rise delay={0.05}>
           <div className="mt-12 flex flex-col items-start justify-between gap-6 rounded-2xl border border-[var(--border-strong)] bg-[var(--surface-2)] p-7 sm:p-8 lg:flex-row lg:items-center">
             <p className="max-w-2xl text-[0.98rem] leading-relaxed text-[var(--muted-strong)]">
-              Sans engagement au prix affiché, ou création offerte si vous partez sur 6 mois&nbsp;:
+              Sans engagement au prix affiché, ou création offerte si vous partez sur 3 mois&nbsp;:
               jusqu&apos;à{' '}
               <span className="font-semibold text-[var(--foreground)]">1 490 € HT économisés</span>.
             </p>

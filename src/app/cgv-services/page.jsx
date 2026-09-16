@@ -84,7 +84,7 @@ const ARTICLES = [
       head: ['Formule', 'Mise en service', 'Abonnement', 'Durée'],
       rows: [
         ['Liberté', '300 € HT, une seule fois', '190 € HT par mois', 'Sans engagement'],
-        ['Partenaire', 'Offerte', '190 € HT par mois', 'Engagement de 6 mois'],
+        ['Partenaire', 'Offerte', '190 € HT par mois', 'Engagement de 3 mois'],
         ['Ingénierie Corporate', 'Sur devis', 'Sur devis', 'Définie au devis'],
       ],
     },
@@ -116,7 +116,7 @@ const ARTICLES = [
     title: 'Article 8 · Durée, reconduction et résiliation',
     list: [
       "Formule Liberté : le contrat est conclu pour une durée d'un mois, reconduit tacitement de mois en mois. Chacune des parties peut y mettre fin par écrit, courriel avec accusé de réception compris, moyennant un préavis de trente jours avant l'échéance mensuelle en cours. Les frais de mise en service restent acquis au Prestataire.",
-      "Formule Partenaire : le contrat est conclu pour une durée ferme de six mois à compter de la mise en production, puis reconduit tacitement de mois en mois selon les règles de la formule Liberté. La résiliation à l'échéance de la période ferme s'effectue par écrit moyennant un préavis de trente jours.",
+      "Formule Partenaire : le contrat est conclu pour une durée ferme de trois mois à compter de la mise en production, puis reconduit tacitement de mois en mois selon les règles de la formule Liberté. La résiliation à l'échéance de la période ferme s'effectue par écrit moyennant un préavis de trente jours.",
       "Résiliation anticipée de la formule Partenaire à l'initiative du Client : les mensualités restant à courir jusqu'au terme de la période ferme deviennent immédiatement exigibles, et les frais de mise en service offerts, d'un montant de 300 € HT, redeviennent dus. Cette contrepartie est la stricte compensation de la gratuité consentie en considération de l'engagement.",
       "Résiliation pour manquement : en cas de manquement grave d'une partie à ses obligations, non réparé dans les trente jours suivant une mise en demeure écrite, l'autre partie peut résilier de plein droit, sans indemnité et sans préjudice de tout dommage et intérêt.",
       "Résiliation immédiate par le Prestataire : le Prestataire peut résilier sans préavis, sans indemnité et sans remboursement des sommes déjà versées s'il constate que le Client utilise la prestation en violation de la réglementation applicable, notamment en matière de prospection et de protection des données, ou qu'il lui a transmis des données obtenues illicitement.",

@@ -42,7 +42,7 @@ ${AGENT_OFFERS.map(offerLine).join('\n')}
 
 Tous les montants sont hors taxes. La formule à la carte est sans engagement.
 La formule Partenaire offre les frais de fabrication de l'agent de prospection
-en échange d'un engagement de six mois. Le budget publicitaire Meta n'est pas
+en échange d'un engagement de trois mois. Le budget publicitaire Meta n'est pas
 facturé par nous : il est payé directement à Meta par le client.
 
 ## Ce que nous ne faisons pas

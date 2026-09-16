@@ -182,7 +182,7 @@ export default async function MetierPage({ params }) {
                 pilotage&nbsp;: on surveille, on ajuste, on réécrit ce qui ne prend pas.
               </p>
               <p className="mt-4 max-w-2xl leading-relaxed text-[var(--muted-strong)]">
-                Si vous partez sur six mois, la fabrication est offerte. Sinon c&apos;est sans
+                Si vous partez sur trois mois, la fabrication est offerte. Sinon c&apos;est sans
                 engagement, et vous arrêtez quand vous voulez.
               </p>
               <a
@@ -205,7 +205,7 @@ export default async function MetierPage({ params }) {
                 puis {eur(agent.monthly)} € HT / mois
               </p>
               <p className="mt-5 border-t border-[var(--border)] pt-5 text-sm leading-relaxed text-[var(--muted-strong)]">
-                Formule Partenaire&nbsp;: fabrication offerte si vous partez sur 6 mois.
+                Formule Partenaire&nbsp;: fabrication offerte si vous partez sur 3 mois.
               </p>
             </div>
           </div>

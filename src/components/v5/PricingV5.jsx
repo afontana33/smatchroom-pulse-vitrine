@@ -41,10 +41,10 @@ const PLANS = [
     pitch: 'Idéal pour s’implanter durablement sur votre secteur et lisser votre budget.',
     setup: { label: 'Frais de création (setup)', value: 'Offerts', strike: '300 €', note: 'vous économisez 300 € HT' },
     mrr: { value: '190 €', note: 'HT / mois' },
-    total: 'Engagement 6 mois',
+    total: 'Engagement 3 mois',
     features: [
       'Setup offert (300 € HT économisés)',
-      '6 mois pour laisser l’algorithme verrouiller votre marché',
+      '3 mois pour laisser l’algorithme verrouiller votre marché',
       'Priorité sur les ajustements et les nouveaux canaux',
     ],
     cta: 'Choisir la formule Partenaire',

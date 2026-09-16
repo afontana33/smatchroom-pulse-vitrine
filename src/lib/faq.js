@@ -27,7 +27,7 @@ export const QUESTIONS = [
   },
   {
     q: 'Et si ça ne me convient pas ?',
-    a: "Vous arrêtez. La formule à la carte est sans engagement : vous prévenez, le mois suivant n'est pas prélevé, et vous gardez ce qui a été produit (votre site, votre fiche Google, vos contacts). Si vous avez pris la formule Partenaire à 6 mois, c'est le seul cas où vous êtes tenu, et c'est justement en échange des 300 € de création offerts.",
+    a: "Vous arrêtez. La formule à la carte est sans engagement : vous prévenez, le mois suivant n'est pas prélevé, et vous gardez ce qui a été produit (votre site, votre fiche Google, vos contacts). Si vous avez pris la formule Partenaire à 3 mois, c'est le seul cas où vous êtes tenu, et c'est justement en échange des 300 € de création offerts.",
   },
   {
     q: 'Concrètement, la première semaine, il se passe quoi ?',

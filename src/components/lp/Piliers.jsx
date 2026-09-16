@@ -37,7 +37,7 @@ const PILIERS = [
       'Les rendez-vous atterrissent dans votre agenda',
     ],
     /* Deux formules côte à côte et non un prix avec une note en bas de bloc :
-       la formule Partenaire (création offerte contre 6 mois) était écrite en petit
+       la formule Partenaire (création offerte contre 3 mois) était écrite en petit
        sous le tarif, donc invisible alors que c'est celle qu'on veut voir choisie.
        Un seul prix fait réfléchir, deux prix font comparer puis choisir. */
     options: [
@@ -54,7 +54,7 @@ const PILIERS = [
         setup: '0 €',
         setupNote: 'création offerte',
         then: '190 € HT / mois',
-        note: 'Vous partez sur 6 mois, on offre les 300 € de création.',
+        note: 'Vous partez sur 3 mois, on offre les 300 € de création.',
       },
     ],
   },
