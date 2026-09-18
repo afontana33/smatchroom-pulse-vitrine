@@ -26,6 +26,7 @@ import { QUESTIONS_EN } from '@/lib/faq-en';
 import { PILIER_OFFERS } from '@/lib/offers';
 import { TEL_DISPLAY_INTL } from '@/lib/contact';
 import { alternatesFor, absolute, HREFLANG } from '@/lib/i18n';
+import { OG_IMAGES } from '@/lib/social-images';
 import { faqSchema, graph, serviceSchema, webPageSchema } from '@/lib/schema';
 
 const PATH = '/en';
@@ -62,6 +63,11 @@ export const metadata = {
     siteName: 'SmatchRoom Pulse',
     locale: 'en_US',
     type: 'website',
+    /* `images` répété ici et pas seulement dans le layout : un bloc
+       `openGraph` déclaré dans une page remplace en bloc celui du layout, le
+       visuel compris. L'oublier fait partager la page sans image, sans que le
+       build ne dise rien. Voir lib/social-images.js. */
+    images: OG_IMAGES,
   },
 };
 

@@ -17,6 +17,7 @@
 
 import SiteBody from '@/components/SiteBody';
 import { fontVariables } from '@/lib/fonts';
+import { OG_IMAGES, TWITTER_IMAGES } from '@/lib/social-images';
 import '../globals.css';
 
 export const metadata = {
@@ -51,22 +52,16 @@ export const metadata = {
     siteName: "SmatchRoom Pulse",
     locale: "fr_FR",
     type: "website",
-    /* Pas de `images` ici : les fichiers opengraph-image.jpg et
-       twitter-image.jpg posés à côté de ce layout s'en chargent. La convention
-       de fichier est préférable parce que Next lit les dimensions réelles du
-       fichier et versionne l'URL, alors qu'une liste écrite à la main peut
-       mentir sur la taille et casse silencieusement le jour où l'image change.
-
-       ⚠ Ces deux fichiers doivent rester dans ce dossier, pas dans `app/`.
-       Depuis le passage à deux racines de layout, une image posée à la racine
-       de `app/` continue d'être servie mais n'est plus rattachée aux pages :
-       les balises og:image et twitter:image disparaissent silencieusement, et
-       le build ne dit rien. Constaté et corrigé le 2026-09-18. */
+    /* Les visuels ne passent plus par la convention de fichier : voir
+       lib/social-images.js pour la raison, elle tient au passage à deux
+       racines de layout. */
+    images: OG_IMAGES,
   },
   twitter: {
-    /* À déclarer : sans cette ligne le défaut est `summary`, soit une vignette
-       carrée rognée. L'image est fournie par app/twitter-image.jpg. */
+    /* `card` à déclarer : sans cette ligne le défaut est `summary`, soit une
+       vignette carrée rognée. */
     card: "summary_large_image",
+    images: TWITTER_IMAGES,
   },
 };
 
