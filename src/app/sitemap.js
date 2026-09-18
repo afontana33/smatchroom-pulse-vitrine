@@ -35,6 +35,11 @@ export default function sitemap() {
        redirigées (next.config.mjs). Ne pas les remettre ici, un sitemap qui
        déclare des URL en 301 fait perdre du budget de crawl. */
     { url: BASE, lastModified: new Date(), changeFrequency: 'weekly', priority: 1.0 },
+    /* Landing anglaise. Priorité sous celle de l'accueil français : c'est une
+       page unique adressée à une audience secondaire, pas une seconde racine
+       du site. L'appariement hreflang est déclaré dans les métadonnées des
+       deux pages (lib/i18n.js), pas ici. */
+    { url: `${BASE}/en`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 },
     { url: `${BASE}/blog`, lastModified: new Date(), changeFrequency: 'daily', priority: 0.8 },
     { url: `${BASE}/agent-ia`, lastModified: new Date(), changeFrequency: 'daily', priority: 0.9 },
     // Pages légales : indexables, et attendues par les moteurs comme signal de sérieux.

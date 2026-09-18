@@ -18,6 +18,7 @@ import JsonLd from '@/components/JsonLd';
 import { QUESTIONS } from '@/lib/faq';
 import { ALL_OFFERS } from '@/lib/offers';
 import { SITE_URL } from '@/lib/contact';
+import { alternatesFor } from '@/lib/i18n';
 import { faqSchema, graph, serviceSchema, webPageSchema } from '@/lib/schema';
 
 /**
@@ -68,9 +69,14 @@ function heroMedia() {
 }
 
 /* Canonique déclarée page par page et pas dans le layout : une canonique posée
-   dans le layout ferait pointer toutes les pages du site vers l'accueil. */
+   dans le layout ferait pointer toutes les pages du site vers l'accueil.
+
+   `alternatesFor` ajoute le couple hreflang fr-FR / en vers la landing
+   anglaise. Le hreflang doit être réciproque pour être pris en compte : cette
+   page déclare /en, et /en déclare celle-ci. Les autres pages françaises n'ont
+   pas d'équivalent anglais et gardent leur seule canonique. */
 export const metadata = {
-  alternates: { canonical: '/' },
+  alternates: alternatesFor('/', 'fr'),
 };
 
 export default function Page() {

@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { Menu, X, ArrowRight, Phone } from 'lucide-react';
 import { TEL_DISPLAY, TEL_HREF } from '@/lib/contact';
+import LangSwitch from '@/components/LangSwitch';
 
 /* Le site tient en une page : le menu ne pointe que sur ses ancres, plus le
    blog et les ressources qui restent des pages à part. Ne pas y remettre de
@@ -30,10 +31,10 @@ const CALENDLY = 'https://calendly.com/a-fontana-smatchroom/30min';
    l'importe depuis Nav : casser ces imports n'apporterait rien. */
 export { TEL_DISPLAY, TEL_HREF };
 
-function Wordmark({ onDark = false }) {
+function Wordmark({ onDark = false, home = '/' }) {
   return (
     <a
-      href="/"
+      href={home}
       className={`inline-flex items-center gap-2.5 ${onDark ? 'text-white' : 'text-[var(--foreground)]'}`}
     >
       {/* Pictogramme seul, pas le logo complet : celui-ci porte déjà le
@@ -62,8 +63,24 @@ function Wordmark({ onDark = false }) {
  * `overDark` : la page commence par une section en registre encre (la landing v5).
  * Tant qu'on n'a pas scrollé, la barre est transparente au-dessus de ce fond
  * sombre, donc son texte doit passer en blanc, sinon il est illisible.
+ *
+ * `links`, `cta`, `callLabel`, `home`, `phone` et `locale` : tout ce qui est écrit en
+ * français dans cette barre est surchargeable, pour que la version anglaise
+ * réutilise le même composant au lieu d'en cloner une copie. Les valeurs par
+ * défaut sont celles du site français, donc aucune page existante ne change.
  */
-export default function Nav({ overDark = false }) {
+export default function Nav({
+  overDark = false,
+  links = LINKS,
+  cta = 'Réserver un créneau',
+  callLabel = 'Appeler',
+  callAria = 'Appeler le',
+  home = '/',
+  locale = 'fr',
+  /* Format national en français, international en anglais : voir
+     TEL_DISPLAY_INTL dans lib/contact.js. */
+  phone = TEL_DISPLAY,
+}) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -87,12 +104,12 @@ export default function Nav({ overDark = false }) {
       ].join(' ')}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-3.5 sm:px-6">
-        <Wordmark onDark={onDark} />
+        <Wordmark onDark={onDark} home={home} />
 
         {/* gap réduit en lg : avec sept ancres, le numéro et le bouton, la barre
             se serrait juste sous 1280px. */}
         <nav className="hidden items-center gap-5 lg:flex xl:gap-7">
-          {LINKS.map((l) => (
+          {links.map((l) => (
             <a
               key={l.href}
               href={l.href}
@@ -113,6 +130,7 @@ export default function Nav({ overDark = false }) {
         </nav>
 
         <div className="hidden items-center gap-4 lg:flex">
+          <LangSwitch locale={locale} onDark={onDark} />
           <a
             href={TEL_HREF}
             className={[
@@ -121,7 +139,7 @@ export default function Nav({ overDark = false }) {
             ].join(' ')}
           >
             <Phone size={15} strokeWidth={2.4} className={onDark ? 'text-[#ffb27a]' : 'text-[var(--primary-ink)]'} />
-            {TEL_DISPLAY}
+            {phone}
           </a>
           <a
             href={CALENDLY}
@@ -129,7 +147,7 @@ export default function Nav({ overDark = false }) {
             rel="noopener noreferrer"
             className="btn-primary inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold"
           >
-            Réserver un créneau
+            {cta}
             <ArrowRight size={15} />
           </a>
         </div>
@@ -138,7 +156,7 @@ export default function Nav({ overDark = false }) {
             demander d'ouvrir un menu d'abord. */}
         <a
           href={TEL_HREF}
-          aria-label={`Appeler le ${TEL_DISPLAY}`}
+          aria-label={`${callAria} ${phone}`}
           className={[
             'inline-flex h-10 items-center gap-2 rounded-xl border px-3 text-sm font-semibold lg:hidden',
             onDark
@@ -147,8 +165,8 @@ export default function Nav({ overDark = false }) {
           ].join(' ')}
         >
           <Phone size={15} strokeWidth={2.4} />
-          <span className="hidden sm:inline">{TEL_DISPLAY}</span>
-          <span className="sm:hidden">Appeler</span>
+          <span className="hidden sm:inline">{phone}</span>
+          <span className="sm:hidden">{callLabel}</span>
         </a>
 
         <button
@@ -169,7 +187,7 @@ export default function Nav({ overDark = false }) {
       {mobileOpen && (
         <div className="border-t border-[var(--border)] bg-[rgba(246,244,239,0.97)] px-5 py-6 backdrop-blur-xl lg:hidden">
           <nav className="flex flex-col gap-1">
-            {LINKS.map((l) => (
+            {links.map((l) => (
               <a
                 key={l.href}
                 href={l.href}
@@ -190,7 +208,7 @@ export default function Nav({ overDark = false }) {
               className="mt-3 inline-flex items-center justify-center gap-2.5 rounded-xl border border-[var(--primary)] bg-[var(--primary-soft)] px-5 py-3.5 text-base font-bold tracking-tight text-[var(--primary-ink)]"
             >
               <Phone size={17} strokeWidth={2.4} />
-              {TEL_DISPLAY}
+              {phone}
             </a>
             <a
               href={CALENDLY}
@@ -199,9 +217,15 @@ export default function Nav({ overDark = false }) {
               onClick={() => setMobileOpen(false)}
               className="btn-primary mt-2 inline-flex items-center justify-center gap-2 px-5 py-3.5 text-sm font-semibold"
             >
-              Réserver un créneau
+              {cta}
               <ArrowRight size={15} />
             </a>
+            {/* Le sélecteur ferme la liste mobile : sur téléphone il est le
+                dernier élément, sinon il tombe au-dessus du pli sur les écrans
+                courts et personne ne le trouve. */}
+            <div className="mt-5 border-t border-[var(--border)] pt-4">
+              <LangSwitch locale={locale} />
+            </div>
           </nav>
         </div>
       )}

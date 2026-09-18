@@ -180,9 +180,9 @@ export function CtaBand({ titre, texte }) {
 }
 
 /** Enveloppe de section : même rythme vertical que la landing. */
-export function Section({ children, className = '' }) {
+export function Section({ children, className = '', id }) {
   return (
-    <section className={`relative px-5 py-16 sm:px-6 sm:py-20 ${className}`}>
+    <section id={id} className={`relative px-5 py-16 sm:px-6 sm:py-20 ${className}`}>
       <div className="mx-auto max-w-7xl">{children}</div>
     </section>
   );

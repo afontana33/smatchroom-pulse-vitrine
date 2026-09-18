@@ -25,10 +25,37 @@ export const eur = (n) => n.toLocaleString('fr-FR');
 /* Chaînes prêtes à l'affichage pour les pages qui rendent les prix depuis ces
    données. Elles passent par ici plutôt que d'écrire le montant elles-mêmes :
    sans ça, chacune réinvente le « à partir de » et le « sur devis », et on
-   finit avec deux formulations pour un même prix. */
-export const setupLabel = (o) => `${o.setupFrom ? 'à partir de ' : ''}${eur(o.setup)} € HT`;
-export const monthlyLabel = (o) =>
-  o.monthly == null ? 'mensualité sur devis' : `${eur(o.monthly)} € HT / mois`;
+   finit avec deux formulations pour un même prix.
+
+   La version anglaise (/en) lit les mêmes montants : seules les chaînes
+   changent, jamais les nombres. C'est ce qui garantit qu'une correction de
+   prix ne peut pas laisser une des deux langues en arrière. Séparateur et
+   position du symbole suivent chaque langue : « 1 800 € HT » en français,
+   « €1,800 excl. VAT » en anglais. */
+const FORMAT = {
+  fr: {
+    num: (n) => n.toLocaleString('fr-FR'),
+    setup: (montant, from) => `${from ? 'à partir de ' : ''}${montant} € HT`,
+    monthly: (montant) =>
+      montant === null ? 'mensualité sur devis' : `${montant} € HT / mois`,
+  },
+  en: {
+    num: (n) => n.toLocaleString('en-GB'),
+    setup: (montant, from) => `${from ? 'from ' : ''}€${montant} excl. VAT`,
+    monthly: (montant) =>
+      montant === null ? 'monthly fee on request' : `€${montant} excl. VAT / month`,
+  },
+};
+
+export const setupLabel = (o, locale = 'fr') => {
+  const f = FORMAT[locale] ?? FORMAT.fr;
+  return f.setup(f.num(o.setup), o.setupFrom);
+};
+
+export const monthlyLabel = (o, locale = 'fr') => {
+  const f = FORMAT[locale] ?? FORMAT.fr;
+  return f.monthly(o.monthly == null ? null : f.num(o.monthly));
+};
 
 export const PILIER_OFFERS = [
   {

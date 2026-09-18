@@ -15,6 +15,12 @@ export const TEL_DISPLAY = '07 71 48 76 98';
 export const TEL_HREF = 'tel:+33771487698';
 export const TEL_E164 = '+33771487698';
 
+/* Format affiché sur les pages anglaises. Le format national français n'est
+   pas composable depuis l'étranger : un visiteur qui lit « 07 71 … » sur une
+   page en anglais et tape le numéro tel quel n'arrive nulle part. Le lien
+   `tel:` est le même dans les deux langues, il porte déjà l'indicatif. */
+export const TEL_DISPLAY_INTL = '+33 7 71 48 76 98';
+
 export const CALENDLY = 'https://calendly.com/a-fontana-smatchroom/30min';
 
 export const SITE_URL = 'https://pulse.smatchroom.com';

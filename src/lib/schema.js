@@ -110,7 +110,10 @@ export function organizationSchema() {
         telephone: TEL_E164,
         contactType: 'sales',
         areaServed: 'FR',
-        availableLanguage: ['fr'],
+        /* L'anglais est déclaré depuis l'ouverture de /en : un site anglais
+           dont le point de contact annonce « français uniquement » se
+           contredit. À retirer si la version anglaise est un jour dépubliée. */
+        availableLanguage: ['fr', 'en'],
       },
     ],
     sameAs: ['https://smatchroom.com'],
@@ -131,7 +134,12 @@ export function websiteSchema() {
     '@id': SITE_ID,
     url: SITE_URL,
     name: SITE_NAME,
-    inLanguage: 'fr-FR',
+    /* Les deux langues du site, déclarées ensemble. Ce nœud porte un `@id`
+       unique et se retrouve donc à l'identique sur une page française et sur
+       une page anglaise : y mettre la langue de la page courante ferait deux
+       déclarations contradictoires de la même entité. La langue d'une page
+       précise est portée par son nœud WebPage. */
+    inLanguage: ['fr-FR', 'en'],
     publisher: { '@id': ORG_ID },
   };
 }
@@ -225,14 +233,15 @@ export function breadcrumbSchema(items) {
   };
 }
 
-export function webPageSchema({ url, name, description, breadcrumb }) {
+/** `lang` : code hreflang de la page. Le défaut couvre tout le site français. */
+export function webPageSchema({ url, name, description, breadcrumb, lang = 'fr-FR' }) {
   return {
     '@type': 'WebPage',
     '@id': `${url}#webpage`,
     url,
     name,
     description,
-    inLanguage: 'fr-FR',
+    inLanguage: lang,
     isPartOf: { '@id': SITE_ID },
     about: { '@id': ORG_ID },
     ...(breadcrumb ? { breadcrumb } : {}),
