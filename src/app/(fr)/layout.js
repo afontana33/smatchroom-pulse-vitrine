@@ -51,11 +51,17 @@ export const metadata = {
     siteName: "SmatchRoom Pulse",
     locale: "fr_FR",
     type: "website",
-    /* Pas de `images` ici : les fichiers app/opengraph-image.jpg et
-       app/twitter-image.jpg s'en chargent. La convention de fichier est
-       préférable parce que Next lit les dimensions réelles du fichier et
-       versionne l'URL, alors qu'une liste écrite à la main peut mentir sur la
-       taille et casse silencieusement le jour où l'image change. */
+    /* Pas de `images` ici : les fichiers opengraph-image.jpg et
+       twitter-image.jpg posés à côté de ce layout s'en chargent. La convention
+       de fichier est préférable parce que Next lit les dimensions réelles du
+       fichier et versionne l'URL, alors qu'une liste écrite à la main peut
+       mentir sur la taille et casse silencieusement le jour où l'image change.
+
+       ⚠ Ces deux fichiers doivent rester dans ce dossier, pas dans `app/`.
+       Depuis le passage à deux racines de layout, une image posée à la racine
+       de `app/` continue d'être servie mais n'est plus rattachée aux pages :
+       les balises og:image et twitter:image disparaissent silencieusement, et
+       le build ne dit rien. Constaté et corrigé le 2026-09-18. */
   },
   twitter: {
     /* À déclarer : sans cette ligne le défaut est `summary`, soit une vignette

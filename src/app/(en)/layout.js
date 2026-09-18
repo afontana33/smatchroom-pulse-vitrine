@@ -30,9 +30,17 @@ export const metadata = {
     siteName: 'SmatchRoom Pulse',
     locale: 'en_US',
     type: 'website',
+    /* Images déclarées à la main, contrairement au français qui passe par la
+       convention de fichier. Un opengraph-image.jpg posé dans ce groupe
+       servirait la même URL que celui du groupe français et ferait échouer le
+       build sur un conflit de route ; en dupliquer une copie sous /en pour un
+       visuel identique ne vaut pas les 70 ko. Le visuel est le logo, il n'a
+       pas de texte à traduire, seule sa baseline est en français. */
+    images: [{ url: '/opengraph-image.jpg', width: 1200, height: 630, type: 'image/jpeg' }],
   },
   twitter: {
     card: 'summary_large_image',
+    images: [{ url: '/twitter-image.jpg', width: 1200, height: 630, type: 'image/jpeg' }],
   },
 };
 
