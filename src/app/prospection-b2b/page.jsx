@@ -28,7 +28,7 @@ import {
   SectionHead,
 } from '@/components/seo/Blocks';
 import { METIERS } from '@/lib/seo-local';
-import { PILIER_OFFERS, eur } from '@/lib/offers';
+import { PILIER_OFFERS, eur, monthlyLabel, setupLabel } from '@/lib/offers';
 import { SITE_URL } from '@/lib/contact';
 import {
   breadcrumbSchema,
@@ -58,9 +58,11 @@ const FAQ = [
   {
     q: 'Combien coûte une agence de prospection B2B ?',
     a: "Chez nous, deux formules. L'agent de prospection est à 300 € HT de fabrication puis "
-      + "190 € HT par mois. L'Agent Clients B2B, avec base de données sur mesure et qualification "
-      + "avant transmission aux commerciaux, est à 1 800 € HT puis 490 € HT par mois. Pas de "
-      + "commission au rendez-vous, pas de facturation à la performance.",
+      + "190 € HT par mois, prix fermes. L'Agent Clients B2B, avec base de données sur mesure et "
+      + "qualification avant transmission aux commerciaux, part de 1 800 € HT de fabrication et "
+      + "sa mensualité est établie sur devis : le périmètre à couvrir n'est jamais le même d'une "
+      + "entreprise à l'autre. Pas de commission au rendez-vous, pas de facturation à la "
+      + "performance.",
   },
   {
     q: 'Quelle différence avec un SDR ou un commercial junior ?',
@@ -144,6 +146,7 @@ export default function ProspectionB2BPage() {
             description: clients.description,
             url: URL,
             setup: clients.setup,
+            setupFrom: clients.setupFrom,
             monthly: clients.monthly,
           }),
           faqSchema(FAQ),
@@ -223,16 +226,18 @@ export default function ProspectionB2BPage() {
                 Agent Clients B2B
               </p>
               <p className="mt-4 font-display text-4xl font-semibold tracking-tight">
-                {eur(clients.setup)} € HT
+                {setupLabel(clients)}
               </p>
               <p className="mt-1 text-sm text-[var(--muted)]">de fabrication, une seule fois</p>
               <p className="mt-3 text-lg font-semibold text-[var(--primary-ink)]">
-                puis {eur(clients.monthly)} € HT / mois
+                puis {monthlyLabel(clients)}
               </p>
               <p className="mt-5 border-t border-[var(--border)] pt-5 text-sm leading-relaxed text-[var(--muted-strong)]">
                 Pour une entreprise qui a des commerciaux à alimenter. Base de données construite
                 pour votre marché, agent entraîné sur votre catalogue et vos objections,
-                qualification du besoin, du budget et du calendrier avant transmission.
+                qualification du besoin, du budget et du calendrier avant transmission. Le
+                périmètre se chiffre après l’audit : un marché de trois cents acheteurs et un
+                marché de trente mille ne demandent pas le même travail.
               </p>
             </div>
           </div>

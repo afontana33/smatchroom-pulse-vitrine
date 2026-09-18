@@ -84,6 +84,7 @@ export default function Page() {
       name: o.name,
       description: o.description,
       setup: o.setup,
+      setupFrom: o.setupFrom,
       monthly: o.monthly,
     })
   );

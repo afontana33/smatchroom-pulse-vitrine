@@ -31,7 +31,7 @@ import {
   SectionHead,
 } from '@/components/seo/Blocks';
 import { METIERS, VILLES, findMetier, findVille } from '@/lib/seo-local';
-import { AGENT_OFFERS, PILIER_OFFERS, eur } from '@/lib/offers';
+import { AGENT_OFFERS, PILIER_OFFERS, monthlyLabel, setupLabel } from '@/lib/offers';
 import { SITE_URL } from '@/lib/contact';
 import {
   breadcrumbSchema,
@@ -84,6 +84,7 @@ export default async function VillePage({ params }) {
       name: `${o.name} à ${v.nom}`,
       description: o.description,
       setup: o.setup,
+      setupFrom: o.setupFrom,
       monthly: o.monthly,
       cities: [v.nom, ...v.communes],
     })
@@ -190,11 +191,11 @@ export default async function VillePage({ params }) {
                   {o.description}
                 </p>
                 <p className="mt-5 border-t border-[var(--border)] pt-4 font-display text-2xl font-semibold tracking-tight">
-                  {eur(o.setup)} € HT
+                  {setupLabel(o)}
                 </p>
                 <p className="mt-0.5 text-sm text-[var(--muted)]">de fabrication</p>
                 <p className="mt-2 text-[0.95rem] font-semibold text-[var(--primary-ink)]">
-                  puis {eur(o.monthly)} € HT / mois
+                  puis {monthlyLabel(o)}
                 </p>
               </article>
             ))}

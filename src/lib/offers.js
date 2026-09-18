@@ -8,7 +8,7 @@
  * source d'affichage, et ici.
  *
  * Pourquoi ce doublon plutôt qu'un import depuis les composants : les
- * composants portent des chaînes destinées à l'œil (« 1 800 € HT », « 690 € HT
+ * composants portent des chaînes destinées à l'œil (« 690 € HT
  * si vous filmez · 1 490 € HT avec notre vidéaste »), pas des nombres. Les
  * parser pour schema.org donnerait un code fragile qui casse au premier
  * changement de formulation, et un prix faux dans une donnée structurée fait
@@ -21,6 +21,14 @@
    site écrit les montants à la main dans le JSX, d'où ce formateur pour les
    pages qui les affichent depuis ces données. */
 export const eur = (n) => n.toLocaleString('fr-FR');
+
+/* Chaînes prêtes à l'affichage pour les pages qui rendent les prix depuis ces
+   données. Elles passent par ici plutôt que d'écrire le montant elles-mêmes :
+   sans ça, chacune réinvente le « à partir de » et le « sur devis », et on
+   finit avec deux formulations pour un même prix. */
+export const setupLabel = (o) => `${o.setupFrom ? 'à partir de ' : ''}${eur(o.setup)} € HT`;
+export const monthlyLabel = (o) =>
+  o.monthly == null ? 'mensualité sur devis' : `${eur(o.monthly)} € HT / mois`;
 
 export const PILIER_OFFERS = [
   {
@@ -52,8 +60,15 @@ export const PILIER_OFFERS = [
     name: 'Agent Clients B2B',
     description:
       "Base de données construite sur mesure pour votre marché, agent entraîné sur votre catalogue et vos objections, qualification du besoin, du budget et du calendrier avant transmission à vos commerciaux.",
+    /* Plancher, pas prix ferme : le périmètre (taille du marché à construire,
+       nombre d'interlocuteurs, intégrations) fait varier la fabrication du
+       simple au quintuple. `setupFrom` déclenche « à partir de » à l'affichage
+       et un `minPrice` dans les données structurées. La mensualité est sur
+       devis pour la même raison, d'où `monthly: null` : un montant affiché
+       plafonnerait de fait les dossiers les plus gros. */
     setup: 1800,
-    monthly: 490,
+    setupFrom: true,
+    monthly: null,
   },
 ];
 

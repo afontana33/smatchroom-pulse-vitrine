@@ -92,7 +92,8 @@ export function organizationSchema() {
       { '@type': 'PropertyValue', name: 'NAF', value: LEGAL.naf },
     ],
     /* Devise et fourchette de prix : signal de qualification pour les moteurs,
-       cohérent avec les prix affichés (20 € à 490 € par mois). */
+       cohérent avec les prix affichés (20 € à 200 € par mois sur les offres à
+       prix ferme, l'Agent Clients B2B étant sur devis). */
     priceRange: '€€',
     currenciesAccepted: 'EUR',
     openingHoursSpecification: [
@@ -143,17 +144,32 @@ export function websiteSchema() {
  * `billingDuration`/`unitText` pour le mensuel. Déclarer le seul prix de
  * fabrication ferait remonter « à partir de 300 € » sans le récurrent, ce qui
  * est trompeur.
+ *
+ * `setupFrom` : la fabrication est un plancher et non un prix ferme. On sort
+ * alors un `minPrice` au lieu d'un `price`, sinon le moteur annonce un tarif
+ * fixe que la page ne promet pas. Un `monthly` absent ne produit aucune offre
+ * mensuelle : c'est le cas « sur devis », et inventer un montant pour remplir
+ * le champ serait un prix faux dans une donnée structurée.
  */
-export function serviceSchema({ name, description, url, setup, monthly, cities = [] }) {
+export function serviceSchema({ name, description, url, setup, setupFrom, monthly, cities = [] }) {
   const offers = [];
   if (setup != null) {
     offers.push({
       '@type': 'Offer',
       name: 'Fabrication',
-      price: String(setup),
       priceCurrency: 'EUR',
       valueAddedTaxIncluded: false,
       description: 'Frais de fabrication, une seule fois',
+      ...(setupFrom
+        ? {
+            priceSpecification: {
+              '@type': 'PriceSpecification',
+              minPrice: String(setup),
+              priceCurrency: 'EUR',
+              valueAddedTaxIncluded: false,
+            },
+          }
+        : { price: String(setup) }),
     });
   }
   if (monthly != null) {

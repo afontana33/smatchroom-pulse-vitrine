@@ -5,7 +5,7 @@
  *
  * Traitement volontairement différent des packs : bande pleine largeur en
  * registre encre, deux colonnes. Ce n'est pas un cinquième pack et ça ne doit
- * pas en avoir l'apparence, sinon on compare 1 800 € à 990 € alors que ce
+ * pas en avoir l'apparence, sinon on compare son plancher à 990 € alors que ce
  * n'est ni le même travail ni la même cible.
  *
  * L'encadré « Deux agents, deux métiers » est le cœur de la section : sans lui,
@@ -133,16 +133,17 @@ export default function AgentClients() {
               <p className="font-mono text-[0.62rem] uppercase tracking-[0.16em] text-white/55">
                 Agent Clients
               </p>
-              <p className="mt-4 font-display text-4xl font-semibold tracking-tight text-white">
+              <p className="mt-4 text-sm text-white/60">à partir de</p>
+              <p className="mt-0.5 font-display text-4xl font-semibold tracking-tight text-white">
                 1 800 € HT
               </p>
               <p className="mt-1 text-sm text-white/60">de création, une seule fois</p>
-              <p className="mt-3 text-lg font-semibold text-[#ffb27a]">puis 490 € HT par mois</p>
-              <p className="mt-2 text-sm text-white/60">
-                Total du premier mois&nbsp;: 2 290 € HT (création + première mensualité)
+              <p className="mt-3 text-lg font-semibold text-[#ffb27a]">
+                puis une mensualité sur devis
               </p>
               <p className="mt-5 border-t border-white/15 pt-5 text-sm leading-relaxed text-[var(--on-ink-muted)]">
-                Sans engagement. Périmètre défini après l&apos;audit.
+                Sans engagement. Chaque marché demande un travail différent&nbsp;: le périmètre et
+                la mensualité sont chiffrés après l&apos;audit, pas avant.
               </p>
               <a
                 href={CALENDLY}
