@@ -12,7 +12,7 @@ import LangSwitch from '@/components/LangSwitch';
 const LINKS = [
   { href: '/#qui-sommes-nous', label: 'Qui nous sommes' },
   { href: '/#piliers', label: 'Nos offres' },
-  { href: '/#packs', label: 'Nos packs' },
+  { href: '/#lancement', label: 'Pack Lancement' },
   { href: '/#resultats', label: 'Résultats' },
   { href: '/#avis', label: 'Avis' },
   { href: '/#questions', label: 'Questions' },
@@ -72,7 +72,7 @@ function Wordmark({ onDark = false, home = '/' }) {
 export default function Nav({
   overDark = false,
   links = LINKS,
-  cta = 'Réserver un créneau',
+  cta = 'Créneau gratuit 15 min',
   callLabel = 'Appeler',
   callAria = 'Appeler le',
   home = '/',

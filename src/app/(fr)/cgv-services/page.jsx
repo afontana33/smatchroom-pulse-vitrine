@@ -83,8 +83,7 @@ const ARTICLES = [
     table: {
       head: ['Formule', 'Mise en service', 'Abonnement', 'Durée'],
       rows: [
-        ['Liberté', '300 € HT, une seule fois', '190 € HT par mois', 'Sans engagement'],
-        ['Partenaire', 'Offerte', '190 € HT par mois', 'Engagement de 3 mois'],
+        ['Agent de prospection', 'Aucuns frais', '99 € HT par mois', 'Sans engagement'],
         ['Ingénierie Corporate', 'Sur devis', 'Sur devis', 'Définie au devis'],
       ],
     },

@@ -36,27 +36,11 @@ const PILIERS = [
       'Votre zone, vos métiers cibles, votre discours',
       'Les rendez-vous atterrissent dans votre agenda',
     ],
-    /* Deux formules côte à côte et non un prix avec une note en bas de bloc :
-       la formule Partenaire (création offerte contre 3 mois) était écrite en petit
-       sous le tarif, donc invisible alors que c'est celle qu'on veut voir choisie.
-       Un seul prix fait réfléchir, deux prix font comparer puis choisir. */
-    options: [
-      {
-        label: 'À la carte',
-        setup: '300 € HT',
-        setupNote: 'de création, une seule fois',
-        then: '190 € HT / mois',
-        note: 'Sans engagement, vous arrêtez quand vous voulez.',
-      },
-      {
-        label: 'Partenaire',
-        badge: 'Le plus choisi',
-        setup: '0 €',
-        setupNote: 'création offerte',
-        then: '190 € HT / mois',
-        note: 'Vous partez sur 3 mois, on offre les 300 € de création.',
-      },
-    ],
+    price: {
+      main: '99 € HT / mois',
+      mainNote: 'sans frais de création',
+      extra: 'Sans engagement, vous arrêtez quand vous voulez.',
+    },
   },
   {
     k: '02',
@@ -231,11 +215,13 @@ export default function Piliers() {
                           </span>
                           <span className="text-sm text-[var(--muted)]">{p.price.mainNote}</span>
                         </div>
-                        <div className="mt-2 flex flex-wrap items-baseline gap-x-3">
-                          <span className="text-xl font-semibold text-[var(--primary-ink)]">
-                            puis {p.price.then}
-                          </span>
-                        </div>
+                        {p.price.then && (
+                          <div className="mt-2 flex flex-wrap items-baseline gap-x-3">
+                            <span className="text-xl font-semibold text-[var(--primary-ink)]">
+                              puis {p.price.then}
+                            </span>
+                          </div>
+                        )}
                         <p className="mt-3 text-sm text-[var(--muted-strong)]">{p.price.extra}</p>
                       </div>
                     )}

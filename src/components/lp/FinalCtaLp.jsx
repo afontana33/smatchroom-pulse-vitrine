@@ -39,7 +39,7 @@ export default function FinalCtaLp() {
             {/* Pas la classe .eyebrow ici : elle force var(--primary-ink), un
                 orange sombre illisible sur la photo assombrie. */}
             <p className="font-mono text-[0.72rem] uppercase tracking-[0.22em] text-[#ffb27a]">
-              30 minutes, sans engagement
+              15 minutes, gratuit et sans engagement
             </p>
             <h2 className="mt-5 text-balance text-3xl font-semibold leading-[1.08] tracking-tight text-white sm:text-4xl lg:text-[3.4rem]">
               On regarde votre secteur ensemble,{' '}
@@ -79,7 +79,7 @@ export default function FinalCtaLp() {
                 rel="noopener noreferrer"
                 className="btn-primary inline-flex items-center gap-2 px-7 py-4 text-sm font-semibold sm:text-base"
               >
-                Ou réserver mon créneau
+                Réserver mon créneau gratuit de 15 min
                 <ArrowRight size={17} />
               </a>
               <span className="text-sm text-white/60">Du lundi au vendredi, 9h à 19h</span>

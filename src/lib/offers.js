@@ -63,8 +63,8 @@ export const PILIER_OFFERS = [
     name: 'Agent IA de prospection',
     description:
       "Un agent qui contacte les partenaires et les prospects de votre secteur par WhatsApp et par email, en votre nom, répond en moins d'une minute et vous passe la main sur les interlocuteurs intéressés.",
-    setup: 300,
-    monthly: 190,
+    setup: 0,
+    monthly: 99,
   },
   {
     key: 'site-fiche-google',
