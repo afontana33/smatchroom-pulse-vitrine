@@ -12,7 +12,7 @@ import { CALENDLY, TEL_DISPLAY, TEL_HREF } from '@/lib/contact';
 const CONTENU = [
   'Votre site internet, hébergé à votre nom : il reste à vous si vous arrêtez',
   'Votre fiche Google créée et remplie',
-  '3 mois d’agent de prospection par WhatsApp et email',
+  '3 mois d’Agent Partenaires : il vous trouve des apporteurs d’affaires',
 ];
 
 const BENEFICES = [

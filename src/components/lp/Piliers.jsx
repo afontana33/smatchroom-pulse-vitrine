@@ -21,8 +21,8 @@ const CALENDLY = 'https://calendly.com/a-fontana-smatchroom/30min';
 const PILIERS = [
   {
     k: '01',
-    label: 'Agents IA',
-    title: 'Il prospecte pendant que vous travaillez',
+    label: 'Agent Partenaires',
+    title: 'Il vous trouve des apporteurs d’affaires',
     photo: '/photos/prescripteurs.webp',
     alt: 'Professionnelle qui lit un message sur son téléphone devant son ordinateur',
     /* Le message est l'apport d'affaires, pas la prospection dans le vide : l'agent
@@ -32,8 +32,8 @@ const PILIERS = [
        et ça ne dit pas ce que le partenaire apporte. */
     text: "Votre agent contacte les partenaires qui ont déjà votre clientèle sous la main, agences, cabinets, consultants ou réseaux d'entreprises, pour qu'ils vous apportent leur portefeuille. Il écrit des messages personnalisés un par un et répond en moins d'une minute, 7j/7. Vous n'intervenez que sur les gens réellement intéressés.",
     points: [
+      'Il contacte les prescripteurs, pas vos clients finaux',
       'Par WhatsApp et par email, à votre nom',
-      'Votre zone, vos métiers cibles, votre discours',
       'Les rendez-vous atterrissent dans votre agenda',
     ],
     price: {

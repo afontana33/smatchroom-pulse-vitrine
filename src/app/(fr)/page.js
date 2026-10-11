@@ -3,6 +3,7 @@ import HeroLancement from '@/components/lp/HeroLancement';
 import Thesis from '@/components/lp/Thesis';
 import TeamLp from '@/components/lp/TeamLp';
 import Piliers from '@/components/lp/Piliers';
+import DeuxAgents from '@/components/lp/DeuxAgents';
 import AgentClients from '@/components/lp/AgentClients';
 import Preuves from '@/components/lp/Preuves';
 import AvisLp from '@/components/lp/AvisLp';
@@ -80,6 +81,7 @@ export default function Page() {
       <Preuves />
       <AvisLp />
       <Piliers />
+      <DeuxAgents />
       <AgentClients />
       <Thesis />
       <TeamLp />

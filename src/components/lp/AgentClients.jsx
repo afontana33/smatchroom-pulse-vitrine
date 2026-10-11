@@ -97,8 +97,8 @@ export default function AgentClients() {
                     </dt>
                     <dd className="mt-1.5 text-[0.95rem] leading-relaxed text-[var(--on-ink-muted)]">
                       Il présente votre entreprise aux prescripteurs de votre métier et vous
-                      passe la main dès qu&apos;un interlocuteur est intéressé. Inclus dans nos
-                      packs.
+                      passe la main dès qu&apos;un interlocuteur est intéressé. Inclus dans le
+                      Pack Lancement.
                     </dd>
                   </div>
                   <div>
@@ -106,8 +106,9 @@ export default function AgentClients() {
                       Agent Clients&nbsp;: il construit votre marché
                     </dt>
                     <dd className="mt-1.5 text-[0.95rem] leading-relaxed text-[var(--on-ink-muted)]">
-                      Base de données créée sur mesure, agent entraîné sur votre offre,
-                      qualification complète avant transmission.
+                      Il contacte directement vos clients potentiels&nbsp;: base de données
+                      créée sur mesure, agent entraîné sur votre offre, qualification complète
+                      avant transmission.
                     </dd>
                   </div>
                 </dl>
