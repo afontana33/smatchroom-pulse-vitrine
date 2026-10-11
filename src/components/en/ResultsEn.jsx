@@ -142,7 +142,7 @@ export default function ResultsEn() {
           <div className="absolute inset-0 flex flex-col items-center justify-center gap-8 px-5">
             <div className="text-center">
               <p className="font-display text-4xl font-semibold tracking-tight text-white sm:text-6xl">
-                +90
+                +170
               </p>
               <p className="mt-2 text-sm text-white/75 sm:text-base">
                 companies and independent trades supported

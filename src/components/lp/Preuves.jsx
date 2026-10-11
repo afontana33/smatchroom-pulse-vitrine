@@ -38,11 +38,11 @@ const CAS = [
     quote: null,
   },
   {
-    metric: '13',
-    unit: 'partenariats',
+    metric: '6',
+    unit: 'chantiers',
     sector: 'Couverture · Lille',
     client: 'David · couvreur à Lille',
-    text: 'Treize partenariats d’apport d’affaires noués et deux demandes de devis, en un mois.',
+    text: 'Treize partenariats d’apport d’affaires noués en un mois, et six chantiers générés grâce à ces partenaires.',
     quote: null,
   },
 ];
@@ -90,7 +90,7 @@ export default function Preuves() {
         </Rise>
 
         <Rise delay={0.05}>
-          <h2 className="mb-16 max-w-3xl text-balance text-3xl font-semibold leading-[1.1] tracking-tight sm:text-4xl lg:text-[3.1rem]">
+          <h2 className="mb-12 max-w-3xl text-balance text-3xl font-semibold leading-[1.1] tracking-tight sm:text-4xl lg:text-[3.1rem]">
             Ce que ça donne{' '}
             <span className="font-serif-it font-normal text-[var(--primary-ink)]">
               chez ceux qui l&apos;ont installé.
@@ -98,39 +98,35 @@ export default function Preuves() {
           </h2>
         </Rise>
 
-        <div className="divide-y divide-[var(--border)] border-y border-[var(--border)]">
+        <div className="grid gap-6 md:grid-cols-3">
           {CAS.map((c, i) => (
-            <Rise key={c.client} delay={i * 0.07}>
-              <div className="grid gap-4 py-9 sm:grid-cols-[minmax(0,10rem)_1fr] sm:gap-10 lg:grid-cols-[minmax(0,14rem)_minmax(0,16rem)_1fr]">
-                <div>
-                  <p className="font-display text-4xl font-semibold tracking-tight text-[var(--primary-ink)] sm:text-5xl">
+            <Rise key={c.client} delay={i * 0.07} className="h-full">
+              <figure className="flex h-full flex-col rounded-3xl border border-[var(--border-strong)] bg-[var(--surface)] p-7 shadow-[var(--shadow-lg)]">
+                <div className="flex items-baseline gap-2">
+                  <span className="font-display text-5xl font-bold tracking-tight text-[var(--primary-ink)]">
                     {c.metric}
-                  </p>
-                  <p className="mt-1 font-mono text-[0.62rem] uppercase tracking-[0.18em] text-[var(--muted)]">
-                    {c.unit}
-                  </p>
+                  </span>
+                  <span className="font-display text-lg font-semibold">{c.unit}</span>
                 </div>
-                <div>
-                  <p className="font-display text-base font-semibold text-[var(--foreground)]">
-                    {c.client}
-                  </p>
-                  <p className="mt-1 font-mono text-[0.62rem] uppercase tracking-[0.18em] text-[var(--muted)]">
-                    {c.sector}
-                  </p>
-                </div>
-                <div>
-                  <p className="text-[0.98rem] leading-relaxed text-[var(--muted-strong)]">
-                    {c.text}
-                  </p>
-                  {c.quote && (
-                    <blockquote className="mt-4 border-l-2 border-[var(--primary)] pl-4">
-                      <p className="font-serif-it text-lg leading-snug text-[var(--foreground)] sm:text-xl">
-                        « {c.quote} »
-                      </p>
-                    </blockquote>
+                <blockquote className="mt-5 flex-1 text-[1.02rem] leading-relaxed text-[var(--muted-strong)]">
+                  {c.quote ? (
+                    <p className="font-serif-it text-xl leading-snug text-[var(--foreground)]">« {c.quote} »</p>
+                  ) : (
+                    <p>{c.text}</p>
                   )}
-                </div>
-              </div>
+                </blockquote>
+                <figcaption className="mt-6 flex items-center gap-3 border-t border-[var(--border)] pt-5">
+                  <span aria-hidden className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full bg-[var(--primary)] font-display font-bold text-white">
+                    {c.client[0]}
+                  </span>
+                  <span>
+                    <span className="block font-semibold text-[var(--foreground)]">{c.client}</span>
+                    <span className="block font-mono text-[0.62rem] uppercase tracking-[0.16em] text-[var(--muted)]">
+                      {c.sector}
+                    </span>
+                  </span>
+                </figcaption>
+              </figure>
             </Rise>
           ))}
         </div>
@@ -152,7 +148,7 @@ export default function Preuves() {
           <div className="absolute inset-0 flex flex-col items-center justify-center gap-8 px-5">
             <div className="text-center">
               <p className="font-display text-4xl font-semibold tracking-tight text-white sm:text-6xl">
-                +90
+                +170
               </p>
               <p className="mt-2 text-sm text-white/75 sm:text-base">
                 artisans et entreprises accompagnés

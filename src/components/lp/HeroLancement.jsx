@@ -51,10 +51,6 @@ export default function HeroLancement() {
             Vous êtes sur le terrain, on vous ramène les rendez-vous.
           </p>
 
-          <div className="hidden sm:block">
-            <CtaRdv className="mt-8" />
-          </div>
-
           <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-[var(--muted-strong)]">
             <a href={TEL_HREF} className="inline-flex items-center gap-2 font-semibold text-[var(--foreground)]">
               <Phone size={16} aria-hidden className="text-[var(--primary-ink)]" />
@@ -64,7 +60,7 @@ export default function HeroLancement() {
               <Star size={16} aria-hidden className="fill-[var(--primary)] text-[var(--primary)]" />
               <span className="font-semibold text-[var(--foreground)]">5,0</span> sur Google
             </a>
-            <a href="#resultats">+90 entreprises accompagnées</a>
+            <a href="#resultats">+170 entreprises accompagnées</a>
           </div>
         </div>
 
