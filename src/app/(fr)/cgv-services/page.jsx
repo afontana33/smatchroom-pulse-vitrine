@@ -83,7 +83,11 @@ const ARTICLES = [
     table: {
       head: ['Formule', 'Mise en service', 'Abonnement', 'Durée'],
       rows: [
-        ['Agent de prospection', 'Aucuns frais', '149 € HT par mois', 'Sans engagement'],
+        ['Agent Partenaires', 'Aucuns frais', '149 € HT par mois', 'Sans engagement'],
+        ['Pack Lancement', '490 € HT, une seule fois, pour 3 mois', '149 € HT par mois au-delà, si le Client poursuit', '3 mois prépayés, puis sans engagement'],
+        ['Agent Clients', 'À partir de 490 € HT', 'À partir de 340 € HT par mois', 'Sans engagement, ou 3 mois avec mise en service offerte'],
+        ['Site internet et fiche Google', '300 € HT, une seule fois', 'Aucun', 'Prestation ponctuelle'],
+        ['Acquisition Meta', '690 € HT, ou 1 490 € HT avec vidéaste', '200 € HT par mois', 'Sans engagement'],
         ['Ingénierie Corporate', 'Sur devis', 'Sur devis', 'Définie au devis'],
       ],
     },
@@ -98,7 +102,7 @@ const ARTICLES = [
   {
     title: 'Article 6 · Modalités de paiement et échéances',
     list: [
-      "Les frais de mise en service sont exigibles à la commande, avant tout démarrage des travaux.",
+      "Les frais de mise en service, le prix du Pack Lancement et celui du site internet sont exigibles à la commande, avant tout démarrage des travaux.",
       "L'abonnement est facturé mensuellement à terme à échoir, à la date anniversaire de la mise en production.",
       "Les factures sont payables à trente jours à compter de leur date d'émission, par virement bancaire ou par prélèvement via Stripe Payments Europe Ltd.",
       "Aucun escompte n'est accordé en cas de paiement anticipé.",
@@ -115,9 +119,10 @@ const ARTICLES = [
   {
     title: 'Article 8 · Durée, reconduction et résiliation',
     list: [
-      "Formule Liberté : le contrat est conclu pour une durée d'un mois, reconduit tacitement de mois en mois. Chacune des parties peut y mettre fin par écrit, courriel avec accusé de réception compris, moyennant un préavis de trente jours avant l'échéance mensuelle en cours. Les frais de mise en service restent acquis au Prestataire.",
-      "Formule Partenaire : le contrat est conclu pour une durée ferme de trois mois à compter de la mise en production, puis reconduit tacitement de mois en mois selon les règles de la formule Liberté. La résiliation à l'échéance de la période ferme s'effectue par écrit moyennant un préavis de trente jours.",
-      "Résiliation anticipée de la formule Partenaire à l'initiative du Client : les mensualités restant à courir jusqu'au terme de la période ferme deviennent immédiatement exigibles, et les frais de mise en service offerts, d'un montant de 300 € HT, redeviennent dus. Cette contrepartie est la stricte compensation de la gratuité consentie en considération de l'engagement.",
+      "Abonnements sans engagement (Agent Partenaires, Agent Clients, Acquisition Meta) : le contrat est conclu pour une durée d'un mois, reconduit tacitement de mois en mois. Chacune des parties peut y mettre fin par écrit, courriel avec accusé de réception compris, moyennant un préavis de trente jours avant l'échéance mensuelle en cours. Les frais de mise en service restent acquis au Prestataire.",
+      "Pack Lancement : le prix couvre la création du site internet et de la fiche établissement Google, ainsi que trois mois d'Agent Partenaires à compter de sa mise en production. Il n'est pas remboursable une fois le site livré. À l'issue des trois mois, la prestation ne se poursuit en abonnement Agent Partenaires sans engagement que si le Client le demande par écrit ; à défaut, elle prend fin sans formalité ni frais.",
+      "Agent Clients avec mise en service offerte : lorsque les frais de mise en service sont offerts en contrepartie d'un engagement de trois mois, le contrat est conclu pour cette durée ferme à compter de la mise en production, puis reconduit tacitement de mois en mois selon les règles des abonnements sans engagement. En cas de résiliation anticipée à l'initiative du Client, les mensualités restant à courir jusqu'au terme de la période ferme deviennent immédiatement exigibles, et les frais de mise en service offerts, au montant figurant au devis, redeviennent dus.",
+      "Site internet et fiche Google : la prestation est ponctuelle et sans abonnement. Le site est hébergé sur un compte ouvert au nom du Client, qui reste propriétaire du site livré, du nom de domaine et de la fiche établissement, y compris après la fin de toute autre prestation.",
       "Résiliation pour manquement : en cas de manquement grave d'une partie à ses obligations, non réparé dans les trente jours suivant une mise en demeure écrite, l'autre partie peut résilier de plein droit, sans indemnité et sans préjudice de tout dommage et intérêt.",
       "Résiliation immédiate par le Prestataire : le Prestataire peut résilier sans préavis, sans indemnité et sans remboursement des sommes déjà versées s'il constate que le Client utilise la prestation en violation de la réglementation applicable, notamment en matière de prospection et de protection des données, ou qu'il lui a transmis des données obtenues illicitement.",
       "En cas de résiliation anticipée par le Prestataire pour un motif qui ne lui est pas imputable, les frais de mise en service restent acquis. Les abonnements payés d'avance et non consommés sont remboursés au prorata.",
@@ -233,7 +238,7 @@ export default function CGVServicesPage() {
       eyebrow="Cadre contractuel"
       title="Conditions générales de vente et de service"
       subtitle="Abonnements d'agents IA · contrat entre professionnels"
-      dates={["Date d'entrée en vigueur : 8 août 2026", 'Dernière mise à jour : 6 août 2026']}
+      dates={["Date d'entrée en vigueur de la présente version : 11 octobre 2026", 'Dernière mise à jour : 11 octobre 2026']}
       intro={
         <>
           Ces conditions s&apos;appliquent aux abonnements d&apos;agents IA. La vente de
