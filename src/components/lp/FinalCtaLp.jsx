@@ -19,10 +19,10 @@ export default function FinalCtaLp() {
   return (
     <section id="contact" className="relative scroll-mt-24 overflow-hidden">
       <img
-        src="/photos/charpente.webp"
-        alt="Charpentier au travail sur une charpente en bois, ciel dégagé"
-        width={1600}
-        height={1067}
+        src="/photos/poignee-main.webp"
+        alt="Poignée de main entre deux personnes en chemise dans un bureau"
+        width={1800}
+        height={1202}
         loading="lazy"
         decoding="async"
         className="h-[40rem] w-full object-cover object-center sm:h-[42rem]"

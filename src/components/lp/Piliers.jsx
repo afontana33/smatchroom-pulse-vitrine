@@ -23,8 +23,8 @@ const PILIERS = [
     k: '01',
     label: 'Agents IA',
     title: 'Il prospecte pendant que vous travaillez',
-    photo: '/photos/agent.webp',
-    alt: "Chef de chantier en gilet de sécurité, téléphone à la main devant un chantier",
+    photo: '/photos/prospection.webp',
+    alt: 'Commercial au téléphone à côté d’une collègue qui travaille sur son ordinateur',
     /* Le message est l'apport d'affaires, pas la prospection dans le vide : l'agent
        va chercher ceux qui ont déjà les clients (agences immobilières, cabinets
        d'assurance, architectes, syndics), pas les clients un par un. Ne pas
@@ -46,8 +46,8 @@ const PILIERS = [
     k: '02',
     label: 'Sites & fiche établissement',
     title: 'Exister quand on tape votre métier sur Google',
-    photo: '/photos/menuisier.webp',
-    alt: 'Menuisier au travail sur un plan de travail en bois',
+    photo: '/photos/site-web.webp',
+    alt: 'Ordinateur portable ouvert sur un tableau de statistiques de site',
     text: "Un site qui donne envie de vous appeler, et votre fiche établissement Google créée, remplie et tenue à jour : horaires, photos, zone d'intervention, avis. C'est souvent la première chose qu'un client voit de vous.",
     points: [
       'Site clair, rapide, lisible sur téléphone',

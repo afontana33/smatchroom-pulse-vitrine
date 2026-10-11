@@ -60,10 +60,10 @@ export default function Thesis() {
           <Rise>
             <figure className="relative">
               <img
-                src="/photos/atelier.webp"
-                alt="Artisan dans son atelier, établi et outils suspendus au mur"
-                width={1400}
-                height={932}
+                src="/photos/rendez-vous.webp"
+                alt="Deux femmes en rendez-vous de travail autour d'un ordinateur portable"
+                width={1600}
+                height={1067}
                 loading="lazy"
                 decoding="async"
                 className="aspect-[4/5] w-full rounded-2xl object-cover shadow-[var(--shadow-lg)]"

@@ -160,10 +160,10 @@ export default function Preuves() {
       <Rise delay={0.05}>
         <div className="relative mt-20 overflow-hidden sm:mt-28">
           <img
-            src="/photos/chantier-large.webp"
-            alt="Vue large d'un chantier de construction avec plusieurs équipes au travail"
+            src="/photos/reunion-large.webp"
+            alt="Équipe réunie autour d'une table pendant une présentation"
             width={1800}
-            height={1352}
+            height={1200}
             loading="lazy"
             decoding="async"
             className="h-[22rem] w-full object-cover object-center sm:h-[26rem]"
