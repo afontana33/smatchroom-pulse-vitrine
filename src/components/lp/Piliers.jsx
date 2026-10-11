@@ -30,7 +30,7 @@ const PILIERS = [
        d'assurance, architectes, syndics), pas les clients un par un. Ne pas
        revenir à « contacte les entreprises de votre secteur », c'est plus vague
        et ça ne dit pas ce que le partenaire apporte. */
-    text: "Votre agent contacte les partenaires qui ont déjà votre clientèle sous la main, agences immobilières, cabinets d'assurance, architectes ou syndics, pour qu'ils vous apportent leur portefeuille. Il écrit des messages personnalisés un par un et répond en moins d'une minute, 7j/7. Vous n'intervenez que sur les gens réellement intéressés.",
+    text: "Votre agent contacte les partenaires qui ont déjà votre clientèle sous la main, agences, cabinets, consultants ou réseaux d'entreprises, pour qu'ils vous apportent leur portefeuille. Il écrit des messages personnalisés un par un et répond en moins d'une minute, 7j/7. Vous n'intervenez que sur les gens réellement intéressés.",
     points: [
       'Par WhatsApp et par email, à votre nom',
       'Votre zone, vos métiers cibles, votre discours',
@@ -48,7 +48,7 @@ const PILIERS = [
     title: 'Exister quand on tape votre métier sur Google',
     photo: '/photos/menuisier.webp',
     alt: 'Menuisier au travail sur un plan de travail en bois',
-    text: "Un site qui donne envie de vous appeler, et votre fiche établissement Google créée, remplie et tenue à jour : horaires, photos de chantiers, zone d'intervention, avis. C'est souvent la première chose qu'un client voit de vous.",
+    text: "Un site qui donne envie de vous appeler, et votre fiche établissement Google créée, remplie et tenue à jour : horaires, photos, zone d'intervention, avis. C'est souvent la première chose qu'un client voit de vous.",
     points: [
       'Site clair, rapide, lisible sur téléphone',
       'Fiche Google créée puis entretenue chaque mois',
@@ -64,10 +64,10 @@ const PILIERS = [
   {
     k: '03',
     label: 'Acquisition Meta',
-    title: 'Vos chantiers filmés, diffusés aux bonnes personnes',
+    title: 'Votre activité filmée, diffusée aux bonnes personnes',
     photo: '/photos/camera.webp',
     alt: 'Vidéaste cadrant un plan sur un moniteur de tournage',
-    text: "On filme vos chantiers et on gère vos publicités sur Facebook et Instagram pour faire venir des clients particuliers. Les demandes ne se perdent pas : elles tombent directement dans votre agent.",
+    text: "On filme votre activité et on gère vos publicités sur Facebook et Instagram pour faire venir de nouveaux clients. Les demandes ne se perdent pas : elles tombent directement dans votre agent.",
     points: [
       'Vous filmez vous-même, ou notre vidéaste se déplace',
       'Montage, diffusion et suivi des campagnes',

@@ -22,11 +22,27 @@ import { motion, useReducedMotion } from 'framer-motion';
  */
 const CAS = [
   {
+    metric: '10',
+    unit: 'rendez-vous',
+    sector: 'Conseil aux entreprises',
+    client: 'JB Pilotage & Stratégie',
+    text: 'Dix rendez-vous décrochés pour son activité de conseil aux entreprises.',
+    quote: null,
+  },
+  {
     metric: '12',
     unit: 'partenaires',
     sector: 'Artisanat & BTP',
     client: 'Mathieu · Isolation by Tryba',
     text: 'Douze apporteurs d’affaires verrouillés sur sa zone, et déjà cinq demandes de devis générées sans qu’il décroche son téléphone.',
+    quote: null,
+  },
+  {
+    metric: '3',
+    unit: 'clients',
+    sector: 'Communication digitale',
+    client: 'Manon · Community manager',
+    text: 'Trois nouveaux clients en un mois.',
     quote: null,
   },
   {
@@ -51,14 +67,6 @@ const CAS = [
     sector: 'Couverture · Hautes-Pyrénées',
     client: 'DTR Service',
     text: 'Quatre partenaires noués sur une petite zone du 65, et trois chantiers générés grâce à eux.',
-    quote: null,
-  },
-  {
-    metric: '10',
-    unit: 'rendez-vous',
-    sector: 'Conseil aux entreprises',
-    client: 'JB Pilotage & Stratégie',
-    text: 'Dix rendez-vous décrochés pour son activité de conseil aux entreprises.',
     quote: null,
   },
 ];
@@ -167,7 +175,7 @@ export default function Preuves() {
                 +170
               </p>
               <p className="mt-2 text-sm text-white/75 sm:text-base">
-                artisans et entreprises accompagnés
+                entreprises accompagnées
               </p>
             </div>
 

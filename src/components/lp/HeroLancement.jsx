@@ -40,7 +40,7 @@ export default function HeroLancement() {
     <section id="lancement" className="relative scroll-mt-24 px-5 pb-16 pt-24 sm:px-6 sm:pt-32 lg:pt-36">
       <div className="mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-12 lg:gap-14">
         <div className="lg:col-span-6">
-          <p className="eyebrow">Artisans · TPE · PME</p>
+          <p className="eyebrow">Indépendants · TPE · PME · B2B</p>
           <h1 className="mt-4 text-balance text-4xl font-semibold leading-[1.04] tracking-tight sm:text-5xl lg:text-[3.8rem]">
             Vos meilleurs clients ne vous cherchent pas.{' '}
             <span className="font-serif-it font-normal text-[var(--primary-ink)]">
