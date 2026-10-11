@@ -81,7 +81,7 @@ export default function HeroLancement() {
               490 € <span className="text-2xl font-semibold text-[var(--muted)]">HT</span>
             </p>
             <p className="mt-2 text-[var(--muted-strong)]">
-              en une fois, puis 99 € HT / mois si vous continuez
+              en une fois, puis 149 € HT / mois sans engagement si vous continuez
             </p>
 
             <ul className="mt-7 space-y-3">

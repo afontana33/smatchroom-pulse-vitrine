@@ -64,7 +64,7 @@ export const PILIER_OFFERS = [
     description:
       "Un agent qui contacte les partenaires et les prospects de votre secteur par WhatsApp et par email, en votre nom, répond en moins d'une minute et vous passe la main sur les interlocuteurs intéressés.",
     setup: 0,
-    monthly: 99,
+    monthly: 149,
   },
   {
     key: 'site-fiche-google',

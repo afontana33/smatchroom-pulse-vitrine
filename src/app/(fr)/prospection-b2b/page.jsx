@@ -57,7 +57,7 @@ const CE_QUE_FAIT = [
 const FAQ = [
   {
     q: 'Combien coûte une agence de prospection B2B ?',
-    a: "Chez nous, deux formules. L'agent de prospection est à 99 € HT par mois, "
+    a: "Chez nous, deux formules. L'agent de prospection est à 149 € HT par mois, "
       + "sans frais de création ni engagement. L'Agent Clients B2B, avec base de données sur mesure et "
       + "qualification avant transmission aux commerciaux, démarre à 490 € HT de fabrication puis 340 € HT par mois "
       + "avec un numéro WhatsApp (environ 300 décideurs par mois), 640 € HT par mois avec 2 à 3 numéros, et sur devis au-delà. Pas de commission au rendez-vous, pas de facturation à la "

@@ -47,7 +47,7 @@ Tous les montants sont hors taxes. L'Agent Clients B2B a trois paliers selon le 
 WhatsApp branchés (environ 300 décideurs contactés par mois et par numéro) : Solo
 (1 numéro) à 490 € HT de fabrication puis 340 € HT par mois, Équipe (2 à 3 numéros)
 à 790 € HT puis 640 € HT par mois, Réseau (4 numéros et plus) sur devis. Les autres prix sont fermes.
-L'agent de prospection est à 99 € HT par mois, sans frais de création ni engagement.
+L'agent de prospection est à 149 € HT par mois, sans frais de création ni engagement.
 Le budget publicitaire Meta n'est pas
 facturé par nous : il est payé directement à Meta par le client.
 

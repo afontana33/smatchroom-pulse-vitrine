@@ -33,7 +33,7 @@ export const METIERS = [
     label: 'Couvreurs et charpentiers',
     metaTitle: 'Agent IA de prospection pour couvreurs · SmatchRoom Pulse',
     metaDescription:
-      "Un agent IA qui va chercher des chantiers de couverture pour vous : il contacte agences, syndics et assureurs de votre zone, répond en une minute, vous passe la main. 99 €/mois sans engagement.",
+      "Un agent IA qui va chercher des chantiers de couverture pour vous : il contacte agences, syndics et assureurs de votre zone, répond en une minute, vous passe la main. 149 €/mois sans engagement.",
     intro:
       "La couverture est un métier d'urgence et de prescription. Un particulier appelle quand il a une fuite, et il appelle le premier qui décroche. Le reste du carnet se remplit par ceux qui voient les toits avant vous : syndics, assureurs, agences immobilières, experts après sinistre.",
     prescripteurs: [

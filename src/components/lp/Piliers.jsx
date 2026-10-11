@@ -37,8 +37,8 @@ const PILIERS = [
       'Les rendez-vous atterrissent dans votre agenda',
     ],
     price: {
-      main: '99 € HT / mois',
-      mainNote: 'sans frais de création',
+      main: '149 € HT / mois',
+      mainNote: 'sans engagement · sans frais de création',
       extra: 'Sans engagement, vous arrêtez quand vous voulez.',
     },
   },
