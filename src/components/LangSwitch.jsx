@@ -24,7 +24,7 @@ export default function LangSwitch({ locale = 'fr', onDark = false }) {
   const other = locale === 'fr' ? 'en' : 'fr';
   const href = counterpart(pathname, locale) ?? (other === 'en' ? '/en' : '/');
 
-  const base = 'font-mono text-[0.68rem] uppercase tracking-[0.18em] transition-colors';
+  const base = 'py-2 font-mono text-[0.68rem] uppercase tracking-[0.18em] transition-colors';
   const current = onDark ? 'text-white' : 'text-[var(--foreground)]';
   const link = onDark
     ? 'text-white/50 hover:text-white'

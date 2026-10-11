@@ -11,6 +11,7 @@
 
 import { ArrowRight, Check } from 'lucide-react';
 import { CALENDLY, TEL_DISPLAY, TEL_HREF } from '@/lib/contact';
+import { fineSpaces } from '@/lib/typo';
 
 export function Breadcrumb({ items }) {
   return (
@@ -109,8 +110,8 @@ export function FaqBlock({ items, titre = 'Questions fréquentes' }) {
       <dl className="mt-8 divide-y divide-[var(--border)] border-y border-[var(--border)]">
         {items.map((it) => (
           <div key={it.q} className="py-6">
-            <dt className="text-base font-semibold text-[var(--foreground)] sm:text-lg">{it.q}</dt>
-            <dd className="mt-2 max-w-3xl leading-relaxed text-[var(--muted-strong)]">{it.a}</dd>
+            <dt className="text-base font-semibold text-[var(--foreground)] sm:text-lg">{fineSpaces(it.q)}</dt>
+            <dd className="mt-2 max-w-3xl leading-relaxed text-[var(--muted-strong)]">{fineSpaces(it.a)}</dd>
           </div>
         ))}
       </dl>

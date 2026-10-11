@@ -24,6 +24,7 @@ import { TEL_DISPLAY, TEL_HREF } from '@/components/Nav';
    dont les réponses ne sont pas visibles à l'identique sur la page perd son
    extrait enrichi. */
 import { QUESTIONS } from '@/lib/faq';
+import { fineSpaces } from '@/lib/typo';
 
 function Item({ q, a, open, onToggle }) {
   return (
@@ -34,7 +35,7 @@ function Item({ q, a, open, onToggle }) {
         className="flex w-full items-center justify-between gap-5 py-5 text-left transition-colors hover:text-[var(--primary-ink)]"
         aria-expanded={open}
       >
-        <span className="text-base font-semibold text-[var(--foreground)] sm:text-lg">{q}</span>
+        <span className="text-base font-semibold text-[var(--foreground)] sm:text-lg">{fineSpaces(q)}</span>
         <span className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full border border-[var(--border-strong)] text-[var(--primary-ink)]">
           {open ? <Minus size={16} /> : <Plus size={16} />}
         </span>
@@ -45,7 +46,7 @@ function Item({ q, a, open, onToggle }) {
         }`}
       >
         <div className="overflow-hidden">
-          <p className="max-w-3xl leading-relaxed text-[var(--muted-strong)]">{a}</p>
+          <p className="max-w-3xl leading-relaxed text-[var(--muted-strong)]">{fineSpaces(a)}</p>
         </div>
       </div>
     </div>

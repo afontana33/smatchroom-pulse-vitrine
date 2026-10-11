@@ -63,7 +63,7 @@ export default function LegalPage({ eyebrow, title, subtitle, dates, sections, i
 
                 {table && (
                   <div className="mt-5 overflow-x-auto">
-                    <table className="w-full min-w-[40rem] border-collapse text-left text-sm">
+                    <table className="table-stack w-full border-collapse sm:min-w-[40rem] text-left text-sm">
                       <thead>
                         <tr className="border-b border-[var(--border-strong)]">
                           {table.head.map((h) => (
@@ -83,6 +83,7 @@ export default function LegalPage({ eyebrow, title, subtitle, dates, sections, i
                             {row.map((cell, j) => (
                               <td
                                 key={j}
+                                data-label={j > 0 ? table.head[j] : undefined}
                                 className={`py-4 pr-4 ${
                                   j === 0
                                     ? 'font-medium text-[var(--foreground)]'

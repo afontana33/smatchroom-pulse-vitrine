@@ -42,8 +42,8 @@ export default function MethodeB2B() {
           <span className="font-serif-it font-normal text-[var(--primary-ink)]">vos clients B2B.</span>
         </h2>
 
-        <div className="mt-12 grid items-center gap-10 rounded-3xl border-2 border-[var(--primary)] bg-[var(--surface)] p-7 sm:p-10 lg:grid-cols-2">
-          <div>
+        <div className="mt-12 grid items-center gap-10 rounded-3xl border-2 border-[var(--primary)] bg-[var(--surface)] p-5 sm:p-10 lg:grid-cols-2">
+          <div className="min-w-0">
             <p className="eyebrow">Signaux d’achat</p>
             <h3 className="mt-3 text-balance font-display text-2xl font-semibold leading-tight tracking-tight sm:text-3xl">
               Il repère ceux qui sont prêts à acheter, avant vos concurrents.
@@ -62,7 +62,7 @@ export default function MethodeB2B() {
             </p>
           </div>
 
-          <figure className="rounded-2xl border border-[var(--border-strong)] bg-[var(--background)] p-4 sm:p-5">
+          <figure className="min-w-0 rounded-2xl border border-[var(--border-strong)] bg-[var(--background)] p-4 sm:p-5">
             <figcaption className="mb-3 font-mono text-[0.62rem] uppercase tracking-[0.16em] text-[var(--muted)]">
               Exemple
             </figcaption>
@@ -70,11 +70,11 @@ export default function MethodeB2B() {
               {SIGNAUX.map(([poste, signal, temp]) => (
                 <li
                   key={poste}
-                  className="flex items-center justify-between gap-3 rounded-xl bg-[var(--surface)] px-4 py-3"
+                  className="flex items-center justify-between gap-3 rounded-xl bg-[var(--surface)] px-3 py-3 sm:px-4"
                 >
                   <span className="min-w-0">
-                    <span className="block truncate text-sm font-semibold">{poste}</span>
-                    <span className="block truncate text-xs text-[var(--muted)]">{signal}</span>
+                    <span className="block text-sm font-semibold sm:truncate">{poste}</span>
+                    <span className="block text-xs text-[var(--muted)] sm:truncate">{signal}</span>
                   </span>
                   <span className={`flex-shrink-0 rounded-full px-2.5 py-1 text-xs font-semibold ${TEMP[temp]}`}>
                     {temp}

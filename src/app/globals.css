@@ -382,6 +382,7 @@ html body #tarteaucitronRoot #tarteaucitronAlertBig {
   color: var(--on-ink);
   font-family: var(--font-manrope), system-ui, sans-serif;
   box-shadow: 0 -8px 40px -12px rgba(0, 0, 0, 0.5);
+  box-sizing: border-box;
   padding: 20px 24px;
 }
 
@@ -450,7 +451,81 @@ html body #tarteaucitronRoot button#tarteaucitronPrivacyUrl {
   html body #tarteaucitronRoot #tarteaucitronAlertBig #tarteaucitronAllDenied2,
   html body #tarteaucitronRoot #tarteaucitronAlertBig #tarteaucitronCloseAlert {
     display: block;
+    box-sizing: border-box;
+    min-width: 0;
     width: 100%;
     margin: 6px 0 0;
   }
 }
+
+/* Tableaux des pages légales : une fiche par ligne sous 640 px plutôt qu'un
+   défilement horizontal. Chaque cellule affiche son en-tête via data-label. */
+@media (max-width: 639px) {
+  .table-stack thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+  }
+  .table-stack,
+  .table-stack tbody,
+  .table-stack tr,
+  .table-stack td,
+  .table-stack tbody th {
+    display: block;
+  }
+  .table-stack tr {
+    padding: 0.75rem 0;
+  }
+  .table-stack td,
+  .table-stack tbody th {
+    padding: 0.3rem 0;
+    white-space: normal;
+  }
+  .table-stack td[data-label]::before {
+    content: attr(data-label);
+    display: block;
+    margin-bottom: 0.15rem;
+    font-family: var(--font-jetbrains), monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--primary-ink);
+  }
+}
+
+/* Corps des articles MDX (blog, agent-ia, solutions) : pas de plugin
+   Typography, la mise en forme est posée ici. */
+.article-body {
+  color: var(--muted-strong);
+  line-height: 1.75;
+}
+.article-body > * + * { margin-top: 1.1rem; }
+.article-body h2 {
+  margin-top: 2.5rem;
+  font-family: var(--font-bricolage), var(--font-manrope), system-ui, sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--foreground);
+}
+.article-body h3 {
+  margin-top: 2rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--foreground);
+}
+.article-body ul { list-style: disc; padding-left: 1.25rem; }
+.article-body ol { list-style: decimal; padding-left: 1.25rem; }
+.article-body li + li { margin-top: 0.4rem; }
+.article-body li::marker { color: var(--primary); }
+.article-body a { color: var(--primary-ink); text-decoration: underline; text-underline-offset: 3px; }
+.article-body :is(h2, h3) a { color: inherit; text-decoration: none; }
+.article-body strong { color: var(--foreground); font-weight: 600; }
+.article-body blockquote { border-left: 3px solid var(--primary); padding-left: 1rem; font-style: italic; }
+.article-body table { display: block; overflow-x: auto; font-size: 0.875rem; }
+.article-body th, .article-body td { padding: 0.5rem 0.75rem; border-bottom: 1px solid var(--border); text-align: left; }
+.article-body code { font-family: var(--font-jetbrains), monospace; font-size: 0.875em; }
+.article-body pre { overflow-x: auto; border-radius: 0.75rem; background: var(--ink); color: var(--on-ink); padding: 1rem; }

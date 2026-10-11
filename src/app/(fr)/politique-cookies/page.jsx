@@ -121,7 +121,7 @@ const SECTIONS = [
 function TableTraceurs({ rows }) {
   return (
     <div className="mt-5 overflow-x-auto">
-      <table className="w-full min-w-[46rem] border-collapse text-left text-sm">
+      <table className="table-stack w-full border-collapse sm:min-w-[46rem] text-left text-sm">
         <thead>
           <tr className="border-b border-[var(--border-strong)]">
             {['Nom', 'Service et éditeur', 'Finalité', 'Durée', 'Transfert hors UE'].map((h) => (
@@ -141,13 +141,13 @@ function TableTraceurs({ rows }) {
               <th scope="row" className="py-4 pr-4 font-mono text-xs font-medium text-[var(--foreground)]">
                 {t.nom}
               </th>
-              <td className="py-4 pr-4 text-[var(--muted-strong)]">
+              <td data-label="Service et éditeur" className="py-4 pr-4 text-[var(--muted-strong)]">
                 <span className="block font-medium text-[var(--foreground)]">{t.service}</span>
                 {t.editeur}
               </td>
-              <td className="py-4 pr-4 text-[var(--muted)]">{t.finalite}</td>
-              <td className="py-4 pr-4 whitespace-nowrap text-[var(--muted-strong)]">{t.duree}</td>
-              <td className="py-4 text-[var(--muted)]">{t.horsUE}</td>
+              <td data-label="Finalité" className="py-4 pr-4 text-[var(--muted)]">{t.finalite}</td>
+              <td data-label="Durée" className="py-4 pr-4 whitespace-nowrap text-[var(--muted-strong)]">{t.duree}</td>
+              <td data-label="Transfert hors UE" className="py-4 text-[var(--muted)]">{t.horsUE}</td>
             </tr>
           ))}
         </tbody>

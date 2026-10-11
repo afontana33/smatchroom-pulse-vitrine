@@ -88,6 +88,13 @@ export default function Nav({
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
+  useEffect(() => {
+    if (!mobileOpen) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => { document.body.style.overflow = prev; };
+  }, [mobileOpen]);
+
   /* Une fois la barre en verre ivoire, on revient au texte encre. */
   const onDark = overDark && !scrolled;
 
@@ -182,7 +189,7 @@ export default function Nav({
       </div>
 
       {mobileOpen && (
-        <div className="border-t border-[var(--border)] bg-[rgba(246,244,239,0.97)] px-5 py-6 backdrop-blur-xl lg:hidden">
+        <div className="h-[calc(100dvh-4.25rem)] overflow-y-auto overscroll-contain border-t border-[var(--border)] bg-[rgba(246,244,239,0.97)] px-5 py-6 backdrop-blur-xl lg:hidden">
           <nav className="flex flex-col gap-1">
             {links.map((l) => (
               <a

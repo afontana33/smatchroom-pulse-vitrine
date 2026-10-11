@@ -151,11 +151,11 @@ export default function AgentClients() {
               <ul className="mt-5 space-y-4 border-t border-white/15 pt-5">
                 {PALIERS.map((t) => (
                   <li key={t.name} className="flex items-start justify-between gap-4">
-                    <div>
+                    <div className="min-w-0">
                       <p className="text-[0.95rem] font-semibold text-white">{t.name}</p>
                       <p className="mt-0.5 text-xs text-white/55">{t.volume}</p>
                     </div>
-                    <div className="text-right">
+                    <div className="flex-shrink-0 whitespace-nowrap text-right">
                       <p className="text-[0.95rem] font-semibold text-[#ffb27a]">{t.monthly}</p>
                       <p className="mt-0.5 text-xs text-white/55">{t.setup}</p>
                     </div>

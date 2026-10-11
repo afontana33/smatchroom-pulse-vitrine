@@ -35,15 +35,15 @@ export const eur = (n) => n.toLocaleString('fr-FR');
 const FORMAT = {
   fr: {
     num: (n) => n.toLocaleString('fr-FR'),
-    setup: (montant, from) => `${from ? 'à partir de ' : ''}${montant} € HT`,
+    setup: (montant, from) => `${from ? 'à partir de ' : ''}${montant}\u00a0€\u00a0HT`,
     monthly: (montant) =>
-      montant === null ? 'mensualité sur devis' : `${montant} € HT / mois`,
+      montant === null ? 'mensualité sur devis' : `${montant}\u00a0€\u00a0HT\u00a0/\u00a0mois`,
   },
   en: {
     num: (n) => n.toLocaleString('en-GB'),
-    setup: (montant, from) => `${from ? 'from ' : ''}€${montant} excl. VAT`,
+    setup: (montant, from) => `${from ? 'from ' : ''}€${montant} excl.\u00a0VAT`,
     monthly: (montant) =>
-      montant === null ? 'monthly fee on request' : `€${montant} excl. VAT / month`,
+      montant === null ? 'monthly fee on request' : `€${montant} excl.\u00a0VAT\u00a0/\u00a0month`,
   },
 };
 
