@@ -339,7 +339,7 @@ h1, h2, h3 {
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }
 }
-.animate-marquee { animation: marquee 38s linear infinite; width: max-content; }
+.animate-marquee { animation: marquee 95s linear infinite; width: max-content; }
 .marquee-group:hover .animate-marquee { animation-play-state: paused; }
 .marquee-mask {
   -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);

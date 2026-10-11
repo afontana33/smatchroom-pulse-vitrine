@@ -49,6 +49,18 @@ const CLIENTS = [
   'Ets Duvernell',
   'DTR Service',
   'Habitat Multi Services',
+  'AS Électricité',
+  'GTLub',
+  'Groupe MB Services',
+  'Total Habitat 360',
+  'ABM Étanchéité & Bardage',
+  'Plombier de la Ville',
+  'Couverture du Lion',
+  'Déco-Renov',
+  'Aquarium Passion Service',
+  'Aqua & Scape',
+  'A2Pas',
+  'BLEU M TECH',
 ];
 
 function Rise({ children, delay = 0 }) {
