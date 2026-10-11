@@ -5,6 +5,7 @@ import TeamLp from '@/components/lp/TeamLp';
 import Piliers from '@/components/lp/Piliers';
 import DeuxAgents from '@/components/lp/DeuxAgents';
 import AgentClients from '@/components/lp/AgentClients';
+import MethodeB2B from '@/components/lp/MethodeB2B';
 import Preuves from '@/components/lp/Preuves';
 import AvisLp from '@/components/lp/AvisLp';
 import FaqLp from '@/components/lp/FaqLp';
@@ -83,6 +84,7 @@ export default function Page() {
       <Piliers />
       <DeuxAgents />
       <AgentClients />
+      <MethodeB2B />
       <Thesis />
       <TeamLp />
       <FaqLp />
