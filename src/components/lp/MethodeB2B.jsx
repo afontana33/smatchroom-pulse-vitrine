@@ -15,16 +15,15 @@ const ETAPES = [
 
 /* Exemple illustratif, anonyme : des postes et des signaux, jamais de noms. */
 const SIGNAUX = [
-  ['DAF · PME industrielle', 'Commente un post sur votre sujet', 'Chaud'],
-  ['Fondatrice · agence de 12 personnes', 'Recrute un commercial', 'Chaud'],
-  ['Directeur de site · logistique', 'Ouvre un nouvel entrepôt', 'Tiède'],
-  ['Gérant · négoce de matériaux', 'Nouveau dirigeant depuis 3 semaines', 'Tiède'],
+  ['DAF · PME industrielle', 'Commente un post sur votre sujet', 'Contacté'],
+  ['Fondatrice · agence de 12 personnes', 'Recrute un commercial', 'Contacté'],
+  ['Directeur de site · logistique', 'Ouvre un nouvel entrepôt', 'Contacté'],
+  ['Gérant · négoce de matériaux', 'Nouveau dirigeant depuis 3 semaines', 'Contacté'],
   ['Responsable achats · grand groupe', 'Hors de votre cible', 'Écarté'],
 ];
 
 const TEMP = {
-  Chaud: 'bg-[var(--primary)] text-white',
-  Tiède: 'bg-[#ffd9c2] text-[#8a3a12]',
+  Contacté: 'bg-[var(--primary)] text-white',
   Écarté: 'bg-[var(--surface-2)] text-[var(--muted)] line-through',
 };
 
@@ -51,13 +50,11 @@ export default function MethodeB2B() {
             </h3>
             <p className="mt-4 leading-relaxed text-[var(--muted-strong)]">
               L’agent surveille LinkedIn et le web&nbsp;: un décideur qui réagit à un sujet lié à
-              votre offre, une entreprise qui recrute, ouvre un site ou change de dirigeant. Tout
-              arrive dans une seule liste.
+              votre offre, une entreprise qui recrute, ouvre un site ou change de dirigeant.
             </p>
             <p className="mt-4 leading-relaxed text-[var(--muted-strong)]">
-              Chaque contact est noté selon votre client idéal. Les hors-cible sortent, les autres
-              sont classés <strong className="text-[var(--foreground)]">chaud, tiède ou froid</strong>&nbsp;:
-              vous savez qui appeler en premier.
+              Chaque contact est comparé à votre client idéal. Les hors-cible sont écartés, les
+              autres sont contactés automatiquement. Vous n’avez rien à trier.
             </p>
             <p className="mt-5 rounded-xl bg-[var(--surface-2)] px-4 py-3 text-sm font-semibold">
               LinkedIn sert à repérer, pas à contacter&nbsp;: les messageries y sont saturées.
@@ -67,7 +64,7 @@ export default function MethodeB2B() {
 
           <figure className="rounded-2xl border border-[var(--border-strong)] bg-[var(--background)] p-4 sm:p-5">
             <figcaption className="mb-3 font-mono text-[0.62rem] uppercase tracking-[0.16em] text-[var(--muted)]">
-              Exemple de liste
+              Exemple
             </figcaption>
             <ul className="space-y-2">
               {SIGNAUX.map(([poste, signal, temp]) => (
