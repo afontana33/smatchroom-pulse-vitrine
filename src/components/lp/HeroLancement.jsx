@@ -10,7 +10,7 @@ import { ArrowRight, Check, Phone, Star } from 'lucide-react';
 import { CALENDLY, TEL_DISPLAY, TEL_HREF } from '@/lib/contact';
 
 const CONTENU = [
-  'Votre site internet, clair et rapide sur téléphone',
+  'Votre site internet, hébergé à votre nom : il reste à vous si vous arrêtez',
   'Votre fiche Google créée et remplie',
   '3 mois d’agent de prospection par WhatsApp et email',
 ];
