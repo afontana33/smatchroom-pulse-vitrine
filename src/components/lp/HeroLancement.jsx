@@ -71,15 +71,15 @@ export default function HeroLancement() {
                 Pack Lancement
               </h2>
               <span className="rounded-full bg-[var(--primary)] px-3 py-1 font-mono text-[0.62rem] uppercase tracking-[0.14em] text-white">
-                3 mois inclus
+                Tout compris
               </span>
             </div>
 
             <p className="mt-5 font-display text-5xl font-bold tracking-tight sm:text-6xl">
               490 € <span className="text-2xl font-semibold text-[var(--muted)]">HT</span>
             </p>
-            <p className="mt-2 text-[var(--muted-strong)]">
-              en une fois, puis 149 € HT / mois si vous continuez
+            <p className="mt-2 text-lg font-semibold">
+              pour 3 mois, payés une seule fois. Rien de plus.
             </p>
 
             <ul className="mt-7 space-y-3">
@@ -99,10 +99,13 @@ export default function HeroLancement() {
               ))}
             </ul>
 
-            <CtaRdv className="mt-8 w-full" />
-            <p className="mt-3 text-center text-xs text-[var(--muted)]">
-              Sans engagement après les 3 mois
+            <p className="mt-7 rounded-2xl bg-[var(--surface-2)] px-5 py-4 text-sm text-[var(--muted-strong)]">
+              Après 3 mois, vous continuez si vous voulez&nbsp;:{' '}
+              <span className="font-semibold text-[var(--foreground)]">149 € HT / mois</span>, sans
+              engagement.
             </p>
+
+            <CtaRdv className="mt-6 w-full" />
           </div>
         </div>
       </div>

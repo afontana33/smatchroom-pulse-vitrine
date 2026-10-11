@@ -38,7 +38,7 @@ const PILIERS = [
     ],
     price: {
       main: '149 € HT / mois',
-      mainNote: 'sans engagement · sans frais de création',
+      mainNote: 'sans frais de création',
       extra: 'Sans engagement, vous arrêtez quand vous voulez.',
     },
   },
