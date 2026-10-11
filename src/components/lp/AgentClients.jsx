@@ -17,6 +17,12 @@ import { ArrowRight, Check } from 'lucide-react';
 
 const CALENDLY = 'https://calendly.com/a-fontana-smatchroom/30min';
 
+const PALIERS = [
+  { name: 'Solo', volume: "1 numéro WhatsApp · ~300 décideurs / mois", monthly: '340 € HT / mois', setup: 'création 490 € HT' },
+  { name: 'Équipe', volume: '2 à 3 numéros · 600 à 900 décideurs / mois', monthly: '640 € HT / mois', setup: 'création 790 € HT' },
+  { name: 'Réseau', volume: '4 numéros et plus · 1 200 décideurs et plus', monthly: 'sur devis', setup: 'création sur devis' },
+];
+
 const POINTS = [
   'Base de données construite pour votre marché',
   'Agent entraîné sur votre catalogue et vos objections',
@@ -135,15 +141,26 @@ export default function AgentClients() {
               </p>
               <p className="mt-4 text-sm text-white/60">à partir de</p>
               <p className="mt-0.5 font-display text-4xl font-semibold tracking-tight text-white">
-                1 800 € HT
+                340 € HT
               </p>
-              <p className="mt-1 text-sm text-white/60">de création, une seule fois</p>
-              <p className="mt-3 text-lg font-semibold text-[#ffb27a]">
-                puis une mensualité sur devis
-              </p>
+              <p className="mt-1 text-sm text-white/60">par mois, sans engagement</p>
+              <ul className="mt-5 space-y-4 border-t border-white/15 pt-5">
+                {PALIERS.map((t) => (
+                  <li key={t.name} className="flex items-start justify-between gap-4">
+                    <div>
+                      <p className="text-[0.95rem] font-semibold text-white">{t.name}</p>
+                      <p className="mt-0.5 text-xs text-white/55">{t.volume}</p>
+                    </div>
+                    <div className="text-right">
+                      <p className="text-[0.95rem] font-semibold text-[#ffb27a]">{t.monthly}</p>
+                      <p className="mt-0.5 text-xs text-white/55">{t.setup}</p>
+                    </div>
+                  </li>
+                ))}
+              </ul>
               <p className="mt-5 border-t border-white/15 pt-5 text-sm leading-relaxed text-[var(--on-ink-muted)]">
-                Sans engagement. Chaque marché demande un travail différent&nbsp;: le périmètre et
-                la mensualité sont chiffrés après l&apos;audit, pas avant.
+                Création offerte si vous partez sur 3 mois. Chaque numéro WhatsApp branché (un par
+                commercial, par exemple) contacte environ 300 décideurs par mois, en plus de l&apos;email.
               </p>
               <a
                 href={CALENDLY}

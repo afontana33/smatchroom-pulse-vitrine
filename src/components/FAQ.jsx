@@ -9,8 +9,8 @@ const QUESTIONS = [
     a: "Oui, c'est exactement notre cible. Notre agent est déjà en production chez des artisans du bâtiment (couverture, isolation, rénovation). Ils s'occupent de trouver des chantiers, relancer vos devis et gérer l'administratif pendant que vous êtes sur le terrain.",
   },
   {
-    q: "Je suis une PME/ETI, quelle est la différence avec le palier Grands Comptes ?",
-    a: "L'Agent Chasseur, le site et l'acquisition Meta sont pensés pour les artisans et TPE. Le palier Grands Comptes (offre sur-mesure, tarif sur devis) est un SDR IA pour les PME/ETI qui veulent ouvrir de gros comptes (promoteurs, gestionnaires de parcs, majors). Entraîné sur votre vocabulaire technique et vos objections, il cible les décideurs précis et passe le relais à vos commerciaux dès qu'un prospect est chaud.",
+    q: "Je suis une PME/ETI, quelle est la différence avec l'Agent Clients B2B ?",
+    a: "L'Agent Chasseur, le site et l'acquisition Meta sont pensés pour les artisans et TPE. L'Agent Clients B2B (paliers Solo, Équipe et Réseau, à partir de 340 € HT par mois) est un SDR IA pour les PME/ETI qui veulent ouvrir de gros comptes (promoteurs, gestionnaires de parcs, majors). Entraîné sur votre vocabulaire technique et vos objections, il cible les décideurs précis et passe le relais à vos commerciaux dès qu'un prospect est chaud.",
   },
   {
     q: "Concrètement, un agent IA pour mon activité, ça fait quoi ?",

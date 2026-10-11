@@ -114,8 +114,8 @@ export default function Page() {
       <Thesis />
       <TeamLp />
       <Piliers />
-      <Packs />
       <AgentClients />
+      <Packs />
       <AutresAgents />
       <Preuves />
       <AvisLp />

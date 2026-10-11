@@ -8,5 +8,5 @@
   { "anchor": "notre processus de déploiement", "url": "/#process", "context": "processus, méthode, déploiement, cadrage", "priority": 7 },
   { "anchor": "cas d'usage SmatchRoom Pulse", "url": "/#use-cases", "context": "cas d'usage, exemple, retour d'expérience", "priority": 6 },
   { "anchor": "déployer un agent IA", "url": "/solutions/agent-sur-mesure", "context": "déployer, déploiement, mettre en place", "priority": 6 },
-  { "anchor": "Pilote SmatchRoom Pulse", "url": "/#pricing", "context": "pilote, démarrer, test, mvp", "priority": 5 }
+  { "anchor": "tarifs SmatchRoom Pulse", "url": "/#packs", "context": "pilote, démarrer, test, mvp", "priority": 5 }
 ]

@@ -43,10 +43,10 @@ ${PILIER_OFFERS.map(offerLine).join('\n')}
 Les cinq agents complémentaires :
 ${AGENT_OFFERS.map(offerLine).join('\n')}
 
-Tous les montants sont hors taxes. L'Agent Clients B2B est le seul chiffré après
-audit : sa fabrication part de 1 800 € HT et sa mensualité est établie sur devis,
-parce que le marché à construire n'a pas la même taille d'une entreprise à
-l'autre. Les autres prix sont fermes.
+Tous les montants sont hors taxes. L'Agent Clients B2B a trois paliers selon le nombre de numéros
+WhatsApp branchés (environ 300 décideurs contactés par mois et par numéro) : Solo
+(1 numéro) à 490 € HT de fabrication puis 340 € HT par mois, Équipe (2 à 3 numéros)
+à 790 € HT puis 640 € HT par mois, Réseau (4 numéros et plus) sur devis. Les autres prix sont fermes.
 La formule à la carte est sans engagement.
 La formule Partenaire offre les frais de fabrication de l'agent de prospection
 en échange d'un engagement de trois mois. Le budget publicitaire Meta n'est pas

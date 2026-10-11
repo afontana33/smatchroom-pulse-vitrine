@@ -25,17 +25,6 @@ const CALENDLY = 'https://calendly.com/a-fontana-smatchroom/30min';
 
 const PACKS = [
   {
-    name: 'Le Carnet',
-    sub: 'Remplir votre carnet de commandes par les pros',
-    hook: "L'agent va chercher les partenaires, syndics, PME et commerces de votre secteur.",
-    included: ['Site & fiche Google (offert)', 'Agent IA'],
-    excluded: ['Acquisition Meta'],
-    setup: '300 € HT',
-    monthly: '210 € HT',
-    first: '510 € HT',
-    note: 'Au lieu de 600 € HT de création à la carte',
-  },
-  {
     name: 'La Vitrine',
     sub: 'Vous faire connaître des particuliers',
     hook: 'Vos chantiers filmés et diffusés aux habitants de votre zone.',
@@ -121,7 +110,7 @@ export default function Packs() {
             <h2 className="text-balance text-3xl font-semibold leading-[1.1] tracking-tight sm:text-4xl lg:text-[3.1rem]">
               Trois piliers,{' '}
               <span className="font-serif-it font-normal text-[var(--primary-ink)]">
-                quatre façons de démarrer.
+                trois façons de démarrer.
               </span>
             </h2>
             <p className="mt-5 text-[var(--muted-strong)] sm:text-lg">
@@ -138,7 +127,7 @@ export default function Packs() {
             points. Un simple `mt-auto` alignerait le bas des cartes, pas les prix.
             La piste des inclusions est en 1fr, c'est elle qui absorbe l'écart. */}
         <Rise>
-          <div className="grid grid-cols-1 items-stretch gap-6 md:grid-cols-2 md:grid-rows-[auto_auto_auto_auto_1fr_auto] xl:grid-cols-4">
+          <div className="grid grid-cols-1 items-stretch gap-6 md:grid-cols-2 md:grid-rows-[auto_auto_auto_auto_1fr_auto] xl:grid-cols-3">
             {PACKS.map((p) => (
               <article
                 key={p.name}
@@ -243,6 +232,44 @@ export default function Packs() {
             ))}
           </div>
         </Rise>
+
+          <Rise delay={0.05}>
+            <div className="mt-12 rounded-2xl border-2 border-[var(--primary)] bg-[var(--surface)] p-7 sm:p-8">
+              <p className="font-mono text-[0.62rem] uppercase tracking-[0.16em] text-[var(--primary-ink)]">
+                Vous lancez votre entreprise
+              </p>
+              <div className="mt-3 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+                <div className="max-w-2xl">
+                  <h3 className="font-display text-2xl font-semibold leading-tight tracking-tight text-[var(--foreground)] sm:text-[1.75rem]">
+                    Pack Lancement
+                  </h3>
+                  <p className="mt-3 text-[0.95rem] leading-relaxed text-[var(--muted-strong)]">
+                    Votre site, votre fiche établissement Google et 3 mois d&apos;agent de
+                    prospection qui contacte les prescripteurs de votre zone par WhatsApp et par
+                    email.
+                  </p>
+                </div>
+                <div className="flex-shrink-0 lg:text-right">
+                  <p className="font-display text-3xl font-semibold tracking-tight text-[var(--foreground)]">
+                    490 € HT
+                  </p>
+                  <p className="mt-1 text-sm text-[var(--muted)]">
+                    en une fois pour les 3 premiers mois, puis 190 € HT / mois si vous continuez
+                  </p>
+                  <a
+                    href={CALENDLY}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Réserver un créneau de 30 minutes pour le Pack Lancement"
+                    className="btn-primary mt-4 inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold"
+                  >
+                    Réserver un créneau
+                    <ArrowRight size={15} aria-hidden />
+                  </a>
+                </div>
+              </div>
+            </div>
+          </Rise>
 
         <Rise delay={0.05}>
           <div className="mt-12 flex flex-col items-start justify-between gap-6 rounded-2xl border border-[var(--border-strong)] bg-[var(--surface-2)] p-7 sm:p-8 lg:flex-row lg:items-center">

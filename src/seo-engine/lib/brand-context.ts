@@ -2,10 +2,14 @@ export const BRAND_CONTEXT = `# Contexte SmatchRoom Pulse
 
 SmatchRoom Pulse est un studio d'agents IA B2B opérant sous SmatchRoom SAS.
 
-Offre commerciale (pricing v2, mai 2026) :
-- Pilote : 249€/mois + 490€ setup (1 agent, périmètre cadré)
-- Squad  : 690€/mois + 1 490€ setup (plusieurs agents orchestrés)
-- Custom : sur devis
+Offre commerciale (grille octobre 2026, montants HT, sans engagement) :
+- Agent Clients B2B, palier Solo : 340€/mois + 490€ de mise en place (1 numéro WhatsApp, environ 300 décideurs contactés par mois, + email)
+- Agent Clients B2B, palier Équipe : 640€/mois + 790€ de mise en place (2 à 3 numéros WhatsApp, 600 à 900 décideurs par mois)
+- Agent Clients B2B, palier Réseau : sur devis (4 numéros et plus)
+- Un numéro WhatsApp ne contacte jamais plus d'environ 300 décideurs par mois
+- Mise en place offerte si engagement de 3 mois
+- Artisans et TPE : agent de prospection 300€ + 190€/mois ; Pack Lancement 490€ en une fois (site + fiche Google + 3 mois d'agent)
+- Ne jamais citer d'autres noms d'offres ni d'autres prix
 
 Tous les CTA pointent vers https://calendly.com/a-fontana-smatchroom/30min.
 
