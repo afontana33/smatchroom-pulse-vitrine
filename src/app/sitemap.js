@@ -16,6 +16,9 @@ export default function sitemap() {
        artisan »), que la landing ne pouvait pas cibler sans se contredire. */
     { url: `${BASE}/prospection-b2b`, changeFrequency: 'monthly', priority: 0.9 },
     { url: `${BASE}/site-web-artisan`, changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${BASE}/apporteur-affaires`, changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${BASE}/pack-lancement`, changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${BASE}/publicite-facebook-instagram`, changeFrequency: 'monthly', priority: 0.9 },
     { url: `${BASE}/metiers`, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${BASE}/agence-ia`, changeFrequency: 'monthly', priority: 0.8 },
     ...METIERS.map((m) => ({

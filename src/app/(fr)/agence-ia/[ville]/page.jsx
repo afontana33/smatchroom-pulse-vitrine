@@ -249,7 +249,7 @@ export default async function VillePage({ params }) {
 
         <Section className="pb-24 sm:pb-32">
           <CtaBand
-            titre={`Trente minutes pour regarder votre zone autour de ${v.nom}`}
+            titre={`15 minutes pour regarder votre zone autour de ${v.nom}`}
             texte="On liste les prescripteurs réellement joignables autour de vous, on vous dit ce qui est faisable et ce qui ne l'est pas. Sans engagement, et même si vous ne travaillez pas avec nous."
           />
         </Section>

@@ -18,7 +18,7 @@ const AGENTS = [
     pour: 'Indépendants, artisans, TPE',
     prix: '149 € HT / mois',
     prixNote: 'sans engagement',
-    href: '#piliers',
+    href: '/apporteur-affaires',
     lien: 'Voir l’Agent Partenaires',
   },
   {
@@ -28,7 +28,7 @@ const AGENTS = [
     pour: 'Entreprises qui vendent à des entreprises',
     prix: 'dès 340 € HT / mois',
     prixNote: 'création dès 490 € HT',
-    href: '#agent-clients',
+    href: '/prospection-b2b',
     lien: 'Voir l’Agent Clients',
   },
 ];

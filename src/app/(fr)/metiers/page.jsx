@@ -100,7 +100,7 @@ export default function MetiersHub() {
         <Section className="pb-24 sm:pb-32">
           <CtaBand
             titre="Votre métier n'est pas dans la liste ?"
-            texte="La liste ne fait que refléter les métiers sur lesquels nous avons déjà des agents en service. On travaille aussi hors bâtiment, et le cadrage de trente minutes sert précisément à savoir si on a quelque chose à vous apporter, ou pas."
+            texte="La liste ne fait que refléter les métiers sur lesquels nous avons déjà des agents en service. On travaille aussi hors bâtiment, et le premier appel de 15 minutes sert précisément à savoir si on a quelque chose à vous apporter, ou pas."
           />
         </Section>
       </main>

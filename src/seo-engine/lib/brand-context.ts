@@ -7,13 +7,17 @@ Offre commerciale (grille octobre 2026, montants HT, sans engagement) :
 - Agent Clients B2B, palier Équipe : 640€/mois + 790€ de mise en place (2 à 3 numéros WhatsApp, 600 à 900 décideurs par mois)
 - Agent Clients B2B, palier Réseau : sur devis (4 numéros et plus)
 - Un numéro WhatsApp ne contacte jamais plus d'environ 300 décideurs par mois
-- Mise en place offerte si engagement de 3 mois
-- Artisans et TPE : agent de prospection 300€ + 190€/mois ; Pack Lancement 490€ en une fois (site + fiche Google + 3 mois d'agent)
+- L'Agent Clients repère les signaux d'achat (recrutement, création, nouveau dirigeant, réactions LinkedIn) et contacte les décideurs par WhatsApp et email, jamais par LinkedIn
+- Agent Partenaires (apporteurs d'affaires, contacte les prescripteurs) : 149€/mois, sans frais de création ni engagement
+- Pack Lancement : 490€ payés une fois pour 3 mois (site hébergé au nom du client + fiche Google + 3 mois d'Agent Partenaires), puis 149€/mois si le client continue
+- Site internet + fiche Google seul : 300€ une fois, sans abonnement, hébergé au nom du client
+- Acquisition Meta (publicité Facebook/Instagram) : 690€ (client filme) ou 1 490€ (vidéaste) + 200€/mois, budget pub payé à Meta
+- Garantie des deux agents : aucun rendez-vous dans le mois = mois suivant non facturé
 - Ne jamais citer d'autres noms d'offres ni d'autres prix
 
-Tous les CTA pointent vers https://calendly.com/a-fontana-smatchroom/30min.
+Tous les CTA proposent un créneau gratuit de 15 minutes : https://calendly.com/a-fontana-smatchroom/30min.
 
-Cible : dirigeants et opérationnels B2B (SDR, support, ops).
+Cible : dirigeants d'indépendants, TPE et PME, y compris B2B.
 
 Ton éditorial obligatoire :
 - Vouvoiement systématique ("vous", "vos équipes")
@@ -23,7 +27,12 @@ Ton éditorial obligatoire :
   (préférer "chatbots no-code traditionnels", "solutions verticales pré-packagées")
 
 Pages internes principales utilisables en lien :
-- / (page d'accueil — ancres #process #pricing #use-cases #faq)
+- / (page d'accueil, ancres #lancement #resultats #piliers #questions)
+- /pack-lancement
+- /apporteur-affaires
+- /prospection-b2b
+- /site-web-artisan
+- /publicite-facebook-instagram
 - /solutions/agent-sdr
 - /solutions/agent-support
 - /solutions/agent-sur-mesure

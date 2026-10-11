@@ -110,6 +110,13 @@ export default function MethodeB2B() {
             </div>
           ))}
         </dl>
+
+        <a
+          href="/prospection-b2b"
+          className="mt-8 inline-flex text-sm font-semibold text-[var(--primary-ink)] underline-offset-4 hover:underline"
+        >
+          Tout savoir sur notre prospection B2B
+        </a>
       </div>
     </section>
   );

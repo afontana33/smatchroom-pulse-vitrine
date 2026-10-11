@@ -28,7 +28,7 @@ import {
   SectionHead,
 } from '@/components/seo/Blocks';
 import { METIERS } from '@/lib/seo-local';
-import { PILIER_OFFERS, eur, monthlyLabel, setupLabel } from '@/lib/offers';
+import { GARANTIE, PILIER_OFFERS, eur, monthlyLabel, setupLabel } from '@/lib/offers';
 import { SITE_URL } from '@/lib/contact';
 import {
   breadcrumbSchema,
@@ -38,15 +38,17 @@ import {
   webPageSchema,
 } from '@/lib/schema';
 
-const META_TITLE = 'Agence de prospection B2B : la prospection commerciale automatisée';
+const META_TITLE = 'Agence de prospection B2B : signaux d’achat, WhatsApp et email';
 const META_DESCRIPTION =
-  "Agence de prospection B2B : un agent contacte vos prospects, qualifie le besoin et le "
-  + "budget, puis passe la main à vos commerciaux. Prix affichés.";
+  "Un agent repère les entreprises prêtes à acheter, contacte leurs décideurs par WhatsApp et "
+  + "email, et passe la main à vos commerciaux. Dès 340 € HT/mois.";
 
 const URL = `${SITE_URL}/prospection-b2b`;
 
 const CE_QUE_FAIT = [
   'Construit la liste des entreprises de votre marché, à partir de données publiques',
+  'Repère les signaux d’achat : recrutement, création, nouveau dirigeant, réactions LinkedIn',
+  'Contacte les décideurs par WhatsApp et par email, jamais par LinkedIn',
   'Écrit à chacune un message qui lui est propre, pas un publipostage',
   'Relance au bon moment, sans harceler et sans répéter le premier message',
   'Répond en moins d’une minute, sept jours sur sept',
@@ -72,9 +74,25 @@ const FAQ = [
   },
   {
     q: 'D’où viennent les contacts ?',
-    a: "De données publiques : registres d'entreprises, annuaires professionnels, sources "
-      + "ouvertes de votre secteur. Nous n'achetons pas de fichiers et nous ne collectons pas de "
-      + "données de particuliers. Chaque contact est rattaché à une entreprise identifiée.",
+    a: "De données publiques : fiches Google, registres d'entreprises, offres d'emploi, "
+      + "annuaires professionnels et publications LinkedIn. Nous n'achetons pas de fichiers et "
+      + "nous ne collectons pas de données de particuliers. Chaque contact est rattaché à une "
+      + "entreprise identifiée.",
+  },
+  {
+    q: 'Qu’est-ce qu’un signal d’achat ?',
+    a: "Un indice qu'une entreprise a une raison d'acheter maintenant : elle recrute, vient de se "
+      + "créer, change de dirigeant, ouvre un site, ou l'un de ses décideurs réagit sur LinkedIn à "
+      + "un sujet lié à votre offre. L'agent contacte ces entreprises en priorité.",
+  },
+  {
+    q: 'Pourquoi WhatsApp et email plutôt que LinkedIn ?',
+    a: "Les messageries LinkedIn sont saturées de sollicitations. LinkedIn sert à repérer, "
+      + "WhatsApp et l'email à contacter : c'est là que les décideurs répondent encore.",
+  },
+  {
+    q: 'Vous garantissez des résultats ?',
+    a: `${GARANTIE} La garantie porte sur les mensualités, pas sur la mise en place.`,
   },
   {
     q: 'Est-ce que c’est légal, et conforme au RGPD ?',
@@ -133,13 +151,6 @@ export default function ProspectionB2BPage() {
             breadcrumb: { '@id': `${URL}#breadcrumb` },
           }),
           { ...breadcrumb, '@id': `${URL}#breadcrumb` },
-          serviceSchema({
-            name: 'Prospection commerciale B2B automatisée',
-            description: META_DESCRIPTION,
-            url: URL,
-            setup: agent.setup,
-            monthly: agent.monthly,
-          }),
           serviceSchema({
             name: clients.name,
             description: clients.description,
@@ -204,19 +215,18 @@ export default function ProspectionB2BPage() {
           <div className="mt-8 grid gap-6 lg:grid-cols-2">
             <div className="rounded-2xl border border-[var(--border-strong)] bg-[var(--surface)] p-7">
               <p className="font-mono text-[0.62rem] uppercase tracking-[0.16em] text-[var(--muted)]">
-                Agent de prospection
+                Agent Partenaires
               </p>
               <p className="mt-4 font-display text-4xl font-semibold tracking-tight">
-                {eur(agent.setup)} € HT
+                {eur(agent.monthly)} € HT
               </p>
-              <p className="mt-1 text-sm text-[var(--muted)]">de fabrication, une seule fois</p>
-              <p className="mt-3 text-lg font-semibold text-[var(--primary-ink)]">
-                puis {eur(agent.monthly)} € HT / mois
-              </p>
+              <p className="mt-1 text-sm text-[var(--muted)]">par mois, sans frais de création</p>
               <p className="mt-5 border-t border-[var(--border)] pt-5 text-sm leading-relaxed text-[var(--muted-strong)]">
                 Pour une entreprise qui vend une prestation sur une zone. L’agent écrit aux
-                professionnels de votre secteur qui voient les affaires avant vous. Fabrication
-                offerte si vous partez sur six mois.
+                prescripteurs de votre secteur, qui voient les affaires avant vous.{' '}
+                <a href="/apporteur-affaires" className="font-semibold text-[var(--primary-ink)] hover:underline">
+                  Voir l’Agent Partenaires
+                </a>
               </p>
             </div>
 
@@ -286,6 +296,7 @@ export default function ProspectionB2BPage() {
           <LinkGrid
             titre="Aller plus loin"
             links={[
+              { href: '/apporteur-affaires', label: 'Trouver des apporteurs d’affaires' },
               { href: '/site-web-artisan', label: 'Site internet et fiche Google' },
               { href: '/agence-ia', label: 'Nos zones d’intervention' },
               { href: '/agent-ia', label: 'Comprendre les agents IA' },
@@ -297,7 +308,7 @@ export default function ProspectionB2BPage() {
         <Section className="pb-24 sm:pb-32">
           <CtaBand
             titre="On regarde votre marché, et on vous dit ce qui est atteignable"
-            texte="Trente minutes au téléphone, sans engagement. Vous repartez avec le volume d’entreprises joignables sur votre cible et le travail que ça représente. Même si vous ne travaillez pas avec nous."
+            texte="15 minutes au téléphone, gratuit et sans engagement. Vous repartez avec le volume d’entreprises joignables sur votre cible et le travail que ça représente. Même si vous ne travaillez pas avec nous."
           />
         </Section>
       </main>

@@ -29,7 +29,7 @@ import {
   SectionHead,
 } from '@/components/seo/Blocks';
 import { METIERS, VILLES, findMetier } from '@/lib/seo-local';
-import { PILIER_OFFERS, eur } from '@/lib/offers';
+import { GARANTIE, PILIER_OFFERS, eur } from '@/lib/offers';
 import { SITE_URL } from '@/lib/contact';
 import {
   breadcrumbSchema,
@@ -173,17 +173,15 @@ export default async function MetierPage({ params }) {
           <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,24rem)] lg:gap-16">
             <div>
               <h2 className="text-balance text-2xl font-semibold tracking-tight sm:text-[2rem]">
-                {eur(agent.setup)} € de fabrication, puis {eur(agent.monthly)} € par mois
+                {eur(agent.monthly)} € HT par mois, sans frais de création
               </h2>
               <p className="mt-4 max-w-2xl leading-relaxed text-[var(--muted-strong)]">
-                La fabrication paie le travail humain qui a lieu avant le premier message&nbsp;:
-                l&apos;infrastructure qui n&apos;est qu&apos;à vous, l&apos;apprentissage de votre
-                vocabulaire et de vos objections, le réglage et les tests. Le mensuel paie le
-                pilotage&nbsp;: on surveille, on ajuste, on réécrit ce qui ne prend pas.
+                La mise en place est comprise&nbsp;: apprentissage de votre vocabulaire et de vos
+                objections, réglage, tests. Le mensuel paie le pilotage&nbsp;: on surveille, on
+                ajuste, on réécrit ce qui ne prend pas.
               </p>
               <p className="mt-4 max-w-2xl leading-relaxed text-[var(--muted-strong)]">
-                Si vous partez sur trois mois, la fabrication est offerte. Sinon c&apos;est sans
-                engagement, et vous arrêtez quand vous voulez.
+                Sans engagement. {GARANTIE}
               </p>
               <a
                 href="/#piliers"
@@ -195,17 +193,15 @@ export default async function MetierPage({ params }) {
 
             <div className="rounded-2xl border border-[var(--border-strong)] bg-[var(--surface)] p-7">
               <p className="font-mono text-[0.62rem] uppercase tracking-[0.16em] text-[var(--muted)]">
-                Agent de prospection
+                Agent Partenaires
               </p>
               <p className="mt-4 font-display text-4xl font-semibold tracking-tight">
-                {eur(agent.setup)} € HT
+                {eur(agent.monthly)} € HT
               </p>
-              <p className="mt-1 text-sm text-[var(--muted)]">de fabrication, une seule fois</p>
-              <p className="mt-3 text-lg font-semibold text-[var(--primary-ink)]">
-                puis {eur(agent.monthly)} € HT / mois
-              </p>
+              <p className="mt-1 text-sm text-[var(--muted)]">par mois, sans frais de création</p>
               <p className="mt-5 border-t border-[var(--border)] pt-5 text-sm leading-relaxed text-[var(--muted-strong)]">
-                Formule Partenaire&nbsp;: fabrication offerte si vous partez sur 3 mois.
+                Ou le <a href="/pack-lancement" className="font-semibold text-[var(--primary-ink)] hover:underline">Pack Lancement</a>&nbsp;:
+                site, fiche Google et 3 mois d&apos;agent pour 490 € HT.
               </p>
             </div>
           </div>
@@ -251,7 +247,7 @@ export default async function MetierPage({ params }) {
         <Section className="pb-24 sm:pb-32">
           <CtaBand
             titre={`On regarde votre zone, et on vous dit ce qui est faisable`}
-            texte="Trente minutes au téléphone, sans engagement. Vous repartez avec une idée claire des prescripteurs joignables autour de vous et du travail que ça demande. Même si vous ne travaillez pas avec nous."
+            texte="15 minutes au téléphone, gratuit et sans engagement. Vous repartez avec une idée claire des prescripteurs joignables autour de vous et du travail que ça demande. Même si vous ne travaillez pas avec nous."
           />
         </Section>
       </main>

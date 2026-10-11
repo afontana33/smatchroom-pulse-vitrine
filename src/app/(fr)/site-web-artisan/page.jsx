@@ -37,10 +37,10 @@ import {
   webPageSchema,
 } from '@/lib/schema';
 
-const META_TITLE = 'Site internet pour artisan : création et fiche Google';
+const META_TITLE = 'Site internet artisan et TPE : création et fiche Google, 300 € HT';
 const META_DESCRIPTION =
-  "Création de site internet pour artisan : pages par ville et par prestation, fiche "
-  + "établissement Google. 300 € une seule fois, sans abonnement.";
+  "Création de site internet pour artisan et TPE, hébergé à votre nom : pages par ville et par "
+  + "prestation, fiche Google. 300 € HT une fois, sans abonnement.";
 
 const URL = `${SITE_URL}/site-web-artisan`;
 
@@ -168,13 +168,10 @@ export default function SiteWebArtisanPage() {
               <p className="mt-4 font-display text-4xl font-semibold tracking-tight">
                 {eur(offre.setup)} € HT
               </p>
-              <p className="mt-1 text-sm text-[var(--muted)]">de fabrication, une seule fois</p>
-              <p className="mt-3 text-lg font-semibold text-[var(--primary-ink)]">
-                puis {eur(offre.monthly)} € HT / mois
-              </p>
+              <p className="mt-1 text-sm text-[var(--muted)]">une seule fois, sans abonnement</p>
               <p className="mt-5 border-t border-[var(--border)] pt-5 text-sm leading-relaxed text-[var(--muted-strong)]">
-                Sans engagement. Le nom de domaine et la fiche établissement restent votre
-                propriété.
+                Le site est hébergé à votre nom. Le nom de domaine et la fiche établissement sont
+                à vous&nbsp;: vous ne dépendez pas de nous.
               </p>
             </div>
           </div>
@@ -261,7 +258,7 @@ export default function SiteWebArtisanPage() {
         <Section className="pb-24 sm:pb-32">
           <CtaBand
             titre="On regarde ce que donne votre nom sur Google, en direct"
-            texte="Trente minutes au téléphone, sans engagement. Vous voyez ce que voit un particulier qui cherche votre métier dans votre commune, et ce qu’il faudrait changer. Même si vous ne travaillez pas avec nous."
+            texte="15 minutes au téléphone, gratuit et sans engagement. Vous voyez ce que voit un particulier qui cherche votre métier dans votre commune, et ce qu’il faudrait changer. Même si vous ne travaillez pas avec nous."
           />
         </Section>
       </main>

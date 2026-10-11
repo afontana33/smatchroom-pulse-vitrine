@@ -60,7 +60,7 @@ export const monthlyLabel = (o, locale = 'fr') => {
 export const PILIER_OFFERS = [
   {
     key: 'agent-prospection',
-    name: 'Agent IA de prospection',
+    name: 'Agent Partenaires (apporteurs d’affaires)',
     description:
       "Un agent qui contacte les partenaires et les prospects de votre secteur par WhatsApp et par email, en votre nom, répond en moins d'une minute et vous passe la main sur les interlocuteurs intéressés.",
     setup: 0,
@@ -78,8 +78,9 @@ export const PILIER_OFFERS = [
     key: 'acquisition-meta',
     name: 'Acquisition Meta',
     description:
-      'Vos chantiers filmés, montés et diffusés en publicité sur Facebook et Instagram auprès des habitants de votre zone, les demandes tombant directement dans votre agent.',
+      'Votre activité filmée, montée et diffusée en publicité sur Facebook et Instagram auprès des clients de votre zone, les demandes tombant directement dans votre agent.',
     setup: 690,
+    setupFrom: true,
     monthly: 200,
   },
   {
@@ -149,3 +150,14 @@ export const ALL_OFFERS = [...PILIER_OFFERS, ...AGENT_OFFERS];
 /* Garantie des deux agents (Partenaires et Clients), sur les mensualités
    uniquement : ni les frais de création ni les 3 mois du Pack Lancement. */
 export const GARANTIE = 'Aucun rendez-vous dans le mois ? Le mois suivant ne vous est pas facturé.';
+
+/* Offre d'entrée : site + fiche Google + 3 mois d'Agent Partenaires, payés une
+   fois. Affichée dans HeroLancement et /pack-lancement. */
+export const PACK_LANCEMENT = {
+  key: 'pack-lancement',
+  name: 'Pack Lancement',
+  description:
+    "Site internet hébergé à votre nom, fiche établissement Google et trois mois d'Agent Partenaires, payés une seule fois. Ensuite 149 € HT par mois, sans engagement.",
+  setup: 490,
+  monthly: 0,
+};

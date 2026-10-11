@@ -23,6 +23,7 @@ const PILIERS = [
   {
     k: '01',
     label: 'Agent Partenaires',
+    href: '/apporteur-affaires',
     title: 'Il vous trouve des apporteurs d’affaires',
     photo: '/photos/prescripteurs.webp',
     alt: 'Professionnelle qui lit un message sur son téléphone devant son ordinateur',
@@ -46,6 +47,7 @@ const PILIERS = [
   {
     k: '02',
     label: 'Sites & fiche établissement',
+    href: '/site-web-artisan',
     title: 'Exister quand on tape votre métier sur Google',
     photo: '/photos/site-web.webp',
     alt: 'Ordinateur portable ouvert sur un tableau de statistiques de site',
@@ -64,6 +66,7 @@ const PILIERS = [
   {
     k: '03',
     label: 'Acquisition Meta',
+    href: '/publicite-facebook-instagram',
     title: 'Votre activité filmée, diffusée aux bonnes personnes',
     photo: '/photos/camera.webp',
     alt: 'Vidéaste cadrant un plan sur un moniteur de tournage',
@@ -171,6 +174,14 @@ export default function Piliers() {
                         </li>
                       ))}
                     </ul>
+
+                    <a
+                      href={p.href}
+                      className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-[var(--primary-ink)] underline-offset-4 hover:underline"
+                    >
+                      En savoir plus
+                      <ArrowRight size={14} aria-hidden />
+                    </a>
 
                     {p.options ? (
                       <div className="mt-8 grid gap-3 sm:grid-cols-2">

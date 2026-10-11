@@ -13,7 +13,7 @@ import FinalCtaLp from '@/components/lp/FinalCtaLp';
 import Footer from '@/components/Footer';
 import JsonLd from '@/components/JsonLd';
 import { QUESTIONS } from '@/lib/faq';
-import { ALL_OFFERS } from '@/lib/offers';
+import { PACK_LANCEMENT, PILIER_OFFERS } from '@/lib/offers';
 import { SITE_URL } from '@/lib/contact';
 import { alternatesFor } from '@/lib/i18n';
 import { faqSchema, graph, serviceSchema, webPageSchema } from '@/lib/schema';
@@ -45,15 +45,20 @@ import { faqSchema, graph, serviceSchema, webPageSchema } from '@/lib/schema';
    anglaise. Le hreflang doit être réciproque pour être pris en compte : cette
    page déclare /en, et /en déclare celle-ci. Les autres pages françaises n'ont
    pas d'équivalent anglais et gardent leur seule canonique. */
+const META_TITLE = 'Prospection B2B et apporteurs d’affaires · SmatchRoom Pulse';
+const META_DESCRIPTION =
+  "Agents de prospection par WhatsApp et email dès 149 € HT/mois sans engagement. Pack Lancement "
+  + "490 € HT : site, fiche Google et 3 mois d'agent.";
+
 export const metadata = {
+  title: META_TITLE,
+  description: META_DESCRIPTION,
   alternates: alternatesFor('/', 'fr'),
 };
 
 export default function Page() {
-  /* Les neuf prestations vendues, avec leur prix. L'accueil est la page qui les
-     porte toutes : c'est donc ici que le catalogue est déclaré, pas en morceaux
-     sur des pages qui n'existent plus. */
-  const services = ALL_OFFERS.map((o) =>
+  /* Les offres présentées sur l'accueil, avec leur prix. */
+  const services = [PACK_LANCEMENT, ...PILIER_OFFERS].map((o) =>
     serviceSchema({
       name: o.name,
       description: o.description,
@@ -69,9 +74,8 @@ export default function Page() {
         data={graph([
           webPageSchema({
             url: `${SITE_URL}/`,
-            name: 'SmatchRoom Pulse · On va chercher vos clients à votre place',
-            description:
-              "Agence d'automatisation et d'IA pour artisans, TPE et PME : agents IA qui prospectent et répondent 7j/7, sites et fiches établissement Google, acquisition Meta. Prix affichés.",
+            name: META_TITLE,
+            description: META_DESCRIPTION,
           }),
           faqSchema(QUESTIONS),
           ...services,
