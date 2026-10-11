@@ -10,13 +10,10 @@ import LangSwitch from '@/components/LangSwitch';
    page produit, elles ont été supprimées (voir les redirections 301 dans
    next.config.mjs). */
 const LINKS = [
-  { href: '/#qui-sommes-nous', label: 'Qui nous sommes' },
-  { href: '/#piliers', label: 'Nos offres' },
   { href: '/#lancement', label: 'Pack Lancement' },
   { href: '/#resultats', label: 'Résultats' },
-  { href: '/#avis', label: 'Avis' },
+  { href: '/#piliers', label: 'Nos offres' },
   { href: '/#questions', label: 'Questions' },
-  { href: '/blog', label: 'Blog' },
 ];
 
 const CALENDLY = 'https://calendly.com/a-fontana-smatchroom/30min';

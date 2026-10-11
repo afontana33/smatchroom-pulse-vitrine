@@ -37,7 +37,7 @@ export function CtaRdv({ className = '' }) {
 
 export default function HeroLancement() {
   return (
-    <section id="lancement" className="relative scroll-mt-24 px-5 pb-16 pt-28 sm:px-6 sm:pt-32 lg:pt-36">
+    <section id="lancement" className="relative scroll-mt-24 px-5 pb-16 pt-24 sm:px-6 sm:pt-32 lg:pt-36">
       <div className="mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-12 lg:gap-14">
         <div className="lg:col-span-6">
           <p className="eyebrow">Artisans · TPE · PME</p>
@@ -47,11 +47,13 @@ export default function HeroLancement() {
               On va les chercher.
             </span>
           </h1>
-          <p className="mt-6 max-w-lg text-lg leading-relaxed text-[var(--muted-strong)]">
+          <p className="mt-4 max-w-lg text-lg sm:mt-6 leading-relaxed text-[var(--muted-strong)]">
             Vous êtes sur le terrain, on vous ramène les rendez-vous.
           </p>
 
-          <CtaRdv className="mt-8 w-full sm:w-auto" />
+          <div className="hidden sm:block">
+            <CtaRdv className="mt-8" />
+          </div>
 
           <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-[var(--muted-strong)]">
             <a href={TEL_HREF} className="inline-flex items-center gap-2 font-semibold text-[var(--foreground)]">
@@ -81,7 +83,7 @@ export default function HeroLancement() {
               490 € <span className="text-2xl font-semibold text-[var(--muted)]">HT</span>
             </p>
             <p className="mt-2 text-[var(--muted-strong)]">
-              en une fois, puis 149 € HT / mois sans engagement si vous continuez
+              en une fois, puis 149 € HT / mois si vous continuez
             </p>
 
             <ul className="mt-7 space-y-3">
