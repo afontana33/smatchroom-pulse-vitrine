@@ -40,16 +40,15 @@ import {
 const META_TITLE = 'Site internet pour artisan : création et fiche Google';
 const META_DESCRIPTION =
   "Création de site internet pour artisan : pages par ville et par prestation, fiche "
-  + "établissement Google tenue à jour. 300 € puis 20 € par mois.";
+  + "établissement Google. 300 € une seule fois, sans abonnement.";
 
 const URL = `${SITE_URL}/site-web-artisan`;
 
 const FAQ = [
   {
     q: 'Combien coûte un site internet pour un artisan ?',
-    a: "300 € HT de fabrication, puis 20 € HT par mois pour l'hébergement, les mises à jour et "
-      + "la tenue de la fiche établissement Google. Il n'y a pas de frais cachés et pas "
-      + "d'engagement de durée.",
+    a: "300 € HT une seule fois, sans abonnement. Le site est hébergé à votre nom et vous "
+      + "appartient. Il n'y a pas de frais cachés et pas d'engagement de durée.",
   },
   {
     q: 'En combien de temps le site est-il en ligne ?',
@@ -70,9 +69,9 @@ const FAQ = [
       + "pour laquelle la plupart des sites d'artisans ne sont jamais mis à jour.",
   },
   {
-    q: 'Que se passe-t-il si j’arrête l’abonnement ?',
-    a: "Le nom de domaine est à vous et le reste. Le site s'arrête, la fiche établissement "
-      + "Google reste la vôtre : elle vous appartient, nous ne faisons que la tenir.",
+    q: 'Le site m’appartient ?',
+    a: "Oui. Il n'y a pas d'abonnement : le site est hébergé à votre nom, le nom de domaine "
+      + "et la fiche établissement Google sont à vous. Vous ne dépendez pas de nous.",
   },
   {
     q: 'Vous travaillez pour quels métiers ?',
@@ -88,7 +87,7 @@ const CE_QUE_CONTIENT = [
   'Vos chantiers en photos, avant et après',
   'Un bouton d’appel visible en permanence sur téléphone',
   'Un formulaire qui arrive dans votre boîte, pas dans un tableau de bord',
-  'La fiche établissement Google créée, remplie et tenue à jour',
+  'La fiche établissement Google créée et remplie',
 ];
 
 export const metadata = {

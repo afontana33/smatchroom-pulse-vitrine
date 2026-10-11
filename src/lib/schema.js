@@ -180,7 +180,7 @@ export function serviceSchema({ name, description, url, setup, setupFrom, monthl
         : { price: String(setup) }),
     });
   }
-  if (monthly != null) {
+  if (monthly != null && monthly !== 0) {
     offers.push({
       '@type': 'Offer',
       name: 'Pilotage mensuel',

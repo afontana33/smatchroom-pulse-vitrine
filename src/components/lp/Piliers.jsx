@@ -48,17 +48,16 @@ const PILIERS = [
     title: 'Exister quand on tape votre métier sur Google',
     photo: '/photos/site-web.webp',
     alt: 'Ordinateur portable ouvert sur un tableau de statistiques de site',
-    text: "Un site qui donne envie de vous appeler, et votre fiche établissement Google créée, remplie et tenue à jour : horaires, photos, zone d'intervention, avis. C'est souvent la première chose qu'un client voit de vous.",
+    text: "Un site qui donne envie de vous appeler, et votre fiche établissement Google créée et remplie : horaires, photos, zone d'intervention, avis. C'est souvent la première chose qu'un client voit de vous.",
     points: [
       'Site clair, rapide, lisible sur téléphone',
-      'Fiche Google créée puis entretenue chaque mois',
+      'Fiche Google créée et remplie',
       'Pages par ville et par prestation',
     ],
     price: {
       main: '300 € HT',
       mainNote: 'de création, une seule fois',
-      then: '20 € HT / mois',
-      extra: "Hébergement, nom de domaine et mises à jour compris.",
+      extra: 'Sans abonnement. Le site est hébergé à votre nom : il vous appartient.',
     },
   },
   {

@@ -70,9 +70,9 @@ export const PILIER_OFFERS = [
     key: 'site-fiche-google',
     name: 'Site internet et fiche établissement Google',
     description:
-      "Un site lisible sur téléphone, des pages par ville et par prestation, et votre fiche établissement Google créée, remplie et tenue à jour chaque mois.",
+      "Un site lisible sur téléphone, des pages par ville et par prestation, et votre fiche établissement Google créée et remplie. Le site est hébergé à votre nom et vous appartient.",
     setup: 300,
-    monthly: 20,
+    monthly: 0,
   },
   {
     key: 'acquisition-meta',

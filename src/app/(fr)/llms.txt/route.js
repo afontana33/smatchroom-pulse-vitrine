@@ -18,6 +18,8 @@ import { METIERS, VILLES } from '@/lib/seo-local';
 export const dynamic = 'force-static';
 
 function offerLine(o) {
+  if (!o.setup) return `- ${o.name} : ${eur(o.monthly)} € HT par mois, sans frais de fabrication. ${o.description}`;
+  if (o.monthly === 0) return `- ${o.name} : ${eur(o.setup)} € HT une seule fois, sans abonnement. ${o.description}`;
   const setup = `${o.setupFrom ? 'à partir de ' : ''}${eur(o.setup)} € HT`;
   const monthly =
     o.monthly == null ? 'mensualité sur devis' : `${eur(o.monthly)} € HT par mois`;

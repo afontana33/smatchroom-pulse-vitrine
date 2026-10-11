@@ -191,12 +191,16 @@ export default async function VillePage({ params }) {
                   {o.description}
                 </p>
                 <p className="mt-5 border-t border-[var(--border)] pt-4 font-display text-2xl font-semibold tracking-tight">
-                  {setupLabel(o)}
+                  {o.setup ? setupLabel(o) : monthlyLabel(o)}
                 </p>
-                <p className="mt-0.5 text-sm text-[var(--muted)]">de fabrication</p>
-                <p className="mt-2 text-[0.95rem] font-semibold text-[var(--primary-ink)]">
-                  puis {monthlyLabel(o)}
+                <p className="mt-0.5 text-sm text-[var(--muted)]">
+                  {o.setup ? 'de fabrication' : 'sans frais de fabrication'}
                 </p>
+                {o.setup > 0 && (
+                  <p className="mt-2 text-[0.95rem] font-semibold text-[var(--primary-ink)]">
+                    {o.monthly === 0 ? 'sans abonnement' : `puis ${monthlyLabel(o)}`}
+                  </p>
+                )}
               </article>
             ))}
           </div>
