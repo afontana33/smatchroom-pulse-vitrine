@@ -23,8 +23,8 @@ const PILIERS = [
     k: '01',
     label: 'Agents IA',
     title: 'Il prospecte pendant que vous travaillez',
-    photo: '/photos/prospection.webp',
-    alt: 'Commercial au téléphone à côté d’une collègue qui travaille sur son ordinateur',
+    photo: '/photos/prescripteurs.webp',
+    alt: 'Professionnelle qui lit un message sur son téléphone devant son ordinateur',
     /* Le message est l'apport d'affaires, pas la prospection dans le vide : l'agent
        va chercher ceux qui ont déjà les clients (agences immobilières, cabinets
        d'assurance, architectes, syndics), pas les clients un par un. Ne pas
