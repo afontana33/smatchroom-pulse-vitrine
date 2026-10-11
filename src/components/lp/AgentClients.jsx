@@ -26,7 +26,7 @@ const PALIERS = [
 
 const POINTS = [
   'Base de données construite pour votre marché',
-  'Signaux d’achat repérés sur LinkedIn, contacts classés chaud, tiède, froid',
+  'Signaux d’achat repérés sur LinkedIn, contact par WhatsApp et email',
   'Agent entraîné sur votre catalogue et vos objections',
   'Besoin, budget et calendrier qualifiés avant transmission',
 ];

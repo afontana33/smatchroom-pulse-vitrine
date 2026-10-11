@@ -59,6 +59,10 @@ export default function MethodeB2B() {
               sont classés <strong className="text-[var(--foreground)]">chaud, tiède ou froid</strong>&nbsp;:
               vous savez qui appeler en premier.
             </p>
+            <p className="mt-5 rounded-xl bg-[var(--surface-2)] px-4 py-3 text-sm font-semibold">
+              LinkedIn sert à repérer, pas à contacter&nbsp;: les messageries y sont saturées.
+              L’agent écrit par WhatsApp et par email, là où les décideurs répondent encore.
+            </p>
           </div>
 
           <figure className="rounded-2xl border border-[var(--border-strong)] bg-[var(--background)] p-4 sm:p-5">
