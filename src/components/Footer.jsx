@@ -2,7 +2,7 @@
  * Pied de page, dans les deux langues.
  *
  * Un seul composant et deux dictionnaires plutôt qu'un FooterEn cloné :
- * l'identité légale, le renvoi vers leadb2b et la liste des pages légales
+ * l'identité légale, et la liste des pages légales
  * doivent rester identiques d'une langue à l'autre, et un clone les fait
  * diverger au premier changement d'adresse ou de mention obligatoire.
  *
@@ -39,8 +39,6 @@ const CONTENT = {
       { href: '/agent-ia', label: 'Ressources agent IA' },
       { href: 'https://calendly.com/a-fontana-smatchroom/30min', label: 'Contact', external: true },
     ],
-    leadsQuestion: 'Vous cherchez des leads B2B sur les marchés publics du bâtiment ?',
-    leadsAction: 'France & Luxembourg · voir leadb2b →',
     legalLine: 'Immatriculée RNE/INPI · 31/07/2025',
     vat: 'TVA intracommunautaire : FR01 989 883 509',
     naf: 'NAF/APE 62.01Z · Programmation informatique',
@@ -72,8 +70,6 @@ const CONTENT = {
       { href: '/', label: 'Site en français', lang: 'fr' },
       { href: 'https://calendly.com/a-fontana-smatchroom/30min', label: 'Contact', external: true },
     ],
-    leadsQuestion: 'Looking for B2B leads on public construction tenders?',
-    leadsAction: 'France & Luxembourg · visit leadb2b →',
     legalLine: 'Registered with the French trade register (RNE/INPI) · 31 July 2025',
     vat: 'EU VAT number: FR01 989 883 509',
     naf: 'NAF/APE 62.01Z · Computer programming',
@@ -162,22 +158,6 @@ export default function Footer({ locale = 'fr' }) {
             </ul>
           </div>
         </div>
-
-        {/* Renvoi vers leadb2b.smatchroom.com. Il était en bandeau fixe tout en haut
-            de page, avant le titre : un lien sortant vers un autre domaine placé là
-            fait partir le visiteur avant qu'il ait lu quoi que ce soit. Sa place est
-            ici, une fois la page lue. Ne pas le remonter dans le layout. */}
-        <a
-          href="https://leadb2b.smatchroom.com"
-          target="_blank"
-          rel="noopener"
-          className="mt-12 flex flex-col gap-1 rounded-2xl border border-[var(--border-strong)] bg-[var(--surface-2)] px-6 py-5 transition-colors hover:border-[var(--primary)] sm:flex-row sm:items-center sm:justify-between"
-        >
-          <span className="text-sm font-semibold text-[var(--foreground)]">{t.leadsQuestion}</span>
-          <span className="whitespace-nowrap text-sm font-semibold text-[var(--primary-ink)]">
-            {t.leadsAction}
-          </span>
-        </a>
 
         <div className="mt-12 grid gap-6 border-t border-[var(--border)] pt-8 text-xs text-[var(--muted)] md:grid-cols-[1fr_auto] md:items-end">
           <div className="space-y-1 font-mono">
