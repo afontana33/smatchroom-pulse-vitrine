@@ -45,6 +45,22 @@ const CAS = [
     text: 'Treize partenariats d’apport d’affaires noués en un mois, et six chantiers générés grâce à ces partenaires.',
     quote: null,
   },
+  {
+    metric: '3',
+    unit: 'chantiers',
+    sector: 'Couverture · Hautes-Pyrénées',
+    client: 'DTR Service',
+    text: 'Quatre partenaires noués sur une petite zone du 65, et trois chantiers générés grâce à eux.',
+    quote: null,
+  },
+  {
+    metric: '10',
+    unit: 'rendez-vous',
+    sector: 'Conseil aux entreprises',
+    client: 'JB Pilotage & Stratégie',
+    text: 'Dix rendez-vous décrochés pour son activité de conseil aux entreprises.',
+    quote: null,
+  },
 ];
 
 const CLIENTS = [
@@ -98,7 +114,7 @@ export default function Preuves() {
           </h2>
         </Rise>
 
-        <div className="grid gap-6 md:grid-cols-3">
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {CAS.map((c, i) => (
             <Rise key={c.client} delay={i * 0.07} className="h-full">
               <figure className="flex h-full flex-col rounded-3xl border border-[var(--border-strong)] bg-[var(--surface)] p-7 shadow-[var(--shadow-lg)]">
