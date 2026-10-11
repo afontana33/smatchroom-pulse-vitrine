@@ -145,3 +145,7 @@ export const AGENT_OFFERS = [
 ];
 
 export const ALL_OFFERS = [...PILIER_OFFERS, ...AGENT_OFFERS];
+
+/* Garantie des deux agents (Partenaires et Clients), sur les mensualités
+   uniquement : ni les frais de création ni les 3 mois du Pack Lancement. */
+export const GARANTIE = 'Aucun rendez-vous dans le mois ? Le mois suivant ne vous est pas facturé.';

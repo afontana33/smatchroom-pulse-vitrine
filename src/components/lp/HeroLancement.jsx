@@ -102,7 +102,7 @@ export default function HeroLancement() {
             <p className="mt-7 rounded-2xl bg-[var(--surface-2)] px-5 py-4 text-sm text-[var(--muted-strong)]">
               Après 3 mois, vous continuez si vous voulez&nbsp;:{' '}
               <span className="font-semibold text-[var(--foreground)]">149 € HT / mois</span>, sans
-              engagement.
+              engagement. Aucun rendez-vous dans le mois&nbsp;: le suivant n&apos;est pas facturé.
             </p>
 
             <CtaRdv className="mt-6 w-full" />

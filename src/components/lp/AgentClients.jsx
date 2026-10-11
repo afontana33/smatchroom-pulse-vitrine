@@ -14,6 +14,7 @@
 
 import { motion, useReducedMotion } from 'framer-motion';
 import { ArrowRight, Check } from 'lucide-react';
+import { GARANTIE } from '@/lib/offers';
 
 const CALENDLY = 'https://calendly.com/a-fontana-smatchroom/30min';
 
@@ -145,6 +146,7 @@ export default function AgentClients() {
                 340 € HT
               </p>
               <p className="mt-1 text-sm text-white/60">par mois, sans engagement</p>
+              <p className="mt-3 text-sm font-semibold text-[#ffb27a]">{GARANTIE}</p>
               <ul className="mt-5 space-y-4 border-t border-white/15 pt-5">
                 {PALIERS.map((t) => (
                   <li key={t.name} className="flex items-start justify-between gap-4">

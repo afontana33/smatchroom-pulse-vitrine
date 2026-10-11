@@ -15,6 +15,7 @@
 
 import { motion, useReducedMotion } from 'framer-motion';
 import { ArrowRight, Check } from 'lucide-react';
+import { GARANTIE } from '@/lib/offers';
 
 const CALENDLY = 'https://calendly.com/a-fontana-smatchroom/30min';
 
@@ -39,7 +40,7 @@ const PILIERS = [
     price: {
       main: '149 € HT / mois',
       mainNote: 'sans frais de création',
-      extra: 'Sans engagement, vous arrêtez quand vous voulez.',
+      extra: `Sans engagement. ${GARANTIE}`,
     },
   },
   {

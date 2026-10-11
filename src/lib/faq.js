@@ -23,7 +23,7 @@ export const QUESTIONS = [
   },
   {
     q: 'Vous garantissez des résultats ?',
-    a: "Non, et personne de sérieux ne peut le faire : le nombre de clients dépend aussi de votre zone, de vos prix et de votre façon de rappeler. Ce qu'on garantit, c'est le travail : le volume de contacts convenu part vraiment, les réponses sont traitées en moins d'une minute, et vous voyez tout dans le tableau de bord. Si le discours ne prend pas, on le réécrit sans surcoût. On préfère refuser une mission qu'on ne pense pas pouvoir réussir plutôt que de promettre un chiffre.",
+    a: "Pas un chiffre d'affaires : personne de sérieux ne peut le promettre, il dépend aussi de votre zone, de vos prix et de votre façon de rappeler. Mais on s'engage sur un point : si l'agent ne vous obtient aucun rendez-vous dans le mois, le mois suivant ne vous est pas facturé. Ce qu'on garantit, c'est le travail : le volume de contacts convenu part vraiment, les réponses sont traitées en moins d'une minute, et vous voyez tout dans le tableau de bord. Si le discours ne prend pas, on le réécrit sans surcoût. On préfère refuser une mission qu'on ne pense pas pouvoir réussir plutôt que de promettre un chiffre.",
   },
   {
     q: 'Et si ça ne me convient pas ?',

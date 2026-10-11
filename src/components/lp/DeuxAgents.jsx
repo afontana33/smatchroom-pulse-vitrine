@@ -7,7 +7,8 @@
  * client final.
  */
 
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, ShieldCheck } from 'lucide-react';
+import { GARANTIE } from '@/lib/offers';
 
 const AGENTS = [
   {
@@ -84,6 +85,13 @@ export default function DeuxAgents() {
             </div>
           ))}
         </div>
+
+        <p className="mt-6 flex items-center justify-center gap-3 rounded-2xl border-2 border-[var(--primary)] bg-[var(--surface)] px-6 py-5 text-center text-base font-semibold sm:text-lg">
+          <ShieldCheck size={24} aria-hidden className="flex-shrink-0 text-[var(--primary-ink)]" />
+          <span>
+            Garantie sur les deux agents&nbsp;: {GARANTIE}
+          </span>
+        </p>
       </div>
     </section>
   );

@@ -91,6 +91,7 @@ const ARTICLES = [
       "Les frais de mise en service couvrent le cadrage, la conception de l'Agent, son paramétrage, la constitution de la base de cibles initiale, les tests et la mise en production. Ils correspondent à un travail effectué une fois et ne sont pas remboursables une fois la mise en production intervenue.",
       "L'abonnement mensuel couvre l'hébergement, l'exploitation, la supervision, les ajustements courants, ainsi que les coûts d'usage des services tiers nécessaires au fonctionnement de l'Agent, dans les limites de volume prévues au devis.",
       "Ne sont pas couverts : les dépassements de volume, l'ouverture d'un canal supplémentaire, la refonte du périmètre à la demande du Client, et les abonnements souscrits par le Client en son nom propre.",
+      "Garantie de résultat sur l'abonnement de l'Agent Partenaires et de l'Agent Clients : si aucun rendez-vous n'a été obtenu pour le Client au cours d'un mois d'abonnement, la mensualité du mois suivant n'est pas facturée. La garantie ne couvre ni les frais de mise en service, ni la période prépayée du Pack Lancement.",
       "Le Prestataire peut réviser ses tarifs une fois par an. Toute révision est notifiée par écrit au moins soixante jours avant sa prise d'effet. Le Client qui la refuse peut résilier sans indemnité avant cette date.",
     ],
   },
