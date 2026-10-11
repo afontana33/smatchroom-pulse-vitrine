@@ -14,7 +14,7 @@ const ETAPES = [
 ];
 
 const CHIFFRES = [
-  ['300 à 400', 'décideurs contactés par mois et par numéro'],
+  ['~300', 'décideurs contactés par mois et par numéro WhatsApp'],
   ['20 %', 'de réponses en moyenne'],
   ['1 semaine', 'entre le premier appel et les premiers messages'],
 ];
