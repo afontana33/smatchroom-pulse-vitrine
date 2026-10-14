@@ -94,7 +94,7 @@ export const PILIER_OFFERS = [
        et un `minPrice` dans les données structurées. La mensualité est sur
        devis pour la même raison, d'où `monthly: null` : un montant affiché
        plafonnerait de fait les dossiers les plus gros. */
-    setup: 490,
+    setup: 1200,
     setupFrom: true,
     monthly: 340,
   },

@@ -47,8 +47,8 @@ ${PILIER_OFFERS.map(offerLine).join('\n')}
 
 Tous les montants sont hors taxes. L'Agent Clients B2B a trois paliers selon le nombre de numéros
 WhatsApp branchés (environ 300 décideurs contactés par mois et par numéro) : Solo
-(1 numéro) à 490 € HT de fabrication puis 340 € HT par mois, Équipe (2 à 3 numéros)
-à 790 € HT puis 640 € HT par mois, Réseau (4 numéros et plus) sur devis. Les autres prix sont fermes.
+(1 numéro) à 1 200 € HT de fabrication puis 340 € HT par mois, Équipe (2 à 3 numéros)
+à 1 200 € HT puis 640 € HT par mois, Réseau (4 numéros et plus) sur devis. Les autres prix sont fermes.
 L'Agent Partenaires contacte les prescripteurs (apporteurs d'affaires) ; l'Agent Clients
 contacte directement les décideurs des entreprises visées, en priorité celles qui montrent un
 signal d'achat (recrutement, création, nouveau dirigeant, réaction LinkedIn). Les deux écrivent

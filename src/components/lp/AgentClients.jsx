@@ -19,8 +19,8 @@ import { GARANTIE } from '@/lib/offers';
 const CALENDLY = 'https://calendly.com/a-fontana-smatchroom/30min';
 
 const PALIERS = [
-  { name: 'Solo', volume: "1 numéro WhatsApp · ~300 décideurs / mois", monthly: '340 € HT / mois', setup: 'création 490 € HT' },
-  { name: 'Équipe', volume: '2 à 3 numéros · 600 à 900 décideurs / mois', monthly: '640 € HT / mois', setup: 'création 790 € HT' },
+  { name: 'Solo', volume: "1 numéro WhatsApp · ~300 décideurs / mois", monthly: '340 € HT / mois', setup: 'création 1 200 € HT' },
+  { name: 'Équipe', volume: '2 à 3 numéros · 600 à 900 décideurs / mois', monthly: '640 € HT / mois', setup: 'création 1 200 € HT' },
   { name: 'Réseau', volume: '4 numéros et plus · 1 200 décideurs et plus', monthly: 'sur devis', setup: 'création sur devis' },
 ];
 

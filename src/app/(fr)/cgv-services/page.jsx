@@ -85,7 +85,7 @@ const ARTICLES = [
       rows: [
         ['Agent Partenaires', 'Aucuns frais', '149 € HT par mois', 'Sans engagement'],
         ['Pack Lancement', '490 € HT, une seule fois, pour 3 mois', '149 € HT par mois au-delà, si le Client poursuit', '3 mois prépayés, puis sans engagement'],
-        ['Agent Clients', 'À partir de 490 € HT', 'À partir de 340 € HT par mois', 'Sans engagement, ou 3 mois avec mise en service offerte'],
+        ['Agent Clients', 'À partir de 1 200 € HT', 'À partir de 340 € HT par mois', 'Sans engagement, ou 3 mois avec mise en service offerte'],
         ['Site internet et fiche Google', '300 € HT, une seule fois', 'Aucun', 'Prestation ponctuelle'],
         ['Acquisition Meta', '690 € HT, ou 1 490 € HT avec vidéaste', '200 € HT par mois', 'Sans engagement'],
         ['Ingénierie Corporate', 'Sur devis', 'Sur devis', 'Définie au devis'],

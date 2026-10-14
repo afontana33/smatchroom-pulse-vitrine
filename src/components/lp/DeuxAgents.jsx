@@ -27,7 +27,7 @@ const AGENTS = [
     resultat: 'Des rendez-vous qualifiés : besoin, budget, calendrier',
     pour: 'Entreprises qui vendent à des entreprises',
     prix: 'dès 340 € HT / mois',
-    prixNote: 'création dès 490 € HT',
+    prixNote: 'création dès 1 200 € HT',
     href: '/prospection-b2b',
     lien: 'Voir l’Agent Clients',
   },
