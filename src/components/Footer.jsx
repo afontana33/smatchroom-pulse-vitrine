@@ -24,7 +24,6 @@ const CONTENT = {
     navTitle: 'Navigation',
     nav: [
       { href: '/#qui-sommes-nous', label: 'Qui nous sommes' },
-      { href: '/#equipe', label: "L'équipe" },
       { href: '/#piliers', label: 'Nos offres et nos prix' },
       { href: '/#agent-clients', label: 'Agent Clients (B2B)' },
       { href: '/pack-lancement', label: 'Pack Lancement' },

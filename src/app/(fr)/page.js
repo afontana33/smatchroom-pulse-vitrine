@@ -1,7 +1,6 @@
 import Nav from '@/components/Nav';
 import HeroLancement from '@/components/lp/HeroLancement';
 import Thesis from '@/components/lp/Thesis';
-import TeamLp from '@/components/lp/TeamLp';
 import Piliers from '@/components/lp/Piliers';
 import DeuxAgents from '@/components/lp/DeuxAgents';
 import AgentClients from '@/components/lp/AgentClients';
@@ -29,7 +28,7 @@ import { faqSchema, graph, serviceSchema, webPageSchema } from '@/lib/schema';
  *
  * Ordre voulu (passe conversion 2026-10-11) : offre d'entrée et rendez-vous
  * dès le hero, preuves juste après, puis le détail des piliers, l'offre B2B,
- * qui nous sommes et l'équipe. Packs et AutresAgents retirés de l'accueil.
+ * qui nous sommes. Packs, AutresAgents et TeamLp retirés de l'accueil.
  *
  * La FAQ est revenue (FaqLp), juste avant le dernier appel : elle ne documente
  * pas le produit, elle lève les trois objections qui font reporter la prise de
@@ -90,7 +89,6 @@ export default function Page() {
       <AgentClients />
       <MethodeB2B />
       <Thesis />
-      <TeamLp />
       <FaqLp />
       <FinalCtaLp />
       <Footer />
