@@ -163,10 +163,11 @@ export default function AgentClients() {
                 ))}
               </ul>
               <p className="mt-5 border-t border-white/15 pt-5 text-sm leading-relaxed text-[var(--on-ink-muted)]">
-                Vous démarrez avec 600 € HT de création et la première mensualité. Si aucun résultat
-                convenu n&apos;est obtenu au bout du premier mois, nous poursuivons sans nouvelle
-                facturation. Le solde de création de 600 € HT et la mensualité suivante deviennent
-                facturables lorsque ce résultat est atteint.
+                Vous démarrez avec 600 € HT de création et la première mensualité. Si aucun contact (une
+                demande d&apos;appel d&apos;un prospect ou d&apos;un prescripteur) n&apos;est obtenu au bout
+                du premier mois, nous poursuivons sans nouvelle facturation. Le solde de création de
+                600 € HT et la mensualité suivante deviennent facturables lorsque ce contact est
+                obtenu.
               </p>
               <a
                 href={CALENDLY}
