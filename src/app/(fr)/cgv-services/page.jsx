@@ -238,7 +238,7 @@ export default function CGVServicesPage() {
       eyebrow="Cadre contractuel"
       title="Conditions générales de vente et de service"
       subtitle="Abonnements d'agents IA · contrat entre professionnels"
-      dates={["Date d'entrée en vigueur de la présente version : 11 octobre 2026", 'Dernière mise à jour : 11 octobre 2026']}
+      dates={["Date d'entrée en vigueur de la présente version : 14 octobre 2026", 'Dernière mise à jour : 14 octobre 2026']}
       intro={
         <>
           Ces conditions s&apos;appliquent aux abonnements d&apos;agents IA. La vente de
