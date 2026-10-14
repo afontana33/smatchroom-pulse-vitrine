@@ -85,7 +85,7 @@ const ARTICLES = [
       rows: [
         ['Agent Partenaires', 'Aucuns frais', '149 € HT par mois', 'Sans engagement'],
         ['Pack Lancement', '490 € HT, une seule fois, pour 3 mois', '149 € HT par mois au-delà, si le Client poursuit', '3 mois prépayés, puis sans engagement'],
-        ['Agent Clients', 'À partir de 1 200 € HT', 'À partir de 340 € HT par mois', 'Sans engagement, ou 3 mois avec mise en service offerte'],
+        ['Agent Clients', 'À partir de 1 200 € HT, en deux fois', 'À partir de 340 € HT par mois', 'Sans engagement'],
         ['Site internet et fiche Google', '300 € HT, une seule fois', 'Aucun', 'Prestation ponctuelle'],
         ['Acquisition Meta', '690 € HT, ou 1 490 € HT avec vidéaste', '200 € HT par mois', 'Sans engagement'],
         ['Ingénierie Corporate', 'Sur devis', 'Sur devis', 'Définie au devis'],
@@ -95,14 +95,14 @@ const ARTICLES = [
       "Les frais de mise en service couvrent le cadrage, la conception de l'Agent, son paramétrage, la constitution de la base de cibles initiale, les tests et la mise en production. Ils correspondent à un travail effectué une fois et ne sont pas remboursables une fois la mise en production intervenue.",
       "L'abonnement mensuel couvre l'hébergement, l'exploitation, la supervision, les ajustements courants, ainsi que les coûts d'usage des services tiers nécessaires au fonctionnement de l'Agent, dans les limites de volume prévues au devis.",
       "Ne sont pas couverts : les dépassements de volume, l'ouverture d'un canal supplémentaire, la refonte du périmètre à la demande du Client, et les abonnements souscrits par le Client en son nom propre.",
-      "Garantie de résultat sur l'abonnement de l'Agent Partenaires et de l'Agent Clients : si aucun rendez-vous n'a été obtenu pour le Client au cours d'un mois d'abonnement, la mensualité du mois suivant n'est pas facturée. La garantie ne couvre ni les frais de mise en service, ni la période prépayée du Pack Lancement.",
+      "Garantie de résultat sur l'abonnement de l'Agent Partenaires et de l'Agent Clients : si aucun rendez-vous n'a été obtenu pour le Client au cours d'un mois d'abonnement, la mensualité du mois suivant n'est pas facturée. La garantie ne couvre ni les frais de mise en service, ni la période prépayée du Pack Lancement. Pour l'Agent Clients, elle s'applique une fois le résultat convenu atteint, dans les conditions de l'article 8.",
       "Le Prestataire peut réviser ses tarifs une fois par an. Toute révision est notifiée par écrit au moins soixante jours avant sa prise d'effet. Le Client qui la refuse peut résilier sans indemnité avant cette date.",
     ],
   },
   {
     title: 'Article 6 · Modalités de paiement et échéances',
     list: [
-      "Les frais de mise en service, le prix du Pack Lancement et celui du site internet sont exigibles à la commande, avant tout démarrage des travaux.",
+      "Les frais de mise en service, le prix du Pack Lancement et celui du site internet sont exigibles à la commande, avant tout démarrage des travaux. Pour l'Agent Clients, seule la moitié des frais de mise en service est exigible à la commande ; le solde suit les règles de l'article 8.",
       "L'abonnement est facturé mensuellement à terme à échoir, à la date anniversaire de la mise en production.",
       "Les factures sont payables à trente jours à compter de leur date d'émission, par virement bancaire ou par prélèvement via Stripe Payments Europe Ltd.",
       "Aucun escompte n'est accordé en cas de paiement anticipé.",
@@ -121,7 +121,7 @@ const ARTICLES = [
     list: [
       "Abonnements sans engagement (Agent Partenaires, Agent Clients, Acquisition Meta) : le contrat est conclu pour une durée d'un mois, reconduit tacitement de mois en mois. Chacune des parties peut y mettre fin par écrit, courriel avec accusé de réception compris, moyennant un préavis de trente jours avant l'échéance mensuelle en cours. Les frais de mise en service restent acquis au Prestataire.",
       "Pack Lancement : le prix couvre la création du site internet et de la fiche établissement Google, ainsi que trois mois d'Agent Partenaires à compter de sa mise en production. Il n'est pas remboursable une fois le site livré. À l'issue des trois mois, la prestation ne se poursuit en abonnement Agent Partenaires sans engagement que si le Client le demande par écrit ; à défaut, elle prend fin sans formalité ni frais.",
-      "Agent Clients avec mise en service offerte : lorsque les frais de mise en service sont offerts en contrepartie d'un engagement de trois mois, le contrat est conclu pour cette durée ferme à compter de la mise en production, puis reconduit tacitement de mois en mois selon les règles des abonnements sans engagement. En cas de résiliation anticipée à l'initiative du Client, les mensualités restant à courir jusqu'au terme de la période ferme deviennent immédiatement exigibles, et les frais de mise en service offerts, au montant figurant au devis, redeviennent dus.",
+      "Agent Clients, facturation au résultat : le Client règle à la commande la moitié des frais de mise en service, soit 600 € HT pour une mise en service à 1 200 € HT, ainsi que la première mensualité. Le résultat attendu, par exemple un nombre de rendez-vous qualifiés, est fixé au devis. S'il n'est pas atteint au terme du premier mois d'abonnement, la prestation se poursuit sans nouvelle facturation. Le solde des frais de mise en service et la mensualité suivante deviennent exigibles à la date à laquelle le résultat est atteint ; l'abonnement reprend alors de mois en mois selon les règles des abonnements sans engagement. Tant que le résultat n'est pas atteint, chacune des parties peut mettre fin à la prestation par écrit, sans préavis ni frais : les sommes déjà réglées restent acquises au Prestataire, et le solde n'est pas dû.",
       "Site internet et fiche Google : la prestation est ponctuelle et sans abonnement. Le site est hébergé sur un compte ouvert au nom du Client, qui reste propriétaire du site livré, du nom de domaine et de la fiche établissement, y compris après la fin de toute autre prestation.",
       "Résiliation pour manquement : en cas de manquement grave d'une partie à ses obligations, non réparé dans les trente jours suivant une mise en demeure écrite, l'autre partie peut résilier de plein droit, sans indemnité et sans préjudice de tout dommage et intérêt.",
       "Résiliation immédiate par le Prestataire : le Prestataire peut résilier sans préavis, sans indemnité et sans remboursement des sommes déjà versées s'il constate que le Client utilise la prestation en violation de la réglementation applicable, notamment en matière de prospection et de protection des données, ou qu'il lui a transmis des données obtenues illicitement.",
