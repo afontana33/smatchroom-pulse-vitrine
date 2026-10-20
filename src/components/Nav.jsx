@@ -14,6 +14,9 @@ const LINKS = [
   { href: '/#resultats', label: 'Résultats' },
   { href: '/#piliers', label: 'Nos offres' },
   { href: '/#questions', label: 'Questions' },
+  /* Accès direct à l'Agent Clients pour les entreprises qui vendent à des
+     entreprises (demande du 20/10/2026), mis en avant avec la couleur accent. */
+  { href: '/prospection-b2b', label: 'Espace B2B', accent: true },
 ];
 
 const CALENDLY = 'https://calendly.com/a-fontana-smatchroom/30min';
