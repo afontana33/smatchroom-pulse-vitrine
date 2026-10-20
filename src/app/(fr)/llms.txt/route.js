@@ -86,7 +86,7 @@ ${METIERS.map((m) => `- ${m.label} : ${SITE_URL}/metiers/${m.slug}`).join('\n')}
 ## Pages principales
 
 - Accueil, offres et prix : ${SITE_URL}/
-- Pack Lancement : ${SITE_URL}/pack-lancement
+- Pack Lancement Entrepreneurs : ${SITE_URL}/pack-lancement
 - Agent Partenaires (apporteurs d'affaires) : ${SITE_URL}/apporteur-affaires
 - Agent Clients (prospection B2B) : ${SITE_URL}/prospection-b2b
 - Site internet et fiche Google : ${SITE_URL}/site-web-artisan

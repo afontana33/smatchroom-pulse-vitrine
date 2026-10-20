@@ -1,0 +1,16 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/(fr)/layout,_N_T_/(fr)/metiers/layout,_N_T_/(fr)/metiers/page,_N_T_/metiers"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/!KGZyKQ/metiers/__PAGE__",
+    "/!KGZyKQ/metiers",
+    "/!KGZyKQ",
+    "/_index",
+    "/_head"
+  ]
+}

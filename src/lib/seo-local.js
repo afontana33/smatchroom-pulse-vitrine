@@ -38,7 +38,6 @@ export const METIERS = [
       "La couverture est un métier d'urgence et de prescription. Un particulier appelle quand il a une fuite, et il appelle le premier qui décroche. Le reste du carnet se remplit par ceux qui voient les toits avant vous : syndics, assureurs, agences immobilières, experts après sinistre.",
     prescripteurs: [
       'Syndics de copropriété, qui votent des travaux de toiture en assemblée générale',
-      'Cabinets et courtiers en assurance, sur les sinistres tempête et dégâts des eaux',
       'Agences immobilières et diagnostiqueurs, sur les biens vendus avec toiture à reprendre',
       "Architectes et maîtres d'œuvre, sur les rénovations lourdes",
     ],
@@ -362,7 +361,6 @@ export const METIERS = [
       'Diagnostiqueurs immobiliers, qui voient les étiquettes énergie avant tout le monde',
       'Agences immobilières, sur les biens classés F et G difficiles à vendre ou à louer',
       'Syndics, sur les rénovations globales de copropriété',
-      'Courtiers et conseillers en financement de travaux',
     ],
     douleurs: [
       {

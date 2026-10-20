@@ -1,0 +1,16 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/(fr)/layout,_N_T_/(fr)/politique-cookies/layout,_N_T_/(fr)/politique-cookies/page,_N_T_/politique-cookies"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/!KGZyKQ/politique-cookies/__PAGE__",
+    "/!KGZyKQ/politique-cookies",
+    "/!KGZyKQ",
+    "/_index",
+    "/_head"
+  ]
+}

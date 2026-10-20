@@ -35,7 +35,7 @@ const URL = `${SITE_URL}/apporteur-affaires`;
 
 const PRESCRIPTEURS = [
   'Agences immobilières et administrateurs de biens',
-  'Cabinets d’assurance, courtiers et experts',
+  'Cabinets d’assurance et experts après sinistre',
   'Architectes, maîtres d’œuvre, bureaux d’études',
   'Syndics de copropriété et gestionnaires de patrimoine',
   'Experts-comptables, consultants et réseaux d’entreprises',
@@ -60,7 +60,7 @@ const FAQ = [
   {
     q: 'Combien coûte l’Agent Partenaires ?',
     a: `149 € HT par mois, sans frais de création et sans engagement. ${GARANTIE} `
-      + "Il est aussi inclus dans le Pack Lancement : site, fiche Google et 3 mois d'agent pour 490 € HT.",
+      + "Il est aussi inclus dans le Pack Lancement Entrepreneurs : site, fiche Google et 3 mois d'agent pour 490 € HT.",
   },
   {
     q: 'Quelle différence avec l’Agent Clients ?',
@@ -80,7 +80,7 @@ const FAQ = [
   },
   {
     q: 'En combien de temps ça démarre ?',
-    a: "48 heures après le cadrage pour les premiers messages. Les premières réponses arrivent en "
+    a: "Environ une semaine entre l’appel de cadrage et les premiers messages : vous validez les messages, puis la mise en route se fait sous 48 heures après réception du paiement et des accès. Les premières réponses arrivent en "
       + "général dans la semaine.",
   },
 ];
@@ -163,7 +163,7 @@ export default function ApporteurAffairesPage() {
                 href="/pack-lancement"
                 className="mt-4 inline-flex text-sm font-semibold text-[var(--primary-ink)] hover:underline"
               >
-                Inclus dans le Pack Lancement à 490 € HT
+                Inclus dans le Pack Lancement Entrepreneurs à 490 € HT
               </a>
             </div>
           </div>
@@ -214,7 +214,7 @@ export default function ApporteurAffairesPage() {
           <LinkGrid
             titre="Aller plus loin"
             links={[
-              { href: '/pack-lancement', label: 'Pack Lancement' },
+              { href: '/pack-lancement', label: 'Pack Lancement Entrepreneurs' },
               { href: '/prospection-b2b', label: 'Agent Clients (prospection B2B)' },
               { href: '/site-web-artisan', label: 'Site internet et fiche Google' },
               { href: '/publicite-facebook-instagram', label: 'Publicité Facebook et Instagram' },

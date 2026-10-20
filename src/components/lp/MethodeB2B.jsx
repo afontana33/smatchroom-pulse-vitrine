@@ -5,7 +5,7 @@
  */
 
 const ETAPES = [
-  ['Votre cible', 'Type d’entreprise, taille, zone, poste du décideur. Défini avec vous en une heure.'],
+  ['Votre cible', 'Type d’entreprise, taille, zone, poste du décideur. Défini avec vous lors de l’appel de cadrage.'],
   ['Plusieurs sources', 'Fiches Google, bases d’entreprises, registre des créations, offres d’emploi, LinkedIn.'],
   ['Les signaux', 'Priorité à ceux qui ont une raison d’acheter maintenant : création, recrutement, nouveau dirigeant, nouveau site.'],
   ['Le bon décideur', 'Nom, email pro et portable vérifié sur WhatsApp. Grands groupes et homonymes écartés.'],

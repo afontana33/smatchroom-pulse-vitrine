@@ -241,7 +241,7 @@ export default function Packs() {
               <div className="mt-3 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
                 <div className="max-w-2xl">
                   <h3 className="font-display text-2xl font-semibold leading-tight tracking-tight text-[var(--foreground)] sm:text-[1.75rem]">
-                    Pack Lancement
+                    Pack Lancement Entrepreneurs
                   </h3>
                   <p className="mt-3 text-[0.95rem] leading-relaxed text-[var(--muted-strong)]">
                     Votre site, votre fiche établissement Google et 3 mois d&apos;agent de
@@ -260,7 +260,7 @@ export default function Packs() {
                     href={CALENDLY}
                     target="_blank"
                     rel="noopener noreferrer"
-                    aria-label="Réserver un créneau de 30 minutes pour le Pack Lancement"
+                    aria-label="Réserver un créneau de 30 minutes pour le Pack Lancement Entrepreneurs"
                     className="btn-primary mt-4 inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold"
                   >
                     Réserver un créneau

@@ -118,7 +118,7 @@ export default async function MetierPage({ params }) {
           <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,26rem)] lg:gap-16">
             <div>
               <h2 className="text-balance text-2xl font-semibold tracking-tight sm:text-[2rem]">
-                Les gens qui ont déjà vos clients
+                Ceux qui vous recommandent ou vous confient des chantiers
               </h2>
               <p className="mt-4 max-w-2xl text-[var(--muted-strong)]">
                 L&apos;agent ne démarche pas des particuliers un par un. Il écrit aux
@@ -200,7 +200,7 @@ export default async function MetierPage({ params }) {
               </p>
               <p className="mt-1 text-sm text-[var(--muted)]">par mois, sans frais de création</p>
               <p className="mt-5 border-t border-[var(--border)] pt-5 text-sm leading-relaxed text-[var(--muted-strong)]">
-                Ou le <a href="/pack-lancement" className="font-semibold text-[var(--primary-ink)] hover:underline">Pack Lancement</a>&nbsp;:
+                Ou le <a href="/pack-lancement" className="font-semibold text-[var(--primary-ink)] hover:underline">Pack Lancement Entrepreneurs</a>&nbsp;:
                 site, fiche Google et 3 mois d&apos;agent pour 490 € HT.
               </p>
             </div>

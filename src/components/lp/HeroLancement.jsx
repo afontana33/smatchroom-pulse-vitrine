@@ -1,5 +1,5 @@
 /**
- * Hero de conversion : l'offre d'entrée (Pack Lancement) est visible sans
+ * Hero de conversion : l'offre d'entrée (Pack Lancement Entrepreneurs) est visible sans
  * scroller, avec son prix, son contenu et le bouton de rendez-vous.
  *
  * Remplace HeroLp + Packs sur l'accueil. Les preuves suivent immédiatement :
@@ -62,13 +62,18 @@ export default function HeroLancement() {
             </a>
             <a href="#resultats">+170 entreprises accompagnées</a>
           </div>
+
+          <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+            <a href="/apporteur-affaires" className="inline-flex items-center justify-between gap-3 rounded-2xl border-2 border-[var(--border)] bg-[var(--surface)] px-5 py-3.5 text-sm font-semibold text-[var(--foreground)] transition-colors hover:border-[var(--primary)]">Je cherche des apporteurs d&apos;affaires <span aria-hidden className="text-[var(--primary-ink)]">→</span></a>
+            <a href="/prospection-b2b" className="inline-flex items-center justify-between gap-3 rounded-2xl border-2 border-[var(--border)] bg-[var(--surface)] px-5 py-3.5 text-sm font-semibold text-[var(--foreground)] transition-colors hover:border-[var(--primary)]">Je veux prospecter des entreprises <span aria-hidden className="text-[var(--primary-ink)]">→</span></a>
+          </div>
         </div>
 
         <div className="lg:col-span-6">
           <div className="rounded-3xl border-2 border-[var(--primary)] bg-[var(--surface)] p-7 shadow-[var(--shadow-lg)] sm:p-9">
             <div className="flex flex-wrap items-center justify-between gap-3">
               <h2 className="font-display text-2xl font-semibold tracking-tight sm:text-3xl">
-                Pack Lancement
+                Pack Lancement Entrepreneurs
               </h2>
               <span className="rounded-full bg-[var(--primary)] px-3 py-1 font-mono text-[0.62rem] uppercase tracking-[0.14em] text-white">
                 Tout compris
@@ -100,9 +105,9 @@ export default function HeroLancement() {
             </ul>
 
             <p className="mt-7 rounded-2xl bg-[var(--surface-2)] px-5 py-4 text-sm text-[var(--muted-strong)]">
-              Après 3 mois, vous continuez si vous voulez&nbsp;:{' '}
+              Après 3 mois, vous continuez sur simple demande écrite&nbsp;:{' '}
               <span className="font-semibold text-[var(--foreground)]">149 € HT / mois</span>, sans
-              engagement. Aucun rendez-vous dans le mois&nbsp;: le suivant n&apos;est pas facturé.
+              engagement. Aucun rendez-vous dans le mois&nbsp;: le suivant n&apos;est pas facturé. Les 3 mois inclus sont payés d&apos;avance et non remboursables une fois le site livré&nbsp;: la garantie porte sur l&apos;abonnement mensuel qui suit.
             </p>
 
             <CtaRdv className="mt-6 w-full" />

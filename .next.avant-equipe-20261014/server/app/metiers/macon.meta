@@ -1,0 +1,17 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/(fr)/layout,_N_T_/(fr)/metiers/layout,_N_T_/(fr)/metiers/[slug]/layout,_N_T_/(fr)/metiers/[slug]/page,_N_T_/metiers/macon"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/!KGZyKQ/metiers/$d$slug/__PAGE__",
+    "/!KGZyKQ/metiers/$d$slug",
+    "/!KGZyKQ/metiers",
+    "/!KGZyKQ",
+    "/_index",
+    "/_head"
+  ]
+}

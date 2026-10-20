@@ -1,5 +1,5 @@
 /**
- * Page de service : le Pack Lancement.
+ * Page de service : le Pack Lancement Entrepreneurs.
  *
  * Cible « création site internet et fiche Google pas cher », « lancer son
  * entreprise trouver des clients ». Même offre que la carte du hero de
@@ -24,7 +24,7 @@ import { GARANTIE, PACK_LANCEMENT } from '@/lib/offers';
 import { SITE_URL } from '@/lib/contact';
 import { breadcrumbSchema, faqSchema, graph, serviceSchema, webPageSchema } from '@/lib/schema';
 
-const META_TITLE = 'Pack Lancement : site, fiche Google et prospection, 490 € HT';
+const META_TITLE = 'Pack Lancement Entrepreneurs : site, fiche Google et prospection, 490 € HT';
 const META_DESCRIPTION =
   "Site internet hébergé à votre nom, fiche Google et 3 mois d’Agent Partenaires pour 490 € HT, "
   + "payés une fois. Puis 149 € HT/mois si vous continuez.";
@@ -40,14 +40,14 @@ const CONTENU = [
 
 const FAQ = [
   {
-    q: 'Que comprend le Pack Lancement ?',
+    q: 'Que comprend le Pack Lancement Entrepreneurs ?',
     a: "Un site internet hébergé à votre nom, votre fiche établissement Google créée et remplie, "
       + "et trois mois d'Agent Partenaires, qui contacte par WhatsApp et email les prescripteurs "
       + "de votre zone. Le tout pour 490 € HT, payés une seule fois.",
   },
   {
     q: 'Et après les 3 mois ?',
-    a: `Vous continuez si vous voulez, à 149 € HT par mois, sans engagement. ${GARANTIE} `
+    a: `Vous continuez sur simple demande écrite, à 149 € HT par mois, sans engagement. ${GARANTIE} Cette garantie porte sur l'abonnement mensuel : les 3 mois du Pack sont payés d'avance et non remboursables une fois le site livré. `
       + "Si vous arrêtez, le site et la fiche Google restent à vous.",
   },
   {
@@ -76,7 +76,7 @@ export const metadata = {
 export default function PackLancementPage() {
   const breadcrumb = breadcrumbSchema([
     { name: 'Accueil', url: `${SITE_URL}/` },
-    { name: 'Pack Lancement', url: URL },
+    { name: 'Pack Lancement Entrepreneurs', url: URL },
   ]);
 
   return (
@@ -104,7 +104,7 @@ export default function PackLancementPage() {
 
       <main className="flex flex-col">
         <Section className="pt-28 sm:pt-32">
-          <Breadcrumb items={[{ label: 'Accueil', href: '/' }, { label: 'Pack Lancement' }]} />
+          <Breadcrumb items={[{ label: 'Accueil', href: '/' }, { label: 'Pack Lancement Entrepreneurs' }]} />
           <PageTitle
             lead="Tout pour démarrer,"
             accent="490 € HT pour 3 mois."
@@ -126,12 +126,12 @@ export default function PackLancementPage() {
 
             <div className="rounded-2xl border-2 border-[var(--primary)] bg-[var(--surface)] p-7">
               <p className="font-mono text-[0.62rem] uppercase tracking-[0.16em] text-[var(--muted)]">
-                Pack Lancement
+                Pack Lancement Entrepreneurs
               </p>
               <p className="mt-4 font-display text-5xl font-bold tracking-tight">490 € HT</p>
               <p className="mt-2 font-semibold">pour 3 mois, payés une seule fois</p>
               <p className="mt-5 border-t border-[var(--border)] pt-5 text-sm leading-relaxed text-[var(--muted-strong)]">
-                Ensuite, si vous voulez&nbsp;: 149 € HT / mois, sans engagement. {GARANTIE}
+                Ensuite, sur simple demande écrite&nbsp;: 149 € HT / mois, sans engagement. {GARANTIE} Les 3 mois du Pack sont payés d&apos;avance et non remboursables une fois le site livré&nbsp;: la garantie porte sur l&apos;abonnement mensuel qui suit.
               </p>
             </div>
           </div>
@@ -149,14 +149,13 @@ export default function PackLancementPage() {
               intéressés.
             </Card>
             <Card title="Vous restez libre">
-              Site et fiche à votre nom, aucun engagement. Vous arrêtez quand vous voulez, sans
-              rien perdre.
+              Site et fiche à votre nom, aucun engagement. Si vous arrêtez, le site et la fiche restent à vous.
             </Card>
           </div>
         </Section>
 
         <Section>
-          <FaqBlock items={FAQ} titre="Questions sur le Pack Lancement" />
+          <FaqBlock items={FAQ} titre="Questions sur le Pack Lancement Entrepreneurs" />
         </Section>
 
         <Section>

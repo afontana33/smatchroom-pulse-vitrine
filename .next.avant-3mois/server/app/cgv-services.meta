@@ -1,0 +1,15 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/cgv-services/layout,_N_T_/cgv-services/page,_N_T_/cgv-services"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/cgv-services/__PAGE__",
+    "/cgv-services",
+    "/_index",
+    "/_head"
+  ]
+}

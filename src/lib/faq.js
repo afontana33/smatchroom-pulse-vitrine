@@ -27,11 +27,11 @@ export const QUESTIONS = [
   },
   {
     q: 'Et si ça ne me convient pas ?',
-    a: "Vous arrêtez. Tout est sans engagement : vous prévenez, le mois suivant n'est pas prélevé, et vous gardez ce qui a été produit (votre site, votre fiche Google, vos contacts).",
+    a: "Vous arrêtez. Il n'y a pas de durée minimale : vous prévenez par email 30 jours avant la date de renouvellement, et aucune mensualité n'est prélevée ensuite. Votre site et votre fiche Google restent à vous, et on vous remet sur demande les contacts et les échanges.",
   },
   {
     q: 'Concrètement, la première semaine, il se passe quoi ?',
-    a: "Un appel de 30 minutes pour cadrer votre zone, vos métiers cibles et votre discours. Ensuite on construit votre agent sur une base déjà éprouvée chez d'autres entreprises, on vous fait valider les messages avant le premier envoi, puis on met en route en douceur. Vous ne signez rien avant d'avoir lu ce qui va partir en votre nom.",
+    a: "Un appel de 30 minutes pour cadrer votre zone, vos métiers cibles et votre discours. Ensuite on construit votre agent sur une base déjà éprouvée chez d'autres entreprises, on vous fait valider les messages avant le premier envoi, puis, une fois le paiement et les accès reçus, on met en route sous 48 heures. Comptez environ une semaine entre le premier appel et les premiers messages. Rien ne part en votre nom avant que vous ayez validé les messages.",
   },
   {
     q: 'Ça marche avec WhatsApp ? Je risque un blocage de mon numéro ?',

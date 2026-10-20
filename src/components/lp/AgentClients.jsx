@@ -28,7 +28,7 @@ const POINTS = [
   'Base de données construite pour votre marché',
   'Signaux d’achat repérés sur LinkedIn, contact par WhatsApp et email',
   'Agent entraîné sur votre catalogue et vos objections',
-  'Besoin, budget et calendrier qualifiés avant transmission',
+  'Échange complet transmis : besoin, et si possible budget et calendrier',
 ];
 
 function Rise({ children, delay = 0, className }) {
@@ -82,8 +82,7 @@ export default function AgentClients() {
                 Industriels, distributeurs, loueurs de matériel, éditeurs de solutions
                 techniques&nbsp;: vos acheteurs ne se trouvent dans aucun fichier tout fait. On
                 construit la base, on entraîne l&apos;agent sur votre catalogue, vos arguments et
-                vos objections, et il qualifie le besoin, le budget et le calendrier avant de
-                passer la main à vos commerciaux.
+                vos objections, et il transmet à vos commerciaux l&apos;échange complet, avec le besoin exprimé et, si possible, le budget et le calendrier.
               </p>
             </Rise>
 
@@ -100,7 +99,7 @@ export default function AgentClients() {
                     <dd className="mt-1.5 text-[0.95rem] leading-relaxed text-[var(--on-ink-muted)]">
                       Il présente votre entreprise aux prescripteurs de votre métier et vous
                       passe la main dès qu&apos;un interlocuteur est intéressé. Inclus dans le
-                      Pack Lancement.
+                      Pack Lancement Entrepreneurs.
                     </dd>
                   </div>
                   <div>
@@ -109,8 +108,7 @@ export default function AgentClients() {
                     </dt>
                     <dd className="mt-1.5 text-[0.95rem] leading-relaxed text-[var(--on-ink-muted)]">
                       Il contacte directement vos clients potentiels&nbsp;: base de données
-                      créée sur mesure, agent entraîné sur votre offre, qualification complète
-                      avant transmission.
+                      créée sur mesure, agent entraîné sur votre offre, échange complet transmis à vos commerciaux.
                     </dd>
                   </div>
                 </dl>
@@ -147,7 +145,7 @@ export default function AgentClients() {
                 340 € HT
               </p>
               <p className="mt-1 text-sm text-white/60">par mois, sans engagement</p>
-              <p className="mt-3 text-sm font-semibold text-[#ffb27a]">{GARANTIE}</p>
+              <p className="mt-3 text-sm font-semibold text-[#ffb27a]">Une fois le premier contact obtenu&nbsp;: {GARANTIE}</p>
               <ul className="mt-5 space-y-4 border-t border-white/15 pt-5">
                 {PALIERS.map((t) => (
                   <li key={t.name} className="flex items-start justify-between gap-4">

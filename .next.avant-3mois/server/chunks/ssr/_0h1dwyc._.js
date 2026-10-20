@@ -1,0 +1,3 @@
+module.exports=[12904,a=>{"use strict";a.s(["useMDXComponents",0,function(a){return{...a}}])},21441,a=>{"use strict";var b=a.i(7997),c=a.i(12904);function d(a){let d={code:"code",p:"p",...(0,c.useMDXComponents)(),...a.components};return(0,b.jsxs)(d.p,{children:["Placeholder. Ce fichier ne doit JAMAIS être rendu publiquement — il est filtré par ",(0,b.jsx)(d.code,{children:"listArticles()"})," via le préfixe ",(0,b.jsx)(d.code,{children:"_"}),"."]})}a.s(["default",0,function(a={}){let{wrapper:e}={...(0,c.useMDXComponents)(),...a.components};return e?(0,b.jsx)(e,{...a,children:(0,b.jsx)(d,{...a})}):d(a)}])}];
+
+//# sourceMappingURL=_0h1dwyc._.js.map

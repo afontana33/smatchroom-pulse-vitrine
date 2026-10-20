@@ -1,0 +1,20 @@
+{
+  "/_global-error/page": "/_global-error",
+  "/_not-found/page": "/_not-found",
+  "/agent-ia/[slug]/page": "/agent-ia/[slug]",
+  "/agent-ia/page": "/agent-ia",
+  "/blog/[slug]/page": "/blog/[slug]",
+  "/blog/page": "/blog",
+  "/cgv-produits/page": "/cgv-produits",
+  "/cgv-services/page": "/cgv-services",
+  "/cgv/page": "/cgv",
+  "/confidentialite/page": "/confidentialite",
+  "/favicon.ico/route": "/favicon.ico",
+  "/mentions-legales/page": "/mentions-legales",
+  "/page": "/",
+  "/politique-cookies/page": "/politique-cookies",
+  "/robots.txt/route": "/robots.txt",
+  "/sitemap.xml/route": "/sitemap.xml",
+  "/solutions/[slug]/page": "/solutions/[slug]",
+  "/transparence-ia/page": "/transparence-ia"
+}

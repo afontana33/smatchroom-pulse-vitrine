@@ -1,0 +1,16 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/(fr)/layout,_N_T_/(fr)/apporteur-affaires/layout,_N_T_/(fr)/apporteur-affaires/page,_N_T_/apporteur-affaires"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/!KGZyKQ/apporteur-affaires/__PAGE__",
+    "/!KGZyKQ/apporteur-affaires",
+    "/!KGZyKQ",
+    "/_index",
+    "/_head"
+  ]
+}

@@ -24,7 +24,7 @@ const AGENTS = [
   {
     name: 'Agent Clients',
     cible: 'Vos clients eux-mêmes : les décideurs des entreprises que vous visez',
-    resultat: 'Des rendez-vous qualifiés : besoin, budget, calendrier',
+    resultat: 'Des demandes d’appel de décideurs, avec leur besoin',
     pour: 'Entreprises qui vendent à des entreprises',
     prix: 'dès 340 € HT / mois',
     prixNote: 'création dès 1 200 € HT',
@@ -90,6 +90,7 @@ export default function DeuxAgents() {
           <ShieldCheck size={24} aria-hidden className="flex-shrink-0 text-[var(--primary-ink)]" />
           <span>
             Garantie sur les deux agents&nbsp;: {GARANTIE}
+            <span className="mt-1 block text-sm font-normal text-[var(--muted-strong)]">Sur l&apos;abonnement mensuel, hors période prépayée du Pack Lancement Entrepreneurs.</span>
           </span>
         </p>
       </div>

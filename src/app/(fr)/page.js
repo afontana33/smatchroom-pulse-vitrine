@@ -1,9 +1,11 @@
 import Nav from '@/components/Nav';
+import MetiersPrescripteurs from '@/components/lp/MetiersPrescripteurs';
 import HeroLancement from '@/components/lp/HeroLancement';
 import Thesis from '@/components/lp/Thesis';
 import Piliers from '@/components/lp/Piliers';
 import DeuxAgents from '@/components/lp/DeuxAgents';
 import AgentClients from '@/components/lp/AgentClients';
+import SuiviHumain from '@/components/lp/SuiviHumain';
 import MethodeB2B from '@/components/lp/MethodeB2B';
 import Preuves from '@/components/lp/Preuves';
 import AvisLp from '@/components/lp/AvisLp';
@@ -46,7 +48,7 @@ import { faqSchema, graph, serviceSchema, webPageSchema } from '@/lib/schema';
    pas d'équivalent anglais et gardent leur seule canonique. */
 const META_TITLE = 'Prospection B2B et apporteurs d’affaires · SmatchRoom Pulse';
 const META_DESCRIPTION =
-  "Agents de prospection par WhatsApp et email dès 149 € HT/mois sans engagement. Pack Lancement "
+  "Agents de prospection par WhatsApp et email dès 149 € HT/mois sans engagement. Pack Lancement Entrepreneurs "
   + "490 € HT : site, fiche Google et 3 mois d'agent.";
 
 export const metadata = {
@@ -86,7 +88,9 @@ export default function Page() {
       <AvisLp />
       <Piliers />
       <DeuxAgents />
+      <MetiersPrescripteurs />
       <AgentClients />
+      <SuiviHumain />
       <MethodeB2B />
       <Thesis />
       <FaqLp />

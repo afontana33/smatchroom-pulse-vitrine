@@ -1,0 +1,16 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/(fr)/layout,_N_T_/(fr)/cgv-services/layout,_N_T_/(fr)/cgv-services/page,_N_T_/cgv-services"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/!KGZyKQ/cgv-services/__PAGE__",
+    "/!KGZyKQ/cgv-services",
+    "/!KGZyKQ",
+    "/_index",
+    "/_head"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/(fr)/layout,_N_T_/(fr)/cgv-produits/layout,_N_T_/(fr)/cgv-produits/page,_N_T_/cgv-produits"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/!KGZyKQ/cgv-produits/__PAGE__",
+    "/!KGZyKQ/cgv-produits",
+    "/!KGZyKQ",
+    "/_index",
+    "/_head"
+  ]
+}

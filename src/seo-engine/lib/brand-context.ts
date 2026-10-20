@@ -9,7 +9,7 @@ Offre commerciale (grille octobre 2026, montants HT, sans engagement) :
 - Un numéro WhatsApp ne contacte jamais plus d'environ 300 décideurs par mois
 - L'Agent Clients repère les signaux d'achat (recrutement, création, nouveau dirigeant, réactions LinkedIn) et contacte les décideurs par WhatsApp et email, jamais par LinkedIn
 - Agent Partenaires (apporteurs d'affaires, contacte les prescripteurs) : 149€/mois, sans frais de création ni engagement
-- Pack Lancement : 490€ payés une fois pour 3 mois (site hébergé au nom du client + fiche Google + 3 mois d'Agent Partenaires), puis 149€/mois si le client continue
+- Pack Lancement Entrepreneurs : 490€ payés une fois pour 3 mois (site hébergé au nom du client + fiche Google + 3 mois d'Agent Partenaires), puis 149€/mois si le client continue
 - Site internet + fiche Google seul : 300€ une fois, sans abonnement, hébergé au nom du client
 - Acquisition Meta (publicité Facebook/Instagram) : 690€ (client filme) ou 1 490€ (vidéaste) + 200€/mois, budget pub payé à Meta
 - Garantie des deux agents : aucun rendez-vous dans le mois = mois suivant non facturé

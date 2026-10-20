@@ -176,7 +176,7 @@ export default function PubliciteMetaPage() {
             links={[
               { href: '/apporteur-affaires', label: 'Trouver des apporteurs d’affaires' },
               { href: '/site-web-artisan', label: 'Site internet et fiche Google' },
-              { href: '/pack-lancement', label: 'Pack Lancement' },
+              { href: '/pack-lancement', label: 'Pack Lancement Entrepreneurs' },
               { href: '/prospection-b2b', label: 'Prospection B2B' },
             ]}
           />

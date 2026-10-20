@@ -1,0 +1,15 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/pulse-terrain/layout,_N_T_/pulse-terrain/page,_N_T_/pulse-terrain"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/pulse-terrain/__PAGE__",
+    "/pulse-terrain",
+    "/_index",
+    "/_head"
+  ]
+}

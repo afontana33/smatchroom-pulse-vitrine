@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../../../mdx-components.jsx"],"sourcesContent":["// mdx-components.jsx — required by @next/mdx (App Router)\nexport function useMDXComponents(components) {\n  return { ...components };\n}\n"],"names":["useMDXComponents","components"],"mappings":"iEACO,SAASA,AAAiBC,CAAU,EACzC,MAAO,CAAE,GAAGA,CAAU,AAAC,CACzB"}

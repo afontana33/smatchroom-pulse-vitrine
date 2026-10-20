@@ -87,7 +87,7 @@ export const PILIER_OFFERS = [
     key: 'agent-clients-b2b',
     name: 'Agent Clients B2B',
     description:
-      "Base de données construite sur mesure pour votre marché, agent entraîné sur votre catalogue et vos objections, qualification du besoin, du budget et du calendrier avant transmission à vos commerciaux.",
+      "Base de données construite sur mesure pour votre marché, agent entraîné sur votre catalogue et vos objections, transmission de l'échange complet à vos commerciaux : besoin, et si possible budget et calendrier.",
     /* Plancher, pas prix ferme : le périmètre (taille du marché à construire,
        nombre d'interlocuteurs, intégrations) fait varier la fabrication du
        simple au quintuple. `setupFrom` déclenche « à partir de » à l'affichage
@@ -148,14 +148,14 @@ export const AGENT_OFFERS = [
 export const ALL_OFFERS = [...PILIER_OFFERS, ...AGENT_OFFERS];
 
 /* Garantie des deux agents (Partenaires et Clients), sur les mensualités
-   uniquement : ni les frais de création ni les 3 mois du Pack Lancement. */
+   uniquement : ni les frais de création ni les 3 mois du Pack Lancement Entrepreneurs. */
 export const GARANTIE = 'Aucun rendez-vous dans le mois ? Le mois suivant ne vous est pas facturé.';
 
 /* Offre d'entrée : site + fiche Google + 3 mois d'Agent Partenaires, payés une
    fois. Affichée dans HeroLancement et /pack-lancement. */
 export const PACK_LANCEMENT = {
   key: 'pack-lancement',
-  name: 'Pack Lancement',
+  name: 'Pack Lancement Entrepreneurs',
   description:
     "Site internet hébergé à votre nom, fiche établissement Google et trois mois d'Agent Partenaires, payés une seule fois. Ensuite 149 € HT par mois, sans engagement.",
   setup: 490,

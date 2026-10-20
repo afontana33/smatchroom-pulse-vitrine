@@ -1,0 +1,16 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/(fr)/layout,_N_T_/(fr)/pack-lancement/layout,_N_T_/(fr)/pack-lancement/page,_N_T_/pack-lancement"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/!KGZyKQ/pack-lancement/__PAGE__",
+    "/!KGZyKQ/pack-lancement",
+    "/!KGZyKQ",
+    "/_index",
+    "/_head"
+  ]
+}

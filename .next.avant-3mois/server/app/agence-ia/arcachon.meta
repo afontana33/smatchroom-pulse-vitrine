@@ -1,0 +1,16 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/agence-ia/layout,_N_T_/agence-ia/[ville]/layout,_N_T_/agence-ia/[ville]/page,_N_T_/agence-ia/arcachon"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/agence-ia/$d$ville/__PAGE__",
+    "/agence-ia/$d$ville",
+    "/agence-ia",
+    "/_index",
+    "/_head"
+  ]
+}

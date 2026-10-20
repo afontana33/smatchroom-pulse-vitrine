@@ -27,8 +27,129 @@ import { Star, ArrowUpRight, PenLine } from 'lucide-react';
 const GOOGLE_URL = 'https://www.google.com/maps?cid=1742713614499117243';
 const REVIEWS_URL = GOOGLE_URL;
 
-const AVIS = [];
-const RATING = { score: '5,0', count: null };
+/* Recopie verbatim de la fiche Google le 18/10/2026 : tous les avis avec commentaire, du plus recent au plus ancien. */
+const AVIS = [
+  {
+    "author": "Franck",
+    "role": "Avis Google",
+    "stars": 5,
+    "text": "Un grand merci à Alexis pour son professionnalisme, sa disponibilité et son accompagnement dans le développement de mon entreprise Couverture du Lion. Il a su m’apporter de précieux conseils et mettre en place des solutions adaptées à mes besoins pour améliorer la visibilité de mon entreprise. Une personne sérieuse, à l’écoute et investie dans la réussite de ses clients. Je recommande vivement ses services à tous les entrepreneurs qui souhaitent développer leur activité !",
+    "date": "Octobre 2026"
+  },
+{
+    "author": "Christopher B.",
+    "role": "Avis Google",
+    "stars": 5,
+    "text": "Super expérience Alexis est super disponible l’agent IA fait très bien son travail beaucoup de contacts pour la prospection Je suis ravie Merci beaucoup",
+    "date": "Octobre 2026"
+  },
+  {
+    "author": "Lucas B.",
+    "role": "Avis Google",
+    "stars": 5,
+    "text": "Une solution comme celle proposée par Alexis nous montre qu’investir dans les bons outils peut avoir un réel impact positif sur notre activité. Merci pour le suivi et l’accompagnement ! 🙏",
+    "date": "Septembre 2026"
+  },
+  {
+    "author": "Audrey V.",
+    "role": "Avis Google",
+    "stars": 5,
+    "text": "PRO ! À l’écoute, merci Alexis ! Audrey A2pas",
+    "date": "Août 2026"
+  },
+  {
+    "author": "Soukaina B.",
+    "role": "Avis Google",
+    "stars": 5,
+    "text": "Une très belle expérience ! Un contact chaleureux, beaucoup de professionnalisme et une vraie attention portée aux détails. Tout était parfait du début à la fin. Je recommande vivement ! 😊",
+    "date": "Août 2026"
+  },
+  {
+    "author": "Alain J.",
+    "role": "Avis Google",
+    "stars": 5,
+    "text": "À l’écoute et très professionnel ! Merci Alexis",
+    "date": "Août 2026"
+  },
+  {
+    "author": "Florian P.",
+    "role": "Avis Google",
+    "stars": 5,
+    "text": "Super expérience je recommande fortement..",
+    "date": "Août 2026"
+  },
+  {
+    "author": "Carl V.",
+    "role": "Avis Google",
+    "stars": 5,
+    "text": "Alexis est intervenu rapidement sur un besoin technique précis pour mon projet Liamae. Un travail clair, bien expliqué à chaque étape, avec une vraie pédagogie même sur des sujets techniques pointus. Il a pris le temps de comprendre le contexte du projet, a livré une documentation complète, et est resté disponible pour les ajustements après coup. Résultat livré rapidement. Je recommande sans hésiter.",
+    "date": "Août 2026"
+  },
+  {
+    "author": "Titouan B.",
+    "role": "Avis Google",
+    "stars": 5,
+    "text": "Très pro, super entreprise je recommande",
+    "date": "Août 2026"
+  },
+  {
+    "author": "Caroline L.",
+    "role": "Avis Google",
+    "stars": 5,
+    "text": "Jeune entrepreneur sérieux. Je recommande !",
+    "date": "Août 2026"
+  },
+  {
+    "author": "Jorge",
+    "role": "Avis Google",
+    "stars": 5,
+    "text": "Au top. Alexis est tjs disponible et très professionnel",
+    "date": "Juillet 2026"
+  },
+  {
+    "author": "Matl17",
+    "role": "Avis Google",
+    "stars": 5,
+    "text": "Très bon conseil et bien orienté, plusieurs contacts et retours positifs. Je recommande pour aller chercher des leads et partenariats supplémentaires.",
+    "date": "Juillet 2026"
+  },
+  {
+    "author": "Amaia M.",
+    "role": "Avis Google",
+    "stars": 5,
+    "text": "Très professionnel, merci beaucoup",
+    "date": "Juillet 2026"
+  },
+  {
+    "author": "Maxime P.",
+    "role": "Avis Google",
+    "stars": 5,
+    "text": "Super ! je recommande",
+    "date": "Juillet 2026"
+  },
+  {
+    "author": "Isabelle T.",
+    "role": "Avis Google",
+    "stars": 5,
+    "text": "J'ai installé un agent ia de prospection pour mon entreprise. J'ai eu pleins de nouveaux clients grâce aux partenaires. Leurs agents c'est vraiment le top Je recommande",
+    "date": "Juillet 2026"
+  },
+  {
+    "author": "David V.",
+    "role": "Avis Google",
+    "stars": 5,
+    "text": "Super Alex sa marche super bien son système",
+    "date": "Juillet 2026"
+  },
+  {
+    "author": "Gregory B.",
+    "role": "Avis Google",
+    "stars": 5,
+    "text": "Un service exceptionnel. Très pro. Un grand merci",
+    "date": "Juillet 2026"
+  }
+];
+const RATING = { score: '5,0', count: 21 };
 
 function GoogleG({ size = 20 }) {
   return (
@@ -93,7 +214,7 @@ export default function AvisLp() {
               sélectionnons pas, ne les modérons pas et ne rémunérons pas leur publication. La
               note est celle calculée par Google à la date de dernière mise à jour de cette page.
               Aucune vérification de l&apos;achat n&apos;est effectuée par SMATCHROOM&nbsp;: le
-              contrôle relève de Google.
+              contrôle relève de Google. Ci-dessous, tous les avis avec commentaire de notre fiche Google, du plus récent au plus ancien, recopiés à l&apos;identique le 18/10/2026. Les 3 avis sans commentaire et l&apos;avis portant sur notre application de colocation restent visibles sur la fiche.
             </p>
           </div>
 

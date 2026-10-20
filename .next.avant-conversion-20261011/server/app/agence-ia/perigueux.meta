@@ -1,0 +1,17 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/(fr)/layout,_N_T_/(fr)/agence-ia/layout,_N_T_/(fr)/agence-ia/[ville]/layout,_N_T_/(fr)/agence-ia/[ville]/page,_N_T_/agence-ia/perigueux"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/!KGZyKQ/agence-ia/$d$ville/__PAGE__",
+    "/!KGZyKQ/agence-ia/$d$ville",
+    "/!KGZyKQ/agence-ia",
+    "/!KGZyKQ",
+    "/_index",
+    "/_head"
+  ]
+}

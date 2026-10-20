@@ -1,0 +1,13 @@
+{
+  "pages": {
+    "/_app": []
+  },
+  "devFiles": [],
+  "polyfillFiles": [],
+  "lowPriorityFiles": [
+    "static/s700FhM--th1WIKnsNApe/_buildManifest.js",
+    "static/s700FhM--th1WIKnsNApe/_ssgManifest.js",
+    "static/s700FhM--th1WIKnsNApe/_clientMiddlewareManifest.js"
+  ],
+  "rootMainFiles": []
+}

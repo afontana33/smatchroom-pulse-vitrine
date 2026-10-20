@@ -52,7 +52,7 @@ const CE_QUE_FAIT = [
   'Écrit à chacune un message qui lui est propre, pas un publipostage',
   'Relance au bon moment, sans harceler et sans répéter le premier message',
   'Répond en moins d’une minute, sept jours sur sept',
-  'Qualifie le besoin, le budget et le calendrier avant de vous passer la main',
+  'Vous passe l’échange complet : le besoin exprimé et, si possible, le budget et le calendrier',
   'S’arrête net sur toute demande d’opposition, et la retient',
 ];
 
@@ -92,7 +92,7 @@ const FAQ = [
   },
   {
     q: 'Vous garantissez des résultats ?',
-    a: `${GARANTIE} La garantie porte sur les mensualités, pas sur la mise en place.`,
+    a: `Une fois le premier contact obtenu : ${GARANTIE} La garantie porte sur les mensualités, pas sur la mise en place.`,
   },
   {
     q: 'Est-ce que c’est légal, et conforme au RGPD ?',
@@ -114,7 +114,7 @@ const FAQ = [
   },
   {
     q: 'En combien de temps est-ce en service ?',
-    a: "48 heures pour un agent branché sur des données publiques. Une connexion à votre CRM ou à "
+    a: "48 heures après réception du paiement et des accès pour un agent branché sur des données publiques, soit environ une semaine après le premier appel. Une connexion à votre CRM ou à "
       + "votre ERP demande plus de cadrage, et la fourchette est donnée après le premier échange.",
   },
 ];
@@ -170,7 +170,7 @@ export default function ProspectionB2BPage() {
           <PageTitle
             lead="La prospection commerciale,"
             accent="faite tous les jours, sans vous."
-            chapeau="Une agence de prospection classique vous vend des rendez-vous. Nous installons un agent qui travaille votre marché en continu, en votre nom, et qui vous passe la main quand l’interlocuteur est vraiment intéressé."
+            chapeau="Certaines agences facturent au rendez-vous. Nous installons un agent qui travaille votre marché en continu, en votre nom, et qui vous passe la main quand l’interlocuteur est vraiment intéressé."
           />
         </Section>
 
@@ -244,7 +244,7 @@ export default function ProspectionB2BPage() {
               <p className="mt-5 border-t border-[var(--border)] pt-5 text-sm leading-relaxed text-[var(--muted-strong)]">
                 Pour une entreprise qui a des commerciaux à alimenter. Base de données construite
                 pour votre marché, agent entraîné sur votre catalogue et vos objections,
-                qualification du besoin, du budget et du calendrier avant transmission. Le
+                transmission de l’échange complet, avec le besoin exprimé et, si possible, le budget et le calendrier. Le
                 périmètre se chiffre après l’audit : un marché de trois cents acheteurs et un
                 marché de trente mille ne demandent pas le même travail.
               </p>
@@ -265,17 +265,15 @@ export default function ProspectionB2BPage() {
           </h2>
           <div className="mt-8 grid gap-6 md:grid-cols-3">
             <Card title="Vous gardez la base">
-              La liste d’entreprises construite pour vous reste la vôtre. Une agence qui facture au
-              rendez-vous garde son fichier, et vous repartez de zéro le jour où vous arrêtez.
+              Les cibles contactées, les messages et les réponses vous appartiennent. Si vous arrêtez, on vous les remet en fichier sur demande dans les 30 jours, une fois sans frais.
             </Card>
             <Card title="Le message n’est pas un modèle">
               Chaque message est écrit pour l’entreprise à qui il s’adresse, à partir de ce qui est
               vérifiable sur elle. Un publipostage se reconnaît en une ligne, et il brûle le canal
               pour les mois suivants.
             </Card>
-            <Card title="Le prix est fixe">
-              Un montant de fabrication, un mensuel, et c’est tout. Pas de commission au rendez-vous
-              obtenu, donc aucun intérêt à vous envoyer des rendez-vous qui ne valent rien.
+            <Card title="Pas de commission au rendez-vous">
+              Création à partir de 1 200 € HT : 600 € à la commande, le solde à la première demande d’appel obtenue. Puis un mensuel. Pas de commission au rendez-vous obtenu, donc aucun intérêt à vous envoyer des rendez-vous qui ne valent rien.
             </Card>
           </div>
         </Section>

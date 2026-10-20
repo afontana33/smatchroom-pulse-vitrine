@@ -1,0 +1,16 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/(fr)/layout,_N_T_/(fr)/publicite-facebook-instagram/layout,_N_T_/(fr)/publicite-facebook-instagram/page,_N_T_/publicite-facebook-instagram"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/!KGZyKQ/publicite-facebook-instagram/__PAGE__",
+    "/!KGZyKQ/publicite-facebook-instagram",
+    "/!KGZyKQ",
+    "/_index",
+    "/_head"
+  ]
+}

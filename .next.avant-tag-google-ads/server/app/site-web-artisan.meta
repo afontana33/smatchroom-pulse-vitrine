@@ -1,0 +1,15 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/site-web-artisan/layout,_N_T_/site-web-artisan/page,_N_T_/site-web-artisan"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/site-web-artisan/__PAGE__",
+    "/site-web-artisan",
+    "/_index",
+    "/_head"
+  ]
+}
