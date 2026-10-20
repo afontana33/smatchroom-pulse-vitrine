@@ -31,7 +31,7 @@ const CHOIX = [
     icon: Repeat,
     label: 'CGV Services',
     pitch: "Abonnements d'agents IA",
-    desc: "Agent Partenaires, Agent Clients, Pack Lancement Entrepreneurs, site internet, Acquisition Meta et Ingénierie Corporate. Contrat conclu entre professionnels, prix hors taxes, obligation de moyens, réversibilité des données.",
+    desc: "Agent Partenaires, Agent Clients, Packs Lancement, site internet, publicité Meta et Ingénierie Corporate. Contrat conclu entre professionnels, prix hors taxes, obligation de moyens, réversibilité des données.",
   },
   {
     href: '/cgv-produits',

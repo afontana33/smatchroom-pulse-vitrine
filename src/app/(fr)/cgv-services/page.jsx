@@ -84,10 +84,14 @@ const ARTICLES = [
       head: ['Formule', 'Mise en service', 'Abonnement', 'Durée'],
       rows: [
         ['Agent Partenaires', 'Aucuns frais', '149 € HT par mois', 'Sans engagement'],
-        ['Pack Lancement Entrepreneurs', '490 € HT, une seule fois, pour 3 mois', '149 € HT par mois au-delà, si le Client poursuit', '3 mois prépayés, puis sans engagement'],
+        ['Pack Lancement Partenaires', '490 € HT, une seule fois (site, fiche Google, 3 mois d\'Agent Partenaires)', '149 € HT par mois au-delà des 3 mois, si le Client poursuit', '3 mois prépayés, puis sans engagement'],
+        ['Pack Lancement Publicité locale', '790 € HT, une seule fois (site, fiche Google, 1 création publicitaire, campagne Meta configurée)', '200 € HT par mois de gestion Meta dès le lancement des annonces', 'Gestion sans engagement'],
+        ['Pack Lancement Ultime', '990 € HT, une seule fois (site, fiche Google, 3 mois d\'Agent Partenaires, 3 variantes publicitaires, campagne Meta configurée)', '200 € HT par mois de gestion Meta dès le lancement des annonces, puis 149 € HT par mois d\'Agent Partenaires au-delà des 3 mois, si le Client poursuit', '3 mois d\'Agent prépayés ; gestion Meta sans engagement'],
         ['Agent Clients', 'À partir de 1 200 € HT, en deux fois', 'À partir de 340 € HT par mois', 'Sans engagement'],
         ['Site internet et fiche Google', '300 € HT, une seule fois', 'Aucun', 'Prestation ponctuelle'],
-        ['Acquisition Meta', '690 € HT, ou 1 490 € HT avec vidéaste', '200 € HT par mois', 'Sans engagement'],
+        ['Publicité Meta · Essentiel', '490 € HT (1 création publicitaire)', '200 € HT par mois de gestion dès le lancement des annonces', 'Sans engagement'],
+        ['Publicité Meta · Multi-créations', '690 € HT (3 variantes publicitaires)', '200 € HT par mois de gestion dès le lancement des annonces', 'Sans engagement'],
+        ['Publicité Meta · avec vidéaste', '1 490 € HT', '200 € HT par mois de gestion dès le lancement des annonces', 'Sans engagement'],
         ['Ingénierie Corporate', 'Sur devis', 'Sur devis', 'Définie au devis'],
       ],
     },
@@ -95,14 +99,15 @@ const ARTICLES = [
       "Les frais de mise en service couvrent le cadrage, la conception de l'Agent, son paramétrage, la constitution de la base de cibles initiale, les tests et la mise en production. Ils correspondent à un travail effectué une fois et ne sont pas remboursables une fois la mise en production intervenue.",
       "L'abonnement mensuel couvre l'hébergement, l'exploitation, la supervision, les ajustements courants, ainsi que les coûts d'usage des services tiers nécessaires au fonctionnement de l'Agent, dans les limites de volume prévues au devis.",
       "Ne sont pas couverts : les dépassements de volume, l'ouverture d'un canal supplémentaire, la refonte du périmètre à la demande du Client, et les abonnements souscrits par le Client en son nom propre.",
-      "Garantie de non-facturation sur l'abonnement de l'Agent Partenaires et de l'Agent Clients : si aucun rendez-vous n'a été obtenu pour le Client au cours d'un mois d'abonnement, la mensualité du mois suivant n'est pas facturée. Un rendez-vous s'entend d'un décideur ciblé qui accepte un appel avec le Client. La garantie ne couvre ni les frais de mise en service, ni la période prépayée du Pack Lancement Entrepreneurs. Pour l'Agent Clients, elle s'applique une fois le résultat convenu atteint, dans les conditions de l'article 8.",
+      "Garantie de non-facturation sur l'abonnement de l'Agent Partenaires et de l'Agent Clients : si aucun rendez-vous n'a été obtenu pour le Client au cours d'un mois d'abonnement, la mensualité du mois suivant n'est pas facturée. Un rendez-vous s'entend d'un décideur ciblé qui accepte un appel avec le Client. La garantie ne couvre ni les frais de mise en service, ni la période prépayée des Packs Lancement. Elle ne s'étend pas à la publicité Meta, aux créations publicitaires, aux vidéos ni au budget publicitaire. Pour l'Agent Clients, elle s'applique une fois le résultat convenu atteint, dans les conditions de l'article 8.",
+      "Publicité Meta : le budget publicitaire n'est pas inclus dans les prix. Il est défini par le Client et réglé par lui directement à Meta depuis son propre compte publicitaire. Le Prestataire facture uniquement la création et la gestion des campagnes. Les créations publicitaires sont réalisées à partir des vidéos fournies par le Client ; aucun tournage n'est inclus, sauf dans la formule avec vidéaste. Les variantes publicitaires peuvent utiliser les mêmes séquences avec des accroches et des angles différents. Le Prestataire ne garantit aucun nombre de demandes de contact, de rendez-vous ou de ventes.",
       "Le Prestataire peut réviser ses tarifs une fois par an. Toute révision est notifiée par écrit au moins soixante jours avant sa prise d'effet. Le Client qui la refuse peut résilier sans indemnité avant cette date.",
     ],
   },
   {
     title: 'Article 6 · Modalités de paiement et échéances',
     list: [
-      "Les frais de mise en service, le prix du Pack Lancement Entrepreneurs et celui du site internet sont exigibles à la commande, avant tout démarrage des travaux. Pour l'Agent Clients, seule la moitié des frais de mise en service est exigible à la commande ; le solde suit les règles de l'article 8.",
+      "Les frais de mise en service, le prix des Packs Lancement et celui du site internet sont exigibles à la commande, avant tout démarrage des travaux. Pour l'Agent Clients, seule la moitié des frais de mise en service est exigible à la commande ; le solde suit les règles de l'article 8.",
       "L'abonnement est facturé mensuellement à terme à échoir, à la date anniversaire de la mise en production.",
       "Les factures sont payables à trente jours à compter de leur date d'émission, par virement bancaire ou par prélèvement via Stripe Payments Europe Ltd.",
       "Aucun escompte n'est accordé en cas de paiement anticipé.",
@@ -119,8 +124,8 @@ const ARTICLES = [
   {
     title: 'Article 8 · Durée, reconduction et résiliation',
     list: [
-      "Abonnements sans engagement (Agent Partenaires, Agent Clients, Acquisition Meta) : le contrat est conclu pour une durée d'un mois, reconduit tacitement de mois en mois. Chacune des parties peut y mettre fin par écrit, courriel avec accusé de réception compris, moyennant un préavis de trente jours avant l'échéance mensuelle en cours. La résiliation prend effet à cette échéance ; aucune mensualité n'est prélevée après cette date. Les frais de mise en service restent acquis au Prestataire.",
-      "Pack Lancement Entrepreneurs : le prix couvre la création du site internet et de la fiche établissement Google, ainsi que trois mois d'Agent Partenaires à compter de sa mise en production. Il n'est pas remboursable une fois le site livré. À l'issue des trois mois, la prestation ne se poursuit en abonnement Agent Partenaires sans engagement que si le Client le demande par écrit ; à défaut, elle prend fin sans formalité ni frais.",
+      "Abonnements sans engagement (Agent Partenaires, Agent Clients, gestion de la publicité Meta) : le contrat est conclu pour une durée d'un mois, reconduit tacitement de mois en mois. Chacune des parties peut y mettre fin par écrit, courriel avec accusé de réception compris, moyennant un préavis de trente jours avant l'échéance mensuelle en cours. La résiliation prend effet à cette échéance ; aucune mensualité n'est prélevée après cette date. Les frais de mise en service restent acquis au Prestataire.",
+      "Packs Lancement : le prix de chaque pack couvre la création du site internet et de la fiche établissement Google, ainsi que, selon le pack, trois mois d'Agent Partenaires à compter de sa mise en production (Packs Partenaires et Ultime) et la création publicitaire et la configuration de la campagne Meta (Packs Publicité locale et Ultime). Il n'est pas remboursable une fois le site livré. À l'issue des trois mois, l'Agent Partenaires ne se poursuit en abonnement sans engagement que si le Client le demande par écrit ; à défaut, il prend fin sans formalité ni frais. Le prix des Packs Publicité locale et Ultime n'inclut pas la gestion mensuelle de la publicité Meta, facturée 200 € HT par mois dès le lancement des annonces selon les règles des abonnements sans engagement.",
       "Agent Clients, facturation au résultat : le Client règle à la commande la moitié des frais de mise en service, soit 600 € HT pour une mise en service à 1 200 € HT, ainsi que la première mensualité. Le résultat attendu est l'obtention d'un contact ; un contact s'entend d'une demande d'appel adressée au Client par un prospect ou un prescripteur. S'il n'est pas atteint au terme du premier mois d'abonnement, la prestation se poursuit sans nouvelle facturation. Le solde des frais de mise en service et la mensualité suivante deviennent exigibles à la date à laquelle le résultat est atteint ; l'abonnement reprend alors de mois en mois selon les règles des abonnements sans engagement. Tant que le résultat n'est pas atteint, chacune des parties peut mettre fin à la prestation par écrit, sans préavis ni frais : les sommes déjà réglées restent acquises au Prestataire, et le solde n'est pas dû.",
       "Site internet et fiche Google : la prestation est ponctuelle et sans abonnement. Le site est hébergé sur un compte ouvert au nom du Client, qui reste propriétaire du site livré, du nom de domaine et de la fiche établissement, y compris après la fin de toute autre prestation.",
       "Résiliation pour manquement : en cas de manquement grave d'une partie à ses obligations, non réparé dans les trente jours suivant une mise en demeure écrite, l'autre partie peut résilier de plein droit, sans indemnité et sans préjudice de tout dommage et intérêt.",
@@ -238,7 +243,7 @@ export default function CGVServicesPage() {
       eyebrow="Cadre contractuel"
       title="Conditions générales de vente et de service"
       subtitle="Abonnements d'agents IA · contrat entre professionnels"
-      dates={["Date d'entrée en vigueur de la présente version : 19 octobre 2026", 'Dernière mise à jour : 19 octobre 2026']}
+      dates={["Date d'entrée en vigueur de la présente version : 20 octobre 2026", 'Dernière mise à jour : 20 octobre 2026']}
       intro={
         <>
           Ces conditions s&apos;appliquent aux abonnements d&apos;agents IA. La vente de
