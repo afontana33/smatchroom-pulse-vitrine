@@ -10,7 +10,7 @@ import LangSwitch from '@/components/LangSwitch';
    page produit, elles ont été supprimées (voir les redirections 301 dans
    next.config.mjs). */
 const LINKS = [
-  { href: '/#lancement', label: 'Pack Lancement Entrepreneurs' },
+  { href: '/#packs', label: 'Packs Lancement' },
   { href: '/#resultats', label: 'Résultats' },
   { href: '/#piliers', label: 'Nos offres' },
   { href: '/#questions', label: 'Questions' },

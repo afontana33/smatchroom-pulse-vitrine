@@ -200,7 +200,7 @@ export default async function MetierPage({ params }) {
               </p>
               <p className="mt-1 text-sm text-[var(--muted)]">par mois, sans frais de création</p>
               <p className="mt-5 border-t border-[var(--border)] pt-5 text-sm leading-relaxed text-[var(--muted-strong)]">
-                Ou le <a href="/pack-lancement" className="font-semibold text-[var(--primary-ink)] hover:underline">Pack Lancement Entrepreneurs</a>&nbsp;:
+                Ou le <a href="/pack-lancement" className="font-semibold text-[var(--primary-ink)] hover:underline">Pack Lancement Partenaires</a>&nbsp;:
                 site, fiche Google et 3 mois d&apos;agent pour 490 € HT.
               </p>
             </div>

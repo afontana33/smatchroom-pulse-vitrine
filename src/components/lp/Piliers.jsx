@@ -10,12 +10,13 @@
  * tarifs : le visiteur ne doit pas avoir à scroller pour savoir combien.
  *
  * Les montants sont ceux des pages produit d'origine (/sites, /pulse-terrain,
- * tarifs v5). Toute correction de prix se fait ici et nulle part ailleurs.
+ * tarifs v5). Exception : les offres Meta sont lues dans lib/offers.js
+ * (META_OFFERS), où se font leurs corrections de prix.
  */
 
 import { motion, useReducedMotion } from 'framer-motion';
 import { ArrowRight, Check } from 'lucide-react';
-import { GARANTIE } from '@/lib/offers';
+import { BUDGET_META, GARANTIE, META_OFFERS } from '@/lib/offers';
 
 const CALENDLY = 'https://calendly.com/a-fontana-smatchroom/30min';
 
@@ -65,23 +66,27 @@ const PILIERS = [
   },
   {
     k: '03',
-    label: 'Acquisition Meta',
+    label: 'Publicité Facebook & Instagram',
     href: '/publicite-facebook-instagram',
-    title: 'Votre activité filmée, diffusée aux bonnes personnes',
+    title: 'Trouvez de nouveaux clients avec la publicité sur Facebook et Instagram',
     photo: '/photos/camera.webp',
     alt: 'Vidéaste cadrant un plan sur un moniteur de tournage',
-    text: "On filme votre activité et on gère vos publicités sur Facebook et Instagram pour faire venir de nouveaux clients. Les demandes ne se perdent pas : elles tombent directement dans votre agent.",
+    /* Ne pas présenter l'Agent Partenaires comme l'agent qui rappelle les
+       demandes Meta : ce n'est pas son rôle (brief du 20/10/2026). */
+    text: "Nous créons vos publicités et configurons leur diffusion dans votre zone d'intervention. Les personnes intéressées peuvent laisser leurs coordonnées pour être recontactées. Vous recevez ainsi de nouvelles demandes à traiter et à transformer en clients.",
     points: [
-      'Vous filmez vous-même, ou notre vidéaste se déplace',
-      'Montage, diffusion et suivi des campagnes',
-      'Les demandes sont rappelées automatiquement',
+      'Créations à partir des vidéos que vous fournissez, ou tournage par notre vidéaste',
+      'Campagne locale et formulaire de demande de contact configurés',
+      'Vous définissez et réglez votre budget directement à Meta',
     ],
-    price: {
-      main: '690 € HT',
-      mainNote: 'si vous filmez · 1 490 € HT avec notre vidéaste',
-      then: '200 € HT / mois',
-      extra: 'Budget publicitaire en plus, à partir de 15 € par jour.',
-    },
+    options: META_OFFERS.map((o) => ({
+      label: o.name,
+      setup: `${String(o.setup).replace(/\B(?=(\d{3})+(?!\d))/g, '\u00a0')} € HT`,
+      setupNote: o.creations,
+      then: `${o.monthly} € HT / mois de gestion`,
+      note: o.key === 'meta-videaste' ? 'Dès le lancement des annonces.' : 'Dès le lancement des annonces. Aucun tournage inclus.',
+    })),
+    extra: BUDGET_META,
   },
 ];
 
@@ -121,8 +126,8 @@ export default function Piliers() {
               </span>
             </h2>
             <p className="mt-5 text-[var(--muted-strong)] sm:text-lg">
-              Chacun se prend séparément. Ensemble, ils se renforcent : la publicité amène la
-              demande, le site rassure, l&apos;agent rappelle.
+              Chacun se prend séparément. Ensemble, ils se renforcent : la publicité amène des
+              demandes, le site rassure, les partenaires vous recommandent.
             </p>
           </div>
         </Rise>
@@ -184,6 +189,7 @@ export default function Piliers() {
                     </a>
 
                     {p.options ? (
+                      <>
                       <div className="mt-8 grid gap-3 sm:grid-cols-2">
                         {p.options.map((o) => (
                           <div
@@ -218,6 +224,10 @@ export default function Piliers() {
                           </div>
                         ))}
                       </div>
+                      {p.extra && (
+                        <p className="mt-3 text-sm leading-relaxed text-[var(--muted-strong)]">{p.extra}</p>
+                      )}
+                      </>
                     ) : (
                       <div className="mt-8 rounded-2xl border border-[var(--border-strong)] bg-[var(--surface)] p-6">
                         <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">

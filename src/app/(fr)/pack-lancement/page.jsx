@@ -1,5 +1,6 @@
 /**
- * Page de service : le Pack Lancement Entrepreneurs.
+ * Page de service : les trois Packs Lancement Entrepreneurs (Partenaires,
+ * Publicité locale, Ultime). Cartes partagées avec l'accueil (PacksLancement.jsx).
  *
  * Cible « création site internet et fiche Google pas cher », « lancer son
  * entreprise trouver des clients ». Même offre que la carte du hero de
@@ -12,7 +13,6 @@ import JsonLd from '@/components/JsonLd';
 import {
   Breadcrumb,
   Card,
-  CheckList,
   CtaBand,
   FaqBlock,
   LinkGrid,
@@ -20,49 +20,64 @@ import {
   Section,
   SectionHead,
 } from '@/components/seo/Blocks';
-import { GARANTIE, PACK_LANCEMENT } from '@/lib/offers';
+import { PacksCards, NOTE_PACKS } from '@/components/lp/PacksLancement';
+import { BUDGET_META, GARANTIE, PACKS_LANCEMENT } from '@/lib/offers';
 import { SITE_URL } from '@/lib/contact';
 import { breadcrumbSchema, faqSchema, graph, serviceSchema, webPageSchema } from '@/lib/schema';
 
-const META_TITLE = 'Pack Lancement Entrepreneurs : site, fiche Google et prospection, 490 € HT';
+const META_TITLE = 'Packs Lancement Entrepreneurs : site, fiche Google, partenaires et publicité locale, dès 490 € HT';
 const META_DESCRIPTION =
-  "Site internet hébergé à votre nom, fiche Google et 3 mois d’Agent Partenaires pour 490 € HT, "
-  + "payés une fois. Puis 149 € HT/mois si vous continuez.";
+  "Site internet hébergé à votre nom et fiche Google, avec l’Agent Partenaires (490 € HT), "
+  + "la publicité Facebook et Instagram (790 € HT) ou les deux (990 € HT). Payés une fois.";
 
 const URL = `${SITE_URL}/pack-lancement`;
 
-const CONTENU = [
-  'Votre site internet, clair et rapide sur téléphone, hébergé à votre nom',
-  'Votre fiche établissement Google créée et remplie',
-  '3 mois d’Agent Partenaires : il vous trouve des apporteurs d’affaires',
-  'Mise en place en 48 heures',
-];
-
 const FAQ = [
   {
-    q: 'Que comprend le Pack Lancement Entrepreneurs ?',
-    a: "Un site internet hébergé à votre nom, votre fiche établissement Google créée et remplie, "
-      + "et trois mois d'Agent Partenaires, qui contacte par WhatsApp et email les prescripteurs "
-      + "de votre zone. Le tout pour 490 € HT, payés une seule fois.",
+    q: 'Quelle différence entre les trois packs ?',
+    a: "Les trois comprennent votre site internet hébergé à votre nom et votre fiche Google créée "
+      + "ou optimisée. Le Pack Partenaires (490 € HT) ajoute trois mois d'Agent Partenaires, qui "
+      + "contacte les prescripteurs de votre zone. Le Pack Publicité locale (790 € HT) ajoute un "
+      + "montage publicitaire et une campagne locale sur Facebook et Instagram, sans Agent "
+      + "Partenaires. Le Pack Ultime (990 € HT) réunit les deux, avec trois variantes publicitaires.",
   },
   {
-    q: 'Et après les 3 mois ?',
-    a: `Vous continuez sur simple demande écrite, à 149 € HT par mois, sans engagement. ${GARANTIE} Cette garantie porte sur l'abonnement mensuel : les 3 mois du Pack sont payés d'avance et non remboursables une fois le site livré. `
-      + "Si vous arrêtez, le site et la fiche Google restent à vous.",
+    q: 'Quels frais après le prix du pack ?',
+    a: "Pack Partenaires : rien pendant trois mois, puis 149 € HT par mois si vous poursuivez "
+      + "l'Agent Partenaires, sans engagement. Pack Publicité locale : 200 € HT par mois de gestion "
+      + "Meta dès le lancement des annonces. Pack Ultime : 200 € HT par mois de gestion Meta dès le "
+      + "lancement des annonces (non incluse dans les 990 €), puis 149 € HT par mois pour l'Agent "
+      + "Partenaires après les trois mois inclus si vous poursuivez, soit 349 € HT par mois avec les "
+      + "deux services. " + BUDGET_META,
+  },
+  {
+    q: 'Faut-il tourner des vidéos ?',
+    a: "Aucun tournage n'est inclus dans les packs : vous fournissez des vidéos exploitables de "
+      + "votre activité. Les trois variantes du Pack Ultime peuvent utiliser les mêmes séquences, "
+      + "avec des accroches et des angles différents (le besoin du client, vos réalisations et vos "
+      + "éléments de confiance, l'offre et la demande de devis). Ce ne sont pas trois tournages.",
+  },
+  {
+    q: 'La publicité garantit-elle des clients ?',
+    a: "Non. La publicité vous apporte des demandes de contact : des personnes qui laissent leurs "
+      + "coordonnées. Certaines deviennent des prospects qualifiés, puis des rendez-vous, puis des "
+      + "clients signés, selon votre zone, votre offre et votre réactivité. Nous ne garantissons "
+      + "aucun nombre de demandes, de rendez-vous ou de ventes.",
+  },
+  {
+    q: 'Et la garantie de l’Agent Partenaires ?',
+    a: `${GARANTIE} Elle porte sur l'abonnement mensuel de l'Agent Partenaires qui suit les trois mois inclus : ces trois mois sont payés d'avance et non remboursables une fois le site livré. `
+      + "Elle ne s'étend pas à la publicité Meta, aux vidéos ni au budget publicitaire.",
   },
   {
     q: 'Le site m’appartient vraiment ?',
     a: "Oui. Il est hébergé à votre nom, comme le nom de domaine et la fiche Google. Vous ne "
-      + "dépendez pas de nous.",
+      + "dépendez pas de nous. Si vous arrêtez, le site et la fiche restent à vous.",
   },
   {
-    q: 'À qui s’adresse le pack ?',
+    q: 'À qui s’adressent les packs ?',
     a: "Aux entreprises qui se lancent ou qui n'ont pas encore de présence en ligne : "
       + "indépendants, artisans, TPE, prestataires de services.",
-  },
-  {
-    q: 'Il y a des frais cachés ?',
-    a: "Non. 490 € HT pour les trois mois, rien de plus.",
   },
 ];
 
@@ -76,7 +91,7 @@ export const metadata = {
 export default function PackLancementPage() {
   const breadcrumb = breadcrumbSchema([
     { name: 'Accueil', url: `${SITE_URL}/` },
-    { name: 'Pack Lancement Entrepreneurs', url: URL },
+    { name: 'Packs Lancement Entrepreneurs', url: URL },
   ]);
 
   return (
@@ -90,13 +105,15 @@ export default function PackLancementPage() {
             breadcrumb: { '@id': `${URL}#breadcrumb` },
           }),
           { ...breadcrumb, '@id': `${URL}#breadcrumb` },
-          serviceSchema({
-            name: PACK_LANCEMENT.name,
-            description: META_DESCRIPTION,
-            url: URL,
-            setup: PACK_LANCEMENT.setup,
-            monthly: PACK_LANCEMENT.monthly,
-          }),
+          ...PACKS_LANCEMENT.map((p) =>
+            serviceSchema({
+              name: p.name,
+              description: p.description,
+              url: URL,
+              setup: p.setup,
+              monthly: p.monthly,
+            })
+          ),
           faqSchema(FAQ),
         ])}
       />
@@ -104,37 +121,18 @@ export default function PackLancementPage() {
 
       <main className="flex flex-col">
         <Section className="pt-28 sm:pt-32">
-          <Breadcrumb items={[{ label: 'Accueil', href: '/' }, { label: 'Pack Lancement Entrepreneurs' }]} />
+          <Breadcrumb items={[{ label: 'Accueil', href: '/' }, { label: 'Packs Lancement Entrepreneurs' }]} />
           <PageTitle
             lead="Tout pour démarrer,"
-            accent="490 € HT pour 3 mois."
-            chapeau="Un site, une fiche Google et un agent qui vous trouve des apporteurs d’affaires. Payé une seule fois, rien de plus."
+            accent="trois packs dès 490 € HT."
+            chapeau="Un site et une fiche Google, avec l’agent qui vous trouve des apporteurs d’affaires, la publicité locale sur Facebook et Instagram, ou les deux. Payé une seule fois."
           />
         </Section>
 
         <Section className="pt-0">
-          <SectionHead eyebrow="Ce qui est inclus" />
-          <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,24rem)] lg:gap-16">
-            <div>
-              <h2 className="text-balance text-2xl font-semibold tracking-tight sm:text-[2rem]">
-                Exister sur Google et être recommandé
-              </h2>
-              <div className="mt-7">
-                <CheckList items={CONTENU} />
-              </div>
-            </div>
-
-            <div className="rounded-2xl border-2 border-[var(--primary)] bg-[var(--surface)] p-7">
-              <p className="font-mono text-[0.62rem] uppercase tracking-[0.16em] text-[var(--muted)]">
-                Pack Lancement Entrepreneurs
-              </p>
-              <p className="mt-4 font-display text-5xl font-bold tracking-tight">490 € HT</p>
-              <p className="mt-2 font-semibold">pour 3 mois, payés une seule fois</p>
-              <p className="mt-5 border-t border-[var(--border)] pt-5 text-sm leading-relaxed text-[var(--muted-strong)]">
-                Ensuite, sur simple demande écrite&nbsp;: 149 € HT / mois, sans engagement. {GARANTIE} Les 3 mois du Pack sont payés d&apos;avance et non remboursables une fois le site livré&nbsp;: la garantie porte sur l&apos;abonnement mensuel qui suit.
-              </p>
-            </div>
-          </div>
+          <SectionHead eyebrow="Les trois packs" />
+          <PacksCards />
+          <p className="mt-8 max-w-4xl text-xs leading-relaxed text-[var(--muted)]">{NOTE_PACKS}</p>
         </Section>
 
         <Section>
@@ -144,9 +142,9 @@ export default function PackLancementPage() {
               Un site lisible sur téléphone et une fiche établissement complète&nbsp;: la première
               chose qu’un client voit de vous.
             </Card>
-            <Card title="On vous recommande">
-              L’agent contacte les prescripteurs de votre zone. Vous ne parlez qu’aux gens
-              intéressés.
+            <Card title="On vous recommande, ou on vous voit">
+              L’agent contacte les prescripteurs de votre zone, la publicité touche les clients
+              de votre secteur. Selon le pack, l’un, l’autre ou les deux.
             </Card>
             <Card title="Vous restez libre">
               Site et fiche à votre nom, aucun engagement. Si vous arrêtez, le site et la fiche restent à vous.
@@ -155,7 +153,7 @@ export default function PackLancementPage() {
         </Section>
 
         <Section>
-          <FaqBlock items={FAQ} titre="Questions sur le Pack Lancement Entrepreneurs" />
+          <FaqBlock items={FAQ} titre="Questions sur les Packs Lancement" />
         </Section>
 
         <Section>
@@ -172,7 +170,7 @@ export default function PackLancementPage() {
 
         <Section className="pb-24 sm:pb-32">
           <CtaBand
-            titre="On vérifie ensemble que le pack vous correspond"
+            titre="On choisit ensemble le pack qui vous correspond"
             texte="15 minutes au téléphone, gratuit et sans engagement."
           />
         </Section>

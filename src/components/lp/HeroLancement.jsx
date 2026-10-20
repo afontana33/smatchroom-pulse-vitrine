@@ -1,6 +1,8 @@
 /**
- * Hero de conversion : l'offre d'entrée (Pack Lancement Entrepreneurs) est visible sans
- * scroller, avec son prix, son contenu et le bouton de rendez-vous.
+ * Hero de conversion : l'offre d'entrée (Pack Lancement Partenaires, le premier
+ * des trois Packs Lancement Entrepreneurs) est visible sans scroller, avec son
+ * prix, son contenu et le bouton de rendez-vous. Les deux autres packs sont
+ * annoncés sous le bouton et détaillés dans PacksLancement (#packs).
  *
  * Remplace HeroLp + Packs sur l'accueil. Les preuves suivent immédiatement :
  * ne rien intercaler entre ce bloc et #resultats.
@@ -8,12 +10,15 @@
 
 import { ArrowRight, Check, Phone, Star } from 'lucide-react';
 import { CALENDLY, TEL_DISPLAY, TEL_HREF } from '@/lib/contact';
+import { PACKS_LANCEMENT } from '@/lib/offers';
 
 const CONTENU = [
   'Votre site internet, hébergé à votre nom : il reste à vous si vous arrêtez',
-  'Votre fiche Google créée et remplie',
+  'Votre fiche Google créée ou optimisée',
   '3 mois d’Agent Partenaires : il vous trouve des apporteurs d’affaires',
 ];
+
+const AUTRES = PACKS_LANCEMENT.slice(1);
 
 const BENEFICES = [
   'En place en 48 heures',
@@ -73,7 +78,7 @@ export default function HeroLancement() {
           <div className="rounded-3xl border-2 border-[var(--primary)] bg-[var(--surface)] p-7 shadow-[var(--shadow-lg)] sm:p-9">
             <div className="flex flex-wrap items-center justify-between gap-3">
               <h2 className="font-display text-2xl font-semibold tracking-tight sm:text-3xl">
-                Pack Lancement Entrepreneurs
+                Pack Lancement Partenaires
               </h2>
               <span className="rounded-full bg-[var(--primary)] px-3 py-1 font-mono text-[0.62rem] uppercase tracking-[0.14em] text-white">
                 Tout compris
@@ -111,6 +116,26 @@ export default function HeroLancement() {
             </p>
 
             <CtaRdv className="mt-6 w-full" />
+
+            <a
+              href="#packs"
+              className="mt-5 flex flex-col gap-1 rounded-2xl border border-[var(--border)] px-5 py-4 text-sm transition-colors hover:border-[var(--primary)] sm:flex-row sm:items-center sm:justify-between"
+            >
+              <span className="text-[var(--muted-strong)]">
+                Avec publicité Facebook et Instagram&nbsp;:{' '}
+                {AUTRES.map((p, i) => (
+                  <span key={p.key}>
+                    {i > 0 && ' · '}
+                    <span className="font-semibold text-[var(--foreground)]">
+                      {p.short} {p.setup}&nbsp;€&nbsp;HT
+                    </span>
+                  </span>
+                ))}
+              </span>
+              <span className="whitespace-nowrap font-semibold text-[var(--primary-ink)]">
+                Voir les 3 packs →
+              </span>
+            </a>
           </div>
         </div>
       </div>

@@ -12,7 +12,7 @@
  */
 
 import { LEGAL, SITE_URL, TEL_DISPLAY } from '@/lib/contact';
-import { GARANTIE, PACK_LANCEMENT, PILIER_OFFERS, eur } from '@/lib/offers';
+import { BUDGET_META, GARANTIE, META_OFFERS, PACKS_LANCEMENT, PILIER_OFFERS, eur } from '@/lib/offers';
 import { METIERS, VILLES } from '@/lib/seo-local';
 
 export const dynamic = 'force-static';
@@ -39,8 +39,14 @@ SIREN ${LEGAL.siren} · TVA ${LEGAL.vat}. Téléphone : ${TEL_DISPLAY} (lundi au
 
 ## Ce que nous vendons
 
-Offre d'entrée :
-${offerLine(PACK_LANCEMENT)}
+Offres d'entrée, les trois Packs Lancement Entrepreneurs (prix payé une seule fois) :
+${PACKS_LANCEMENT.map((p) => `- ${p.name} : ${eur(p.setup)} € HT une seule fois. ${p.description}`).join('\n')}
+
+Publicité Facebook et Instagram seule :
+${META_OFFERS.map((o) => `- ${o.name} : ${eur(o.setup)} € HT de mise en place (${o.creations}), puis ${eur(o.monthly)} € HT par mois de gestion dès le lancement des annonces.`).join('\n')}
+Pour les offres Essentiel et Multi-créations, le client fournit les vidéos : aucun tournage n'est inclus,
+et les trois variantes peuvent utiliser les mêmes séquences avec des accroches différentes.
+${BUDGET_META} Aucun nombre de demandes, de rendez-vous ou de ventes n'est garanti.
 
 Les trois briques et l'offre B2B :
 ${PILIER_OFFERS.map(offerLine).join('\n')}
@@ -54,8 +60,7 @@ contacte directement les décideurs des entreprises visées, en priorité celles
 signal d'achat (recrutement, création, nouveau dirigeant, réaction LinkedIn). Les deux écrivent
 par WhatsApp et par email, jamais par LinkedIn.
 Garantie des deux agents : ${GARANTIE}
-Le budget publicitaire Meta n'est pas
-facturé par nous : il est payé directement à Meta par le client.
+La garantie ne s'étend pas à la publicité Meta, aux vidéos ni au budget publicitaire.
 
 ## Ce que nous ne faisons pas
 

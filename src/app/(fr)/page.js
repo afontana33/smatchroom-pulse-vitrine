@@ -9,12 +9,13 @@ import SuiviHumain from '@/components/lp/SuiviHumain';
 import MethodeB2B from '@/components/lp/MethodeB2B';
 import Preuves from '@/components/lp/Preuves';
 import AvisLp from '@/components/lp/AvisLp';
+import PacksLancement from '@/components/lp/PacksLancement';
 import FaqLp from '@/components/lp/FaqLp';
 import FinalCtaLp from '@/components/lp/FinalCtaLp';
 import Footer from '@/components/Footer';
 import JsonLd from '@/components/JsonLd';
 import { QUESTIONS } from '@/lib/faq';
-import { PACK_LANCEMENT, PILIER_OFFERS } from '@/lib/offers';
+import { PACKS_LANCEMENT, PILIER_OFFERS } from '@/lib/offers';
 import { SITE_URL } from '@/lib/contact';
 import { alternatesFor } from '@/lib/i18n';
 import { faqSchema, graph, serviceSchema, webPageSchema } from '@/lib/schema';
@@ -31,6 +32,8 @@ import { faqSchema, graph, serviceSchema, webPageSchema } from '@/lib/schema';
  * Ordre voulu (passe conversion 2026-10-11) : offre d'entrée et rendez-vous
  * dès le hero, preuves juste après, puis le détail des piliers, l'offre B2B,
  * qui nous sommes. Packs, AutresAgents et TeamLp retirés de l'accueil.
+ * 20/10/2026 : les trois Packs Lancement (PacksLancement, #packs) ajoutés après
+ * les avis, la carte du hero reste sur le Pack Partenaires.
  *
  * La FAQ est revenue (FaqLp), juste avant le dernier appel : elle ne documente
  * pas le produit, elle lève les trois objections qui font reporter la prise de
@@ -48,8 +51,8 @@ import { faqSchema, graph, serviceSchema, webPageSchema } from '@/lib/schema';
    pas d'équivalent anglais et gardent leur seule canonique. */
 const META_TITLE = 'Prospection B2B et apporteurs d’affaires · SmatchRoom Pulse';
 const META_DESCRIPTION =
-  "Agents de prospection par WhatsApp et email dès 149 € HT/mois sans engagement. Pack Lancement Entrepreneurs "
-  + "490 € HT : site, fiche Google et 3 mois d'agent.";
+  "Agents de prospection par WhatsApp et email dès 149 € HT/mois sans engagement. Packs Lancement dès "
+  + "490 € HT : site, fiche Google, et agent ou publicité Facebook et Instagram.";
 
 export const metadata = {
   title: META_TITLE,
@@ -59,7 +62,7 @@ export const metadata = {
 
 export default function Page() {
   /* Les offres présentées sur l'accueil, avec leur prix. */
-  const services = [PACK_LANCEMENT, ...PILIER_OFFERS].map((o) =>
+  const services = [...PACKS_LANCEMENT, ...PILIER_OFFERS].map((o) =>
     serviceSchema({
       name: o.name,
       description: o.description,
@@ -86,6 +89,7 @@ export default function Page() {
       <HeroLancement />
       <Preuves />
       <AvisLp />
+      <PacksLancement />
       <Piliers />
       <DeuxAgents />
       <MetiersPrescripteurs />

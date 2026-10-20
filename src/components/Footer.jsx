@@ -26,7 +26,7 @@ const CONTENT = {
       { href: '/#qui-sommes-nous', label: 'Qui nous sommes' },
       { href: '/#piliers', label: 'Nos offres et nos prix' },
       { href: '/#agent-clients', label: 'Agent Clients (B2B)' },
-      { href: '/pack-lancement', label: 'Pack Lancement Entrepreneurs' },
+      { href: '/pack-lancement', label: 'Packs Lancement Entrepreneurs' },
       { href: '/apporteur-affaires', label: 'Trouver des apporteurs d’affaires' },
       { href: '/prospection-b2b', label: 'Prospection B2B' },
       { href: '/site-web-artisan', label: 'Site internet et fiche Google' },

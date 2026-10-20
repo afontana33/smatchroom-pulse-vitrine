@@ -1,15 +1,17 @@
 /**
  * Miroir numérique des prix, pour les données structurées uniquement.
  *
- * ⚠ Ce fichier n'est JAMAIS affiché. Les prix visibles restent dans
- * `Piliers.jsx` (les trois briques), `Packs.jsx` (les packs),
+ * ⚠ Ce fichier n'est JAMAIS affiché. Exception depuis le 20/10/2026 :
+ * PACKS_LANCEMENT et META_OFFERS sont aussi lus pour l'affichage
+ * (PacksLancement.jsx, Piliers.jsx, /publicite-facebook-instagram). Les autres
+ * prix visibles restent dans `Piliers.jsx` (les trois briques),
  * `AgentClients.jsx` (l'offre B2B) et `AutresAgents.jsx` (les cinq agents
  * complémentaires). Une correction de prix se fait donc à deux endroits : la
  * source d'affichage, et ici.
  *
  * Pourquoi ce doublon plutôt qu'un import depuis les composants : les
- * composants portent des chaînes destinées à l'œil (« 690 € HT
- * si vous filmez · 1 490 € HT avec notre vidéaste »), pas des nombres. Les
+ * composants portent des chaînes destinées à l'œil (« dès 490 € HT
+ * de mise en place »), pas des nombres. Les
  * parser pour schema.org donnerait un code fragile qui casse au premier
  * changement de formulation, et un prix faux dans une donnée structurée fait
  * perdre l'extrait enrichi.
@@ -76,10 +78,10 @@ export const PILIER_OFFERS = [
   },
   {
     key: 'acquisition-meta',
-    name: 'Acquisition Meta',
+    name: 'Publicité Facebook et Instagram',
     description:
-      'Votre activité filmée, montée et diffusée en publicité sur Facebook et Instagram auprès des clients de votre zone, les demandes tombant directement dans votre agent.',
-    setup: 690,
+      'Création de vos publicités à partir de vos vidéos, configuration d’une campagne locale de génération de prospects et d’un formulaire de demande de contact. Budget publicitaire non inclus, réglé par le client directement à Meta.',
+    setup: 490,
     setupFrom: true,
     monthly: 200,
   },
@@ -151,13 +153,131 @@ export const ALL_OFFERS = [...PILIER_OFFERS, ...AGENT_OFFERS];
    uniquement : ni les frais de création ni les 3 mois du Pack Lancement Entrepreneurs. */
 export const GARANTIE = 'Aucun rendez-vous dans le mois ? Le mois suivant ne vous est pas facturé.';
 
-/* Offre d'entrée : site + fiche Google + 3 mois d'Agent Partenaires, payés une
-   fois. Affichée dans HeroLancement et /pack-lancement. */
-export const PACK_LANCEMENT = {
-  key: 'pack-lancement',
-  name: 'Pack Lancement Entrepreneurs',
-  description:
-    "Site internet hébergé à votre nom, fiche établissement Google et trois mois d'Agent Partenaires, payés une seule fois. Ensuite 149 € HT par mois, sans engagement.",
-  setup: 490,
-  monthly: 0,
-};
+/* Budget publicitaire : phrase unique, affichée près de chaque offre qui
+   comprend de la publicité Meta. Ne pas y ajouter de minimum de budget. */
+export const BUDGET_META =
+  'Budget publicitaire non inclus : vous définissez votre budget et le réglez directement à Meta depuis votre compte publicitaire. SmatchRoom facture la création et la gestion de vos campagnes.';
+
+/* Les trois Packs Lancement Entrepreneurs (validés le 20/10/2026). Affichés par
+   PacksLancement.jsx (accueil et /pack-lancement) ; la carte du hero reprend le
+   Pack Partenaires. `monthly` = 0 : le prix du pack est payé une fois ; les frais
+   récurrents éventuels (gestion Meta, Agent Partenaires après 3 mois) sont
+   décrits dans `recurring`, pas dans les données structurées. */
+export const PACKS_LANCEMENT = [
+  {
+    key: 'pack-lancement-partenaires',
+    name: 'Pack Lancement Partenaires',
+    short: 'Partenaires',
+    pitch: 'Lancez votre présence en ligne et développez un réseau de professionnels susceptibles de vous recommander.',
+    description:
+      "Site internet hébergé à votre nom, fiche établissement Google et trois mois d'Agent Partenaires, payés une seule fois. Pas de publicité Meta incluse. Ensuite 149 € HT par mois pour l'Agent Partenaires si vous poursuivez, sans engagement.",
+    setup: 490,
+    monthly: 0,
+    included: [
+      'Site internet, hébergé à votre nom',
+      'Fiche Google Business Profile créée ou optimisée',
+      '3 mois d’Agent Partenaires inclus',
+    ],
+    creations: null,
+    excluded: 'Pas de publicité Meta incluse',
+    recurring: ['Après les 3 mois : Agent Partenaires à 149 € HT / mois si vous poursuivez, sans engagement'],
+    meta: false,
+    cta: 'Choisir le Pack Partenaires',
+  },
+  {
+    key: 'pack-lancement-publicite-locale',
+    name: 'Pack Lancement Publicité locale',
+    short: 'Publicité locale',
+    pitch: 'Lancez votre présence en ligne et obtenez de nouvelles demandes de contact grâce à la publicité locale sur Facebook et Instagram.',
+    description:
+      "Site internet hébergé à votre nom, fiche établissement Google, un montage publicitaire à partir de vos vidéos, textes publicitaires, campagne locale de génération de prospects sur Facebook et Instagram et formulaire de demande de contact. Pas d'Agent Partenaires inclus. Gestion Meta 200 € HT par mois dès le lancement des annonces ; budget publicitaire réglé par le client directement à Meta.",
+    setup: 790,
+    monthly: 0,
+    included: [
+      'Site internet, hébergé à votre nom',
+      'Fiche Google Business Profile créée ou optimisée',
+      '1 montage publicitaire à partir de vos vidéos',
+      'Rédaction des textes publicitaires',
+      'Campagne locale Facebook et Instagram configurée',
+      'Formulaire de demande de contact',
+    ],
+    creations: '1 création publicitaire',
+    excluded: 'Pas d’Agent Partenaires inclus',
+    recurring: ['Gestion Meta : 200 € HT / mois dès le lancement des annonces'],
+    meta: true,
+    cta: 'Choisir le Pack Publicité locale',
+  },
+  {
+    key: 'pack-lancement-ultime',
+    name: 'Pack Lancement Ultime',
+    short: 'Ultime',
+    badge: 'Les deux leviers réunis',
+    pitch: 'Combinez votre présence en ligne, la recherche de partenaires et la publicité locale pour développer plusieurs sources d’opportunités.',
+    description:
+      "Site internet hébergé à votre nom, fiche établissement Google, trois mois d'Agent Partenaires, trois variantes publicitaires à partir de vos vidéos avec accroches et textes adaptés, campagne locale de génération de prospects sur Facebook et Instagram et formulaire de demande de contact. Gestion Meta 200 € HT par mois dès le lancement des annonces (non incluse dans le prix du pack) ; budget publicitaire réglé par le client directement à Meta. Après les trois mois, Agent Partenaires à 149 € HT par mois si poursuite.",
+    setup: 990,
+    monthly: 0,
+    included: [
+      'Site internet, hébergé à votre nom',
+      'Fiche Google Business Profile créée ou optimisée',
+      '3 mois d’Agent Partenaires inclus',
+      '3 variantes publicitaires à partir de vos vidéos',
+      'Accroches et textes adaptés à chaque variante',
+      'Campagne locale Facebook et Instagram configurée',
+      'Formulaire de demande de contact',
+    ],
+    creations: '3 variantes publicitaires',
+    recurring: [
+      'Gestion Meta : 200 € HT / mois dès le lancement des annonces (non incluse dans les 990 €)',
+      'Après les 3 mois : Agent Partenaires à 149 € HT / mois si vous poursuivez',
+      'Soit 349 € HT / mois si vous gardez les deux services',
+    ],
+    meta: true,
+    cta: 'Choisir le Pack Ultime',
+  },
+];
+
+/* Rétrocompatibilité : l'offre d'entrée historique est le Pack Partenaires. */
+export const PACK_LANCEMENT = PACKS_LANCEMENT[0];
+
+/* Offres de publicité Facebook et Instagram seules. L'offre avec vidéaste
+   garde son périmètre d'origine. */
+export const META_OFFERS = [
+  {
+    key: 'meta-essentiel',
+    name: 'Meta Essentiel',
+    setup: 490,
+    monthly: 200,
+    creations: '1 montage publicitaire',
+    included: [
+      '1 montage publicitaire à partir de vos vidéos',
+      'Textes publicitaires',
+      'Campagne locale de génération de prospects configurée',
+      'Formulaire de demande de contact',
+    ],
+  },
+  {
+    key: 'meta-multi',
+    name: 'Meta Multi-créations',
+    setup: 690,
+    monthly: 200,
+    creations: '3 variantes publicitaires',
+    included: [
+      '3 variantes publicitaires à partir de vos vidéos',
+      'Accroches et textes adaptés',
+      'Campagne locale de génération de prospects configurée',
+      'Formulaire de demande de contact',
+    ],
+  },
+  {
+    key: 'meta-videaste',
+    name: 'Avec notre vidéaste',
+    setup: 1490,
+    monthly: 200,
+    creations: 'Tournage sur place par notre vidéaste',
+    included: [
+      'Notre vidéaste se déplace pour filmer votre activité',
+      'Montage, diffusion et suivi des campagnes',
+    ],
+  },
+];

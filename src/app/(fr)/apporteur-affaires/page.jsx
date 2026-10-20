@@ -60,7 +60,7 @@ const FAQ = [
   {
     q: 'Combien coûte l’Agent Partenaires ?',
     a: `149 € HT par mois, sans frais de création et sans engagement. ${GARANTIE} `
-      + "Il est aussi inclus dans le Pack Lancement Entrepreneurs : site, fiche Google et 3 mois d'agent pour 490 € HT.",
+      + "Il est aussi inclus trois mois dans le Pack Lancement Partenaires (site, fiche Google et 3 mois d'agent pour 490 € HT) et dans le Pack Lancement Ultime (990 € HT, avec la publicité Facebook et Instagram).",
   },
   {
     q: 'Quelle différence avec l’Agent Clients ?',
@@ -163,7 +163,7 @@ export default function ApporteurAffairesPage() {
                 href="/pack-lancement"
                 className="mt-4 inline-flex text-sm font-semibold text-[var(--primary-ink)] hover:underline"
               >
-                Inclus dans le Pack Lancement Entrepreneurs à 490 € HT
+                Inclus 3 mois dans les Packs Lancement Partenaires (490 € HT) et Ultime (990 € HT)
               </a>
             </div>
           </div>
@@ -214,7 +214,7 @@ export default function ApporteurAffairesPage() {
           <LinkGrid
             titre="Aller plus loin"
             links={[
-              { href: '/pack-lancement', label: 'Pack Lancement Entrepreneurs' },
+              { href: '/pack-lancement', label: 'Packs Lancement Entrepreneurs' },
               { href: '/prospection-b2b', label: 'Agent Clients (prospection B2B)' },
               { href: '/site-web-artisan', label: 'Site internet et fiche Google' },
               { href: '/publicite-facebook-instagram', label: 'Publicité Facebook et Instagram' },
