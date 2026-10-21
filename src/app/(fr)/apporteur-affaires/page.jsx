@@ -80,7 +80,7 @@ const FAQ = [
   },
   {
     q: 'En combien de temps ça démarre ?',
-    a: "Environ une semaine entre l’appel de cadrage et les premiers messages : vous validez les messages, puis la mise en route se fait sous 48 heures après réception du paiement et des accès. Les premières réponses arrivent en "
+    a: "Environ 48 heures entre l’appel de cadrage et les premiers messages : vous validez les messages, et la mise en route se fait dès réception du paiement et des accès. Les premières réponses arrivent en "
       + "général dans la semaine.",
   },
 ];

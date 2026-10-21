@@ -114,7 +114,7 @@ const FAQ = [
   },
   {
     q: 'En combien de temps est-ce en service ?',
-    a: "48 heures après réception du paiement et des accès pour un agent branché sur des données publiques, soit environ une semaine après le premier appel. Une connexion à votre CRM ou à "
+    a: "Environ 48 heures après le premier appel pour un agent branché sur des données publiques, dès réception du paiement et des accès. Une connexion à votre CRM ou à "
       + "votre ERP demande plus de cadrage, et la fourchette est donnée après le premier échange.",
   },
 ];

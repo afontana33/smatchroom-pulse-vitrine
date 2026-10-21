@@ -31,7 +31,7 @@ export const QUESTIONS = [
   },
   {
     q: 'Concrètement, la première semaine, il se passe quoi ?',
-    a: "Un appel de 30 minutes pour cadrer votre zone, vos métiers cibles et votre discours. Ensuite on construit votre agent sur une base déjà éprouvée chez d'autres entreprises, on vous fait valider les messages avant le premier envoi, puis, une fois le paiement et les accès reçus, on met en route sous 48 heures. Comptez environ une semaine entre le premier appel et les premiers messages. Rien ne part en votre nom avant que vous ayez validé les messages.",
+    a: "Un appel de 30 minutes pour cadrer votre zone, vos métiers cibles et votre discours. Ensuite on construit votre agent sur une base déjà éprouvée chez d'autres entreprises, on vous fait valider les messages avant le premier envoi, puis, une fois le paiement et les accès reçus, on met en route sous 48 heures. Comptez environ 48 heures entre le premier appel et les premiers messages. Rien ne part en votre nom avant que vous ayez validé les messages.",
   },
   {
     q: 'Ça marche avec WhatsApp ? Je risque un blocage de mon numéro ?',

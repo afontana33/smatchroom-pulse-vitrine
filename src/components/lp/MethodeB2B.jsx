@@ -29,8 +29,8 @@ const TEMP = {
 
 const CHIFFRES = [
   ['~300', 'décideurs contactés par mois et par numéro WhatsApp'],
-  ['20 %', 'de réponses en moyenne'],
-  ['1 semaine', 'entre le premier appel et les premiers messages'],
+  ['+20 %', 'de réponses en moyenne'],
+  ['48 h', 'entre le premier appel et les premiers messages'],
 ];
 
 export default function MethodeB2B() {
