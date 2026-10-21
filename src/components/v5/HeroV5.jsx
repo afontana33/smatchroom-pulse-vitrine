@@ -48,7 +48,7 @@ export default function HeroV5() {
 
       {/* depth 1 — atmosphère : glows additifs */}
       <DepthLayer depth={1} amplitude={160} className="pointer-events-none absolute inset-0">
-        <div className="absolute -left-40 top-0 h-[42rem] w-[42rem] rounded-full bg-[radial-gradient(circle,rgba(91, 11, 252,0.30),transparent_65%)] mix-blend-screen" />
+        <div className="absolute -left-40 top-0 h-[42rem] w-[42rem] rounded-full bg-[radial-gradient(circle,rgba(124, 58, 237,0.30),transparent_65%)] mix-blend-screen" />
         <div className="absolute -right-32 top-24 h-[36rem] w-[36rem] rounded-full bg-[radial-gradient(circle,rgba(196, 181, 253,0.20),transparent_65%)] mix-blend-screen [animation-delay:-6s]" />
         <div className="absolute bottom-0 left-1/3 h-[34rem] w-[34rem] rounded-full bg-[radial-gradient(circle,rgba(41,75,115,0.34),transparent_65%)] mix-blend-screen [animation-delay:-11s]" />
       </DepthLayer>

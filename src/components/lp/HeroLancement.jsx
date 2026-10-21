@@ -32,7 +32,7 @@ export function CtaRdv({ className = '' }) {
       href={CALENDLY}
       target="_blank"
       rel="noopener noreferrer"
-      className={`btn-primary inline-flex items-center justify-center gap-2.5 px-8 py-5 text-base font-bold shadow-[0_14px_40px_-10px_rgba(91, 11, 252,0.75)] sm:text-lg ${className}`}
+      className={`btn-primary inline-flex items-center justify-center gap-2.5 px-8 py-5 text-base font-bold shadow-[0_14px_40px_-10px_rgba(124, 58, 237,0.75)] sm:text-lg ${className}`}
     >
       Réserver mon créneau gratuit de 15 min
       <ArrowRight size={20} aria-hidden />

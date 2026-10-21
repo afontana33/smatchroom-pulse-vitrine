@@ -132,8 +132,8 @@ export default function Hero3D() {
         style={{ background: 'transparent' }}
       >
         <ambientLight intensity={0.3} />
-        <pointLight position={[6, 4, 4]} intensity={1.0} color="#5b0bfc" />
-        <pointLight position={[-6, -3, -4]} intensity={0.6} color="#5b0bfc" />
+        <pointLight position={[6, 4, 4]} intensity={1.0} color="#7c3aed" />
+        <pointLight position={[-6, -3, -4]} intensity={0.6} color="#7c3aed" />
         <FarParticles />
         <ParticleSphere />
       </Canvas>

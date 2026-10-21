@@ -44,7 +44,7 @@ function Wordmark({ onDark = false, home = '/' }) {
           `alt` vide et `aria-hidden` : le nom suit en texte juste à côté, un
           alt le ferait annoncer deux fois par un lecteur d'écran. */}
       <img
-        src="/brand/pulse-picto.png"
+        src="/brand/pulse-picto-clair.png"
         alt=""
         aria-hidden
         width={277}
@@ -110,7 +110,7 @@ export default function Nav({
       className={[
         'fixed inset-x-0 top-0 z-50 transition-all duration-300',
         scrolled
-          ? 'border-b border-[var(--border)] bg-[rgba(247,247,250,0.85)] backdrop-blur-xl'
+          ? 'border-b border-[var(--border)] bg-[rgba(11,9,18,0.82)] backdrop-blur-xl'
           : 'border-b border-transparent bg-transparent',
       ].join(' ')}
     >
@@ -197,7 +197,7 @@ export default function Nav({
       </div>
 
       {mobileOpen && (
-        <div className="h-[calc(100dvh-4.25rem)] overflow-y-auto overscroll-contain border-t border-[var(--border)] bg-[rgba(247,247,250,0.97)] px-5 py-6 backdrop-blur-xl lg:hidden">
+        <div className="h-[calc(100dvh-4.25rem)] overflow-y-auto overscroll-contain border-t border-[var(--border)] bg-[rgba(11,9,18,0.97)] px-5 py-6 backdrop-blur-xl lg:hidden">
           <nav className="flex flex-col gap-1">
             {links.map((l) => (
               <a

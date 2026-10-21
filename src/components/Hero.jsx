@@ -5,7 +5,7 @@ export default function Hero() {
     <section className="relative w-full overflow-hidden grain">
       {/* Mesh premium clair — deux registres (orange BTP / acier Corporate) */}
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
-        <div className="animate-mesh absolute -left-40 -top-40 h-[40rem] w-[40rem] rounded-full bg-[radial-gradient(circle,rgba(91, 11, 252,0.22),transparent_60%)] blur-3xl" />
+        <div className="animate-mesh absolute -left-40 -top-40 h-[40rem] w-[40rem] rounded-full bg-[radial-gradient(circle,rgba(124, 58, 237,0.22),transparent_60%)] blur-3xl" />
         <div className="animate-mesh absolute -right-32 top-10 h-[34rem] w-[34rem] rounded-full bg-[radial-gradient(circle,rgba(196, 181, 253,0.24),transparent_60%)] blur-3xl [animation-delay:-6s]" />
         <div className="animate-mesh absolute bottom-0 left-1/2 h-[32rem] w-[32rem] rounded-full bg-[radial-gradient(circle,rgba(41,75,115,0.16),transparent_60%)] blur-3xl [animation-delay:-11s]" />
       </div>

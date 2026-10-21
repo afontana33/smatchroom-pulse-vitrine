@@ -54,8 +54,8 @@ function Radar({ ville, etape }) {
         <svg viewBox="0 0 100 100" className="absolute inset-0 h-full w-full" aria-hidden>
           <defs>
             <linearGradient id="sim-faisceau" x1="0" y1="0" x2="1" y2="0">
-              <stop offset="0" stopColor="#5b0bfc" stopOpacity="0" />
-              <stop offset="1" stopColor="#5b0bfc" stopOpacity=".55" />
+              <stop offset="0" stopColor="#7c3aed" stopOpacity="0" />
+              <stop offset="1" stopColor="#7c3aed" stopOpacity=".55" />
             </linearGradient>
           </defs>
           {[48, 36, 24, 12].map((r) => (

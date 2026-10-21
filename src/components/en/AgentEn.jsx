@@ -54,7 +54,7 @@ export default function AgentEn() {
     >
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(900px_circle_at_15%_0%,rgba(91, 11, 252,0.18),transparent_60%)]"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(900px_circle_at_15%_0%,rgba(124, 58, 237,0.18),transparent_60%)]"
       />
 
       <div className="relative mx-auto max-w-7xl">

@@ -7,45 +7,47 @@
    ============================================================ */
 
 :root {
-  /* Base claire */
-  --background: #f7f7fa;      /* blanc froid (charte violet, noir, blanc, 21/10/2026) */
-  --surface: #ffffff;         /* cartes */
-  --surface-2: #f0eff6;       /* panneau subtil */
-  --surface-3: #e4e2ef;       /* panneau profond */
-  --foreground: #16151b;      /* encre graphite */
-  --muted: #66657a;           /* gris neutre */
-  --muted-strong: #3b3a4a;
+  /* Thème sombre premium · violet, noir et blanc (21/10/2026).
+     Le violet des boutons est foncé (blanc lisible dessus), le violet des
+     textes d'accent est clair (lisible sur le fond noir). */
+  --background: #0b0912;      /* noir teinté violet */
+  --surface: #14111d;         /* cartes */
+  --surface-2: #1c1828;       /* panneau subtil */
+  --surface-3: #262035;       /* panneau profond */
+  --foreground: #f4f2fa;      /* blanc cassé */
+  --muted: #9a95ad;           /* gris violacé */
+  --muted-strong: #cdc9da;
 
-  /* Accent marque */
-  --primary: #5b0bfc;
-  --primary-hover: #4a06d4;   /* hover / fills */
-  --primary-ink: #4a06d4;     /* violet lisible en texte sur clair */
-  --primary-soft: rgba(91, 11, 252, 0.10);
-  --primary-line: rgba(91, 11, 252, 0.28);
-  --primary-glow: rgba(91, 11, 252, 0.32);
+  /* Accent violet */
+  --primary: #6d28d9;
+  --primary-hover: #5b21b6;   /* hover / fills */
+  --primary-ink: #b69cff;     /* violet clair lisible en texte sur fond sombre */
+  --primary-soft: rgba(124, 58, 237, 0.16);
+  --primary-line: rgba(139, 92, 246, 0.45);
+  --primary-glow: rgba(124, 58, 237, 0.5);
 
-  /* Accent acier — registre Grands Comptes */
-  --steel: #1d1a73;
-  --steel-hover: #120f55;
-  --steel-soft: rgba(29, 26, 115, 0.08);
-  --steel-line: rgba(29, 26, 115, 0.22);
+  /* Second accent (Espace B2B) : indigo clair en texte */
+  --steel: #a5b4fc;
+  --steel-hover: #c7d2fe;
+  --steel-soft: rgba(165, 180, 252, 0.10);
+  --steel-line: rgba(165, 180, 252, 0.28);
 
-  /* Bandes sombres ponctuelles (showcase techno) */
-  --ink: #131217;
-  --ink-2: #1c1b22;
-  --on-ink: #f4f3f9;
-  --on-ink-muted: #a9a7bc;
+  /* Sections encre (encore plus sombres que le fond) */
+  --ink: #06050a;
+  --ink-2: #110e19;
+  --on-ink: #f4f2fa;
+  --on-ink-muted: #a9a4bb;
 
-  --signal: #16a34a;
+  --signal: #22c55e;
 
-  /* Hairlines */
-  --border: rgba(22, 21, 27, 0.09);
-  --border-strong: rgba(22, 21, 27, 0.16);
+  /* Bordures */
+  --border: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.14);
 
-  /* Ombres premium */
-  --shadow-sm: 0 1px 2px rgba(22, 21, 27, 0.05), 0 1px 3px rgba(22, 21, 27, 0.04);
-  --shadow-md: 0 4px 12px -4px rgba(22, 21, 27, 0.10), 0 12px 32px -12px rgba(22, 21, 27, 0.10);
-  --shadow-lg: 0 8px 24px -8px rgba(22, 21, 27, 0.12), 0 32px 64px -24px rgba(22, 21, 27, 0.16);
+  /* Ombres */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 12px -4px rgba(0, 0, 0, 0.5), 0 12px 32px -12px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 8px 24px -8px rgba(0, 0, 0, 0.55), 0 32px 64px -24px rgba(0, 0, 0, 0.6);
   --shadow-glow: 0 20px 60px -18px var(--primary-glow);
   /* ---- Pont shadcn/ui · mappe sur le design system Pulse ----
      Ne pas redefinir ici les tokens marque ci-dessus. */
@@ -135,9 +137,9 @@ html, body { overflow-x: hidden; }
 body {
   background-color: var(--background);
   background-image:
-    radial-gradient(1100px circle at 12% -5%, rgba(91, 11, 252, 0.10), transparent 45%),
-    radial-gradient(900px circle at 92% 8%, rgba(196, 181, 253, 0.12), transparent 50%),
-    radial-gradient(1000px circle at 80% 100%, rgba(41, 75, 115, 0.06), transparent 55%);
+    radial-gradient(1100px circle at 12% -5%, rgba(124, 58, 237, 0.22), transparent 45%),
+    radial-gradient(900px circle at 92% 8%, rgba(91, 33, 182, 0.18), transparent 50%),
+    radial-gradient(1000px circle at 80% 100%, rgba(67, 56, 202, 0.10), transparent 55%);
   background-attachment: fixed;
 }
 
@@ -212,7 +214,7 @@ h1, h2, h3 {
 
 /* verre clair */
 .glass {
-  background: rgba(255, 255, 255, 0.66);
+  background: rgba(20, 17, 29, 0.7);
   border: 1px solid var(--border);
   backdrop-filter: blur(14px) saturate(1.2);
   -webkit-backdrop-filter: blur(14px) saturate(1.2);
@@ -222,8 +224,8 @@ h1, h2, h3 {
 /* Bande sombre ponctuelle : showcase techno */
 .showcase-dark {
   background:
-    radial-gradient(700px circle at 20% 0%, rgba(91, 11, 252, 0.16), transparent 55%),
-    radial-gradient(600px circle at 100% 100%, rgba(41, 75, 115, 0.22), transparent 60%),
+    radial-gradient(700px circle at 20% 0%, rgba(124, 58, 237, 0.24), transparent 55%),
+    radial-gradient(600px circle at 100% 100%, rgba(67, 56, 202, 0.2), transparent 60%),
     var(--ink);
   color: var(--on-ink);
 }
@@ -235,8 +237,8 @@ h1, h2, h3 {
 
 /* Badge premium */
 .premium-badge {
-  background: linear-gradient(135deg, var(--steel), var(--steel-hover));
-  color: #eef3fa;
+  background: linear-gradient(135deg, #3730a3, #312e81);
+  color: #eef2ff;
 }
 
 /* Chip / pill */
@@ -268,13 +270,13 @@ h1, h2, h3 {
 .btn-ghost:hover { border-color: var(--primary-line); background: var(--surface-2); }
 
 .btn-steel {
-  background: var(--steel);
+  background: #3730a3;
   color: #fff;
   border-radius: 999px;
   box-shadow: 0 10px 30px -12px rgba(41, 75, 115, 0.5);
   transition: background 0.25s ease, box-shadow 0.25s ease, transform 0.15s ease;
 }
-.btn-steel:hover { background: var(--steel-hover); }
+.btn-steel:hover { background: #312e81; }
 .btn-steel:active { transform: translateY(1px); }
 
 /* ---------- Grain overlay ---------- */
@@ -284,7 +286,7 @@ h1, h2, h3 {
   inset: 0;
   pointer-events: none;
   opacity: 0.4;
-  mix-blend-mode: multiply;
+  mix-blend-mode: soft-light;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
 }
 
@@ -329,8 +331,8 @@ h1, h2, h3 {
 
 @keyframes pulse-ring {
   0% { box-shadow: 0 0 0 0 var(--primary-glow); }
-  70% { box-shadow: 0 0 0 12px rgba(91, 11, 252, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(91, 11, 252, 0); }
+  70% { box-shadow: 0 0 0 12px rgba(124, 58, 237, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(124, 58, 237, 0); }
 }
 .animate-pulse-ring { animation: pulse-ring 2.4s ease-out infinite; }
 

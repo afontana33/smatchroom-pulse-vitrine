@@ -30,7 +30,7 @@ export default function CtaEn() {
       <div aria-hidden className="absolute inset-0 bg-[var(--ink)]/78" />
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(900px_circle_at_20%_10%,rgba(91, 11, 252,0.22),transparent_60%)]"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(900px_circle_at_20%_10%,rgba(124, 58, 237,0.22),transparent_60%)]"
       />
 
       <div className="absolute inset-0 flex items-center px-5 sm:px-6">
@@ -56,7 +56,7 @@ export default function CtaEn() {
               href={TEL_HREF}
               className="group mt-8 inline-flex items-center gap-4 text-white transition-colors hover:text-[#c4b5fd]"
             >
-              <span className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-[var(--primary)] shadow-[0_10px_30px_-8px_rgba(91, 11, 252,0.7)] sm:h-14 sm:w-14">
+              <span className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-[var(--primary)] shadow-[0_10px_30px_-8px_rgba(124, 58, 237,0.7)] sm:h-14 sm:w-14">
                 <Phone size={22} strokeWidth={2.4} className="text-white" />
               </span>
               <span>

@@ -105,7 +105,7 @@ export default function Footer({ locale = 'fr' }) {
               {/* Même pictogramme que le header, voir le commentaire dans
                   Nav.jsx pour le choix du picto plutôt que du logo complet. */}
               <img
-                src="/brand/pulse-picto.png"
+                src="/brand/pulse-picto-clair.png"
                 alt=""
                 aria-hidden
                 width={277}
