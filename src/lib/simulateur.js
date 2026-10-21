@@ -79,6 +79,12 @@ export const ACTIVITES = [
     cible: 'sociétés qui viennent de se créer',
     accroche: 'Je travaille avec les entreprises qui démarrent sur leurs outils informatiques',
     benefice: "Les premières semaines sont le bon moment pour s'équiper correctement, plutôt que de tout changer dans un an.",
+    /* Signaux que l'agent surveille pour ce secteur ; le premier est celui que le test montre en direct. */
+    signaux: [
+      'Les sociétés qui viennent de se créer : elles choisissent leurs outils maintenant',
+      'Les entreprises qui recrutent un premier comptable, commercial ou responsable administratif',
+      "Les dirigeants qui publient sur LinkedIn à propos de croissance, d'organisation ou d'outils",
+    ],
   },
   {
     key: 'b2b-comptable',
@@ -88,6 +94,12 @@ export const ACTIVITES = [
     cible: 'sociétés qui viennent de se créer',
     accroche: "J'accompagne les sociétés qui se lancent sur leur comptabilité et leur gestion",
     benefice: 'Un premier exercice bien cadré évite beaucoup de mauvaises surprises au bilan.',
+    /* Signaux que l'agent surveille pour ce secteur ; le premier est celui que le test montre en direct. */
+    signaux: [
+      'Les sociétés qui viennent de se créer, avant leur premier exercice',
+      'Les changements de dirigeant, de forme juridique ou de siège publiés au BODACC',
+      'Les dirigeants qui parlent sur LinkedIn de création, de reprise ou de croissance',
+    ],
   },
   {
     key: 'b2b-assurance',
@@ -97,6 +109,12 @@ export const ACTIVITES = [
     cible: 'sociétés qui viennent de se créer',
     accroche: "J'accompagne les sociétés qui démarrent sur leurs assurances professionnelles",
     benefice: "Je peux comparer pour vous la RC pro, la multirisque ou la décennale avant votre premier client.",
+    /* Signaux que l'agent surveille pour ce secteur ; le premier est celui que le test montre en direct. */
+    signaux: [
+      'Les sociétés qui viennent de se créer : RC pro, multirisque ou décennale à souscrire',
+      'Les entreprises qui embauchent leurs premiers salariés : mutuelle et prévoyance obligatoires',
+      'Les déménagements de siège et ouvertures de locaux publiés au BODACC',
+    ],
   },
   {
     key: 'b2b-btp',
@@ -106,6 +124,12 @@ export const ACTIVITES = [
     cible: 'entreprises du bâtiment qui viennent de se créer',
     accroche: 'Je fournis les entreprises du bâtiment de la région en matériel',
     benefice: "Pour vos premiers chantiers, je peux vous ouvrir un compte rapidement et vous livrer sur place.",
+    /* Signaux que l'agent surveille pour ce secteur ; le premier est celui que le test montre en direct. */
+    signaux: [
+      'Les entreprises du bâtiment qui viennent de se créer et ouvrent leurs comptes fournisseurs',
+      'Les entreprises du bâtiment qui recrutent : signe de chantiers à venir',
+      'Les dirigeants du BTP qui publient sur LinkedIn leurs nouveaux chantiers',
+    ],
   },
   {
     key: 'b2b-chr',
@@ -115,6 +139,12 @@ export const ACTIVITES = [
     cible: 'restaurants, bars et commerces de bouche qui viennent de se créer',
     accroche: "Je travaille avec les restaurants et les bars de la région",
     benefice: "Pour votre ouverture, je peux vous proposer une offre de démarrage adaptée à votre volume.",
+    /* Signaux que l'agent surveille pour ce secteur ; le premier est celui que le test montre en direct. */
+    signaux: [
+      'Les restaurants, bars et commerces de bouche qui viennent de se créer',
+      'Les reprises de fonds de commerce publiées au BODACC',
+      'Les établissements qui recrutent du personnel de salle ou de cuisine',
+    ],
   },
   {
     key: 'b2b-commerce',
@@ -124,6 +154,12 @@ export const ACTIVITES = [
     cible: 'commerces qui viennent de se créer',
     accroche: 'Je travaille avec les commerces qui ouvrent dans la région',
     benefice: "Les premiers mois décident souvent de la suite, et je peux vous faire gagner du temps sur l'installation.",
+    /* Signaux que l'agent surveille pour ce secteur ; le premier est celui que le test montre en direct. */
+    signaux: [
+      'Les commerces qui viennent de se créer, avant leur ouverture',
+      'Les reprises de fonds de commerce publiées au BODACC',
+      'Les commerçants qui annoncent une ouverture ou un agrandissement sur les réseaux',
+    ],
   },
   {
     key: 'b2b-marketing',
@@ -133,6 +169,12 @@ export const ACTIVITES = [
     cible: 'sociétés qui viennent de se créer',
     accroche: "J'aide les entreprises qui démarrent à se faire connaître dans la région",
     benefice: "Un site et une fiche Google en place dès le lancement, ce sont des clients en plus dès les premières semaines.",
+    /* Signaux que l'agent surveille pour ce secteur ; le premier est celui que le test montre en direct. */
+    signaux: [
+      'Les sociétés qui viennent de se créer, souvent sans site ni fiche Google',
+      'Les entreprises qui recrutent un commercial : elles veulent plus de clients',
+      'Les dirigeants qui parlent sur LinkedIn de lancement ou de développement commercial',
+    ],
   },
   {
     key: 'b2b-rh',
@@ -142,6 +184,12 @@ export const ACTIVITES = [
     cible: 'sociétés qui viennent de se créer',
     accroche: 'J\'aide les entreprises qui démarrent à recruter leurs premiers salariés',
     benefice: 'Un premier recrutement réussi change tout, et je peux vous faire gagner plusieurs semaines.',
+    /* Signaux que l'agent surveille pour ce secteur ; le premier est celui que le test montre en direct. */
+    signaux: [
+      'Les sociétés qui viennent de se créer et recruteront bientôt',
+      "Les entreprises qui publient des offres d'emploi en ce moment",
+      'Les dirigeants qui annoncent sur LinkedIn une croissance ou des recrutements',
+    ],
   },
 ];
 

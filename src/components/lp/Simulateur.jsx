@@ -14,7 +14,7 @@
  */
 
 import { useEffect, useRef, useState } from 'react';
-import { ArrowRight, CheckCheck, ChevronDown, MapPin } from 'lucide-react';
+import { ArrowRight, CheckCheck, ChevronDown, MapPin, Radar as IconeRadar } from 'lucide-react';
 import { ACTIVITES } from '@/lib/simulateur';
 import { CALENDLY, TEL_DISPLAY, TEL_HREF } from '@/lib/contact';
 
@@ -399,9 +399,41 @@ export default function Simulateur() {
         </p>
         <p className="mt-2 text-sm text-[var(--muted-strong)]">
           {b2b
-            ? `Des ${res.cible} dans votre département ces 30 derniers jours, d’après le registre officiel (BODACC). Un dirigeant qui vient de créer sa société s’équipe maintenant : c’est le bon moment pour le contacter. En production, l’agent surveille aussi chaque jour les recrutements et les publications LinkedIn, et contacte environ 300 décideurs par mois.`
+            ? `Des ${res.cible} dans votre département ces 30 derniers jours, d’après le registre officiel (BODACC). Un dirigeant qui vient de créer sa société s’équipe maintenant : c’est le bon moment pour le contacter.`
             : `${res.cible} de votre zone, trouvés en quelques secondes. Sur un mois, l’agent en contacte environ 300, par WhatsApp et par email.`}
         </p>
+
+        {b2b && res.signaux?.length > 0 && (
+          <div className="mt-5 rounded-2xl bg-[var(--surface-2)] p-4">
+            <p className="flex items-center gap-2 text-sm font-semibold">
+              <IconeRadar size={16} aria-hidden className="text-[var(--primary-ink)]" />
+              Comment l’agent cherche vos clients
+            </p>
+            <ul className="mt-3 space-y-2.5">
+              {res.signaux.map((sig, i) => (
+                <li key={sig} className="flex items-start gap-2.5 text-sm leading-snug text-[var(--muted-strong)]">
+                  <span
+                    className={`mt-1.5 h-2 w-2 flex-shrink-0 rounded-full ${i === 0 ? 'bg-[var(--primary)]' : 'bg-[var(--border-strong)]'}`}
+                    aria-hidden
+                  />
+                  <span>
+                    {sig}
+                    {i === 0 && (
+                      <span className="ml-1.5 inline-block rounded-full bg-[var(--primary)] px-2 py-0.5 align-middle text-[0.65rem] font-bold uppercase tracking-wide text-white">
+                        testé à l’instant
+                      </span>
+                    )}
+                  </span>
+                </li>
+              ))}
+            </ul>
+            <p className="mt-3 text-xs text-[var(--muted)]">
+              Chaque matin, l’agent cherche ces signaux dans votre zone et écrit aux dirigeants concernés,
+              environ 300 par mois et par numéro WhatsApp. Les signaux se règlent avec vous à l’appel de
+              lancement.
+            </p>
+          </div>
+        )}
 
         <ul className="mt-5 space-y-2">
           {liste.map((l) => (

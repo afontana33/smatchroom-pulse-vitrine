@@ -123,5 +123,6 @@ export async function POST(request) {
     }),
     partenaire: nomCourt(premier.nom),
     cible: a.cible,
+    signaux: a.signaux || null,
   });
 }

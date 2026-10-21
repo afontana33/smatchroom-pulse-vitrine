@@ -33,7 +33,9 @@ export function lireCache(act, ville) {
 
 export function ipDe(request) {
   const h = request.headers;
-  return (h.get('x-forwarded-for') || '').split(',')[0].trim() || h.get('x-real-ip') || 'inconnue';
+  /* X-Real-IP d'abord : nginx le fixe à l'adresse réelle, alors que le début
+     de X-Forwarded-For peut être fourni par le visiteur lui-même. */
+  return h.get('x-real-ip') || (h.get('x-forwarded-for') || '').split(',').pop().trim() || 'inconnue';
 }
 
 /* L'IP n'est jamais stockée en clair. */
