@@ -51,8 +51,11 @@ export async function POST(request) {
   if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return refus('Adresse email invalide.');
   if (body?.consentement !== true) return refus('Merci de cocher la case pour lancer le test.');
 
-  const ipHash = hashIp(ipDe(request));
-  if (await simulationPrecedente(ipHash)) {
+  /* Sans IP transmise par nginx, tous les visiteurs auraient la même : on ne
+     bloque alors pas côté serveur (le navigateur garde quand même le résultat). */
+  const ip = ipDe(request);
+  const ipHash = hashIp(ip);
+  if (ip !== 'inconnue' && (await simulationPrecedente(ipHash))) {
     return Response.json({ deja: true, erreur: 'Vous avez déjà fait votre test gratuit.' }, { status: 409 });
   }
 
