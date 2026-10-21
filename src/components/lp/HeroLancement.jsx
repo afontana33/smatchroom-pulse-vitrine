@@ -46,9 +46,9 @@ const OFFRES = [
 ];
 
 const PRESSE = [
-  { nom: 'RTL2', logo: null },
-  { nom: 'Le Figaro', logo: null },
-  { nom: 'Sud Ouest', logo: null },
+  { nom: 'RTL2', logo: '/presse/rtl2.webp' },
+  { nom: 'Le Figaro', logo: '/presse/le-figaro.webp' },
+  { nom: 'Sud Ouest', logo: '/presse/sud-ouest.webp' },
 ];
 
 export function CtaRdv({ className = '' }) {
@@ -119,13 +119,19 @@ export default function HeroLancement() {
           {/* Bandeau presse (21/10/2026). Noms en texte tant que les logos
               officiels ne sont pas fournis : déposer le fichier dans
               public/presse/ et renseigner `logo` pour l'afficher à la place. */}
-          <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2">
-            <span className="font-mono text-[0.62rem] uppercase tracking-[0.16em] text-[var(--muted)]">
+          <div className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-3">
+            <span className="w-full font-mono sm:w-auto text-[0.62rem] uppercase tracking-[0.16em] text-[var(--muted)]">
               Ils ont parlé de nous
             </span>
             {PRESSE.map((m) =>
               m.logo ? (
-                <img key={m.nom} src={m.logo} alt={m.nom} className="h-6 w-auto opacity-80" />
+                <img
+                  key={m.nom}
+                  src={m.logo}
+                  alt={m.nom}
+                  height={48}
+                  className="h-12 w-auto rounded-lg shadow-[var(--shadow-md)] ring-1 ring-white/10"
+                />
               ) : (
                 <span key={m.nom} className="font-display text-lg font-semibold tracking-tight text-[var(--foreground)] opacity-85">
                   {m.nom}
