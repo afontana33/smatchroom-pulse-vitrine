@@ -88,6 +88,11 @@ export async function chercher(actKey, ville) {
 
   const a = activite(actKey);
   if (!a) throw new Error('activite');
+  if (a.type === 'b2b') {
+    const lieux = await chercherSignaux(a, ville);
+    cache.set(cleCache(actKey, ville), { at: Date.now(), lieux });
+    return lieux;
+  }
   if (process.env.SIMULATEUR_FIXTURE) { // tests locaux uniquement
     const { readFile } = await import('node:fs/promises');
     return trier(actKey, ville, JSON.parse(await readFile(process.env.SIMULATEUR_FIXTURE, 'utf8')));
@@ -143,6 +148,79 @@ function trier(actKey, ville, items) {
 
   cache.set(cleCache(actKey, ville), { at: Date.now(), lieux: melange });
   return melange;
+}
+
+/* Département d'une ville ou d'un code postal (API Géo de l'État). */
+async function departementDe(ville) {
+  const cp = /^\d{5}$/.test(ville);
+  const q = cp ? `codePostal=${ville}` : `nom=${encodeURIComponent(ville)}&boost=population`;
+  const res = await fetch(`https://geo.api.gouv.fr/communes?${q}&fields=codeDepartement,nom&limit=1`, {
+    signal: AbortSignal.timeout(10_000),
+    cache: 'no-store',
+  });
+  if (!res.ok) throw new Error(`geo ${res.status}`);
+  const [c] = await res.json();
+  return c?.codeDepartement || null;
+}
+
+const json = (v) => {
+  try {
+    return typeof v === 'string' ? JSON.parse(v) : v || {};
+  } catch {
+    return {};
+  }
+};
+
+/* « Président : RUZZA Jean-Marc Lucien nom d'usage : RUZZA » → « Jean-Marc ». */
+function prenomDirigeant(administration) {
+  const m = String(administration || '').match(/:\s*(?:[A-ZÀ-ÖØ-Þ'’-]{2,}\s+)+([A-ZÀ-ÖØ-Þ][a-zà-öø-ÿ]+(?:-[A-ZÀ-ÖØ-Þ][a-zà-öø-ÿ]+)?)/);
+  return m ? m[1] : null;
+}
+
+const dateCourte = (iso) => {
+  const [, m, j] = String(iso).split('-');
+  return j && m ? `${j}/${m}` : '';
+};
+
+/* Signaux d'achat pour l'Agent Clients B2B : sociétés immatriculées ces 30
+   derniers jours dans le département, d'après le BODACC (open data, gratuit).
+   Les SCI et les holdings sont écartées : ce ne sont pas des clients. */
+async function chercherSignaux(a, ville) {
+  const dep = await departementDe(ville);
+  if (!dep) return [];
+  const depuis = new Date(Date.now() - 30 * 86400_000).toISOString().slice(0, 10);
+  const where = `familleavis="creation" and numerodepartement="${dep}" and dateparution>="${depuis}"`;
+  const url =
+    'https://bodacc-datadila.opendatasoft.com/api/explore/v2.1/catalog/datasets/annonces-commerciales/records'
+    + `?limit=100&order_by=dateparution%20desc&where=${encodeURIComponent(where)}`;
+  const res = await fetch(url, { signal: AbortSignal.timeout(20_000), cache: 'no-store' });
+  if (!res.ok) throw new Error(`bodacc ${res.status}`);
+  const { results = [] } = await res.json();
+
+  const lieux = [];
+  const vus = new Set();
+  for (const r of results) {
+    const pers = json(r.listepersonnes).personne || {};
+    const etab = json(r.listeetablissements).etablissement || {};
+    const act = String(etab.activite || '');
+    const forme = String(pers.formeJuridique || '');
+    const texte = `${act} ${r.commercant || ''}`.toLowerCase();
+    if (pers.typePersonne !== 'pm') continue;
+    if (/civile|holding/i.test(forme) || /holding|prise de participation|gestion de (ses|son) patrimoine/i.test(act)) continue;
+    if (a.filtre && !a.filtre.some((f) => texte.includes(f))) continue;
+    if (!r.commercant || vus.has(r.commercant)) continue;
+    vus.add(r.commercant);
+    const resume = act.split(/[;.]/)[0].trim();
+    lieux.push({
+      nom: r.commercant,
+      categorie: `Nouvelle société · BODACC du ${dateCourte(r.dateparution)}${resume ? ` · ${resume.slice(0, 60)}${resume.length > 60 ? '…' : ''}` : ''}`,
+      ville: r.ville || ville,
+      signal: 'creation',
+      prenomDirigeant: prenomDirigeant(pers.administration),
+    });
+    if (lieux.length >= 18) break;
+  }
+  return lieux;
 }
 
 /* Enregistre le contact dans Supabase. Renvoie true si l'insertion a réussi. */

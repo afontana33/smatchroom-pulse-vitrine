@@ -14,19 +14,85 @@
  */
 
 import { useEffect, useRef, useState } from 'react';
-import { ArrowRight, CheckCheck, ChevronDown, Loader2, MapPin } from 'lucide-react';
+import { ArrowRight, CheckCheck, ChevronDown, MapPin } from 'lucide-react';
 import { ACTIVITES } from '@/lib/simulateur';
 import { CALENDLY, TEL_DISPLAY, TEL_HREF } from '@/lib/contact';
 
 const STOCKAGE = 'pulse-simulateur-v1';
 const RDV = `${CALENDLY}?utm_source=site&utm_medium=simulateur`;
 
-const ETAPES_ATTENTE = [
-  'Recherche des professionnels de votre zone sur Google Maps…',
-  'Tri par catégorie de partenaires…',
-  'Vérification des établissements ouverts…',
-  'Rédaction des messages en votre nom…',
+const ETAPES = {
+  partenaires: [
+    'Recherche des professionnels de votre zone sur Google Maps…',
+    'Tri par catégorie de partenaires…',
+    'Vérification des établissements ouverts…',
+    'Rédaction des messages en votre nom…',
+  ],
+  b2b: [
+    'Recherche des entreprises créées ces 30 derniers jours…',
+    'Filtrage selon votre secteur…',
+    'Identification des dirigeants…',
+    'Rédaction des messages en votre nom…',
+  ],
+};
+
+/* Points du radar : positions fixes (pas d'aléatoire, rendu identique serveur
+   et navigateur), qui s'allument les uns après les autres. */
+const POINTS = [
+  [62, 30], [30, 42], [70, 64], [44, 72], [24, 62], [56, 50], [78, 44], [38, 24], [50, 84], [84, 58],
 ];
+
+function Radar({ ville, etape }) {
+  return (
+    <div id="sim-radar" className="scroll-mt-24 rounded-3xl border-2 border-[var(--border-strong)] bg-[#0b1220] p-6 text-white shadow-[var(--shadow-lg)] sm:p-8">
+      <style>{`
+        @keyframes sim-balayage { to { transform: rotate(360deg); } }
+        @keyframes sim-point { 0%, 8% { opacity: 0; transform: scale(.3); } 14% { opacity: 1; transform: scale(1.4); } 22%, 100% { opacity: 1; transform: scale(1); } }
+      `}</style>
+      <p className="font-mono text-[0.62rem] uppercase tracking-[0.16em] text-white/60">Recherche en cours</p>
+      <div className="relative mx-auto mt-5 aspect-square w-full max-w-[19rem]">
+        <svg viewBox="0 0 100 100" className="absolute inset-0 h-full w-full" aria-hidden>
+          <defs>
+            <linearGradient id="sim-faisceau" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0" stopColor="#ff5a1f" stopOpacity="0" />
+              <stop offset="1" stopColor="#ff5a1f" stopOpacity=".55" />
+            </linearGradient>
+          </defs>
+          {[48, 36, 24, 12].map((r) => (
+            <circle key={r} cx="50" cy="50" r={r} fill="none" stroke="rgba(255,255,255,.14)" strokeWidth=".4" />
+          ))}
+          <line x1="2" y1="50" x2="98" y2="50" stroke="rgba(255,255,255,.1)" strokeWidth=".3" />
+          <line x1="50" y1="2" x2="50" y2="98" stroke="rgba(255,255,255,.1)" strokeWidth=".3" />
+          <g style={{ transformOrigin: '50px 50px', animation: 'sim-balayage 2.6s linear infinite' }}>
+            <path d="M50 50 L50 2 A48 48 0 0 1 91.6 26 Z" fill="url(#sim-faisceau)" />
+            <line x1="50" y1="50" x2="91.6" y2="26" stroke="#ff8a50" strokeWidth=".6" />
+          </g>
+          {POINTS.map(([x, y], i) => (
+            <circle
+              key={i}
+              cx={x}
+              cy={y}
+              r="1.6"
+              fill="#ff8a50"
+              style={{
+                transformOrigin: `${x}px ${y}px`,
+                opacity: 0,
+                animation: `sim-point 30s ease-out ${1.2 + i * 2.6}s forwards`,
+              }}
+            />
+          ))}
+          <circle cx="50" cy="50" r="1.8" fill="#fff" />
+        </svg>
+      </div>
+      <p className="mt-5 text-center font-display text-lg font-semibold">Autour de {ville}</p>
+      <p className="mt-1 text-center text-sm text-white/70" aria-live="polite">
+        {etape}
+      </p>
+      <p className="mt-1 text-center text-xs text-white/45">20 à 40 secondes</p>
+    </div>
+  );
+}
+
 
 const champ =
   'block w-full min-w-0 max-w-full rounded-xl border border-[var(--border-strong)] bg-[var(--surface)] px-4 py-3 text-[0.95rem] text-[var(--foreground)] outline-none transition-colors focus:border-[var(--primary)] disabled:opacity-70';
@@ -52,9 +118,9 @@ function Lieu({ l }) {
   return (
     <li className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] px-4 py-3">
       <span className="block truncate font-semibold text-[var(--foreground)]">{l.nom}</span>
-      <span className="mt-0.5 flex items-center gap-1.5 text-sm text-[var(--muted)]">
-        <MapPin size={13} aria-hidden className="flex-shrink-0" />
-        <span className="truncate">
+      <span className="mt-0.5 flex items-start gap-1.5 text-sm text-[var(--muted)]">
+        <MapPin size={13} aria-hidden className="mt-[0.2rem] flex-shrink-0" />
+        <span className="line-clamp-2">
           {l.categorie}
           {l.ville ? ` · ${l.ville}` : ''}
         </span>
@@ -185,6 +251,9 @@ export default function Simulateur() {
     }
     setTick(0);
     setEtat('attente');
+    requestAnimationFrame(() =>
+      document.getElementById('sim-radar')?.scrollIntoView({ behavior: 'smooth', block: 'start' }),
+    );
     try {
       const r = await fetch('/api/simulateur', {
         method: 'POST',
@@ -210,8 +279,13 @@ export default function Simulateur() {
 
   if (etat === 'deja') return <DejaFait />;
 
-  if (etat === 'saisie' || etat === 'attente') {
-    const attente = etat === 'attente';
+  if (etat === 'attente') {
+    const type = ACTIVITES.find((a) => a.key === form.activite)?.type || 'partenaires';
+    const etapes = ETAPES[type];
+    return <Radar ville={form.ville.trim()} etape={etapes[Math.min(tick, etapes.length - 1)]} />;
+  }
+
+  if (etat === 'saisie') {
     return (
       <form
         onSubmit={lancer}
@@ -238,7 +312,6 @@ export default function Simulateur() {
                 className={`${champ} mt-1.5`}
                 value={form[k]}
                 onChange={maj(k)}
-                disabled={attente}
                 required={k !== 'entreprise'}
                 {...props}
               />
@@ -248,14 +321,20 @@ export default function Simulateur() {
                 className={`${champ} mt-1.5`}
                 value={form[k]}
                 onChange={maj(k)}
-                disabled={attente}
                 required
               >
                 <option value="">Choisissez…</option>
-                {ACTIVITES.map((a) => (
-                  <option key={a.key} value={a.key}>
-                    {a.label}
-                  </option>
+                {[
+                  ['partenaires', 'Je cherche des apporteurs d’affaires'],
+                  ['b2b', 'Je vends aux entreprises (signaux d’achat)'],
+                ].map(([t, titre]) => (
+                  <optgroup key={t} label={titre}>
+                    {ACTIVITES.filter((a) => a.type === t).map((a) => (
+                      <option key={a.key} value={a.key}>
+                        {a.label}
+                      </option>
+                    ))}
+                  </optgroup>
                 ))}
               </select>
             )}
@@ -268,7 +347,6 @@ export default function Simulateur() {
             className="mt-0.5"
             checked={form.consentement}
             onChange={maj('consentement')}
-            disabled={attente}
             required
           />
           <span>
@@ -285,30 +363,19 @@ export default function Simulateur() {
 
         <button
           type="submit"
-          disabled={attente}
           className="btn-primary mt-6 inline-flex w-full items-center justify-center gap-2 px-5 py-3.5 text-sm font-bold disabled:opacity-80"
         >
-          {attente ? (
-            <>
-              <Loader2 size={16} aria-hidden className="animate-spin" />
-              Recherche en cours
-            </>
-          ) : (
-            <>
-              Lancer mon test gratuit
-              <ArrowRight size={16} aria-hidden />
-            </>
-          )}
+          Lancer mon test gratuit
+          <ArrowRight size={16} aria-hidden />
         </button>
         <p className="mt-3 text-center text-xs text-[var(--muted)]" aria-live="polite">
-          {attente
-            ? `${ETAPES_ATTENTE[Math.min(tick, ETAPES_ATTENTE.length - 1)]} (20 à 40 secondes)`
-            : 'Gratuit, une fois par entreprise. Résultat en moins d’une minute.'}
+          Gratuit, une fois par entreprise. Résultat en moins d’une minute.
         </p>
       </form>
     );
   }
 
+  const b2b = res.type === 'b2b';
   const liste = tout ? res.lieux : res.lieux.slice(0, LISTE_VISIBLE);
   const caches = res.lieux.length - LISTE_VISIBLE;
 
@@ -320,17 +387,20 @@ export default function Simulateur() {
         </p>
         <Conversation messages={res.conversation} partenaire={res.partenaire} />
         <p className="mt-2 text-xs text-[var(--muted)]">
-          Les messages de l’agent sont ceux qu’il enverrait ; les réponses du partenaire sont un exemple.
+          Les messages de l’agent sont ceux qu’il enverrait ; les réponses {b2b ? 'du dirigeant' : 'du partenaire'} sont un exemple.
         </p>
       </div>
 
       <div className="rounded-3xl border-2 border-[var(--primary)] bg-[var(--surface)] p-6 shadow-[var(--shadow-lg)] sm:p-8">
         <p className="font-display text-2xl font-semibold tracking-tight">
-          {res.total} partenaires trouvés autour de {form.ville}
+          {b2b
+            ? `${res.total} signaux d’achat détectés autour de ${form.ville}`
+            : `${res.total} partenaires trouvés autour de ${form.ville}`}
         </p>
         <p className="mt-2 text-sm text-[var(--muted-strong)]">
-          {res.cible} de votre zone, trouvés en quelques secondes. Sur un mois, l’agent en contacte
-          environ 300, par WhatsApp et par email.
+          {b2b
+            ? `Des ${res.cible} dans votre département ces 30 derniers jours, d’après le registre officiel (BODACC). Un dirigeant qui vient de créer sa société s’équipe maintenant : c’est le bon moment pour le contacter. En production, l’agent surveille aussi chaque jour les recrutements et les publications LinkedIn, et contacte environ 300 décideurs par mois.`
+            : `${res.cible} de votre zone, trouvés en quelques secondes. Sur un mois, l’agent en contacte environ 300, par WhatsApp et par email.`}
         </p>
 
         <ul className="mt-5 space-y-2">

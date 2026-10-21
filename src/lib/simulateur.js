@@ -1,19 +1,22 @@
 /**
  * Simulateur « Qui l'agent contacterait pour vous » (/simulateur).
  *
- * Le visiteur choisit son activité et sa ville ; la route /api/simulateur
- * cherche sur Google Maps (acteur Apify compass/crawler-google-places, le même
- * que les agents) les prescripteurs de sa zone. Le site montre les premiers,
- * puis la liste complète contre un prénom et un téléphone.
+ * Deux familles d'activités :
+ * - Agent Partenaires (type 'partenaires') : recherche Google Maps (acteur Apify
+ *   compass/crawler-google-places, le même que les agents) des prescripteurs
+ *   de la zone du visiteur ;
+ * - Agent Clients B2B (type 'b2b') : recherche de signaux d'achat, les
+ *   entreprises créées ces 30 derniers jours dans le département (BODACC,
+ *   open data gratuit), filtrées par mots-clés d'activité.
  *
- * Module sans dépendance : importé par la page, le composant client et les
- * routes serveur. Une activité = des recherches Google Maps (les catégories
- * de prescripteurs que l'agent viserait) et l'exemple de message.
+ * Module sans dépendance : importé par la page, le composant client et la
+ * route serveur.
  */
 
 export const ACTIVITES = [
   {
     key: 'batiment',
+    type: 'partenaires',
     label: 'Artisan du bâtiment (couvreur, plombier, électricien, peintre…)',
     recherches: ['agence immobilière', 'syndic de copropriété', 'architecte'],
     cible: 'agences immobilières, syndics et architectes',
@@ -22,6 +25,7 @@ export const ACTIVITES = [
   },
   {
     key: 'renovation',
+    type: 'partenaires',
     label: 'Rénovation, isolation, énergie',
     recherches: ['agence immobilière', 'diagnostiqueur immobilier', 'architecte'],
     cible: 'agences immobilières, diagnostiqueurs et architectes',
@@ -30,6 +34,7 @@ export const ACTIVITES = [
   },
   {
     key: 'nettoyage',
+    type: 'partenaires',
     label: 'Nettoyage, entretien, maintenance',
     recherches: ['syndic de copropriété', 'agence immobilière', 'centre d\'affaires'],
     cible: 'syndics, agences et centres d\'affaires',
@@ -38,6 +43,7 @@ export const ACTIVITES = [
   },
   {
     key: 'immobilier',
+    type: 'partenaires',
     label: 'Agent ou mandataire immobilier',
     recherches: ['notaire', 'diagnostiqueur immobilier', 'courtier en crédit immobilier'],
     cible: 'notaires, diagnostiqueurs et courtiers',
@@ -46,6 +52,7 @@ export const ACTIVITES = [
   },
   {
     key: 'patrimoine',
+    type: 'partenaires',
     label: 'Conseil en patrimoine, assurance, finance',
     recherches: ['expert-comptable', 'notaire', 'avocat'],
     cible: 'experts-comptables, notaires et avocats',
@@ -54,11 +61,87 @@ export const ACTIVITES = [
   },
   {
     key: 'conseil',
+    type: 'partenaires',
     label: 'Consultant, formateur, coach',
     recherches: ['expert-comptable', 'espace de coworking', 'chambre de commerce'],
     cible: 'experts-comptables, coworkings et réseaux d\'entreprises',
     accroche: 'J\'accompagne les dirigeants',
     benefice: "Vos clients dirigeants qui ont besoin d'un appui peuvent compter sur moi, et je vous renvoie l'ascenseur.",
+  },
+
+  /* Agent Clients B2B : `filtre` = mots cherchés dans l'activité déclarée au
+     BODACC (null = toutes les sociétés), `cible` = ce que le signal désigne. */
+  {
+    key: 'b2b-logiciel',
+    type: 'b2b',
+    label: 'Logiciel, SaaS, informatique pour entreprises',
+    filtre: null,
+    cible: 'sociétés qui viennent de se créer',
+    accroche: 'Je travaille avec les entreprises qui démarrent sur leurs outils informatiques',
+    benefice: "Les premières semaines sont le bon moment pour s'équiper correctement, plutôt que de tout changer dans un an.",
+  },
+  {
+    key: 'b2b-comptable',
+    type: 'b2b',
+    label: 'Expertise comptable, juridique, gestion',
+    filtre: null,
+    cible: 'sociétés qui viennent de se créer',
+    accroche: "J'accompagne les sociétés qui se lancent sur leur comptabilité et leur gestion",
+    benefice: 'Un premier exercice bien cadré évite beaucoup de mauvaises surprises au bilan.',
+  },
+  {
+    key: 'b2b-assurance',
+    type: 'b2b',
+    label: 'Assurance professionnelle, courtage, prévoyance',
+    filtre: null,
+    cible: 'sociétés qui viennent de se créer',
+    accroche: "J'accompagne les sociétés qui démarrent sur leurs assurances professionnelles",
+    benefice: "Je peux comparer pour vous la RC pro, la multirisque ou la décennale avant votre premier client.",
+  },
+  {
+    key: 'b2b-btp',
+    type: 'b2b',
+    label: 'Fournisseur, matériel ou location pour le BTP',
+    filtre: ['travaux', 'bâtiment', 'batiment', 'maçonnerie', 'maconnerie', 'plomberie', 'électricité', 'electricite', 'menuiserie', 'couverture', 'peinture', 'rénovation', 'renovation', 'carrelage', 'charpente', 'terrassement', 'isolation', 'chauffage', 'second œuvre', 'gros œuvre'],
+    cible: 'entreprises du bâtiment qui viennent de se créer',
+    accroche: 'Je fournis les entreprises du bâtiment de la région en matériel',
+    benefice: "Pour vos premiers chantiers, je peux vous ouvrir un compte rapidement et vous livrer sur place.",
+  },
+  {
+    key: 'b2b-chr',
+    type: 'b2b',
+    label: 'Fournisseur pour restaurants, bars et hôtels',
+    filtre: ['restaura', 'débit de boissons', 'debit de boissons', 'traiteur', 'hôtel', 'hotel', 'café', 'snack', 'pizz', 'brasserie', 'bar ', 'vente à emporter', 'boulangerie'],
+    cible: 'restaurants, bars et commerces de bouche qui viennent de se créer',
+    accroche: "Je travaille avec les restaurants et les bars de la région",
+    benefice: "Pour votre ouverture, je peux vous proposer une offre de démarrage adaptée à votre volume.",
+  },
+  {
+    key: 'b2b-commerce',
+    type: 'b2b',
+    label: 'Fournisseur ou services pour commerces',
+    filtre: ['commerce de détail', 'vente au détail', 'boutique', 'magasin', 'épicerie', 'epicerie', 'prêt-à-porter', 'pret-a-porter', 'coiffure', 'esthétique', 'esthetique', 'institut'],
+    cible: 'commerces qui viennent de se créer',
+    accroche: 'Je travaille avec les commerces qui ouvrent dans la région',
+    benefice: "Les premiers mois décident souvent de la suite, et je peux vous faire gagner du temps sur l'installation.",
+  },
+  {
+    key: 'b2b-marketing',
+    type: 'b2b',
+    label: 'Marketing, site internet, communication',
+    filtre: null,
+    cible: 'sociétés qui viennent de se créer',
+    accroche: "J'aide les entreprises qui démarrent à se faire connaître dans la région",
+    benefice: "Un site et une fiche Google en place dès le lancement, ce sont des clients en plus dès les premières semaines.",
+  },
+  {
+    key: 'b2b-rh',
+    type: 'b2b',
+    label: 'Recrutement, intérim, ressources humaines',
+    filtre: null,
+    cible: 'sociétés qui viennent de se créer',
+    accroche: 'J\'aide les entreprises qui démarrent à recruter leurs premiers salariés',
+    benefice: 'Un premier recrutement réussi change tout, et je peux vous faire gagner plusieurs semaines.',
   },
 ];
 
@@ -73,9 +156,19 @@ export const APERCU = 5;
    Règles reprises des agents : prénom seul au début, société uniquement dans
    la signature du premier message, l'agent parle à la première personne au
    nom du client, et ne promet ni heure ni créneau. */
-export function conversation(a, { nomLieu, villeLieu, ville, prenom, entreprise }) {
+export function conversation(a, { nomLieu, villeLieu, ville, prenom, entreprise, prenomDirigeant }) {
   const nom = nomCourt(nomLieu);
   const signature = entreprise ? `${prenom} · ${entreprise}` : prenom;
+  if (a.type === 'b2b') {
+    const salut = prenomDirigeant ? `Bonjour ${prenomDirigeant}, c'est ${prenom}.` : `Bonjour, c'est ${prenom}.`;
+    return [
+      { de: 'agent', texte: `${salut} Je vous contacte au sujet de ${nom} à ${villeLieu} : c'est bien vous qui venez de la créer ?\n\n${signature}` },
+      { de: 'partenaire', texte: "Oui, c'est moi." },
+      { de: 'agent', texte: `Merci, et félicitations pour le lancement ! ${a.accroche}. ${a.benefice} Seriez-vous ouvert à un court échange ?` },
+      { de: 'partenaire', texte: 'Oui, ça peut m’intéresser. Appelez-moi cette semaine.' },
+      { de: 'agent', texte: 'Très bien, je vous rappelle. Merci et bonne journée !' },
+    ];
+  }
   return [
     { de: 'agent', texte: `Bonjour, c'est ${prenom}. Je vous contacte au sujet de ${nom} à ${villeLieu} : c'est bien vous qui vous en occupez ?\n\n${signature}` },
     { de: 'partenaire', texte: "Oui, c'est moi." },

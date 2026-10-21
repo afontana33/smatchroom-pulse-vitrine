@@ -67,7 +67,12 @@ export async function POST(request) {
     return refus('La recherche n’a pas abouti. Réessayez dans un instant.', 502);
   }
   if (!lieux.length) {
-    return refus(`Nous n'avons rien trouvé autour de « ${ville} ». Essayez la ville la plus proche.`, 404);
+    return refus(
+      a.type === 'b2b'
+        ? `Aucune création correspondante ces 30 derniers jours autour de « ${ville} ». Essayez une grande ville proche ou un autre secteur.`
+        : `Nous n'avons rien trouvé autour de « ${ville} ». Essayez la ville la plus proche.`,
+      404,
+    );
   }
 
   await noterSimulation({ ip_hash: ipHash, activite: a.key, ville, prenom, entreprise: entreprise || null });
@@ -93,21 +98,28 @@ export async function POST(request) {
     console.error('[simulateur] lead', { enregistre, envoye, prenom, nom, telephone, metier: a.label, ville });
   }
 
-  /* Le partenaire de l'exemple : le nom le plus court des premiers résultats,
-     qui se lit le mieux dans une bulle de conversation. */
-  const premier = lieux
-    .slice(0, APERCU)
-    .reduce((m, l) => (nomCourt(l.nom).length < nomCourt(m.nom).length ? l : m));
+  /* L'interlocuteur de l'exemple. Partenaires : le nom le plus court des
+     premiers résultats, qui se lit le mieux dans une bulle. B2B : la création
+     la plus récente dont on connaît le prénom du dirigeant. */
+  const premier =
+    a.type === 'b2b'
+      ? lieux.find((l) => l.prenomDirigeant) || lieux[0]
+      : lieux
+          .slice(0, APERCU)
+          .reduce((m, l) => (nomCourt(l.nom).length < nomCourt(m.nom).length ? l : m));
 
   return Response.json({
+    type: a.type,
     total: lieux.length,
-    lieux,
+    /* Le prénom des dirigeants ne sert qu'au message d'exemple : il ne part pas dans la liste. */
+    lieux: lieux.map(({ prenomDirigeant, ...l }) => l),
     conversation: conversation(a, {
       nomLieu: premier.nom,
       villeLieu: premier.ville || ville,
       ville,
       prenom,
       entreprise,
+      prenomDirigeant: premier.prenomDirigeant,
     }),
     partenaire: nomCourt(premier.nom),
     cible: a.cible,

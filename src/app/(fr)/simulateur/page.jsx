@@ -78,15 +78,15 @@ export default function SimulateurPage() {
               <PageTitle
                 lead="Testez gratuitement :"
                 accent="voyez qui l’agent contacterait pour vous."
-                chapeau="Indiquez votre secteur et votre ville. En moins d’une minute, vous voyez les vrais partenaires de votre zone que l’Agent Partenaires contacterait à votre nom, et la conversation exacte qu’il mènerait avec eux."
+                chapeau="Indiquez votre secteur et votre ville. En moins d’une minute, vous voyez qui l’agent contacterait à votre nom : les partenaires de votre zone qui peuvent vous recommander, ou, si vous vendez aux entreprises, les sociétés qui viennent de se créer près de chez vous. Avec la conversation exacte qu’il mènerait."
               />
               <div className="mt-8">
                 <CheckList
                   items={[
-                    'De vrais établissements de votre zone, trouvés à l’instant',
+                    'De vrais établissements et de vraies créations d’entreprises, trouvés à l’instant',
                     'La conversation WhatsApp exacte, à votre nom',
                     'Gratuit, une fois par entreprise',
-                    `Ensuite : 149 € HT / mois, sans engagement. ${GARANTIE}`,
+                    `Ensuite : dès 149 € HT / mois, sans engagement. ${GARANTIE}`,
                   ]}
                 />
               </div>
