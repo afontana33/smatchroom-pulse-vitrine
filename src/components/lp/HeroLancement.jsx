@@ -8,7 +8,7 @@
  * ne rien intercaler entre ce bloc et #resultats.
  */
 
-import { ArrowRight, Check, Phone, Star } from 'lucide-react';
+import { ArrowRight, Check, Phone, Radar, Star } from 'lucide-react';
 import { CALENDLY, TEL_DISPLAY, TEL_HREF } from '@/lib/contact';
 import { PACKS_LANCEMENT } from '@/lib/offers';
 
@@ -45,6 +45,29 @@ export default function HeroLancement() {
     <section id="lancement" className="relative scroll-mt-24 px-5 pb-16 pt-24 sm:px-6 sm:pt-32 lg:pt-36">
       <div className="mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-12 lg:gap-14">
         <div className="lg:col-span-6">
+          {/* Test gratuit en tête de page (demande du 21/10/2026) : la réponse
+              visible à « je veux tester avant ». Mène au simulateur. */}
+          <a
+            href="/simulateur"
+            className="group mb-8 flex w-full max-w-xl items-center gap-4 rounded-2xl border-2 border-[var(--primary)] bg-[var(--surface)] p-4 shadow-[var(--shadow-lg)] transition-transform hover:-translate-y-0.5 sm:p-5"
+          >
+            <span className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-[var(--primary)] text-white">
+              <Radar size={24} aria-hidden />
+            </span>
+            <span className="min-w-0 flex-1">
+              <span className="block font-display text-xl font-semibold tracking-tight text-[var(--foreground)] sm:text-2xl">
+                Tester gratuitement
+              </span>
+              <span className="mt-0.5 block text-sm text-[var(--muted-strong)]">
+                Voyez en 1 minute qui l’agent contacterait pour vous, dans votre ville.
+              </span>
+            </span>
+            <ArrowRight
+              size={22}
+              aria-hidden
+              className="flex-shrink-0 text-[var(--primary-ink)] transition-transform group-hover:translate-x-1"
+            />
+          </a>
           <p className="eyebrow">Indépendants · TPE · PME · B2B</p>
           <h1 className="mt-4 text-balance text-4xl font-semibold leading-[1.04] tracking-tight sm:text-5xl lg:text-[3.8rem]">
             Vos meilleurs clients ne vous cherchent pas.{' '}

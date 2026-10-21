@@ -80,9 +80,9 @@ export default function Nav({
   /* Format national en français, international en anglais : voir
      TEL_DISPLAY_INTL dans lib/contact.js. */
   phone = TEL_DISPLAY,
-  /* Bouton « Tester gratuitement » vers le simulateur (demande du 21/10/2026) :
-     réponse visible à l'objection « je veux tester avant ». Français seulement,
-     le simulateur n'existe pas en anglais. */
+  /* Lien « Tester gratuitement » dans le menu mobile. Le bouton principal est
+     en tête de l'accueil (HeroLancement), au-dessus du titre (21/10/2026).
+     Français seulement, le simulateur n'existe pas en anglais. */
   test = locale === 'fr' ? { href: '/simulateur', label: 'Tester gratuitement', short: 'Test gratuit' } : null,
 }) {
   const [scrolled, setScrolled] = useState(false);
@@ -152,40 +152,15 @@ export default function Nav({
             <Phone size={15} strokeWidth={2.4} className={onDark ? 'text-[#ffb27a]' : 'text-[var(--primary-ink)]'} />
             {phone}
           </a>
-          {test ? (
-            <>
-              <a
-                href={CALENDLY}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={[
-                  'hidden items-center gap-2 rounded-full border-2 px-4 py-2 text-sm font-semibold transition-colors xl:inline-flex',
-                  onDark
-                    ? 'border-white/40 text-white hover:bg-white/10'
-                    : 'border-[var(--foreground)] text-[var(--foreground)] hover:bg-[var(--foreground)] hover:text-[var(--background)]',
-                ].join(' ')}
-              >
-                {cta}
-              </a>
-              <a
-                href={test.href}
-                className="btn-primary inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold"
-              >
-                {test.label}
-                <ArrowRight size={15} />
-              </a>
-            </>
-          ) : (
-            <a
-              href={CALENDLY}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-primary inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold"
-            >
-              {cta}
-              <ArrowRight size={15} />
-            </a>
-          )}
+          <a
+            href={CALENDLY}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-primary inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold"
+          >
+            {cta}
+            <ArrowRight size={15} />
+          </a>
         </div>
 
         {/* Sur mobile le numéro sort du menu burger : un appel ne doit jamais
@@ -202,18 +177,9 @@ export default function Nav({
         >
           <Phone size={15} strokeWidth={2.4} />
           <span className="hidden sm:inline">{phone}</span>
-          {/* Avec le bouton « Test gratuit », l'icône seule suffit sur petit écran. */}
-          {!test && <span className="sm:hidden">{callLabel}</span>}
+          <span className="sm:hidden">{callLabel}</span>
         </a>
 
-        {test && (
-          <a
-            href={test.href}
-            className="btn-primary ml-auto inline-flex h-10 items-center whitespace-nowrap px-3.5 text-sm font-bold lg:hidden"
-          >
-            {test.short}
-          </a>
-        )}
 
         <button
           onClick={() => setMobileOpen((v) => !v)}
