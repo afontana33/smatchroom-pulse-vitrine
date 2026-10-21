@@ -6,7 +6,7 @@
  * vit en mémoire du processus Next : un redémarrage le vide, sans conséquence.
  *
  * Variables d'environnement : APIFY_TOKEN (obligatoire), SUPABASE_URL et
- * SUPABASE_SERVICE_ROLE_KEY (règle « une fois » durable et contacts),
+ * SUPABASE_SERVICE_KEY, mêmes noms que dans agent-chasseur/.env (règle « une fois » durable et contacts),
  * SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS (alerte email à chaque contact),
  * LEADS_TO (destinataire, a.fontana@smatchroom.fr par défaut).
  */
@@ -43,7 +43,7 @@ export function hashIp(ip) {
 
 function supabase() {
   const url = process.env.SUPABASE_URL;
-  const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  const key = process.env.SUPABASE_SERVICE_KEY || process.env.SUPABASE_SERVICE_ROLE_KEY;
   if (!url || !key) return null;
   return {
     url,
