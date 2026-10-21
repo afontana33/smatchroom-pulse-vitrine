@@ -89,8 +89,8 @@ export default function Page() {
       <HeroLancement />
       <Preuves />
       <AvisLp />
-      <PacksLancement />
       <Piliers />
+      <PacksLancement />
       <DeuxAgents />
       <MetiersPrescripteurs />
       <AgentClients />

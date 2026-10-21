@@ -46,7 +46,7 @@ export default function TechDiff() {
       {/* depth 1 — atmosphère froide */}
       <DepthLayer depth={1} amplitude={140} className="pointer-events-none absolute inset-0">
         <div className="absolute left-1/4 top-0 h-[32rem] w-[32rem] rounded-full bg-[radial-gradient(circle,rgba(41,75,115,0.40),transparent_66%)] mix-blend-screen" />
-        <div className="absolute -right-24 bottom-0 h-[28rem] w-[28rem] rounded-full bg-[radial-gradient(circle,rgba(124, 58, 237,0.20),transparent_66%)] mix-blend-screen" />
+        <div className="absolute -right-24 bottom-0 h-[28rem] w-[28rem] rounded-full bg-[radial-gradient(circle,rgba(124,58,237,0.20),transparent_66%)] mix-blend-screen" />
       </DepthLayer>
 
       {/* depth 2 — grille */}

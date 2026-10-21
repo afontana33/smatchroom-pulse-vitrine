@@ -1,29 +1,48 @@
 /**
- * Hero de conversion : l'offre d'entrée (Pack Lancement Partenaires, le premier
- * des trois Packs Lancement Entrepreneurs) est visible sans scroller, avec son
- * prix, son contenu et le bouton de rendez-vous. Les deux autres packs sont
- * annoncés sous le bouton et détaillés dans PacksLancement (#packs).
+ * Hero de conversion : le test gratuit, le titre, puis à droite les quatre
+ * offres (deux agents, publicité Meta, site et fiche Google) avec leur prix et
+ * le bouton de rendez-vous. Les Packs Lancement restent détaillés plus bas
+ * (#packs), avec un lien sous le bouton (21/10/2026).
  *
  * Remplace HeroLp + Packs sur l'accueil. Les preuves suivent immédiatement :
  * ne rien intercaler entre ce bloc et #resultats.
  */
 
-import { ArrowRight, Check, Phone, Radar, Star } from 'lucide-react';
+import { ArrowRight, Building2, Globe, Handshake, Megaphone, Phone, Radar, Star } from 'lucide-react';
 import { CALENDLY, TEL_DISPLAY, TEL_HREF } from '@/lib/contact';
-import { PACKS_LANCEMENT } from '@/lib/offers';
 
-const CONTENU = [
-  'Votre site internet, hébergé à votre nom : il reste à vous si vous arrêtez',
-  'Votre fiche Google créée ou optimisée',
-  '3 mois d’Agent Partenaires : il vous trouve des apporteurs d’affaires',
-];
-
-const AUTRES = PACKS_LANCEMENT.slice(1);
-
-const BENEFICES = [
-  'En place en 48 heures',
-  'Vous ne parlez qu’aux gens intéressés',
-  'Les rendez-vous arrivent dans votre agenda',
+/* Les quatre offres, mises en avant en tête d'accueil à la place du Pack
+   Lancement (demande du 21/10/2026). Prix identiques à Piliers.jsx et
+   lib/offers.js : les changer ensemble. */
+const OFFRES = [
+  {
+    Icone: Handshake,
+    titre: 'Agent Partenaires',
+    texte: 'Il trouve les apporteurs d’affaires de votre zone et les contacte en votre nom.',
+    prix: '149 € HT / mois',
+    href: '/apporteur-affaires',
+  },
+  {
+    Icone: Building2,
+    titre: 'Agent Clients B2B',
+    texte: 'Il repère les entreprises prêtes à acheter et écrit à leurs dirigeants.',
+    prix: 'dès 340 € HT / mois',
+    href: '/prospection-b2b',
+  },
+  {
+    Icone: Megaphone,
+    titre: 'Publicité Facebook et Instagram',
+    texte: 'Vos vidéos montées en publicités locales, avec formulaire de contact.',
+    prix: 'dès 490 € HT',
+    href: '/publicite-facebook-instagram',
+  },
+  {
+    Icone: Globe,
+    titre: 'Site internet et fiche Google',
+    texte: 'Un site rapide à votre nom et une fiche Google complète.',
+    prix: '300 € HT',
+    href: '/site-web-artisan',
+  },
 ];
 
 export function CtaRdv({ className = '' }) {
@@ -32,7 +51,7 @@ export function CtaRdv({ className = '' }) {
       href={CALENDLY}
       target="_blank"
       rel="noopener noreferrer"
-      className={`btn-primary inline-flex items-center justify-center gap-2.5 px-8 py-5 text-base font-bold shadow-[0_14px_40px_-10px_rgba(124, 58, 237,0.75)] sm:text-lg ${className}`}
+      className={`btn-primary inline-flex items-center justify-center gap-2.5 px-8 py-5 text-base font-bold shadow-[0_14px_40px_-10px_rgba(124,58,237,0.75)] sm:text-lg ${className}`}
     >
       Réserver mon créneau gratuit de 15 min
       <ArrowRight size={20} aria-hidden />
@@ -98,66 +117,54 @@ export default function HeroLancement() {
         </div>
 
         <div className="lg:col-span-6">
-          <div className="rounded-3xl border-2 border-[var(--primary)] bg-[var(--surface)] p-7 shadow-[var(--shadow-lg)] sm:p-9">
-            <div className="flex flex-wrap items-center justify-between gap-3">
-              <h2 className="font-display text-2xl font-semibold tracking-tight sm:text-3xl">
-                Pack Lancement Partenaires
-              </h2>
-              <span className="rounded-full bg-[var(--primary)] px-3 py-1 font-mono text-[0.62rem] uppercase tracking-[0.14em] text-white">
-                Tout compris
-              </span>
-            </div>
-
-            <p className="mt-5 font-display text-5xl font-bold tracking-tight sm:text-6xl">
-              490 € <span className="text-2xl font-semibold text-[var(--muted)]">HT</span>
+          <div className="rounded-3xl border-2 border-[var(--primary)] bg-[var(--surface)] p-6 shadow-[var(--shadow-lg)] sm:p-8">
+            <p className="font-mono text-[0.62rem] uppercase tracking-[0.16em] text-[var(--muted)]">
+              Ce que nous faisons pour vous
             </p>
-            <p className="mt-2 text-lg font-semibold">
-              pour 3 mois, payés une seule fois. Rien de plus.
-            </p>
+            <h2 className="mt-2 font-display text-2xl font-semibold tracking-tight sm:text-3xl">
+              Deux agents, la publicité locale{' '}
+              <span className="font-serif-it font-normal text-[var(--primary-ink)]">et votre vitrine.</span>
+            </h2>
 
-            <ul className="mt-7 space-y-3">
-              {CONTENU.map((c) => (
-                <li key={c} className="flex items-start gap-3 font-medium">
-                  <Check size={20} aria-hidden strokeWidth={2.6} className="mt-0.5 flex-shrink-0 text-[var(--primary-ink)]" />
-                  {c}
+            <ul className="mt-6 space-y-3">
+              {OFFRES.map(({ Icone, titre, texte, prix, href }) => (
+                <li key={titre}>
+                  <a
+                    href={href}
+                    className="group flex items-start gap-4 rounded-2xl border border-[var(--border)] bg-[var(--surface-2)] p-4 transition-colors hover:border-[var(--primary)]"
+                  >
+                    <span className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-[var(--primary-soft)] text-[var(--primary-ink)]">
+                      <Icone size={20} aria-hidden />
+                    </span>
+                    <span className="min-w-0 flex-1">
+                      <span className="flex flex-wrap items-baseline justify-between gap-x-3">
+                        <span className="font-semibold text-[var(--foreground)]">{titre}</span>
+                        <span className="text-sm font-semibold text-[var(--primary-ink)]">{prix}</span>
+                      </span>
+                      <span className="mt-1 block text-sm leading-snug text-[var(--muted-strong)]">{texte}</span>
+                    </span>
+                    <ArrowRight
+                      size={16}
+                      aria-hidden
+                      className="mt-1 flex-shrink-0 text-[var(--muted)] transition-transform group-hover:translate-x-0.5 group-hover:text-[var(--primary-ink)]"
+                    />
+                  </a>
                 </li>
               ))}
             </ul>
 
-            <ul className="mt-7 grid gap-2 border-t border-[var(--border)] pt-6 sm:grid-cols-3">
-              {BENEFICES.map((b) => (
-                <li key={b} className="text-sm font-semibold leading-snug text-[var(--primary-ink)]">
-                  {b}
-                </li>
-              ))}
-            </ul>
-
-            <p className="mt-7 rounded-2xl bg-[var(--surface-2)] px-5 py-4 text-sm text-[var(--muted-strong)]">
-              Après 3 mois, vous continuez sur simple demande écrite&nbsp;:{' '}
-              <span className="font-semibold text-[var(--foreground)]">149 € HT / mois</span>, sans
-              engagement. Aucun rendez-vous dans le mois&nbsp;: le suivant n&apos;est pas facturé. Les 3 mois inclus sont payés d&apos;avance et non remboursables une fois le site livré&nbsp;: la garantie porte sur l&apos;abonnement mensuel qui suit.
+            <p className="mt-5 text-sm text-[var(--muted-strong)]">
+              Sans engagement. Aucun rendez-vous dans le mois avec un agent&nbsp;: le mois suivant
+              n&apos;est pas facturé.
             </p>
 
-            <CtaRdv className="mt-6 w-full" />
+            <CtaRdv className="mt-5 w-full" />
 
             <a
               href="#packs"
-              className="mt-5 flex flex-col gap-1 rounded-2xl border border-[var(--border)] px-5 py-4 text-sm transition-colors hover:border-[var(--primary)] sm:flex-row sm:items-center sm:justify-between"
+              className="mt-4 block text-center text-sm text-[var(--muted-strong)] underline-offset-4 hover:text-[var(--foreground)] hover:underline"
             >
-              <span className="text-[var(--muted-strong)]">
-                Avec publicité Facebook et Instagram&nbsp;:{' '}
-                {AUTRES.map((p, i) => (
-                  <span key={p.key}>
-                    {i > 0 && ' · '}
-                    <span className="font-semibold text-[var(--foreground)]">
-                      {p.short} {p.setup}&nbsp;€&nbsp;HT
-                    </span>
-                  </span>
-                ))}
-              </span>
-              <span className="whitespace-nowrap font-semibold text-[var(--primary-ink)]">
-                Voir les 3 packs →
-              </span>
+              Vous lancez votre activité&nbsp;? Packs Lancement dès 490&nbsp;€&nbsp;HT →
             </a>
           </div>
         </div>

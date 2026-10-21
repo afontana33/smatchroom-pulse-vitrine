@@ -33,7 +33,7 @@ export default function FinalCTA() {
       <DepthLayer depth={1} amplitude={150} className="pointer-events-none absolute inset-0">
         <motion.div
           style={{ opacity: light ? 1 : glow }}
-          className="absolute left-1/2 top-1/2 h-[40rem] w-[40rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(124, 58, 237,0.34),transparent_66%)] mix-blend-screen"
+          className="absolute left-1/2 top-1/2 h-[40rem] w-[40rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(124,58,237,0.34),transparent_66%)] mix-blend-screen"
         />
       </DepthLayer>
 
