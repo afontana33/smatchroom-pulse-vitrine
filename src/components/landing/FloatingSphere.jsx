@@ -13,7 +13,7 @@ function AnimatedSphere() {
   return (
     <Sphere ref={mesh} args={[1.8, 100, 200]} scale={1}>
       <MeshDistortMaterial
-        color="#ff5a1f"
+        color="#5b0bfc"
         attach="material"
         distort={0.4}
         speed={2}
@@ -45,7 +45,7 @@ export default function FloatingSphere({ className }) {
     <div className={className} style={{ pointerEvents: "none" }}>
       <Canvas camera={{ position: [0, 0, 5], fov: 45 }}>
         <ambientLight intensity={0.9} />
-        <pointLight position={[10, 10, 10]} intensity={0.7} color="#ff5a1f" />
+        <pointLight position={[10, 10, 10]} intensity={0.7} color="#5b0bfc" />
         <pointLight position={[-10, -10, -10]} intensity={0.35} color="#294b73" />
         <AnimatedSphere />
         <WireframeSphere />

@@ -55,7 +55,7 @@ export default function SocialProof() {
     >
       {/* depth 1 — lueur chaude côté droit */}
       <DepthLayer depth={1} amplitude={130} className="pointer-events-none absolute inset-0">
-        <div className="absolute -right-24 top-1/4 h-[32rem] w-[32rem] rounded-full bg-[radial-gradient(circle,rgba(255,176,122,0.20),transparent_66%)]" />
+        <div className="absolute -right-24 top-1/4 h-[32rem] w-[32rem] rounded-full bg-[radial-gradient(circle,rgba(196, 181, 253,0.20),transparent_66%)]" />
       </DepthLayer>
 
       {/* depth 2 — trait diagonal qui suit l'escalier des cartes */}

@@ -120,7 +120,7 @@ export default function TeamLp() {
             </p>
 
             <div className="showcase-dark grain relative mt-10 flex max-w-lg items-center gap-4 overflow-hidden rounded-2xl p-5 sm:p-6">
-              <span className="relative flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-white/10 text-[#ffb27a] ring-1 ring-white/15">
+              <span className="relative flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-white/10 text-[#c4b5fd] ring-1 ring-white/15">
                 <MapPinned size={22} strokeWidth={1.8} />
               </span>
               <div className="relative">

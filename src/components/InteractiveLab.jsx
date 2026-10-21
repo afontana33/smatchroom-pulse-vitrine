@@ -125,7 +125,7 @@ export default function InteractiveLab() {
     <section className="relative overflow-hidden px-6 py-28">
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(255,90,31,0.08),transparent_60%)]"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(91, 11, 252,0.08),transparent_60%)]"
       />
       <div className="relative mx-auto max-w-6xl">
         <div className="mb-14 text-center">

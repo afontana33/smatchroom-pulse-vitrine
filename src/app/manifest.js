@@ -27,7 +27,7 @@ export default function manifest() {
        violet du logo : c'est la teinte de l'interface, pas celle de la marque
        imprimée. */
     background_color: '#ffffff',
-    theme_color: '#ff5a1f',
+    theme_color: '#5b0bfc',
     icons: [
       {
         src: '/brand/icon-192.png',

@@ -48,8 +48,8 @@ export default function HeroV5() {
 
       {/* depth 1 — atmosphère : glows additifs */}
       <DepthLayer depth={1} amplitude={160} className="pointer-events-none absolute inset-0">
-        <div className="absolute -left-40 top-0 h-[42rem] w-[42rem] rounded-full bg-[radial-gradient(circle,rgba(255,90,31,0.30),transparent_65%)] mix-blend-screen" />
-        <div className="absolute -right-32 top-24 h-[36rem] w-[36rem] rounded-full bg-[radial-gradient(circle,rgba(255,176,122,0.20),transparent_65%)] mix-blend-screen [animation-delay:-6s]" />
+        <div className="absolute -left-40 top-0 h-[42rem] w-[42rem] rounded-full bg-[radial-gradient(circle,rgba(91, 11, 252,0.30),transparent_65%)] mix-blend-screen" />
+        <div className="absolute -right-32 top-24 h-[36rem] w-[36rem] rounded-full bg-[radial-gradient(circle,rgba(196, 181, 253,0.20),transparent_65%)] mix-blend-screen [animation-delay:-6s]" />
         <div className="absolute bottom-0 left-1/3 h-[34rem] w-[34rem] rounded-full bg-[radial-gradient(circle,rgba(41,75,115,0.34),transparent_65%)] mix-blend-screen [animation-delay:-11s]" />
       </DepthLayer>
 
@@ -94,9 +94,9 @@ export default function HeroV5() {
           initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="mb-7 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.06] px-4 py-1.5 font-mono text-[0.68rem] uppercase tracking-[0.2em] text-[#ffb27a] backdrop-blur-md"
+          className="mb-7 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.06] px-4 py-1.5 font-mono text-[0.68rem] uppercase tracking-[0.2em] text-[#c4b5fd] backdrop-blur-md"
         >
-          <Zap size={13} className="fill-[#ffb27a]" />
+          <Zap size={13} className="fill-[#c4b5fd]" />
           Digitalisation des entreprises
         </motion.span>
 

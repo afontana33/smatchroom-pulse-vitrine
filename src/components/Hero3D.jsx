@@ -5,7 +5,7 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import { Points, PointMaterial } from '@react-three/drei';
 import * as THREE from 'three';
 
-function ParticleSphere({ color = '#ff6b2c', count = 3200, radius = [4, 11] }) {
+function ParticleSphere({ color = '#7c3aed', count = 3200, radius = [4, 11] }) {
   const groupRef = useRef();
 
   const positions = useMemo(() => {
@@ -70,7 +70,7 @@ function FarParticles() {
       <Points positions={positions} stride={3} frustumCulled={false}>
         <PointMaterial
           transparent
-          color="#ffb27a"
+          color="#c4b5fd"
           size={0.011}
           sizeAttenuation
           depthWrite={false}
@@ -132,8 +132,8 @@ export default function Hero3D() {
         style={{ background: 'transparent' }}
       >
         <ambientLight intensity={0.3} />
-        <pointLight position={[6, 4, 4]} intensity={1.0} color="#ff5a1f" />
-        <pointLight position={[-6, -3, -4]} intensity={0.6} color="#ff5a1f" />
+        <pointLight position={[6, 4, 4]} intensity={1.0} color="#5b0bfc" />
+        <pointLight position={[-6, -3, -4]} intensity={0.6} color="#5b0bfc" />
         <FarParticles />
         <ParticleSphere />
       </Canvas>

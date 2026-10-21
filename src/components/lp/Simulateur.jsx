@@ -54,8 +54,8 @@ function Radar({ ville, etape }) {
         <svg viewBox="0 0 100 100" className="absolute inset-0 h-full w-full" aria-hidden>
           <defs>
             <linearGradient id="sim-faisceau" x1="0" y1="0" x2="1" y2="0">
-              <stop offset="0" stopColor="#ff5a1f" stopOpacity="0" />
-              <stop offset="1" stopColor="#ff5a1f" stopOpacity=".55" />
+              <stop offset="0" stopColor="#5b0bfc" stopOpacity="0" />
+              <stop offset="1" stopColor="#5b0bfc" stopOpacity=".55" />
             </linearGradient>
           </defs>
           {[48, 36, 24, 12].map((r) => (
@@ -65,7 +65,7 @@ function Radar({ ville, etape }) {
           <line x1="50" y1="2" x2="50" y2="98" stroke="rgba(255,255,255,.1)" strokeWidth=".3" />
           <g style={{ transformOrigin: '50px 50px', animation: 'sim-balayage 2.6s linear infinite' }}>
             <path d="M50 50 L50 2 A48 48 0 0 1 91.6 26 Z" fill="url(#sim-faisceau)" />
-            <line x1="50" y1="50" x2="91.6" y2="26" stroke="#ff8a50" strokeWidth=".6" />
+            <line x1="50" y1="50" x2="91.6" y2="26" stroke="#9a6bff" strokeWidth=".6" />
           </g>
           {POINTS.map(([x, y], i) => (
             <circle
@@ -73,7 +73,7 @@ function Radar({ ville, etape }) {
               cx={x}
               cy={y}
               r="1.6"
-              fill="#ff8a50"
+              fill="#9a6bff"
               style={{
                 transformOrigin: `${x}px ${y}px`,
                 opacity: 0,

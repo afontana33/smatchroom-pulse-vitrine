@@ -53,7 +53,7 @@ function Wordmark({ onDark = false, home = '/' }) {
       />
       <span className="font-mono text-sm uppercase tracking-[0.2em]">
         SmatchRoom{' '}
-        <span className={onDark ? 'text-[#ffb27a]' : 'text-[var(--primary-ink)]'}>Pulse</span>
+        <span className={onDark ? 'text-[#c4b5fd]' : 'text-[var(--primary-ink)]'}>Pulse</span>
       </span>
     </a>
   );
@@ -110,7 +110,7 @@ export default function Nav({
       className={[
         'fixed inset-x-0 top-0 z-50 transition-all duration-300',
         scrolled
-          ? 'border-b border-[var(--border)] bg-[rgba(246,244,239,0.82)] backdrop-blur-xl'
+          ? 'border-b border-[var(--border)] bg-[rgba(247,247,250,0.85)] backdrop-blur-xl'
           : 'border-b border-transparent bg-transparent',
       ].join(' ')}
     >
@@ -146,10 +146,10 @@ export default function Nav({
             href={TEL_HREF}
             className={[
               'inline-flex items-center gap-2 text-[0.95rem] font-semibold tracking-tight transition-colors',
-              onDark ? 'text-white hover:text-[#ffb27a]' : 'text-[var(--foreground)] hover:text-[var(--primary-ink)]',
+              onDark ? 'text-white hover:text-[#c4b5fd]' : 'text-[var(--foreground)] hover:text-[var(--primary-ink)]',
             ].join(' ')}
           >
-            <Phone size={15} strokeWidth={2.4} className={onDark ? 'text-[#ffb27a]' : 'text-[var(--primary-ink)]'} />
+            <Phone size={15} strokeWidth={2.4} className={onDark ? 'text-[#c4b5fd]' : 'text-[var(--primary-ink)]'} />
             {phone}
           </a>
           <a
@@ -197,7 +197,7 @@ export default function Nav({
       </div>
 
       {mobileOpen && (
-        <div className="h-[calc(100dvh-4.25rem)] overflow-y-auto overscroll-contain border-t border-[var(--border)] bg-[rgba(246,244,239,0.97)] px-5 py-6 backdrop-blur-xl lg:hidden">
+        <div className="h-[calc(100dvh-4.25rem)] overflow-y-auto overscroll-contain border-t border-[var(--border)] bg-[rgba(247,247,250,0.97)] px-5 py-6 backdrop-blur-xl lg:hidden">
           <nav className="flex flex-col gap-1">
             {links.map((l) => (
               <a

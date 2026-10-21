@@ -39,7 +39,7 @@ export default function HeroEn() {
     <section className="relative isolate w-full overflow-hidden">
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(1100px_circle_at_75%_-10%,rgba(255,90,31,0.10),transparent_65%)]"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(1100px_circle_at_75%_-10%,rgba(91, 11, 252,0.10),transparent_65%)]"
       />
 
       <motion.div

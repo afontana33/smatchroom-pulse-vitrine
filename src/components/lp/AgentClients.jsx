@@ -55,13 +55,13 @@ export default function AgentClients() {
     >
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(900px_circle_at_15%_0%,rgba(255,90,31,0.18),transparent_60%)]"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(900px_circle_at_15%_0%,rgba(91, 11, 252,0.18),transparent_60%)]"
       />
 
       <div className="relative mx-auto max-w-7xl">
         <Rise>
           <div className="mb-12 flex items-center gap-4">
-            <span className="font-mono text-[0.72rem] uppercase tracking-[0.22em] text-[#ffb27a]">
+            <span className="font-mono text-[0.72rem] uppercase tracking-[0.22em] text-[#c4b5fd]">
               Vous vendez à des entreprises
             </span>
             <span className="h-px flex-1 bg-white/15" />
@@ -73,7 +73,7 @@ export default function AgentClients() {
             <Rise delay={0.05}>
               <h2 className="max-w-2xl text-balance text-3xl font-semibold leading-[1.1] tracking-tight text-white sm:text-4xl lg:text-[3rem]">
                 Vous recherchez des clients B2B,{' '}
-                <span className="font-serif-it font-normal text-[#ffb27a]">
+                <span className="font-serif-it font-normal text-[#c4b5fd]">
                   nous créons votre commercial digital.
                 </span>
               </h2>
@@ -93,7 +93,7 @@ export default function AgentClients() {
                 </h3>
                 <dl className="mt-5 space-y-5">
                   <div>
-                    <dt className="text-[0.95rem] font-semibold text-[#ffb27a]">
+                    <dt className="text-[0.95rem] font-semibold text-[#c4b5fd]">
                       Agent Partenaires&nbsp;: il ouvre des portes
                     </dt>
                     <dd className="mt-1.5 text-[0.95rem] leading-relaxed text-[var(--on-ink-muted)]">
@@ -103,7 +103,7 @@ export default function AgentClients() {
                     </dd>
                   </div>
                   <div>
-                    <dt className="text-[0.95rem] font-semibold text-[#ffb27a]">
+                    <dt className="text-[0.95rem] font-semibold text-[#c4b5fd]">
                       Agent Clients&nbsp;: il construit votre marché
                     </dt>
                     <dd className="mt-1.5 text-[0.95rem] leading-relaxed text-[var(--on-ink-muted)]">
@@ -125,7 +125,7 @@ export default function AgentClients() {
                     <Check
                       size={16}
                       aria-hidden
-                      className="mt-0.5 flex-shrink-0 text-[#ffb27a]"
+                      className="mt-0.5 flex-shrink-0 text-[#c4b5fd]"
                       strokeWidth={2.4}
                     />
                     {p}
@@ -145,7 +145,7 @@ export default function AgentClients() {
                 340 € HT
               </p>
               <p className="mt-1 text-sm text-white/60">par mois, sans engagement</p>
-              <p className="mt-3 text-sm font-semibold text-[#ffb27a]">Une fois le premier contact obtenu&nbsp;: {GARANTIE}</p>
+              <p className="mt-3 text-sm font-semibold text-[#c4b5fd]">Une fois le premier contact obtenu&nbsp;: {GARANTIE}</p>
               <ul className="mt-5 space-y-4 border-t border-white/15 pt-5">
                 {PALIERS.map((t) => (
                   <li key={t.name} className="flex items-start justify-between gap-4">
@@ -154,7 +154,7 @@ export default function AgentClients() {
                       <p className="mt-0.5 text-xs text-white/55">{t.volume}</p>
                     </div>
                     <div className="flex-shrink-0 whitespace-nowrap text-right">
-                      <p className="text-[0.95rem] font-semibold text-[#ffb27a]">{t.monthly}</p>
+                      <p className="text-[0.95rem] font-semibold text-[#c4b5fd]">{t.monthly}</p>
                       <p className="mt-0.5 text-xs text-white/55">{t.setup}</p>
                     </div>
                   </li>

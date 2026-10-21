@@ -30,7 +30,7 @@ export default function FinalCtaLp() {
       <div aria-hidden className="absolute inset-0 bg-[var(--ink)]/78" />
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(900px_circle_at_20%_10%,rgba(255,90,31,0.22),transparent_60%)]"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(900px_circle_at_20%_10%,rgba(91, 11, 252,0.22),transparent_60%)]"
       />
 
       <div className="absolute inset-0 flex items-center px-5 sm:px-6">
@@ -38,12 +38,12 @@ export default function FinalCtaLp() {
           <div className="max-w-2xl">
             {/* Pas la classe .eyebrow ici : elle force var(--primary-ink), un
                 orange sombre illisible sur la photo assombrie. */}
-            <p className="font-mono text-[0.72rem] uppercase tracking-[0.22em] text-[#ffb27a]">
+            <p className="font-mono text-[0.72rem] uppercase tracking-[0.22em] text-[#c4b5fd]">
               15 minutes, gratuit et sans engagement
             </p>
             <h2 className="mt-5 text-balance text-3xl font-semibold leading-[1.08] tracking-tight text-white sm:text-4xl lg:text-[3.4rem]">
               On regarde votre secteur ensemble,{' '}
-              <span className="font-serif-it font-normal text-[#ffb27a]">
+              <span className="font-serif-it font-normal text-[#c4b5fd]">
                 et on vous dit ce qui est faisable.
               </span>
             </h2>
@@ -57,9 +57,9 @@ export default function FinalCtaLp() {
                 ligne sous le bouton. */}
             <a
               href={TEL_HREF}
-              className="group mt-8 inline-flex items-center gap-4 text-white transition-colors hover:text-[#ffb27a]"
+              className="group mt-8 inline-flex items-center gap-4 text-white transition-colors hover:text-[#c4b5fd]"
             >
-              <span className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-[var(--primary)] shadow-[0_10px_30px_-8px_rgba(255,90,31,0.7)] sm:h-14 sm:w-14">
+              <span className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-[var(--primary)] shadow-[0_10px_30px_-8px_rgba(91, 11, 252,0.7)] sm:h-14 sm:w-14">
                 <Phone size={22} strokeWidth={2.4} className="text-white" />
               </span>
               <span>
