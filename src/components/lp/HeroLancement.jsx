@@ -45,6 +45,12 @@ const OFFRES = [
   },
 ];
 
+const PRESSE = [
+  { nom: 'RTL2', logo: null },
+  { nom: 'Le Figaro', logo: null },
+  { nom: 'Sud Ouest', logo: null },
+];
+
 export function CtaRdv({ className = '' }) {
   return (
     <a
@@ -108,6 +114,24 @@ export default function HeroLancement() {
               <span className="font-semibold text-[var(--foreground)]">5,0</span> sur Google
             </a>
             <a href="#resultats">+170 entreprises accompagnées</a>
+          </div>
+
+          {/* Bandeau presse (21/10/2026). Noms en texte tant que les logos
+              officiels ne sont pas fournis : déposer le fichier dans
+              public/presse/ et renseigner `logo` pour l'afficher à la place. */}
+          <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2">
+            <span className="font-mono text-[0.62rem] uppercase tracking-[0.16em] text-[var(--muted)]">
+              Ils ont parlé de nous
+            </span>
+            {PRESSE.map((m) =>
+              m.logo ? (
+                <img key={m.nom} src={m.logo} alt={m.nom} className="h-6 w-auto opacity-80" />
+              ) : (
+                <span key={m.nom} className="font-display text-lg font-semibold tracking-tight text-[var(--foreground)] opacity-85">
+                  {m.nom}
+                </span>
+              ),
+            )}
           </div>
 
           <div className="mt-7 flex flex-col gap-3 sm:flex-row">
