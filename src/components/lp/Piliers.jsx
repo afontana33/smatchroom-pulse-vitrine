@@ -25,6 +25,7 @@ const PILIERS = [
     k: '01',
     label: 'Agent Partenaires',
     href: '/apporteur-affaires',
+    simulateur: true,
     title: 'Il vous trouve des apporteurs d’affaires',
     photo: '/photos/prescripteurs.webp',
     alt: 'Professionnelle qui lit un message sur son téléphone devant son ordinateur',
@@ -187,6 +188,18 @@ export default function Piliers() {
                       En savoir plus
                       <ArrowRight size={14} aria-hidden />
                     </a>
+
+                    {p.simulateur && (
+                      <a
+                        href="/simulateur"
+                        className="mt-3 flex items-center justify-between gap-3 rounded-2xl border-2 border-[var(--primary)] bg-[var(--primary-soft)] px-4 py-3 text-sm font-semibold text-[var(--foreground)] transition-colors hover:bg-[var(--surface)]"
+                      >
+                        <span>
+                          Testez gratuitement : voyez qui l’agent contacterait dans votre ville
+                        </span>
+                        <ArrowRight size={16} aria-hidden className="flex-shrink-0 text-[var(--primary-ink)]" />
+                      </a>
+                    )}
 
                     {p.options ? (
                       <>

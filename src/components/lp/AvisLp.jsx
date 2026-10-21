@@ -15,7 +15,8 @@
  * Format : { author: 'Prénom L.', role: 'Métier · Ville', stars: 5, text: '…', date: 'Juin 2026' }
  */
 
-import { Star, ArrowUpRight, PenLine } from 'lucide-react';
+import { useState } from 'react';
+import { Star, ArrowUpRight, PenLine, ChevronDown } from 'lucide-react';
 
 /* Un seul format d'URL pour les deux boutons : `maps?cid=`, qui ouvre la fiche
    de façon fiable sur tous les navigateurs et dans l'application Google Maps.
@@ -151,6 +152,18 @@ const AVIS = [
 ];
 const RATING = { score: '5,0', count: 21 };
 
+/* Les cinq avis affichés d'emblée (demande du 21/10/2026 : la liste complète
+   était trop longue sur téléphone). Critère, annoncé dans le texte
+   d'information ci-dessous : les avis qui parlent de nos agents de prospection
+   et de leurs résultats. Les autres restent sur la page, derrière le bouton,
+   dans l'ordre de la fiche. */
+const EN_AVANT = ['Isabelle T.', 'Christopher B.', 'Matl17', 'Franck', 'Lucas B.'];
+const AVIS_TRIES = [
+  ...EN_AVANT.map((n) => AVIS.find((a) => a.author === n)).filter(Boolean),
+  ...AVIS.filter((a) => !EN_AVANT.includes(a.author)),
+];
+const VISIBLES = 5;
+
 function GoogleG({ size = 20 }) {
   return (
     <svg width={size} height={size} viewBox="0 0 48 48" aria-hidden>
@@ -174,6 +187,9 @@ function Stars({ n = 5, size = 16 }) {
 
 export default function AvisLp() {
   const hasCards = AVIS.length > 0;
+  const [tout, setTout] = useState(false);
+  const affiches = tout ? AVIS_TRIES : AVIS_TRIES.slice(0, VISIBLES);
+  const caches = AVIS_TRIES.length - VISIBLES;
 
   return (
     <section id="avis" className="relative scroll-mt-24 px-5 py-24 sm:px-6 sm:py-32">
@@ -214,7 +230,7 @@ export default function AvisLp() {
               sélectionnons pas, ne les modérons pas et ne rémunérons pas leur publication. La
               note est celle calculée par Google à la date de dernière mise à jour de cette page.
               Aucune vérification de l&apos;achat n&apos;est effectuée par SMATCHROOM&nbsp;: le
-              contrôle relève de Google. Ci-dessous, tous les avis avec commentaire de notre fiche Google, du plus récent au plus ancien, recopiés à l&apos;identique le 18/10/2026. Les 3 avis sans commentaire et l&apos;avis portant sur notre application de colocation restent visibles sur la fiche.
+              contrôle relève de Google. Ci-dessous, tous les avis avec commentaire de notre fiche Google, recopiés à l&apos;identique le 18/10/2026 : d&apos;abord les cinq qui portent sur nos agents de prospection et leurs résultats, puis les autres, du plus récent au plus ancien, avec le bouton «&nbsp;Voir les autres avis&nbsp;». Les 3 avis sans commentaire et l&apos;avis portant sur notre application de colocation restent visibles sur la fiche.
             </p>
           </div>
 
@@ -240,8 +256,9 @@ export default function AvisLp() {
         </div>
 
         {hasCards ? (
+          <>
           <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {AVIS.map((a, i) => (
+            {affiches.map((a, i) => (
               <article
                 key={`${a.author}-${i}`}
                 className={`card card-hover flex flex-col p-7 ${i % 3 === 1 ? 'lg:mt-8' : ''}`}
@@ -263,6 +280,19 @@ export default function AvisLp() {
               </article>
             ))}
           </div>
+          {!tout && caches > 0 && (
+            <div className="mt-8 flex justify-center">
+              <button
+                type="button"
+                onClick={() => setTout(true)}
+                className="btn-ghost inline-flex items-center gap-2 px-5 py-3 text-sm font-medium"
+              >
+                Voir les {caches} autres avis
+                <ChevronDown size={15} aria-hidden />
+              </button>
+            </div>
+          )}
+          </>
         ) : (
           <a
             href={REVIEWS_URL}

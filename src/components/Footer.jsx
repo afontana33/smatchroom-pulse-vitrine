@@ -27,6 +27,7 @@ const CONTENT = {
       { href: '/#piliers', label: 'Nos offres et nos prix' },
       { href: '/#agent-clients', label: 'Agent Clients (B2B)' },
       { href: '/pack-lancement', label: 'Packs Lancement Entrepreneurs' },
+      { href: '/simulateur', label: 'Test gratuit' },
       { href: '/apporteur-affaires', label: 'Trouver des apporteurs d’affaires' },
       { href: '/prospection-b2b', label: 'Prospection B2B' },
       { href: '/site-web-artisan', label: 'Site internet et fiche Google' },
