@@ -9,7 +9,7 @@ const ETAPES = [
   ['Plusieurs sources', 'Fiches Google, bases d’entreprises, registre des créations, offres d’emploi, LinkedIn.'],
   ['Les signaux', 'Priorité à ceux qui ont une raison d’acheter maintenant : création, recrutement, nouveau dirigeant, nouveau site.'],
   ['Le bon décideur', 'Nom, email pro et portable vérifié sur WhatsApp. Grands groupes et homonymes écartés.'],
-  ['Contact et relances', 'Message court depuis votre numéro, relance à J+3 puis J+7. Un « stop » est définitif.'],
+  ['Contact et relances', 'Message court sur le bon canal (WhatsApp, email ou LinkedIn), relance à J+3 puis J+7. Un « stop » est définitif.'],
   ['Vous rappelez', 'Dès qu’une personne est intéressée, vous êtes prévenu avec l’historique.'],
 ];
 
@@ -57,8 +57,8 @@ export default function MethodeB2B() {
               autres sont contactés automatiquement. Vous n’avez rien à trier.
             </p>
             <p className="mt-5 rounded-xl bg-[var(--surface-2)] px-4 py-3 text-sm font-semibold">
-              LinkedIn sert à repérer, pas à contacter&nbsp;: les messageries y sont saturées.
-              L’agent écrit par WhatsApp et par email, là où les décideurs répondent encore.
+              Trois canaux, un seul agent&nbsp;: WhatsApp, email ou LinkedIn. Pour chaque
+              décideur, il choisit le bon canal selon le signal repéré et votre client idéal.
             </p>
           </div>
 

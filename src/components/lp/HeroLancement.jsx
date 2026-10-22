@@ -25,7 +25,7 @@ const OFFRES = [
   {
     Icone: Building2,
     titre: 'Agent Clients B2B',
-    texte: 'Il repère les entreprises prêtes à acheter et écrit à leurs dirigeants.',
+    texte: 'Il repère les entreprises prêtes à acheter et écrit à leurs dirigeants sur le bon canal : WhatsApp, email ou LinkedIn.',
     prix: 'dès 340 € HT / mois',
     href: '/prospection-b2b',
   },

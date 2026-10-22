@@ -26,7 +26,7 @@ const PALIERS = [
 
 const POINTS = [
   'Base de données construite pour votre marché',
-  'Signaux d’achat repérés sur LinkedIn, contact par WhatsApp et email',
+  'Trois canaux : WhatsApp, email et LinkedIn, le meilleur choisi pour chaque décideur',
   'Agent entraîné sur votre catalogue et vos objections',
   'Échange complet transmis : besoin, et si possible budget et calendrier',
 ];

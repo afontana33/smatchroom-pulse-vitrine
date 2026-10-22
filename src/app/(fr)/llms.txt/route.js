@@ -57,8 +57,9 @@ WhatsApp branchés (environ 300 décideurs contactés par mois et par numéro) :
 à 1 200 € HT puis 640 € HT par mois, Réseau (4 numéros et plus) sur devis. Les autres prix sont fermes.
 L'Agent Partenaires contacte les prescripteurs (apporteurs d'affaires) ; l'Agent Clients
 contacte directement les décideurs des entreprises visées, en priorité celles qui montrent un
-signal d'achat (recrutement, création, nouveau dirigeant, réaction LinkedIn). Les deux écrivent
-par WhatsApp et par email, jamais par LinkedIn.
+signal d'achat (recrutement, création, nouveau dirigeant, réaction LinkedIn). L'Agent Partenaires
+écrit par WhatsApp et par email ; l'Agent Clients choisit pour chaque décideur entre WhatsApp, email
+et LinkedIn selon le signal repéré et le client idéal.
 Garantie des deux agents : ${GARANTIE}
 La garantie ne s'étend pas à la publicité Meta, aux vidéos ni au budget publicitaire.
 

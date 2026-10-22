@@ -38,22 +38,28 @@ import {
   webPageSchema,
 } from '@/lib/schema';
 
-const META_TITLE = 'Agence de prospection B2B : signaux d’achat, WhatsApp et email';
+const META_TITLE = 'Agence de prospection B2B : signaux d’achat, WhatsApp, email et LinkedIn';
 const META_DESCRIPTION =
-  "Un agent repère les entreprises prêtes à acheter, contacte leurs décideurs par WhatsApp et "
-  + "email, et passe la main à vos commerciaux. Dès 340 € HT/mois.";
+  "Un agent repère les entreprises prêtes à acheter, contacte leurs décideurs sur le bon canal "
+  + "(WhatsApp, email ou LinkedIn) et passe la main à vos commerciaux. Dès 340 € HT/mois.";
 
 const URL = `${SITE_URL}/prospection-b2b`;
 
 const CE_QUE_FAIT = [
   'Construit la liste des entreprises de votre marché, à partir de données publiques',
   'Repère les signaux d’achat : recrutement, création, nouveau dirigeant, réactions LinkedIn',
-  'Contacte les décideurs par WhatsApp et par email, jamais par LinkedIn',
+  'Contacte chaque décideur sur le canal le plus adapté : WhatsApp, email ou LinkedIn',
   'Écrit à chacune un message qui lui est propre, pas un publipostage',
   'Relance au bon moment, sans harceler et sans répéter le premier message',
   'Répond en moins d’une minute, sept jours sur sept',
   'Vous passe l’échange complet : le besoin exprimé et, si possible, le budget et le calendrier',
   'S’arrête net sur toute demande d’opposition, et la retient',
+];
+
+const CANAUX = [
+  ['WhatsApp', "Le canal par défaut dès que le portable du décideur est connu : c’est là qu’il lit et qu’il répond."],
+  ['LinkedIn', "Quand le signal vient de LinkedIn (il publie ou commente sur votre sujet) ou que le portable manque. Envoyé depuis votre compte, à petit volume."],
+  ['Email', "En complément : relances, profils institutionnels, grands comptes où l’email reste la norme."],
 ];
 
 const FAQ = [
@@ -86,9 +92,13 @@ const FAQ = [
       + "un sujet lié à votre offre. L'agent contacte ces entreprises en priorité.",
   },
   {
-    q: 'Pourquoi WhatsApp et email plutôt que LinkedIn ?',
-    a: "Les messageries LinkedIn sont saturées de sollicitations. LinkedIn sert à repérer, "
-      + "WhatsApp et l'email à contacter : c'est là que les décideurs répondent encore.",
+    q: 'Sur quel canal l’agent contacte-t-il les décideurs ?',
+    a: "L'Agent Clients B2B dispose de trois canaux : WhatsApp, email et LinkedIn. Il choisit pour "
+      + "chaque décideur selon le signal repéré et votre client idéal. WhatsApp quand le portable "
+      + "est connu, c'est là que les réponses sont les plus nombreuses. LinkedIn quand le signal vient "
+      + "de LinkedIn (le décideur publie ou commente sur votre sujet) ou quand le portable manque : le "
+      + "message part depuis votre propre compte, à petit volume, pour rester naturel. L'email en "
+      + "complément, pour les relances et les profils plus institutionnels. Les trois sont inclus.",
   },
   {
     q: 'Vous garantissez des résultats ?',
@@ -205,6 +215,29 @@ export default function ProspectionB2BPage() {
               </p>
             </div>
           </div>
+        </Section>
+
+        <Section className="pt-0">
+          <SectionHead eyebrow="Trois canaux, un seul agent" />
+          <h2 className="max-w-3xl text-balance text-2xl font-semibold tracking-tight sm:text-[2rem]">
+            Le bon canal pour chaque décideur, au bon moment
+          </h2>
+          <p className="mt-4 max-w-2xl text-[var(--muted-strong)]">
+            L’Agent Clients B2B ne martèle pas tout le monde sur le même canal. Il choisit, contact
+            par contact, selon le signal d’achat repéré et votre client idéal.
+          </p>
+          <div className="mt-8 grid gap-6 md:grid-cols-3">
+            {CANAUX.map(([canal, quand]) => (
+              <div key={canal} className="rounded-2xl border border-[var(--border-strong)] bg-[var(--surface)] p-7">
+                <p className="font-display text-xl font-semibold tracking-tight text-[var(--primary-ink)]">{canal}</p>
+                <p className="mt-3 text-sm leading-relaxed text-[var(--muted-strong)]">{quand}</p>
+              </div>
+            ))}
+          </div>
+          <p className="mt-6 text-sm text-[var(--muted)]">
+            Inclus dans l’Agent Clients B2B, sans supplément. Un même décideur n’est jamais sollicité
+            sur deux canaux à la fois.
+          </p>
         </Section>
 
         <Section>

@@ -89,7 +89,7 @@ export const PILIER_OFFERS = [
     key: 'agent-clients-b2b',
     name: 'Agent Clients B2B',
     description:
-      "Base de données construite sur mesure pour votre marché, agent entraîné sur votre catalogue et vos objections, transmission de l'échange complet à vos commerciaux : besoin, et si possible budget et calendrier.",
+      "Base de données construite sur mesure pour votre marché, contact sur le bon canal (WhatsApp, email ou LinkedIn) selon les signaux d'achat, agent entraîné sur votre catalogue et vos objections, transmission de l'échange complet à vos commerciaux : besoin, et si possible budget et calendrier.",
     /* Plancher, pas prix ferme : le périmètre (taille du marché à construire,
        nombre d'interlocuteurs, intégrations) fait varier la fabrication du
        simple au quintuple. `setupFrom` déclenche « à partir de » à l'affichage
