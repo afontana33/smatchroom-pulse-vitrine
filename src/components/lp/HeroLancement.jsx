@@ -103,6 +103,10 @@ export default function HeroLancement() {
           <p className="mt-4 max-w-lg text-lg sm:mt-6 leading-relaxed text-[var(--muted-strong)]">
             Vous êtes sur le terrain, on vous ramène les rendez-vous.
           </p>
+          <p className="mt-4 inline-flex flex-wrap items-center gap-x-2 gap-y-1 rounded-full border border-[var(--primary)] bg-[var(--primary-soft)] px-4 py-2 text-sm font-semibold text-[var(--foreground)]">
+            Prospection multicanal&nbsp;:
+            <span className="text-[var(--primary-ink)]">WhatsApp, LinkedIn et email</span>
+          </p>
 
           <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-[var(--muted-strong)]">
             <a href={TEL_HREF} className="inline-flex items-center gap-2 font-semibold text-[var(--foreground)]">
