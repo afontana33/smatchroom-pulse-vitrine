@@ -101,7 +101,7 @@ export async function POST(request) {
   let erreur = null;
   try {
     fact = await facturer(ligne, d);
-    if (fact.envoyeeParQonto === false) await emailVirementClient(d, ligne, fact.numero).catch(() => null);
+    if (fact.envoyeeParQonto === false) await emailVirementClient(d, ligne, fact.numero, fact.url).catch(() => null);
   } catch (e) {
     erreur = e?.message || 'erreur inconnue';
     console.error('[bienvenue]', erreur);

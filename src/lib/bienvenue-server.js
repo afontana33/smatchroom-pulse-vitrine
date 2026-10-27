@@ -135,7 +135,7 @@ export async function facturer(ligne, d) {
   await majAccueil(ligne.id, { statut: 'facture', qonto_client_id: clientId, qonto_invoice_id: inv?.id });
 
   let envoyeeParQonto = false;
-  if (test) return { numero: inv?.number || null, id: inv?.id, envoyeeParQonto: true };
+  if (test) return { numero: inv?.number || null, id: inv?.id, url: inv?.invoice_url || null, envoyeeParQonto: true };
   try {
     await qonto(`/client_invoices/${inv.id}/send`, {
       send_to: [d.email],
@@ -147,7 +147,7 @@ export async function facturer(ligne, d) {
   } catch (e) {
     console.error('[bienvenue] envoi Qonto', e.message);
   }
-  return { numero: inv?.number || null, id: inv?.id, envoyeeParQonto };
+  return { numero: inv?.number || null, id: inv?.id, url: inv?.invoice_url || null, envoyeeParQonto };
 }
 
 /* ---------- Alertes ---------- */
@@ -178,7 +178,7 @@ function transport() {
 }
 
 /* Si Qonto n'a pas pu envoyer la facture, l'artisan reçoit quand même les coordonnées de virement. */
-export async function emailVirementClient(d, ligne, numero) {
+export async function emailVirementClient(d, ligne, numero, url = null) {
   const tr = transport();
   if (!tr) return;
   const offre = OFFRES[ligne.offre];
@@ -192,7 +192,8 @@ export async function emailVirementClient(d, ligne, numero) {
       `Bonjour ${d.prenom},\n\nMerci, j'ai bien reçu vos informations : je lance la mise en place.\n\n` +
       `Règlement par virement :\n- Montant : ${montant} TTC (${euros(offre.ht)} HT)\n- Bénéficiaire : SmatchRoom\n` +
       `- IBAN : ${IBAN}\n- BIC : ${BIC}\n- Référence : ${numero || `Pulse ${d.raison_sociale}`}\n\n` +
-      `La facture vous est envoyée séparément.\n\nÀ très vite,\nAlexis Fontana\nSmatchRoom Pulse`,
+      (url ? `Votre facture : ${url}\n\n` : `La facture vous est envoyée séparément.\n\n`) +
+      `À très vite,\nAlexis Fontana\nSmatchRoom Pulse`,
   });
 }
 
