@@ -232,3 +232,115 @@ export async function alerterAlexis(ligne, d, fact, erreur) {
 export async function noterErreur(id, message) {
   await majAccueil(id, { statut: 'erreur', erreur: String(message).slice(0, 500) }).catch(() => null);
 }
+
+/* ---------- Renouvellement mensuel (accord du client) ---------- */
+
+export async function lireRenouvellement(token) {
+  if (!/^[a-z0-9]{12,40}$/i.test(String(token || ''))) return null;
+  const s = sb();
+  const res = await fetch(
+    `${s.url}/rest/v1/pulse_renouvellements?select=id,token,echeance,statut,onboarding_id,pulse_onboarding(id,entreprise,telephone,donnees,qonto_client_id,agent_slug)&token=eq.${token}&limit=1`,
+    { headers: s.headers, cache: 'no-store' },
+  );
+  if (!res.ok) return null;
+  return (await res.json())[0] || null;
+}
+
+/* Une seule réponse par lien : « envoye » -> accepte / refuse. */
+export async function repondreRenouvellement(id, statut) {
+  const s = sb();
+  const res = await fetch(`${s.url}/rest/v1/pulse_renouvellements?id=eq.${id}&statut=eq.envoye`, {
+    method: 'PATCH',
+    headers: { ...s.headers, Prefer: 'return=representation' },
+    body: JSON.stringify({ statut, repondu_at: new Date().toISOString() }),
+  });
+  if (!res.ok) return false;
+  return (await res.json()).length === 1;
+}
+
+export async function majRenouvellement(id, champs) {
+  const s = sb();
+  await fetch(`${s.url}/rest/v1/pulse_renouvellements?id=eq.${id}`, {
+    method: 'PATCH',
+    headers: { ...s.headers, Prefer: 'return=minimal' },
+    body: JSON.stringify(champs),
+  });
+}
+
+/** Facture du mois suivant (149 € HT) pour un client Qonto existant, envoyée par Qonto. */
+export async function facturerMois(clientId, d) {
+  const offre = OFFRES.agent;
+  const maintenant = new Date();
+  const facture = await qonto('/client_invoices', {
+    client_id: clientId,
+    issue_date: jour(maintenant),
+    due_date: jour(new Date(maintenant.getTime() + 7 * 86400_000)),
+    currency: 'EUR',
+    status: 'unpaid',
+    payment_methods: { iban: IBAN_BRUT },
+    items: [{ title: offre.titre, description: offre.description, quantity: '1', unit_price: { value: offre.ht.toFixed(2), currency: 'EUR' }, vat_rate: '0.2' }],
+  });
+  const inv = facture?.client_invoice || facture;
+  let envoyeeParQonto = false;
+  try {
+    await qonto(`/client_invoices/${inv.id}/send`, {
+      send_to: [d.email],
+      copy_to_self: true,
+      email_title: `Votre facture SmatchRoom Pulse – ${offre.titre}`,
+      email_body: `Bonjour ${d.prenom},\n\nMerci de continuer avec nous. Voici votre facture du mois, à régler par virement sur l'IBAN indiqué.\n\nAlexis Fontana\nSmatchRoom Pulse`,
+    });
+    envoyeeParQonto = true;
+  } catch (e) {
+    console.error('[continuer] envoi Qonto', e.message);
+  }
+  return { numero: inv?.number || null, id: inv?.id, url: inv?.invoice_url || null, envoyeeParQonto };
+}
+
+export { whatsappAlexis };
+
+/** Alerte courte à Alexis : WhatsApp + Telegram. */
+export async function alerteCourte(texte) {
+  await whatsappAlexis(texte).catch(() => null);
+  const { TELEGRAM_BOT_TOKEN: tg, TELEGRAM_CHAT_ID: chat } = process.env;
+  if (tg && chat) {
+    await fetch(`https://api.telegram.org/bot${tg}/sendMessage`, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ chat_id: chat, text: texte }),
+    }).catch(() => null);
+  }
+}
+
+/* ---------- Connexion du WhatsApp de l'agent (QR en direct ou code de liaison) ---------- */
+
+export async function instanceParConnexion(token) {
+  if (!/^[a-z0-9]{12,40}$/i.test(String(token || ''))) return null;
+  const s = sb();
+  const r1 = await fetch(`${s.url}/rest/v1/pulse_onboarding?select=id,entreprise,agent_slug,active_at&connexion_token=eq.${token}&limit=1`, { headers: s.headers, cache: 'no-store' });
+  const o = r1.ok ? (await r1.json())[0] : null;
+  if (!o?.agent_slug) return null;
+  const r2 = await fetch(`${s.url}/rest/v1/chasseur_clients?select=green_api_host,green_api_id_instance,green_api_token&slug=eq.${o.agent_slug}&limit=1`, { headers: s.headers, cache: 'no-store' });
+  const c = r2.ok ? (await r2.json())[0] : null;
+  if (!c?.green_api_id_instance) return null;
+  return { o, c };
+}
+
+export async function etatConnexion(c) {
+  const base = `${c.green_api_host}/waInstance${c.green_api_id_instance}`;
+  const st = await fetch(`${base}/getStateInstance/${c.green_api_token}`, { cache: 'no-store' }).then((r) => r.json()).catch(() => ({}));
+  if (st?.stateInstance === 'authorized') return { etat: 'connecte' };
+  const qr = await fetch(`${base}/qr/${c.green_api_token}`, { cache: 'no-store' }).then((r) => r.json()).catch(() => ({}));
+  if (qr?.type === 'alreadyLogged') return { etat: 'connecte' };
+  if (qr?.type === 'qrCode') return { etat: 'qr', qr: qr.message };
+  return { etat: 'attente' };
+}
+
+export async function codeLiaison(c, numero) {
+  const r = await fetch(`${c.green_api_host}/waInstance${c.green_api_id_instance}/getAuthorizationCode/${c.green_api_token}`, {
+    method: 'POST',
+    headers: { 'content-type': 'application/json' },
+    body: JSON.stringify({ phoneNumber: Number(String(numero).replace(/\D/g, '')) }),
+  });
+  const j = await r.json().catch(() => ({}));
+  return j?.status ? j.code : null;
+}

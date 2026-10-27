@@ -170,7 +170,7 @@ async function creer(ligne: any) {
     bilan = (g.match(/\[deux-temps\][^\n]*M1 prêts[^\n]*/) ?? [''])[0];
   }
   await sb.from('pulse_onboarding').update({ agent_cree_at: new Date().toISOString(), agent_erreur: null }).eq('id', ligne.id);
-  await alerte(`🤖 Agent « ${d.raison_sociale} » préparé (fiche ${slug}, inactif).\n${z.villes.length} villes autour de ${z.ville}, ${personas.length} types de prescripteurs.\n${bilan}\nÀ faire : brancher le WhatsApp (${String(d.numero_whatsapp || '').slice(0, 60)}) puis passer "actif": true et relancer client:sync.`, `Agent préparé : ${d.raison_sociale}`);
+  await alerte(`🤖 Agent « ${d.raison_sociale} » préparé (fiche ${slug}, inactif).\n${z.villes.length} villes autour de ${z.ville}, ${personas.length} types de prescripteurs.\n${bilan}\nWhatsApp souhaité : ${String(d.numero_whatsapp || '').slice(0, 60)}.\nÀ faire : acheter l'instance Green API, mettre ses accès dans clients/${slug}.json puis client:sync. Le lien de connexion part tout seul au client une fois payé, et l'agent s'active dès qu'il est connecté.`, `Agent préparé : ${d.raison_sociale}`);
   console.log(`[creer-agent] ${slug} prêt. ${bilan}`);
 }
 
