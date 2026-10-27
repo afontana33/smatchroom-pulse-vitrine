@@ -29,7 +29,7 @@ export const OFFRES = {
     ht: 490,
   },
   agent: {
-    titre: 'Agent de prospection – mois 1',
+    titre: 'Agent de prospection – 1 mois',
     description:
       'Prospection des agences, syndics, gestionnaires et architectes de votre zone par WhatsApp et email, en votre nom. Sans engagement.',
     ht: 149,
