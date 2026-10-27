@@ -10,6 +10,8 @@ const MAX = Number((process.argv.find((a) => a.startsWith('--max=')) ?? '--max=2
 const fic = (() => { try { return readFileSync('/root/unipile.env', 'utf8'); } catch { return ''; } })();
 const ACCOUNT_ID = process.env.UNIPILE_ACCOUNT_ID ?? (fic.split('\n').find((l) => l.startsWith('UNIPILE_ACCOUNT_ID=')) ?? '').slice(19).trim();
 const VUS = 'data/li-commentaires-vus.json';
+// Aucun tiret de ponctuation (demande d'Alexis) : « a - b », « a – b », « a — b » deviennent « a, b ».
+const sansTirets = (t: string) => t.replace(/\s+[-–—]\s+/g, ', ').replace(/[–—]/g, ', ').replace(/,\s*,/g, ',').trim();
 const pause = (ms: number) => new Promise((r) => setTimeout(r, ms));
 const conf = JSON.parse(readFileSync('signaux/pulse.json', 'utf8'));
 const INCLURE = new RegExp(conf.inclure.join('|'), 'i');
@@ -24,7 +26,7 @@ async function claude(prompt: string): Promise<string> {
 }
 const PROMPT = (auteur: string, titre: string, post: string) => `Tu es Alexis Fontana, fondateur de SmatchRoom Pulse à Bordeaux : tu aides les artisans et les PME à trouver des clients en démarchant pour eux, sur WhatsApp et par email, les entreprises et prescripteurs de leur zone. Tu as été restaurateur puis commercial dans le BTP.
 Voici un post LinkedIn de ${auteur} (${titre}). Écris un commentaire qui apporte quelque chose : un avis précis ou une question pertinente sur le fond du post. N'invente JAMAIS de chiffre, de pourcentage, de nombre d'années d'expérience, de clients ni d'anecdote : tu ne cites que des faits présents dans le post. Orthographe et grammaire impeccables.
-Règles : en français, 2 phrases maximum et 280 caractères maximum, ton direct et naturel comme un dirigeant qui écrit vite depuis son téléphone, vouvoiement si tu t'adresses à l'auteur. Une seule idée, ou une seule question. Ne parle pas de ton parcours (restauration, BTP) sauf si le post porte exactement là-dessus. Interdit : « Super post », « Merci pour ce partage », « Vous pointez », « J'aime bien », flatterie, tirets longs (—), parler de SmatchRoom ou de tes services, des artisans si le post n'en parle pas, lien, hashtag, prix, mention d'intelligence artificielle.
+Règles : en français, 2 phrases maximum et 280 caractères maximum, ton direct et naturel comme un dirigeant qui écrit vite depuis son téléphone, vouvoiement si tu t'adresses à l'auteur. Une seule idée, ou une seule question. Ne parle pas de ton parcours (restauration, BTP) sauf si le post porte exactement là-dessus. Interdit : « Super post », « Merci pour ce partage », « Vous pointez », « J'aime bien », flatterie, tirets (— – -) utilisés comme ponctuation, parler de SmatchRoom ou de tes services, des artisans si le post n'en parle pas, lien, hashtag, prix, mention d'intelligence artificielle.
 Si l'auteur ou le sujet du post ne concerne pas la France (Québec, Afrique, Belgique… ), réponds exactement : RIEN
 Si le post n'a rien à voir avec l'entreprise, le commerce ou l'entrepreneuriat, ou s'il porte sur un drame personnel, un décès, la politique ou une offre d'emploi, réponds exactement : RIEN
 Post : """${post.slice(0, 2000)}"""
@@ -43,8 +45,8 @@ Ton commentaire (le texte seul) :`;
   for (const p of posts) {
     if (faits >= MAX) break;
     vus.add(String(p.id));
-    const t = await claude(PROMPT(p.author.name, p.author.position, String(p.content)));
-    if (t === '' || t.startsWith('RIEN') || t.length > 320 || t.includes('—') || /\d+ ?(%|ans)/.test(t)) continue;
+    const t = sansTirets(await claude(PROMPT(p.author.name, p.author.position, String(p.content))));
+    if (t === '' || t.startsWith('RIEN') || t.length > 320 || /\d+ ?(%|ans)/.test(t)) continue;
     console.log(`  > ${p.author.name} | ${String(p.author.position).slice(0, 60)}\n    post : ${String(p.content).slice(0, 100).replace(/\n/g, ' ')}…\n    commentaire : ${t}`);
     faits++;
     if (DRY) continue;

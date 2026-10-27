@@ -10,6 +10,8 @@ const MAX = Number((process.argv.find((a) => a.startsWith('--max=')) ?? '--max=1
 const fic = (() => { try { return readFileSync('/root/unipile.env', 'utf8'); } catch { return ''; } })();
 const ACCOUNT_ID = process.env.UNIPILE_ACCOUNT_ID ?? (fic.split('\n').find((l) => l.startsWith('UNIPILE_ACCOUNT_ID=')) ?? '').slice(19).trim();
 const VUS = 'data/li-reponses-vues.json';
+// Aucun tiret de ponctuation (demande d'Alexis) : « a - b », « a – b », « a — b » deviennent « a, b ».
+const sansTirets = (t: string) => t.replace(/\s+[-–—]\s+/g, ', ').replace(/[–—]/g, ', ').replace(/,\s*,/g, ',').trim();
 const pause = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
 async function claude(prompt: string): Promise<string> {
@@ -19,7 +21,7 @@ async function claude(prompt: string): Promise<string> {
 }
 const PROMPT = (post: string, auteur: string, com: string) => `Tu es Alexis Fontana, fondateur de SmatchRoom Pulse (Bordeaux) : on trouve des clients aux artisans et aux PME en démarchant pour eux, sur WhatsApp et par email, les entreprises et prescripteurs de leur zone.
 Quelqu'un a commenté ton post LinkedIn. Écris ta réponse à ce commentaire.
-Règles : en français, vouvoiement, 1 à 3 phrases, ton direct et chaleureux, sans jargon. Commence par son prénom si tu le connais. Réponds vraiment à ce qu'il dit (remercie seulement si c'est naturel), et quand c'est possible relance l'échange par une question ouverte. Pas de lien, pas de prix, pas d'emoji en excès (un au maximum), jamais de mention d'intelligence artificielle ni de réponse automatique, pas de signature.
+Règles : en français, vouvoiement, 1 à 3 phrases, ton direct et chaleureux, sans jargon. Commence par son prénom si tu le connais. Réponds vraiment à ce qu'il dit (remercie seulement si c'est naturel), et quand c'est possible relance l'échange par une question ouverte. Pas de lien, pas de prix, pas d'emoji en excès (un au maximum), jamais de mention d'intelligence artificielle ni de réponse automatique, pas de signature, aucun tiret (— – -) utilisé comme ponctuation.
 Si le commentaire est vide de sens, un simple emoji ou du spam, réponds exactement : RIEN
 Ton post : """${post.slice(0, 1500)}"""
 Auteur du commentaire : ${auteur}
@@ -47,7 +49,7 @@ Ta réponse (le texte seul) :`;
       if (id === '' || vus.has(id)) continue;
       if (auteurId === monId || String(com.author ?? '').includes(String(moi.last_name ?? '§'))) { vus.add(id); continue; }
       const texte = String(com.text ?? '').trim();
-      const rep = texte.length < 3 ? 'RIEN' : await claude(PROMPT(String(p.text ?? ''), String(com.author ?? ''), texte));
+      const rep = sansTirets(texte.length < 3 ? 'RIEN' : await claude(PROMPT(String(p.text ?? ''), String(com.author ?? ''), texte)));
       vus.add(id);
       if (rep === '' || rep.startsWith('RIEN')) { console.log(`  - ignoré : ${com.author} « ${texte.slice(0, 60)} »`); continue; }
       console.log(`  > ${com.author} : « ${texte.slice(0, 80)} »\n    réponse : ${rep}`);
