@@ -110,6 +110,27 @@ for (const b of bmt) {
   if (b.stock < 30) alertes.push(`BLEU M TECH ${NOMS_BMT[b.agent] ?? b.agent} : plus que ${b.stock} contacts en attente`);
 }
 
+// Bilan du soir pour BLEU M TECH (demande du 27/10/2026) : email à Maturaf, seulement s'il y a eu des envois.
+async function mail(to: string, sujet: string, texte: string) {
+  if (DRY) { console.log(`--- Email ${to} : ${sujet}\n${texte}\n`); return; }
+  const { SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS } = process.env;
+  if (!(SMTP_HOST && SMTP_USER && SMTP_PASS)) return;
+  try {
+    let nm: any;
+    try { nm = createRequire(import.meta.url)('nodemailer'); } catch { nm = createRequire('/root/smatchroom-ecosystem/smatchroom-pulse/package.json')('nodemailer'); }
+    const port = Number(SMTP_PORT || 465);
+    await nm.createTransport({ host: SMTP_HOST, port, secure: port === 465, auth: { user: SMTP_USER, pass: SMTP_PASS } })
+      .sendMail({ from: `"Alexis Fontana · SmatchRoom Pulse" <${SMTP_USER}>`, to, replyTo: 'a.fontana@smatchroom.fr', subject: sujet, text: texte });
+  } catch (e: any) { console.error('[recap-jour] email bleu m tech', e?.message); }
+}
+const NOMS_CLIENT_BMT: Record<string, string> = { agent1: 'Agent 1 (prospection des entreprises)', agent2: 'Agent 2 (apporteurs d\'affaires)' };
+if (!SANS_CLIENTS && bmt.some((b) => b.wa + b.mail > 0)) {
+  const corps = `Bonjour Maturaf,\n\nVoici le bilan du jour de vos agents :\n\n`
+    + bmt.map((b) => `${NOMS_CLIENT_BMT[b.agent] ?? b.agent}\n- ${pl(b.wa, 'message WhatsApp envoyé', 'messages WhatsApp envoyés')}\n- ${pl(b.mail, 'email envoyé', 'emails envoyés')}\n- ${pl(b.rep, 'réponse reçue', 'réponses reçues')}\n- ${pl(b.transmis, 'conversation transmise', 'conversations transmises')} à votre équipe`).join('\n\n')
+    + `\n\nLes conversations transmises vous attendent sur le WhatsApp de l'agent concerné.\n\nBonne soirée,\nAlexis Fontana\nSmatchRoom Pulse`;
+  await mail('a.maturaf@bleumtech.com', `Bilan du ${jour} de vos agents`, corps);
+}
+
 const s = r.smatchroom, a = r.accueil;
 if (s.stock < 30) alertes.push(`Ton agent : plus que ${s.stock} WhatsApp prêts`);
 if (a.impayes > 0) alertes.push(`${pl(a.impayes, 'facture d\'accueil', 'factures d\'accueil')} en attente de paiement`);
