@@ -26,6 +26,7 @@ import {
   noterSimulation,
   simulationPrecedente,
 } from '@/lib/simulateur-server';
+import { engagerWhatsApp } from '@/lib/simulateur-whatsapp';
 
 export const dynamic = 'force-dynamic';
 export const maxDuration = 90;
@@ -134,6 +135,9 @@ export async function POST(request) {
   if (!enregistre || !envoye) {
     console.error('[simulateur] lead', { enregistre, envoye, prenom, nom, telephone, metier: a.label, ville });
   }
+
+  /* WhatsApp immédiat : l'agent SmatchRoom engage la conversation et la mène jusqu'à la conclusion. */
+  await engagerWhatsApp(contact, a).catch((e) => console.error('[simulateur] whatsapp', e?.message));
 
   /* L'interlocuteur de l'exemple. Partenaires : le nom le plus court des
      premiers résultats, qui se lit le mieux dans une bulle. B2B : la création
