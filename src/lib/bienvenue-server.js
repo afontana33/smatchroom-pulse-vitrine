@@ -205,6 +205,14 @@ export async function alerterAlexis(ligne, d, fact, erreur) {
       ? `⚠️ Facture NON créée : ${erreur}`
       : `🧾 Facture ${fact?.numero || ''} créée${fact?.envoyeeParQonto ? ' et envoyée par Qonto' : ' (envoi Qonto impossible : coordonnées de virement envoyées par email)'}`);
   await whatsappAlexis(resume).catch(() => null);
+  const { TELEGRAM_BOT_TOKEN: tg, TELEGRAM_CHAT_ID: chat } = process.env;
+  if (tg && chat) {
+    await fetch(`https://api.telegram.org/bot${tg}/sendMessage`, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ chat_id: chat, text: resume }),
+    }).catch(() => null);
+  }
   const tr = transport();
   if (!tr) return;
   const lignes = Object.entries(d)

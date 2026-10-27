@@ -13,8 +13,13 @@
  * prescripteurs, préparation des M1, alerte WhatsApp à Alexis.
  * Reste manuel : brancher le WhatsApp (QR) puis activer la fiche.
  */
-import 'dotenv/config';
+import dotenv from 'dotenv';
 import { existsSync, writeFileSync } from 'node:fs';
+import { createRequire } from 'node:module';
+// Réglages : ceux de l'agent, puis Telegram (agent SmatchRoom) et SMTP (site), sans écraser.
+for (const f of ['.env', '../agent-chasseur-smatchroom/.env', '/root/smatchroom-ecosystem/smatchroom-pulse/.env', '/root/smatchroom-ecosystem/smatchroom-pulse/.env.local']) {
+  if (existsSync(f)) dotenv.config({ path: f, quiet: true } as any);
+}
 import { execSync } from 'node:child_process';
 import { createClient } from '@supabase/supabase-js';
 
@@ -85,12 +90,29 @@ Réponds UNIQUEMENT par un JSON :
   return out;
 }
 
-async function alerte(texte: string) {
+async function alerte(texte: string, sujet = 'SmatchRoom Pulse : création d\'agent') {
   const { data: c } = await sb.from('sr_clients').select('green_api_host,green_api_id_instance,green_api_token').eq('id', 1).single();
-  if (c == null) return;
-  await fetch(`${c.green_api_host}/waInstance${c.green_api_id_instance}/sendMessage/${c.green_api_token}`, {
-    method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ chatId: `${ALEXIS}@c.us`, message: texte }),
-  }).catch(() => null);
+  if (c) {
+    await fetch(`${c.green_api_host}/waInstance${c.green_api_id_instance}/sendMessage/${c.green_api_token}`, {
+      method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ chatId: `${ALEXIS}@c.us`, message: texte }),
+    }).catch(() => null);
+  }
+  const { TELEGRAM_BOT_TOKEN: tg, TELEGRAM_CHAT_ID: chat } = process.env;
+  if (tg && chat) {
+    await fetch(`https://api.telegram.org/bot${tg}/sendMessage`, {
+      method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ chat_id: chat, text: texte }),
+    }).catch(() => null);
+  }
+  const { SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS } = process.env;
+  if (SMTP_HOST && SMTP_USER && SMTP_PASS) {
+    try {
+      let nm: any;
+      try { nm = createRequire(import.meta.url)('nodemailer'); } catch { nm = createRequire('/root/smatchroom-ecosystem/smatchroom-pulse/package.json')('nodemailer'); }
+      const port = Number(SMTP_PORT || 465);
+      await nm.createTransport({ host: SMTP_HOST, port, secure: port === 465, auth: { user: SMTP_USER, pass: SMTP_PASS } })
+        .sendMail({ from: `"SmatchRoom Pulse" <${SMTP_USER}>`, to: process.env.LEADS_TO || 'a.fontana@smatchroom.fr', subject: sujet, text: texte });
+    } catch (e: any) { console.error('[creer-agent] email', e?.message); }
+  }
 }
 
 const sh = (cmd: string) => execSync(cmd, { stdio: 'pipe', encoding: 'utf8', timeout: 20 * 60_000 });
@@ -148,7 +170,7 @@ async function creer(ligne: any) {
     bilan = (g.match(/\[deux-temps\][^\n]*M1 prêts[^\n]*/) ?? [''])[0];
   }
   await sb.from('pulse_onboarding').update({ agent_cree_at: new Date().toISOString(), agent_erreur: null }).eq('id', ligne.id);
-  await alerte(`🤖 Agent « ${d.raison_sociale} » préparé (fiche ${slug}, inactif).\n${z.villes.length} villes autour de ${z.ville}, ${personas.length} types de prescripteurs.\n${bilan}\nÀ faire : brancher le WhatsApp (${String(d.numero_whatsapp || '').slice(0, 60)}) puis passer "actif": true et relancer client:sync.`);
+  await alerte(`🤖 Agent « ${d.raison_sociale} » préparé (fiche ${slug}, inactif).\n${z.villes.length} villes autour de ${z.ville}, ${personas.length} types de prescripteurs.\n${bilan}\nÀ faire : brancher le WhatsApp (${String(d.numero_whatsapp || '').slice(0, 60)}) puis passer "actif": true et relancer client:sync.`, `Agent préparé : ${d.raison_sociale}`);
   console.log(`[creer-agent] ${slug} prêt. ${bilan}`);
 }
 
@@ -159,6 +181,6 @@ for (const l of lignes ?? []) {
   try { await creer(l); } catch (e: any) {
     console.error(`[creer-agent] ${l.id} : ${e.message}`);
     await sb.from('pulse_onboarding').update({ agent_erreur: String(e.message).slice(0, 500) }).eq('id', l.id);
-    await alerte(`⚠️ Création automatique de l'agent « ${l.entreprise} » impossible : ${String(e.message).slice(0, 200)}`);
+    await alerte(`⚠️ Création automatique de l'agent « ${l.entreprise} » impossible : ${String(e.message).slice(0, 200)}`, `Création d'agent impossible : ${l.entreprise}`);
   }
 }
