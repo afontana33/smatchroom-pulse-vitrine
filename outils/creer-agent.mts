@@ -51,7 +51,9 @@ async function zone(ville: string, rayonKm: number) {
   if (c0?.centre == null) throw new Error(`ville introuvable : ${ville}`);
   const toutes: any[] = await fetch('https://geo.api.gouv.fr/communes?fields=nom,centre,population,codesPostaux,codeDepartement&format=json').then((r) => r.json());
   const proches = toutes.filter((c) => c.centre && dist(c0.centre.coordinates, c.centre.coordinates) <= rayonKm);
-  const villes = [...proches].sort((a, b) => (b.population ?? 0) - (a.population ?? 0)).slice(0, 30).map((c) => c.nom);
+  // Les villes les plus proches d'abord (au moins 1 500 habitants), pour ne pas laisser une grande ville voisine tout prendre.
+  const d0 = (c: any) => dist(c0.centre.coordinates, c.centre.coordinates);
+  const villes = proches.filter((c) => (c.population ?? 0) >= 1500).sort((a, b) => d0(a) - d0(b)).slice(0, 30).map((c) => c.nom);
   if (villes.includes(c0.nom) === false) villes.unshift(c0.nom);
   const cps = [...new Set(proches.flatMap((c) => c.codesPostaux ?? []))].sort();
   const depts = [...new Set(proches.map((c) => c.codeDepartement))].sort();
@@ -114,7 +116,7 @@ async function creer(ligne: any) {
     flux_config: {
       m1_nom: `Bonjour, je suis ${prenom}. Je parle bien à {prenom} {nom} ?`,
       m1_sans_nom: { defaut: `Bonjour, je suis ${prenom}. C'est bien vous qui vous occupez de {etablissement} ?` },
-      redirect: "Merci pour votre retour ! En fait, je cherche la bonne personne pour échanger sur un partenariat avec {etablissement}. Vous sauriez qui c'est ?",
+      redirect: 'Très bien, merci.',
       m2: red.m2,
       signature,
     },
@@ -126,7 +128,7 @@ async function creer(ligne: any) {
       passage_main: 'Merci pour votre retour, je reviens vers vous rapidement.',
       cloture_refus: 'Très bien, merci pour votre retour. Gardez mes coordonnées si besoin, bonne journée.',
       notification_whatsapp: notif,
-      relance_identite: "Bonjour, je me permets de revenir vers vous au cas où mon précédent message vous aurait échappé.\n\nC'est bien vous qui vous occupez de {etablissement} ?",
+      relance_identite: "Bonjour, je reviens vers vous au cas où mon précédent message vous aurait échappé.\n\nC'est bien vous qui vous occupez de {etablissement} ?",
       relance_suite: "Je reviens vers vous. Pas de souci si ce n'est pas le moment.",
       relance_finale: 'Dernier message de ma part. Si vous avez un jour besoin de moi, gardez mon numéro. Bonne journée.',
     },
