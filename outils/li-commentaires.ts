@@ -1,0 +1,55 @@
+// Visibilité LinkedIn d'Alexis (demande du 27/10/2026) : commente des posts récents de dirigeants de PME B2B.
+// Cherche les posts du jour sur des sujets de dirigeants, garde les auteurs qui passent le filtre des titres
+// (signaux/pulse.json), et laisse un vrai commentaire sur le fond. Jamais de pitch, jamais de lien.
+//   npx tsx src/li-commentaires.ts [--dry-run] [--max=2]
+import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'node:fs';
+import { config } from './config.js';
+import { api, recupererUnipile } from './unipile';
+const DRY = process.argv.includes('--dry-run');
+const MAX = Number((process.argv.find((a) => a.startsWith('--max=')) ?? '--max=2').slice(6));
+const fic = (() => { try { return readFileSync('/root/unipile.env', 'utf8'); } catch { return ''; } })();
+const ACCOUNT_ID = process.env.UNIPILE_ACCOUNT_ID ?? (fic.split('\n').find((l) => l.startsWith('UNIPILE_ACCOUNT_ID=')) ?? '').slice(19).trim();
+const VUS = 'data/li-commentaires-vus.json';
+const pause = (ms: number) => new Promise((r) => setTimeout(r, ms));
+const conf = JSON.parse(readFileSync('signaux/pulse.json', 'utf8'));
+const INCLURE = new RegExp(conf.inclure.join('|'), 'i');
+const EXCLURE = new RegExp(conf.exclure.join('|'), 'i');
+const SUJETS = ['prospection commerciale', 'trouver des clients', 'développement commercial', 'chef d\'entreprise', 'dirigeant PME',
+  'recrutement commercial', 'croissance PME', 'bouche-à-oreille clients', 'prescripteurs', 'entrepreneuriat'];
+
+async function claude(prompt: string): Promise<string> {
+  const r = await fetch('https://api.anthropic.com/v1/messages', { method: 'POST', headers: { 'x-api-key': config.anthropic.apiKey, 'anthropic-version': '2023-06-01', 'content-type': 'application/json' },
+    body: JSON.stringify({ model: config.anthropic.model, max_tokens: 400, messages: [{ role: 'user', content: prompt }] }) });
+  return String(((await r.json()) as any).content?.[0]?.text ?? '').trim();
+}
+const PROMPT = (auteur: string, titre: string, post: string) => `Tu es Alexis Fontana, fondateur de SmatchRoom Pulse à Bordeaux : tu aides les artisans et les PME à trouver des clients en démarchant pour eux, sur WhatsApp et par email, les entreprises et prescripteurs de leur zone. Tu as été restaurateur puis commercial dans le BTP.
+Voici un post LinkedIn de ${auteur} (${titre}). Écris un commentaire qui apporte quelque chose : un avis précis, une expérience vécue, un chiffre de terrain ou une question pertinente sur le fond du post.
+Règles : en français, 2 à 3 phrases, ton direct et naturel, vouvoiement si tu t'adresses à l'auteur. Interdit : « Super post », « Merci pour ce partage », flatterie vide, parler de SmatchRoom ou de tes services, lien, hashtag, prix, mention d'intelligence artificielle.
+Si le post n'a rien à voir avec l'entreprise, le commerce ou l'entrepreneuriat, ou s'il porte sur un drame personnel, un décès, la politique ou une offre d'emploi, réponds exactement : RIEN
+Post : """${post.slice(0, 2000)}"""
+Ton commentaire (le texte seul) :`;
+
+(async () => {
+  if (existsSync('data') === false) mkdirSync('data');
+  const vus = new Set<string>(existsSync(VUS) ? JSON.parse(readFileSync(VUS, 'utf8')) : []);
+  const sujets = [...SUJETS].sort(() => Math.random() - 0.5).slice(0, 3);
+  const items = await recupererUnipile({ queries: sujets, postedLimit: '24h', maxComments: 0 });
+  const posts = items.filter((i: any) => i.type === 'post' && i.id && vus.has(String(i.id)) === false
+    && i.author?.linkedinUrl && INCLURE.test(i.author.position ?? '') && EXCLURE.test(i.author.position ?? '') === false
+    && String(i.content ?? '').length > 200);
+  console.log(`[commentaires] ${items.length} résultats, ${posts.length} posts de dirigeants`);
+  let faits = 0;
+  for (const p of posts) {
+    if (faits >= MAX) break;
+    vus.add(String(p.id));
+    const t = await claude(PROMPT(p.author.name, p.author.position, String(p.content)));
+    if (t === '' || t.startsWith('RIEN')) continue;
+    console.log(`  > ${p.author.name} | ${String(p.author.position).slice(0, 60)}\n    post : ${String(p.content).slice(0, 100).replace(/\n/g, ' ')}…\n    commentaire : ${t}`);
+    faits++;
+    if (DRY) continue;
+    await api(`/posts/${encodeURIComponent(p.id)}/comments`, { method: 'POST', body: JSON.stringify({ account_id: ACCOUNT_ID, text: t }) });
+    await pause(60000 + Math.random() * 120000);
+  }
+  if (DRY === false) writeFileSync(VUS, JSON.stringify([...vus]));
+  console.log(`[commentaires] ${faits} commentaire(s)${DRY ? ' (test, rien publié)' : ''}`);
+})().catch((e) => console.log('ERREUR', e.message));
