@@ -10,6 +10,7 @@
 import dotenv from 'dotenv';
 import { existsSync, readFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
+import { execFileSync } from 'node:child_process';
 import { createClient } from '@supabase/supabase-js';
 
 for (const f of ['.env', '../agent-chasseur-smatchroom/.env', '/root/smatchroom-ecosystem/smatchroom-pulse/.env', '/root/smatchroom-ecosystem/smatchroom-pulse/.env.local']) {
@@ -83,12 +84,39 @@ for (const c of r.clients as any[]) {
   await wa(f, num, msg);
 }
 
+
+// BLEU M TECH (demande du 27/10/2026) : agents 1 et 2, base Postgres séparée (/root/bleumtech/.env, DATABASE_URL).
+// Lu avec psql, sans toucher à process.env. Seulement dans le récap d'Alexis.
+function recapBmt(): any[] {
+  try {
+    const env = dotenv.parse(readFileSync('/root/bleumtech/.env', 'utf8'));
+    const ok = "m.status in ('sent','delivered','read','opened')";
+    const q = `with j as (select (date_trunc('day', now() at time zone 'Europe/Paris') at time zone 'Europe/Paris') d0)
+select coalesce(json_agg(json_build_object('agent', a.agent,
+ 'wa', (select count(*) from messages m join enrollments e on e.id=m.enrollment_id join sequences s on s.id=e.sequence_id where s.agent=a.agent and m.direction='out' and m.channel='whatsapp' and ${ok} and m.sent_at>=j.d0),
+ 'mail', (select count(*) from messages m join enrollments e on e.id=m.enrollment_id join sequences s on s.id=e.sequence_id where s.agent=a.agent and m.direction='out' and m.channel='email' and ${ok} and m.sent_at>=j.d0),
+ 'rep', (select count(distinct m.contact_id) from messages m where m.direction='in' and m.created_at>=j.d0 and exists (select 1 from enrollments e join sequences s on s.id=e.sequence_id where e.contact_id=m.contact_id and s.agent=a.agent)),
+ 'transmis', (select count(*) from enrollments e join sequences s on s.id=e.sequence_id where s.agent=a.agent and e.handed_over_at>=j.d0),
+ 'stock', (select count(*) from enrollments e join sequences s on s.id=e.sequence_id where s.agent=a.agent and e.state='active' and e.current_step=0)
+) order by a.agent), '[]'::json) from (select distinct agent from sequences) a, j`;
+    return JSON.parse(execFileSync('psql', [env.DATABASE_URL, '-At', '-c', q], { encoding: 'utf8', timeout: 30000 }).trim() || '[]');
+  } catch (e: any) { console.error('[recap-jour] bleu m tech :', String(e?.message ?? e).split('\n')[0]); return []; }
+}
+const NOMS_BMT: Record<string, string> = { agent1: 'Agent 1 (prospection)', agent2: 'Agent 2 (apporteurs, José)' };
+const bmt = recapBmt();
+const lignesBmt = bmt.map((b) => `• ${NOMS_BMT[b.agent] ?? b.agent} : ${b.wa} WhatsApp · ${b.mail} emails · ${pl(b.rep, 'réponse')} · ${b.transmis} transmis · stock ${b.stock}`);
+for (const b of bmt) {
+  if (b.wa + b.mail === 0) alertes.push(`BLEU M TECH ${NOMS_BMT[b.agent] ?? b.agent} : aucun envoi aujourd'hui`);
+  if (b.stock < 30) alertes.push(`BLEU M TECH ${NOMS_BMT[b.agent] ?? b.agent} : plus que ${b.stock} contacts en attente`);
+}
+
 const s = r.smatchroom, a = r.accueil;
 if (s.stock < 30) alertes.push(`Ton agent : plus que ${s.stock} WhatsApp prêts`);
 if (a.impayes > 0) alertes.push(`${pl(a.impayes, 'facture d\'accueil', 'factures d\'accueil')} en attente de paiement`);
 
 const texte = `📊 Récap du ${jour}\n\n`
   + `Agents clients : ${totEnv} messages envoyés, ${pl(totRep, 'réponse')}, ${totTr} transmis.\n${lignes.join('\n')}\n\n`
+  + (lignesBmt.length ? `BLEU M TECH :\n${lignesBmt.join('\n')}\n\n` : '')
   + `Ton agent SmatchRoom : ${s.premiers} nouveaux contacts, ${s.sortants} messages, ${pl(s.reponses, 'réponse')}, stock ${s.stock}.\n`
   + `Ventes : ${a.liens} liens d'accueil, ${a.remplis} formulaires remplis, ${a.payes} paiements reçus, ${a.agents} agents créés.`
   + (alertes.length ? `\n\n⚠️ À regarder :\n${alertes.map((x) => `- ${x}`).join('\n')}` : '');
