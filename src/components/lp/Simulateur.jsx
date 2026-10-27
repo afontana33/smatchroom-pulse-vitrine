@@ -3,10 +3,12 @@
 /**
  * Simulateur « Voyez qui l'agent contacterait pour vous ».
  *
- * Étape 1 : secteur, ville, prénom, nom, téléphone (obligatoires), entreprise
- *           (facultative) → /api/simulateur (20 à 40 s). Le contact
- *           est envoyé par email à Alexis.
- * Étape 2 : la conversation WhatsApp telle que nos agents la mènent, au nom du
+ * Étape 1 : secteur et ville seulement → /api/simulateur { etape: 'recherche' }
+ *           (20 à 40 s). Le visiteur voit le nombre trouvé et un aperçu flouté.
+ * Étape 2 : prénom, nom, téléphone (obligatoires), entreprise (facultative)
+ *           pour débloquer le résultat (demande du 27/10/2026). Le contact est
+ *           envoyé par email à Alexis.
+ * Étape 3 : la conversation WhatsApp telle que nos agents la mènent, au nom du
  *           visiteur, avec un partenaire trouvé, puis la liste des partenaires.
  *
  * Une seule simulation par visiteur : le serveur refuse la deuxième (409), et le
@@ -208,20 +210,26 @@ export default function Simulateur() {
     email: '',
     consentement: false,
   });
-  const [etat, setEtat] = useState('saisie'); // saisie | attente | resultat | deja
+  const [etat, setEtat] = useState('saisie'); // saisie | attente | apercu | deverrouillage | resultat | deja
   const [erreur, setErreur] = useState('');
   const [res, setRes] = useState(null);
+  const [apercu, setApercu] = useState(null);
   const [tick, setTick] = useState(0);
   const [tout, setTout] = useState(false);
   const haut = useRef(null);
 
-  /* Un visiteur qui revient retrouve sa simulation au lieu d'un formulaire vide. */
+  /* Un visiteur qui revient retrouve sa simulation (ou son aperçu à débloquer)
+     au lieu d'un formulaire vide. */
   useEffect(() => {
     const g = lire();
     if (g?.res) {
       setForm(g.form);
       setRes(g.res);
       setEtat('resultat');
+    } else if (g?.apercu) {
+      setForm((f) => ({ ...f, ...g.form }));
+      setApercu(g.apercu);
+      setEtat('apercu');
     }
   }, []);
 
@@ -234,6 +242,7 @@ export default function Simulateur() {
   const maj = (k) => (e) =>
     setForm({ ...form, [k]: e.target.type === 'checkbox' ? e.target.checked : e.target.value });
 
+  /* Étape 1 : secteur + ville seulement, la recherche tourne, on montre un aperçu. */
   async function lancer(e) {
     e.preventDefault();
     setErreur('');
@@ -241,19 +250,46 @@ export default function Simulateur() {
       setErreur('Indiquez votre secteur et votre ville.');
       return;
     }
-    if (form.prenom.trim().length < 2 || form.nom.trim().length < 2 || form.telephone.replace(/\D/g, '').length < 9) {
-      setErreur('Indiquez votre prénom, votre nom et votre téléphone.');
-      return;
-    }
-    if (!form.consentement) {
-      setErreur('Cochez la case pour lancer le test.');
-      return;
-    }
     setTick(0);
     setEtat('attente');
     requestAnimationFrame(() =>
       document.getElementById('sim-radar')?.scrollIntoView({ behavior: 'smooth', block: 'start' }),
     );
+    try {
+      const r = await fetch('/api/simulateur', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ etape: 'recherche', activite: form.activite, ville: form.ville }),
+      });
+      const d = await r.json().catch(() => ({}));
+      if (r.status === 409) {
+        setEtat('deja');
+        return;
+      }
+      if (!r.ok) throw new Error(d.erreur || 'La recherche n’a pas abouti.');
+      setApercu(d);
+      setEtat('apercu');
+      requestAnimationFrame(() => haut.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }));
+      ecrire({ form: { activite: form.activite, ville: form.ville }, apercu: d });
+    } catch (err) {
+      setErreur(err.message);
+      setEtat('saisie');
+    }
+  }
+
+  /* Étape 2 : le formulaire de contact débloque la liste et la conversation. */
+  async function debloquer(e) {
+    e.preventDefault();
+    setErreur('');
+    if (form.prenom.trim().length < 2 || form.nom.trim().length < 2 || form.telephone.replace(/\D/g, '').length < 9) {
+      setErreur('Indiquez votre prénom, votre nom et votre téléphone.');
+      return;
+    }
+    if (!form.consentement) {
+      setErreur('Cochez la case pour voir votre résultat.');
+      return;
+    }
+    setEtat('deverrouillage');
     try {
       const r = await fetch('/api/simulateur', {
         method: 'POST',
@@ -273,7 +309,7 @@ export default function Simulateur() {
       ecrire({ form: { ...form, telephone: '', email: '' }, res: d });
     } catch (err) {
       setErreur(err.message);
-      setEtat('saisie');
+      setEtat('apercu');
     }
   }
 
@@ -297,10 +333,6 @@ export default function Simulateur() {
         {[
           ['activite', 'Votre secteur d’activité', null],
           ['ville', 'Votre ville', { placeholder: 'Ex. : Bordeaux', autoComplete: 'address-level2' }],
-          ['prenom', 'Prénom', { placeholder: 'L’agent signe à votre nom', autoComplete: 'given-name' }],
-          ['nom', 'Nom', { autoComplete: 'family-name' }],
-          ['telephone', 'Téléphone', { type: 'tel', placeholder: '06 12 34 56 78', autoComplete: 'tel' }],
-          ['entreprise', 'Entreprise', { placeholder: 'Facultatif', autoComplete: 'organization' }],
         ].map(([k, label, props]) => (
           <div key={k} className="mt-4">
             <label className="block text-sm font-semibold" htmlFor={`sim-${k}`}>
@@ -312,7 +344,7 @@ export default function Simulateur() {
                 className={`${champ} mt-1.5`}
                 value={form[k]}
                 onChange={maj(k)}
-                required={k !== 'entreprise'}
+                required
                 {...props}
               />
             ) : (
@@ -341,24 +373,6 @@ export default function Simulateur() {
           </div>
         ))}
 
-        <label className="mt-4 flex items-start gap-2.5 text-xs leading-relaxed text-[var(--muted-strong)]">
-          <input
-            type="checkbox"
-            className="mt-0.5"
-            checked={form.consentement}
-            onChange={maj('consentement')}
-            required
-          />
-          <span>
-            J’accepte d’être recontacté par SmatchRoom Pulse au sujet de ce test. Mes coordonnées ne
-            sont ni revendues ni utilisées pour autre chose (
-            <a href="/confidentialite" className="underline">
-              confidentialité
-            </a>
-            ).
-          </span>
-        </label>
-
         {erreur && <p className="mt-4 text-sm font-semibold text-red-600">{erreur}</p>}
 
         <button
@@ -372,6 +386,101 @@ export default function Simulateur() {
           Gratuit, une fois par entreprise. Résultat en moins d’une minute.
         </p>
       </form>
+    );
+  }
+
+  if (etat === 'apercu' || etat === 'deverrouillage') {
+    const b2bA = apercu.type === 'b2b';
+    return (
+      <div ref={haut} className="scroll-mt-24 space-y-6">
+        <div className="rounded-3xl border-2 border-[var(--primary)] bg-[var(--surface)] p-6 shadow-[var(--shadow-lg)] sm:p-8">
+          <p className="font-mono text-[0.62rem] uppercase tracking-[0.16em] text-[var(--muted)]">Recherche terminée</p>
+          <p className="mt-2 font-display text-2xl font-semibold tracking-tight">
+            {b2bA
+              ? `${apercu.total} signaux d’achat détectés autour de ${form.ville}`
+              : `${apercu.total} partenaires trouvés autour de ${form.ville}`}
+          </p>
+          <ul className="mt-5 space-y-2" aria-hidden>
+            {apercu.apercu.map((l, i) => (
+              <li key={i} className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] px-4 py-3">
+                <span className="block select-none font-semibold text-[var(--foreground)] blur-[6px]">
+                  {['Agence Martin & Associés', 'Cabinet Lefèvre Conseil', 'Immo Duval Patrimoine', 'Groupe Bernard'][i % 4]}
+                </span>
+                <span className="mt-0.5 flex items-start gap-1.5 text-sm text-[var(--muted)]">
+                  <MapPin size={13} aria-hidden className="mt-[0.2rem] flex-shrink-0" />
+                  <span className="line-clamp-1">
+                    {l.categorie}
+                    {l.ville ? ` · ${l.ville}` : ''}
+                  </span>
+                </span>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-3 text-xs text-[var(--muted)]">
+            + {Math.max(apercu.total - apercu.apercu.length, 0)} autres, et la conversation WhatsApp que l’agent mènerait à votre nom.
+          </p>
+        </div>
+
+        <form
+          onSubmit={debloquer}
+          className="rounded-3xl border-2 border-[var(--border-strong)] bg-[var(--surface)] p-6 shadow-[var(--shadow-lg)] sm:p-8"
+        >
+          <p className="font-display text-xl font-semibold">Voir mon résultat complet</p>
+          <p className="mt-1 text-sm text-[var(--muted-strong)]">
+            Les noms, la liste complète et le message que l’agent enverrait en signant à votre nom.
+          </p>
+          {[
+            ['prenom', 'Prénom', { placeholder: 'L’agent signe à votre nom', autoComplete: 'given-name' }],
+            ['nom', 'Nom', { autoComplete: 'family-name' }],
+            ['telephone', 'Téléphone', { type: 'tel', placeholder: '06 12 34 56 78', autoComplete: 'tel' }],
+            ['entreprise', 'Entreprise', { placeholder: 'Facultatif', autoComplete: 'organization' }],
+          ].map(([k, label, props]) => (
+            <div key={k} className="mt-4">
+              <label className="block text-sm font-semibold" htmlFor={`sim-${k}`}>
+                {label}
+              </label>
+              <input
+                id={`sim-${k}`}
+                className={`${champ} mt-1.5`}
+                value={form[k]}
+                onChange={maj(k)}
+                required={k !== 'entreprise'}
+                disabled={etat === 'deverrouillage'}
+                {...props}
+              />
+            </div>
+          ))}
+
+          <label className="mt-4 flex items-start gap-2.5 text-xs leading-relaxed text-[var(--muted-strong)]">
+            <input
+              type="checkbox"
+              className="mt-0.5"
+              checked={form.consentement}
+              onChange={maj('consentement')}
+              required
+            />
+            <span>
+              J’accepte d’être recontacté par SmatchRoom Pulse au sujet de ce test. Mes coordonnées ne
+              sont ni revendues ni utilisées pour autre chose (
+              <a href="/confidentialite" className="underline">
+                confidentialité
+              </a>
+              ).
+            </span>
+          </label>
+
+          {erreur && <p className="mt-4 text-sm font-semibold text-red-600">{erreur}</p>}
+
+          <button
+            type="submit"
+            disabled={etat === 'deverrouillage'}
+            className="btn-primary mt-6 inline-flex w-full items-center justify-center gap-2 px-5 py-3.5 text-sm font-bold disabled:opacity-80"
+          >
+            {etat === 'deverrouillage' ? 'Ouverture de votre résultat…' : 'Voir mon résultat'}
+            <ArrowRight size={16} aria-hidden />
+          </button>
+        </form>
+      </div>
     );
   }
 
