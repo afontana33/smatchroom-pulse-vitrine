@@ -23,7 +23,7 @@ async function claude(prompt: string): Promise<string> {
   return String(((await r.json()) as any).content?.[0]?.text ?? '').trim();
 }
 const PROMPT = (auteur: string, titre: string, post: string) => `Tu es Alexis Fontana, fondateur de SmatchRoom Pulse à Bordeaux : tu aides les artisans et les PME à trouver des clients en démarchant pour eux, sur WhatsApp et par email, les entreprises et prescripteurs de leur zone. Tu as été restaurateur puis commercial dans le BTP.
-Voici un post LinkedIn de ${auteur} (${titre}). Écris un commentaire qui apporte quelque chose : un avis précis, une expérience vécue, un chiffre de terrain ou une question pertinente sur le fond du post.
+Voici un post LinkedIn de ${auteur} (${titre}). Écris un commentaire qui apporte quelque chose : un avis précis ou une question pertinente sur le fond du post. N'invente JAMAIS de chiffre, de pourcentage, de nombre d'années d'expérience, de clients ni d'anecdote : tu ne cites que des faits présents dans le post. Orthographe et grammaire impeccables.
 Règles : en français, 2 phrases maximum et 280 caractères maximum, ton direct et naturel comme un dirigeant qui écrit vite depuis son téléphone, vouvoiement si tu t'adresses à l'auteur. Une seule idée, ou une seule question. Ne parle pas de ton parcours (restauration, BTP) sauf si le post porte exactement là-dessus. Interdit : « Super post », « Merci pour ce partage », « Vous pointez », « J'aime bien », flatterie, tirets longs (—), parler de SmatchRoom ou de tes services, des artisans si le post n'en parle pas, lien, hashtag, prix, mention d'intelligence artificielle.
 Si l'auteur ou le sujet du post ne concerne pas la France (Québec, Afrique, Belgique… ), réponds exactement : RIEN
 Si le post n'a rien à voir avec l'entreprise, le commerce ou l'entrepreneuriat, ou s'il porte sur un drame personnel, un décès, la politique ou une offre d'emploi, réponds exactement : RIEN
@@ -44,7 +44,7 @@ Ton commentaire (le texte seul) :`;
     if (faits >= MAX) break;
     vus.add(String(p.id));
     const t = await claude(PROMPT(p.author.name, p.author.position, String(p.content)));
-    if (t === '' || t.startsWith('RIEN') || t.length > 320 || t.includes('—')) continue;
+    if (t === '' || t.startsWith('RIEN') || t.length > 320 || t.includes('—') || /\d+ ?(%|ans)/.test(t)) continue;
     console.log(`  > ${p.author.name} | ${String(p.author.position).slice(0, 60)}\n    post : ${String(p.content).slice(0, 100).replace(/\n/g, ' ')}…\n    commentaire : ${t}`);
     faits++;
     if (DRY) continue;
