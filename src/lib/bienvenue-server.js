@@ -317,7 +317,17 @@ export async function instanceParConnexion(token) {
   if (!/^[a-z0-9]{12,40}$/i.test(String(token || ''))) return null;
   const s = sb();
   const r1 = await fetch(`${s.url}/rest/v1/pulse_onboarding?select=id,entreprise,agent_slug,active_at&connexion_token=eq.${token}&limit=1`, { headers: s.headers, cache: 'no-store' });
-  const o = r1.ok ? (await r1.json())[0] : null;
+  let o = r1.ok ? (await r1.json())[0] : null;
+  if (!o) {
+    /* Lien de reconnexion envoyé par la surveillance des instances (clients sans formulaire d'accueil). */
+    const r0 = await fetch(`${s.url}/rest/v1/pulse_instances_etat?select=slug&connexion_token=eq.${token}&limit=1`, { headers: s.headers, cache: 'no-store' });
+    const e = r0.ok ? (await r0.json())[0] : null;
+    if (e?.slug) {
+      const rn = await fetch(`${s.url}/rest/v1/chasseur_clients?select=nom&slug=eq.${e.slug}&limit=1`, { headers: s.headers, cache: 'no-store' });
+      const n = rn.ok ? (await rn.json())[0] : null;
+      o = { id: null, entreprise: n?.nom || '', agent_slug: e.slug, active_at: new Date().toISOString() };
+    }
+  }
   if (!o?.agent_slug) return null;
   const r2 = await fetch(`${s.url}/rest/v1/chasseur_clients?select=green_api_host,green_api_id_instance,green_api_token&slug=eq.${o.agent_slug}&limit=1`, { headers: s.headers, cache: 'no-store' });
   const c = r2.ok ? (await r2.json())[0] : null;
