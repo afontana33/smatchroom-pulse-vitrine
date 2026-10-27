@@ -6,6 +6,7 @@
  */
 
 const ALEXIS = '33771487698';
+const ZONES = ['33', '32', '41', '352', '262', '590', '594', '596', '269', '687', '689'];
 
 function sb() {
   const url = process.env.SUPABASE_URL;
@@ -36,6 +37,13 @@ export async function engagerWhatsApp(contact, a) {
   if (!s) return;
   const num = versE164(contact.telephone);
   if (num.length < 11) return;
+  const rc0 = await fetch(`${s.url}/rest/v1/sr_clients?select=green_api_host,green_api_id_instance,green_api_token&id=eq.1`, { headers: s.headers, cache: 'no-store' });
+  const c0 = rc0.ok ? (await rc0.json())[0] : null;
+  /* Numéros hors France (DOM compris), Belgique, Suisse, Luxembourg : pas de WhatsApp automatique, Alexis prévenu. */
+  if (!ZONES.some((z) => num.startsWith(z))) {
+    if (c0) await envoyer(c0, ALEXIS, `🌍 Simulateur : ${contact.prenom} ${contact.nom}${contact.entreprise ? ` (${contact.entreprise})` : ''}, ${a.label}, ${contact.ville}. Numéro étranger (+${num.slice(0, 3)}…), pas de WhatsApp automatique. À regarder toi-même.`).catch(() => null);
+    return;
+  }
   const rc = await fetch(`${s.url}/rest/v1/sr_clients?select=green_api_host,green_api_id_instance,green_api_token&id=eq.1`, { headers: s.headers, cache: 'no-store' });
   const creds = rc.ok ? (await rc.json())[0] : null;
   if (!creds) return;
