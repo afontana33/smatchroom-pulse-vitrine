@@ -100,6 +100,8 @@ const jour = (d) => d.toISOString().slice(0, 10);
 /** Crée le client et la facture (virement), puis tente l'envoi par email via Qonto. */
 export async function facturer(ligne, d) {
   const offre = OFFRES[ligne.offre];
+  /* Une fiche « TEST… » crée une facture en brouillon (supprimable) et ne l'envoie pas. */
+  const test = String(ligne.entreprise || '').startsWith('TEST');
   const client = await qonto('/clients', {
     kind: 'company',
     name: d.raison_sociale,
@@ -117,7 +119,7 @@ export async function facturer(ligne, d) {
     issue_date: jour(maintenant),
     due_date: jour(echeance),
     currency: 'EUR',
-    status: 'unpaid',
+    status: test ? 'draft' : 'unpaid',
     payment_methods: { iban: IBAN_BRUT },
     items: [
       {
@@ -133,6 +135,7 @@ export async function facturer(ligne, d) {
   await majAccueil(ligne.id, { statut: 'facture', qonto_client_id: clientId, qonto_invoice_id: inv?.id });
 
   let envoyeeParQonto = false;
+  if (test) return { numero: inv?.number || null, id: inv?.id, envoyeeParQonto: true };
   try {
     await qonto(`/client_invoices/${inv.id}/send`, {
       send_to: [d.email],
