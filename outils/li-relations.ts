@@ -25,7 +25,7 @@ async function claude(prompt: string): Promise<any> {
 }
 const PROMPT = (gens: any[]) => `Voici des relations LinkedIn d'Alexis, qui vend aux PME françaises un agent de prospection : il repère les entreprises qui ressemblent à leurs clients et écrit à leurs décideurs.
 Pour chacune, dis si c'est une bonne cible : dirigeant (ou directeur commercial) d'une PME française qui vend à d'autres entreprises (B2B).
-NE SONT PAS des cibles : salariés sans pouvoir de décision, indépendants seuls, consultants, coachs, formateurs, agences de prospection, marketing ou communication (concurrents), recruteurs, artisans du bâtiment, commerces de détail et restaurants (clientèle de particuliers), grands groupes, secteur public, associations, étudiants, personnes hors de France.
+NE SONT PAS des cibles : salariés sans pouvoir de décision (avant-vente, chef de projet, ingénieur…), indépendants seuls, consultants, coachs, formateurs, agences de prospection, de marketing, de communication, web ou digitales et tout service qui « accompagne les entrepreneurs » à trouver des clients (concurrents), recruteurs, artisans et entreprises du bâtiment qui travaillent pour des particuliers (menuiserie, fermetures, électricité, plomberie, rénovation…), commerces de détail et restaurants, grands groupes et leurs filiales, secteur public, associations, étudiants, personnes hors de France. En cas de doute, ne garde pas.
 ${gens.map((g, i) => `${i + 1}. ${g.nom} | ${g.titre}`).join('\n')}
 Réponds uniquement par un tableau JSON, un objet par ligne gardée (ignore les autres) : [{"n": numéro, "prenom": "prénom, casse normale", "entreprise": "nom de son entreprise tel qu'écrit dans son titre, ou null"}]`;
 
