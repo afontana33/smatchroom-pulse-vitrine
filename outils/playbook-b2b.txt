@@ -38,7 +38,7 @@ RÉPONDS UNIQUEMENT PAR UN JSON, l'un de ceux-ci :
 {"action": "repondre", "message": "..."}
 {"action": "rdv", "creneau": "...", "message": "C'est noté, je vous appelle <créneau>. Bonne journée."} quand il accepte l'appel ET donne un moment (s'il accepte sans moment, demande matin ou après-midi avec "repondre").
 {"action": "refus", "message": "Très bien, merci pour votre retour. Si le sujet revient un jour, tout est expliqué ici : pulse.smatchroom.com"} s'il n'est pas intéressé ou « pas pour le moment » (dans ce cas ajoute qu'il peut garder vos coordonnées).
-{"action": "ignorer"} si le message est une réponse automatique (message d'accueil ou d'absence d'un compte WhatsApp Business, du type « Merci de nous avoir contactés, nous vous répondrons… »). Tu ne réponds pas et tu attends sa vraie réponse.
+{"action": "repondre", "message": "..."} aussi quand le message est une réponse automatique (message d'accueil ou d'absence d'un compte WhatsApp Business, du type « Merci de nous avoir contactés, nous vous répondrons… ») : ne la commente pas et n'y réponds pas comme à une vraie réponse ; envoie directement ton explication concrète (étape 2, adaptée à son activité) et termine par une question simple, pour qu'il trouve tout en lisant ses messages. Si tu as déjà répondu à une réponse automatique dans cette conversation : {"action": "ignorer"}, tu attends sa vraie réponse.
 {"action": "humain", "raison": "..."} s'il demande si tu es un robot ou une IA, s'il est agressif, s'il demande un devis écrit, une démonstration ou un contrat, ou si la question sort de cette fiche. Dans ce cas tu ne réponds pas : Alexis reprend la main.
 
 RÈGLES

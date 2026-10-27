@@ -13,7 +13,7 @@ P = '/root/smatchroom-ecosystem/smatchroom-pulse/outils/playbook-b2b.txt'
 def patch(nom, reps):
     p = S + nom
     s = open(p).read()
-    if 'simulateur_b2b' in s or 'ignorer' in s and nom.endswith('.txt'):
+    if 'simulateur_b2b' in s or 'réponse automatique' in s and nom.endswith('.txt'):
         print(f'{nom} : déjà fait'); return
     shutil.copy(p, p + '.bak-b2b')
     for a, b in reps:
@@ -23,6 +23,15 @@ def patch(nom, reps):
     open(p, 'w').write(s)
     print(f'{nom} : ok')
 
+AUTO_ART = ('{"action": "repondre", "message": "..."} aussi quand le message est une réponse automatique (message d\'accueil ou d\'absence d\'un compte WhatsApp Business, du type « Merci de nous avoir contactés… ») : '
+            'ne la commente pas ; envoie directement ton explication concrète, adaptée à son métier et à sa zone, et termine par une question simple, pour qu\'il trouve tout en lisant ses messages. '
+            'Si tu as déjà répondu à une réponse automatique dans cette conversation : {"action": "ignorer"}, tu attends sa vraie réponse.')
+# Ancienne version de la règle (ignorer sans répondre) : remplacée si déjà posée.
+pa = S + 'playbook-artisans.txt'
+t = open(pa).read()
+if 'Tu ne réponds pas et tu attends sa vraie réponse.' in t:
+    i = t.index('{"action": "ignorer"} si le message est une réponse automatique'); j = t.index('\n', i)
+    open(pa, 'w').write(t[:i] + AUTO_ART + t[j:]); print('playbook-artisans.txt : règle des réponses automatiques mise à jour')
 shutil.copy(P, S + 'playbook-b2b.txt')
 print('playbook-b2b.txt : copié')
 
@@ -56,6 +65,5 @@ for nom in ['listener.ts', 'deux-temps-sr.ts']:
 
 patch('playbook-artisans.txt', [
     ('{"action": "repondre", "message": "..."}',
-     '{"action": "repondre", "message": "..."}\n'
-     '{"action": "ignorer"} si le message est une réponse automatique (message d\'accueil ou d\'absence d\'un compte WhatsApp Business, du type « Merci de nous avoir contactés… »). Tu ne réponds pas et tu attends sa vraie réponse.'),
+     '{"action": "repondre", "message": "..."}\n' + AUTO_ART),
 ])
