@@ -2,7 +2,8 @@
  * Après un test du simulateur (demande du 27/10/2026) : WhatsApp immédiat au
  * visiteur depuis le numéro de l'agent SmatchRoom, puis l'agent mène la
  * conversation et conclut (source « simulateur » dans sr_leads, client 1).
- * Activités B2B (offre Agent Clients) : premier message envoyé, puis reprise par Alexis.
+ * Activités B2B (offre Agent Clients, source « simulateur_b2b ») : l'agent comprend l'activité et obtient un appel
+ * (fiche playbook-b2b.txt), puis Alexis reprend la main pour vendre.
  */
 
 const ALEXIS = '33771487698';
@@ -53,7 +54,7 @@ export async function engagerWhatsApp(contact, a) {
     telephone: `+${num}`,
     email: contact.email,
     ville: contact.ville,
-    source: 'simulateur',
+    source: b2b ? 'simulateur_b2b' : 'simulateur',
     canal: 'whatsapp',
     source_ref: `${a.label} · ${n} professionnels trouvés · cibles : ${a.cible}`.slice(0, 300),
     profession: ['batiment', 'renovation'].includes(a.key) ? 'BTP' : 'Autre',
@@ -61,7 +62,7 @@ export async function engagerWhatsApp(contact, a) {
     priorite: 9,
     statut: 'contacte',
     date_contact: new Date().toISOString(),
-    flux_etape: b2b ? 'transmis' : 'en_conversation',
+    flux_etape: 'en_conversation',
   };
 
   /* Un même numéro ne crée pas deux leads : on met à jour celui qui existe. */
@@ -85,7 +86,7 @@ export async function engagerWhatsApp(contact, a) {
     await envoyer(
       creds,
       ALEXIS,
-      `🧪 Simulateur B2B : ${champs.dirigeant} (${champs.nom_entreprise}), ${a.label}, ${contact.ville}. Premier WhatsApp envoyé, à reprendre toi-même (offre Agent Clients).`,
+      `🧪 Simulateur B2B : ${champs.dirigeant} (${champs.nom_entreprise}), ${a.label}, ${contact.ville}. Premier WhatsApp envoyé : l'agent comprend son activité et te décroche un appel, tu reprends la main ensuite.`,
     );
   }
 }
