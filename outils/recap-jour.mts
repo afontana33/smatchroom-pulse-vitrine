@@ -67,7 +67,7 @@ let totEnv = 0, totRep = 0, totTr = 0;
 for (const c of r.clients as any[]) {
   if (EXCLUS.has(c.slug)) continue;
   totEnv += c.sortants; totRep += c.reponses; totTr += c.transmis.length;
-  lignes.push(`• ${c.nom} : ${c.sortants} envoyés (${c.premiers} nouveaux) · ${pl(c.reponses, 'réponse')} · ${c.transmis.length} transmis · stock ${c.stock}`);
+  lignes.push(`• ${c.nom} : ${c.sortants} envoyés (${pl(c.premiers, "nouveau", "nouveaux")}) · ${pl(c.reponses, 'réponse')} · ${c.transmis.length} transmis · stock ${c.stock}`);
   if (c.sortants === 0) alertes.push(`${c.nom} : aucun envoi aujourd'hui`);
   if (c.stock < 30) alertes.push(`${c.nom} : plus que ${c.stock} messages prêts`);
 
