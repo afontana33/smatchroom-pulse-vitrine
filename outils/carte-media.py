@@ -7,14 +7,17 @@ a = """  const media = c.host.replace(/\\/$/, '').replace('.api.', '.media.');
   if (!res.ok) throw new Error(`Green API sendFileByUpload ${res.status}: ${await res.text()}`);
   return ((await res.json()) as any).idMessage ?? '';"""
 b = """  const n = (c.host.match(/\\/\\/(\\d+)\\./) ?? [])[1];
-  const hotes = [n ? `https://${n}.media.green-api.com` : '', 'https://media.green-api.com'].filter(Boolean);
+  // L'hôte principal de l'instance accepte l'envoi de fichiers (vérifié le 27/10/2026) ; les hôtes « media » en secours.
+  const hotes = [c.host.replace(/\\/$/, ''), n ? `https://${n}.media.green-api.com` : '', 'https://media.green-api.com'].filter(Boolean);
   let err: any;
   for (const h of hotes) {
-    try {
-      const res = await fetch(`${h}/waInstance${c.idInstance}/sendFileByUpload/${c.apiToken}`, { method: 'POST', body: fd });
-      if (!res.ok) throw new Error(`Green API sendFileByUpload ${res.status}: ${await res.text()}`);
-      return ((await res.json()) as any).idMessage ?? '';
-    } catch (e) { err = e; }
+    let res: Response;
+    try { res = await fetch(`${h}/waInstance${c.idInstance}/sendFileByUpload/${c.apiToken}`, { method: 'POST', body: fd }); }
+    catch (e) { err = e; continue; } // hôte injoignable : on essaie le suivant
+    // 5xx (souvent 504) : le fichier part quand même, on ne renvoie pas pour éviter un doublon.
+    if (res.status >= 500) { console.warn('[carte] ' + res.status + ' de Green API, envoi considéré comme fait'); return ''; }
+    if (res.ok === false) throw new Error(`Green API sendFileByUpload ${res.status}: ${await res.text()}`);
+    return ((await res.json()) as any).idMessage ?? '';
   }
   throw err;"""
 if b in s: print('déjà fait')
