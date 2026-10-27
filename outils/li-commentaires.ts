@@ -24,7 +24,8 @@ async function claude(prompt: string): Promise<string> {
 }
 const PROMPT = (auteur: string, titre: string, post: string) => `Tu es Alexis Fontana, fondateur de SmatchRoom Pulse à Bordeaux : tu aides les artisans et les PME à trouver des clients en démarchant pour eux, sur WhatsApp et par email, les entreprises et prescripteurs de leur zone. Tu as été restaurateur puis commercial dans le BTP.
 Voici un post LinkedIn de ${auteur} (${titre}). Écris un commentaire qui apporte quelque chose : un avis précis, une expérience vécue, un chiffre de terrain ou une question pertinente sur le fond du post.
-Règles : en français, 2 à 3 phrases, ton direct et naturel, vouvoiement si tu t'adresses à l'auteur. Interdit : « Super post », « Merci pour ce partage », flatterie vide, parler de SmatchRoom ou de tes services, lien, hashtag, prix, mention d'intelligence artificielle.
+Règles : en français, 2 phrases maximum et 280 caractères maximum, ton direct et naturel comme un dirigeant qui écrit vite depuis son téléphone, vouvoiement si tu t'adresses à l'auteur. Une seule idée, ou une seule question. Ne parle pas de ton parcours (restauration, BTP) sauf si le post porte exactement là-dessus. Interdit : « Super post », « Merci pour ce partage », « Vous pointez », « J'aime bien », flatterie, tirets longs (—), parler de SmatchRoom ou de tes services, des artisans si le post n'en parle pas, lien, hashtag, prix, mention d'intelligence artificielle.
+Si l'auteur ou le sujet du post ne concerne pas la France (Québec, Afrique, Belgique… ), réponds exactement : RIEN
 Si le post n'a rien à voir avec l'entreprise, le commerce ou l'entrepreneuriat, ou s'il porte sur un drame personnel, un décès, la politique ou une offre d'emploi, réponds exactement : RIEN
 Post : """${post.slice(0, 2000)}"""
 Ton commentaire (le texte seul) :`;
@@ -34,7 +35,7 @@ Ton commentaire (le texte seul) :`;
   const vus = new Set<string>(existsSync(VUS) ? JSON.parse(readFileSync(VUS, 'utf8')) : []);
   const sujets = [...SUJETS].sort(() => Math.random() - 0.5).slice(0, 3);
   const items = await recupererUnipile({ queries: sujets, postedLimit: '24h', maxComments: 0 });
-  const posts = items.filter((i: any) => i.type === 'post' && i.id && vus.has(String(i.id)) === false
+  const posts = items.sort(() => Math.random() - 0.5).filter((i: any) => i.type === 'post' && i.id && vus.has(String(i.id)) === false
     && i.author?.linkedinUrl && INCLURE.test(i.author.position ?? '') && EXCLURE.test(i.author.position ?? '') === false
     && String(i.content ?? '').length > 200);
   console.log(`[commentaires] ${items.length} résultats, ${posts.length} posts de dirigeants`);
@@ -43,7 +44,7 @@ Ton commentaire (le texte seul) :`;
     if (faits >= MAX) break;
     vus.add(String(p.id));
     const t = await claude(PROMPT(p.author.name, p.author.position, String(p.content)));
-    if (t === '' || t.startsWith('RIEN')) continue;
+    if (t === '' || t.startsWith('RIEN') || t.length > 320 || t.includes('—')) continue;
     console.log(`  > ${p.author.name} | ${String(p.author.position).slice(0, 60)}\n    post : ${String(p.content).slice(0, 100).replace(/\n/g, ' ')}…\n    commentaire : ${t}`);
     faits++;
     if (DRY) continue;
