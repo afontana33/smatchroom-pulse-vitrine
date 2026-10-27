@@ -239,20 +239,20 @@ export async function lireRenouvellement(token) {
   if (!/^[a-z0-9]{12,40}$/i.test(String(token || ''))) return null;
   const s = sb();
   const res = await fetch(
-    `${s.url}/rest/v1/pulse_renouvellements?select=id,token,echeance,statut,onboarding_id,pulse_onboarding(id,entreprise,telephone,donnees,qonto_client_id,agent_slug)&token=eq.${token}&limit=1`,
+    `${s.url}/rest/v1/pulse_renouvellements?select=id,token,echeance,statut,motif,onboarding_id,pulse_onboarding(id,entreprise,telephone,donnees,qonto_client_id,agent_slug)&token=eq.${token}&limit=1`,
     { headers: s.headers, cache: 'no-store' },
   );
   if (!res.ok) return null;
   return (await res.json())[0] || null;
 }
 
-/* Une seule réponse par lien : « envoye » -> accepte / refuse. */
-export async function repondreRenouvellement(id, statut) {
+/* Une réponse par lien : « envoye » (ou « rappel », après l'appel d'Alexis) -> accepte / refuse / rappel / pause. */
+export async function repondreRenouvellement(id, statut, extra = {}) {
   const s = sb();
-  const res = await fetch(`${s.url}/rest/v1/pulse_renouvellements?id=eq.${id}&statut=eq.envoye`, {
+  const res = await fetch(`${s.url}/rest/v1/pulse_renouvellements?id=eq.${id}&statut=in.(envoye,rappel)`, {
     method: 'PATCH',
     headers: { ...s.headers, Prefer: 'return=representation' },
-    body: JSON.stringify({ statut, repondu_at: new Date().toISOString() }),
+    body: JSON.stringify({ statut, repondu_at: new Date().toISOString(), ...extra }),
   });
   if (!res.ok) return false;
   return (await res.json()).length === 1;

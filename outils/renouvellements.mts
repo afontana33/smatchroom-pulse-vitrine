@@ -6,7 +6,9 @@
  * - première échéance : 1 mois après le paiement (agent) ou 3 mois (Pack Lancement), puis chaque mois ;
  * - 3 jours avant : WhatsApp au client avec le bilan des 30 derniers jours et le lien
  *   pulse.smatchroom.com/continuer/<token> (oui = facture du mois, non = arrêt) ;
- * - sans « oui » 2 jours après l'échéance (ou « non » à l'échéance) : agent coupé, client et Alexis prévenus.
+ * - sans « oui » 2 jours après l'échéance (ou « non » / « pause » à l'échéance) : agent coupé, client et Alexis prévenus ;
+ *   « rappel » (le client veut en parler) : même délai de 2 jours, Alexis l'appelle entre-temps ;
+ * - pause : un mois après la coupure, message au client pour relancer son agent et alerte à Alexis.
  */
 import dotenv from 'dotenv';
 import { existsSync, readFileSync, writeFileSync } from 'node:fs';
@@ -73,13 +75,22 @@ const { data: clients, error } = await sb.from('pulse_onboarding')
 if (error) throw new Error(error.message);
 
 for (const o of clients ?? []) {
-  const { data: rens } = await sb.from('pulse_renouvellements').select('id, echeance, statut').eq('onboarding_id', o.id);
+  const { data: rens } = await sb.from('pulse_renouvellements').select('id, echeance, statut, motif, retention, relance_pause_at').eq('onboarding_id', o.id);
   const par = new Map((rens ?? []).map((r: any) => [r.echeance, r]));
   let e = plusMois(new Date(`${String(o.paye_at).slice(0, 10)}T00:00:00Z`), o.offre === 'pack' ? 3 : 1);
   while (par.get(iso(e))?.statut === 'accepte') e = plusMois(e, 1);
   const r: any = par.get(iso(e));
   const prenom = o.donnees?.prenom ?? '';
-  if (r?.statut === 'coupe') continue;
+  if (r?.statut === 'coupe') {
+    // Pause d'un mois demandée par le client : on revient vers lui un mois après la coupure.
+    if (r.retention === 'pause' && r.relance_pause_at == null && jours(aujourdhui, e) >= 30) {
+      console.log(`[renouvellements] ${o.entreprise} : fin de la pause, relance`);
+      if (DRY === false) await sb.from('pulse_renouvellements').update({ relance_pause_at: new Date().toISOString() }).eq('id', r.id);
+      if (o.telephone) await wa(o.telephone, `Bonjour ${prenom}, ça fait un mois que votre agent est en pause. On le relance ? Il reprend là où il s'était arrêté, avec vos réglages. Répondez-moi simplement ici.`.replace('Bonjour ,', 'Bonjour,'));
+      await alexis(`⏯️ Fin de pause pour ${o.entreprise} : message de relance envoyé${o.telephone ? ` (${o.telephone})` : ''}. S'il dit oui, réactive son agent et fais la facture.`);
+    }
+    continue;
+  }
 
   if (r == null && jours(e, aujourdhui) <= 3) {
     const token = randomBytes(9).toString('hex');
@@ -91,12 +102,16 @@ for (const o of clients ?? []) {
     continue;
   }
 
-  const delai = r?.statut === 'refuse' ? 0 : 2;
-  if (r && ['envoye', 'refuse'].includes(r.statut) && jours(aujourdhui, e) >= delai) {
+  const delai = ['refuse', 'pause'].includes(r?.statut) ? 0 : 2;
+  if (r && ['envoye', 'refuse', 'rappel', 'pause'].includes(r.statut) && jours(aujourdhui, e) >= delai) {
     console.log(`[renouvellements] ${o.entreprise} : agent coupé (${r.statut})`);
     if (DRY === false) await sb.from('pulse_renouvellements').update({ statut: 'coupe' }).eq('id', r.id);
     couperFiche(o.agent_slug);
-    if (o.telephone) await wa(o.telephone, `Bonjour ${prenom}, comme convenu, votre agent est en pause depuis aujourd'hui. Merci pour votre confiance : si vous voulez le relancer, il suffit de me répondre ici.`.replace('Bonjour ,', 'Bonjour,'));
-    await alexis(`⏸️ Agent coupé : ${o.entreprise} (${r.statut === 'refuse' ? 'a dit non' : 'pas de réponse au renouvellement'}).`);
+    const msg = r.statut === 'pause'
+      ? `Bonjour ${prenom}, comme convenu, votre agent est en pause pour un mois à partir d'aujourd'hui. Je reviens vers vous ensuite pour le relancer.`
+      : `Bonjour ${prenom}, comme convenu, votre agent est en pause depuis aujourd'hui. Merci pour votre confiance : si vous voulez le relancer, il suffit de me répondre ici.`;
+    if (o.telephone) await wa(o.telephone, msg.replace('Bonjour ,', 'Bonjour,'));
+    const raison = { refuse: 'a dit non', pause: 'pause d\'un mois', rappel: 'voulait en parler, pas de réponse après', envoye: 'pas de réponse au renouvellement' }[r.statut as string];
+    await alexis(`⏸️ Agent coupé : ${o.entreprise} (${raison}${r.motif ? `, motif : ${r.motif}` : ''}).`);
   }
 }

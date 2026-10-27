@@ -26,7 +26,7 @@ export default async function Continuer({ params }) {
               chapeau={`Votre agent prospecte pour ${r.pulse_onboarding?.entreprise || 'vous'} jusqu’au ${echeance}. Pour continuer un mois de plus : ${euros(OFFRES.agent.ht)} HT (${euros(ttc(OFFRES.agent.ht))} TTC), sans engagement. Sans réponse, l’agent s’arrête à cette date.`}
             />
             <div className="mt-8">
-              <ChoixContinuer token={r.token} dejaRepondu={r.statut !== 'envoye'} />
+              <ChoixContinuer token={r.token} dejaRepondu={['envoye', 'rappel'].includes(r.statut) === false} motifInitial={r.motif || ''} />
             </div>
           </div>
         </Section>
