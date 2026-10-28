@@ -199,6 +199,14 @@ function DejaFait() {
   );
 }
 
+function suivre(nom, donnees) {
+  try {
+    if (typeof window.umami?.track === 'function') window.umami.track(nom, donnees);
+  } catch {
+    /* le suivi ne doit jamais bloquer le test */
+  }
+}
+
 export default function Simulateur() {
   const [form, setForm] = useState({
     activite: '',
@@ -250,6 +258,9 @@ export default function Simulateur() {
       setErreur('Indiquez votre secteur et votre ville.');
       return;
     }
+    /* Entonnoir (28/10/2026) : sans ces événements, Umami ne montrait que les
+       visites et les tests complets, impossible de savoir où l'on perd les gens. */
+    suivre('simulateur-recherche', { activite: form.activite });
     setTick(0);
     setEtat('attente');
     requestAnimationFrame(() =>
@@ -267,11 +278,13 @@ export default function Simulateur() {
         return;
       }
       if (!r.ok) throw new Error(d.erreur || 'La recherche n’a pas abouti.');
+      suivre('simulateur-apercu', { activite: form.activite, total: d.total });
       setApercu(d);
       setEtat('apercu');
       requestAnimationFrame(() => haut.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }));
       ecrire({ form: { activite: form.activite, ville: form.ville }, apercu: d });
     } catch (err) {
+      suivre('simulateur-erreur', { etape: 'recherche', message: String(err.message).slice(0, 80) });
       setErreur(err.message);
       setEtat('saisie');
     }
@@ -319,6 +332,7 @@ export default function Simulateur() {
       requestAnimationFrame(() => haut.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }));
       ecrire({ form: { ...form, telephone: '', email: '' }, res: d });
     } catch (err) {
+      suivre('simulateur-erreur', { etape: 'contact', message: String(err.message).slice(0, 80) });
       setErreur(err.message);
       setEtat('apercu');
     }
