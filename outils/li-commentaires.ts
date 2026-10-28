@@ -50,7 +50,14 @@ Ton commentaire (le texte seul) :`;
     console.log(`  > ${p.author.name} | ${String(p.author.position).slice(0, 60)}\n    post : ${String(p.content).slice(0, 100).replace(/\n/g, ' ')}…\n    commentaire : ${t}`);
     faits++;
     if (DRY) continue;
-    await api(`/posts/${encodeURIComponent(p.id)}/comments`, { method: 'POST', body: JSON.stringify({ account_id: ACCOUNT_ID, text: t }) });
+    const envoi: any = await api(`/posts/${encodeURIComponent(p.id)}/comments`, { method: 'POST', body: JSON.stringify({ account_id: ACCOUNT_ID, text: t }) });
+    // Suivi (28/10/2026) : li-prospects.ts invite l'auteur le lendemain et surveille les réponses à ce commentaire.
+    const COMMENTES = 'data/li-commentes.json';
+    const liste: any[] = existsSync(COMMENTES) ? JSON.parse(readFileSync(COMMENTES, 'utf8')) : [];
+    liste.push({ post_id: String(p.id), post_url: p.url ?? p.linkedinUrl ?? null, comment_id: envoi?.comment_id ?? envoi?.id ?? null,
+      auteur: p.author.name, poste: p.author.position, url: p.author.linkedinUrl, extrait: String(p.content).slice(0, 300),
+      commentaire: t, date: new Date().toISOString(), invite: false });
+    writeFileSync(COMMENTES, JSON.stringify(liste.slice(-500)));
     await pause(60000 + Math.random() * 120000);
   }
   if (DRY === false) writeFileSync(VUS, JSON.stringify([...vus]));
