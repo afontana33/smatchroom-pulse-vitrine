@@ -38,7 +38,8 @@ Post : """${post.slice(0, 2000)}"""
 Ton commentaire (le texte seul) :`;
 const PROMPT_IA = (auteur: string, titre: string, post: string) => `Tu es Alexis Fontana, fondateur de SmatchRoom Pulse à Bordeaux. Ta conviction, tirée de ton terrain : une prospection qui marche, c'est le bon canal et le bon moment. Le bon canal : pour les patrons de TPE et d'artisans, l'email est souvent le moins lu, WhatsApp fait répondre bien davantage, LinkedIn complète. Le bon moment : écrire quand un signal le justifie (l'entreprise recrute un commercial, vient d'être créée, change de dirigeant), plutôt qu'à froid sur une liste.
 Voici un post LinkedIn de ${auteur} (${titre}) sur la prospection ou l'automatisation commerciale. Écris un commentaire qui reconnaît en quelques mots UN point précis et juste du post, puis apporte ton angle (canal ou moment, celui qui manque le plus au post) comme un constat de terrain ou une question ouverte à l'auteur.
-Règles : en français, 2 ou 3 phrases courtes, 300 caractères maximum, vouvoiement, ton direct de dirigeant, sans agressivité ni moquerie envers l'auteur. Aucun chiffre, aucun pourcentage, aucune anecdote inventée. Ne nomme pas SmatchRoom, pas de lien, pas de prix, pas de hashtag, pas d'emoji, aucun tiret (— – -) comme ponctuation. Interdit : « Super post », « Merci pour ce partage », flatterie.
+Règles : en français, 2 ou 3 phrases courtes, 300 caractères maximum, vouvoiement, ton direct de dirigeant, sans agressivité ni moquerie envers l'auteur. Aucun chiffre, aucun pourcentage, aucune anecdote inventée. Ne nomme pas SmatchRoom, pas de lien, pas de prix, pas de hashtag, pas d'emoji, aucun tiret (— – -) comme ponctuation. Interdit : « Super post », « Merci pour ce partage », « Vous pointez », « Vous visez juste », « la vraie question », « selon nous », flatterie.
+Si le post est une offre d'emploi, une annonce de recrutement ou une publicité pour un produit, réponds exactement : RIEN
 Si l'auteur ou le sujet ne concerne pas la France, ou si le post ne parle pas vraiment de prospection, de vente ou d'automatisation commerciale, réponds exactement : RIEN
 Post : """${post.slice(0, 2000)}"""
 Ton commentaire (le texte seul) :`;
@@ -50,7 +51,8 @@ Ton commentaire (le texte seul) :`;
   const items = await recupererUnipile({ queries: sujets, postedLimit: '24h', maxComments: 0 });
   const posts = items.sort(() => Math.random() - 0.5).filter((i: any) => i.type === 'post' && i.id && vus.has(String(i.id)) === false
     && i.author?.linkedinUrl && (THEME_IA || (INCLURE.test(i.author.position ?? '') && EXCLURE.test(i.author.position ?? '') === false))
-    && String(i.content ?? '').length > 200);
+    && String(i.content ?? '').length > 200
+    && (THEME_IA === false || /(job ?alert|nous recrutons|nous recherchons|on recrute|offre d'emploi|\bcdi\b|postulez)/i.test(String(i.content ?? '')) === false));
   console.log(`[commentaires] ${items.length} résultats, ${posts.length} posts de dirigeants`);
   let faits = 0;
   for (const p of posts) {
