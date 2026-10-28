@@ -9,7 +9,8 @@ PREUVES_ART = """- Un couvreur près de Belfort : en un mois, 152 professionnels
 - Un peintre plaquiste en Eure-et-Loir : en un mois, 108 contactés, 64 réponses, 53 conversations transmises.
 - Un électricien dans les Landes et les Pyrénées : en un mois, 126 contactés, 62 réponses, 54 conversations transmises.
 """
-PREUVES_B2B = """- Côté artisans : un couvreur près de Belfort a reçu 78 conversations en un mois sur 152 professionnels contactés.
+PREUVES_B2B = """- Un fournisseur industriel (pièces de graissage automatisé) : en un mois, 255 décideurs contactés, 47 réponses, 32 conversations transmises.
+- Côté artisans : un couvreur près de Belfort a reçu 78 conversations en un mois sur 152 professionnels contactés.
 """
 
 def patch(nom, reps, marque):
