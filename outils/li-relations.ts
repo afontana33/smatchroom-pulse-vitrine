@@ -29,8 +29,23 @@ NE SONT PAS des cibles : salariés sans pouvoir de décision (avant-vente, chef 
 ${gens.map((g, i) => `${i + 1}. ${g.nom} | ${g.titre}`).join('\n')}
 Réponds uniquement par un tableau JSON, un objet par ligne gardée (ignore les autres) : [{"n": numéro, "prenom": "prénom, casse normale", "entreprise": "nom de son entreprise tel qu'écrit dans son titre, ou null"}]`;
 
-const message = (p: string, ent: string | null) =>
-  `Bonjour ${p},\n\nOn est en relation ici depuis un moment sans jamais avoir échangé. ${ent ? `Je vois que vous êtes à la tête de ${ent}. ` : ''}Petite question : aujourd'hui, vos nouveaux clients viennent plutôt du bouche-à-oreille, ou vous allez les chercher vous-même ?\n\nAlexis`;
+// Premier message personnalisé (28/10/2026) : l'ancien message générique (« on est en relation sans avoir échangé… »)
+// a eu 0 réponse sur 15. Le nouveau part de ce que fait la personne, avec une question précise sur son métier.
+const PERSO = (prenom: string, titre: string, ent: string | null) => `Tu es Alexis Fontana. Tu écris un premier message LinkedIn à ${prenom}, une relation avec qui tu n'as jamais échangé.
+Son titre : ${titre}${ent ? ` (entreprise : ${ent})` : ''}.
+Écris 2 phrases au maximum : une observation précise sur son activité, tirée de son titre uniquement, puis UNE question simple sur la façon dont son entreprise trouve ses nouveaux clients, formulée avec les mots de son métier (par exemple pour un bureau d'études : « vos nouveaux projets viennent plutôt des architectes qui vous connaissent, ou vous allez chercher les maîtres d'ouvrage ? »).
+Règles : vouvoiement, commence par « Bonjour ${prenom}, », pas de « j'espère que vous allez bien », pas de compliment creux, ne présente pas ce que tu fais, n'invente rien qui ne soit pas dans son titre, pas de lien, pas de point d'exclamation, aucun tiret (— – -) comme ponctuation, 300 caractères au maximum. Termine par une ligne vide puis « Alexis ».
+Le message seul :`;
+const GENERIQUE = (p: string) => `Bonjour ${p},\n\nPetite question : aujourd'hui, vos nouveaux clients viennent plutôt des recommandations, ou c'est vous qui allez les chercher ?\n\nAlexis`;
+async function message(p: string, titre: string, ent: string | null): Promise<string> {
+  try {
+    const r = await fetch('https://api.anthropic.com/v1/messages', { method: 'POST', headers: { 'x-api-key': config.anthropic.apiKey, 'anthropic-version': '2023-06-01', 'content-type': 'application/json' },
+      body: JSON.stringify({ model: config.anthropic.model, max_tokens: 300, messages: [{ role: 'user', content: PERSO(p, titre, ent) }] }) });
+    const t = String(((await r.json()) as any).content?.[0]?.text ?? '').trim().replace(/\s+[-–—]\s+/g, ', ').replace(/[–—]/g, ', ');
+    if (t.startsWith(`Bonjour ${p}`) && t.length <= 360 && t.includes('?')) return t;
+  } catch { /* repli sur le message court */ }
+  return GENERIQUE(p);
+}
 
 async function dejaEnBase(pid: string, url: string) {
   const r = await fetch(`${SB}/rest/v1/chasseur_signaux?select=id&client_slug=eq.pulse&or=(li_provider_id.eq.${encodeURIComponent(pid)},linkedin_url.eq.${encodeURIComponent(url)})&limit=1`, { headers: H });
@@ -94,8 +109,8 @@ async function dejaEchange(): Promise<Set<string>> {
       if (await dejaEnBase(g.id, g.url)) continue;
       // Pas de prénom de personne (page entreprise, « INGETECH ») : on n'écrit pas.
       if (!o.prenom || /^[A-ZÀ-Ý0-9 .&'-]{4,}$/.test(String(o.prenom))) continue;
-      const msg = message(o.prenom, o.entreprise);
-      console.log(`  + ${g.nom} | ${g.titre.slice(0, 70)}`);
+      const msg = await message(o.prenom, g.titre, o.entreprise);
+      console.log(`  + ${g.nom} | ${g.titre.slice(0, 70)}\n    ${msg.replace(/\n+/g, ' ')}`);
       gardes++;
       if (DRY) continue;
       const row = { client_slug: 'pulse', linkedin_url: g.url, li_provider_id: g.id, nom: g.nom, poste: g.titre, entreprise: o.entreprise ?? '',
