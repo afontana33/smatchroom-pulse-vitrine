@@ -1,7 +1,9 @@
 // Visibilité LinkedIn d'Alexis (demande du 27/10/2026) : commente des posts récents de dirigeants de PME B2B.
 // Cherche les posts du jour sur des sujets de dirigeants, garde les auteurs qui passent le filtre des titres
 // (signaux/pulse.json), et laisse un vrai commentaire sur le fond. Jamais de pitch, jamais de lien.
-//   npx tsx src/li-commentaires.ts [--dry-run] [--max=2]
+//   npx tsx src/li-commentaires.ts [--dry-run] [--max=2] [--theme=ia]
+// --theme=ia (28/10/2026) : posts sur la prospection automatisée, les agents IA commerciaux, le cold email, quel que soit
+// l'auteur. Le commentaire apporte l'angle SmatchRoom Pulse : plusieurs canaux (WhatsApp surtout) et le bon moment (signaux).
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'node:fs';
 import { config } from './config.js';
 import { api, recupererUnipile } from './unipile';
@@ -10,6 +12,9 @@ const MAX = Number((process.argv.find((a) => a.startsWith('--max=')) ?? '--max=2
 const fic = (() => { try { return readFileSync('/root/unipile.env', 'utf8'); } catch { return ''; } })();
 const ACCOUNT_ID = process.env.UNIPILE_ACCOUNT_ID ?? (fic.split('\n').find((l) => l.startsWith('UNIPILE_ACCOUNT_ID=')) ?? '').slice(19).trim();
 const VUS = 'data/li-commentaires-vus.json';
+const THEME_IA = process.argv.includes('--theme=ia');
+const SUJETS_IA = ['agent IA prospection', 'automatiser la prospection', 'cold email', 'prospection automatisée', 'agent IA commercial',
+  'génération de leads', 'séquence de prospection', 'signaux d\'achat', 'outbound B2B', 'prise de rendez-vous automatisée'];
 // Aucun tiret de ponctuation (demande d'Alexis) : « a - b », « a – b », « a — b » deviennent « a, b ».
 const sansTirets = (t: string) => t.replace(/\s+[-–—]\s+/g, ', ').replace(/[–—]/g, ', ').replace(/,\s*,/g, ',').trim();
 const pause = (ms: number) => new Promise((r) => setTimeout(r, ms));
@@ -31,22 +36,28 @@ Si l'auteur ou le sujet du post ne concerne pas la France (Québec, Afrique, Bel
 Si le post n'a rien à voir avec l'entreprise, le commerce ou l'entrepreneuriat, ou s'il porte sur un drame personnel, un décès, la politique ou une offre d'emploi, réponds exactement : RIEN
 Post : """${post.slice(0, 2000)}"""
 Ton commentaire (le texte seul) :`;
+const PROMPT_IA = (auteur: string, titre: string, post: string) => `Tu es Alexis Fontana, fondateur de SmatchRoom Pulse à Bordeaux. Ta conviction, tirée de ton terrain : une prospection qui marche, c'est le bon canal et le bon moment. Le bon canal : pour les patrons de TPE et d'artisans, l'email est souvent le moins lu, WhatsApp fait répondre bien davantage, LinkedIn complète. Le bon moment : écrire quand un signal le justifie (l'entreprise recrute un commercial, vient d'être créée, change de dirigeant), plutôt qu'à froid sur une liste.
+Voici un post LinkedIn de ${auteur} (${titre}) sur la prospection ou l'automatisation commerciale. Écris un commentaire qui reconnaît en quelques mots UN point précis et juste du post, puis apporte ton angle (canal ou moment, celui qui manque le plus au post) comme un constat de terrain ou une question ouverte à l'auteur.
+Règles : en français, 2 ou 3 phrases courtes, 300 caractères maximum, vouvoiement, ton direct de dirigeant, sans agressivité ni moquerie envers l'auteur. Aucun chiffre, aucun pourcentage, aucune anecdote inventée. Ne nomme pas SmatchRoom, pas de lien, pas de prix, pas de hashtag, pas d'emoji, aucun tiret (— – -) comme ponctuation. Interdit : « Super post », « Merci pour ce partage », flatterie.
+Si l'auteur ou le sujet ne concerne pas la France, ou si le post ne parle pas vraiment de prospection, de vente ou d'automatisation commerciale, réponds exactement : RIEN
+Post : """${post.slice(0, 2000)}"""
+Ton commentaire (le texte seul) :`;
 
 (async () => {
   if (existsSync('data') === false) mkdirSync('data');
   const vus = new Set<string>(existsSync(VUS) ? JSON.parse(readFileSync(VUS, 'utf8')) : []);
-  const sujets = [...SUJETS].sort(() => Math.random() - 0.5).slice(0, 3);
+  const sujets = [...(THEME_IA ? SUJETS_IA : SUJETS)].sort(() => Math.random() - 0.5).slice(0, 3);
   const items = await recupererUnipile({ queries: sujets, postedLimit: '24h', maxComments: 0 });
   const posts = items.sort(() => Math.random() - 0.5).filter((i: any) => i.type === 'post' && i.id && vus.has(String(i.id)) === false
-    && i.author?.linkedinUrl && INCLURE.test(i.author.position ?? '') && EXCLURE.test(i.author.position ?? '') === false
+    && i.author?.linkedinUrl && (THEME_IA || (INCLURE.test(i.author.position ?? '') && EXCLURE.test(i.author.position ?? '') === false))
     && String(i.content ?? '').length > 200);
   console.log(`[commentaires] ${items.length} résultats, ${posts.length} posts de dirigeants`);
   let faits = 0;
   for (const p of posts) {
     if (faits >= MAX) break;
     vus.add(String(p.id));
-    const t = sansTirets(await claude(PROMPT(p.author.name, p.author.position, String(p.content))));
-    if (t === '' || t.startsWith('RIEN') || t.length > 320 || /\d+ ?(%|ans)/.test(t)) continue;
+    const t = sansTirets(await claude((THEME_IA ? PROMPT_IA : PROMPT)(p.author.name, p.author.position, String(p.content))));
+    if (t === '' || t.startsWith('RIEN') || t.length > (THEME_IA ? 340 : 320) || /\d+ ?(%|ans)/.test(t)) continue;
     console.log(`  > ${p.author.name} | ${String(p.author.position).slice(0, 60)}\n    post : ${String(p.content).slice(0, 100).replace(/\n/g, ' ')}…\n    commentaire : ${t}`);
     faits++;
     if (DRY) continue;

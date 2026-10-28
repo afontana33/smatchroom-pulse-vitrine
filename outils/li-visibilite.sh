@@ -9,5 +9,6 @@ ajoute "*/30 8-20 * * *" li-reponses ""
 ajoute "20 9,11,14,16 * * 1-5" li-commentaires "--max=2"
 ajoute "40 9-18 * * 1-5" li-prospects ""
 ajoute "10 9-19 * * 1-5" li-retournement ""
+crontab -l | grep -q "theme=ia" || (crontab -l; echo "50 12 * * 1-5 cd $A && flock -n /tmp/li-commentaires-ia.lock $E src/li-commentaires.ts --max=1 --theme=ia >> logs/li-commentaires.log 2>&1") | crontab -
 crontab -l | sed 's#^47 8 \* \* 2,4 \(.*li-post.ts\)#47 8 * * 1,3,5 \1#' | crontab -
 crontab -l | grep 'li-reponses\|li-commentaires\|li-prospects\|li-retournement\|li-post.ts' | cut -c1-60
