@@ -199,6 +199,19 @@ function DejaFait() {
   );
 }
 
+/* Secteurs en gros boutons (28/10/2026) : sur téléphone, une liste déroulante de
+   15 lignes faisait fuir. Les six métiers les plus fréquents en un appui, le
+   reste (vente aux entreprises) derrière un septième bouton. */
+const CHIPS = [
+  ['batiment', 'Artisan du bâtiment'],
+  ['renovation', 'Rénovation, énergie'],
+  ['nettoyage', 'Nettoyage, entretien'],
+  ['immobilier', 'Immobilier'],
+  ['patrimoine', 'Patrimoine, assurance'],
+  ['conseil', 'Consultant, coach'],
+];
+const WHATSAPP = `https://wa.me/33771487698?text=${encodeURIComponent('Bonjour, je viens du site Pulse et je voudrais en savoir plus sur l’agent de prospection.')}`;
+
 function suivre(nom, donnees) {
   try {
     if (typeof window.umami?.track === 'function') window.umami.track(nom, donnees);
@@ -224,6 +237,7 @@ export default function Simulateur() {
   const [apercu, setApercu] = useState(null);
   const [tick, setTick] = useState(0);
   const [tout, setTout] = useState(false);
+  const [autres, setAutres] = useState(false);
   const haut = useRef(null);
 
   /* Un visiteur qui revient retrouve sa simulation (ou son aperçu à débloquer)
@@ -238,6 +252,15 @@ export default function Simulateur() {
       setForm((f) => ({ ...f, ...g.form }));
       setApercu(g.apercu);
       setEtat('apercu');
+    } else {
+      /* Pré-remplissage depuis le lien de la pub (28/10/2026) :
+         /simulateur?secteur=batiment&ville=Lyon, le visiteur n'a plus qu'à appuyer. */
+      const q = new URLSearchParams(window.location.search);
+      const s = q.get('secteur');
+      const v = (q.get('ville') || '').slice(0, 60);
+      if ((s && ACTIVITES.some((a) => a.key === s)) || v) {
+        setForm((f) => ({ ...f, activite: ACTIVITES.some((a) => a.key === s) ? s : f.activite, ville: v || f.ville }));
+      }
     }
   }, []);
 
@@ -298,16 +321,12 @@ export default function Simulateur() {
       setErreur('Indiquez votre prénom, votre nom et votre téléphone.');
       return;
     }
-    if (!form.consentement) {
-      setErreur('Cochez la case pour voir votre résultat.');
-      return;
-    }
     setEtat('deverrouillage');
     try {
       const r = await fetch('/api/simulateur', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
+        body: JSON.stringify({ ...form, consentement: true }),
       });
       const d = await r.json().catch(() => ({}));
       if (r.status === 409) {
@@ -355,48 +374,79 @@ export default function Simulateur() {
         <p className="font-mono text-[0.62rem] uppercase tracking-[0.16em] text-[var(--muted)]">
           Test gratuit · une fois par entreprise
         </p>
-        {[
-          ['activite', 'Votre secteur d’activité', null],
-          ['ville', 'Votre ville', { placeholder: 'Ex. : Bordeaux', autoComplete: 'address-level2' }],
-        ].map(([k, label, props]) => (
-          <div key={k} className="mt-4">
-            <label className="block text-sm font-semibold" htmlFor={`sim-${k}`}>
-              {label}
-            </label>
-            {props ? (
-              <input
-                id={`sim-${k}`}
-                className={`${champ} mt-1.5`}
-                value={form[k]}
-                onChange={maj(k)}
-                required
-                {...props}
-              />
-            ) : (
-              <select
-                id={`sim-${k}`}
-                className={`${champ} mt-1.5`}
-                value={form[k]}
-                onChange={maj(k)}
-                required
+        <p className="mt-4 block text-sm font-semibold">Votre activité</p>
+        <div className="mt-2 grid grid-cols-2 gap-2" role="radiogroup" aria-label="Votre activité">
+          {CHIPS.map(([k, titre]) => {
+            const choisi = form.activite === k;
+            return (
+              <button
+                key={k}
+                type="button"
+                role="radio"
+                aria-checked={choisi}
+                onClick={() => {
+                  setForm({ ...form, activite: k });
+                  setAutres(false);
+                }}
+                className={`rounded-2xl border-2 px-3 py-3 text-left text-sm font-semibold leading-tight transition ${
+                  choisi
+                    ? 'border-[var(--primary)] bg-[var(--primary)] text-white'
+                    : 'border-[var(--border)] bg-[var(--surface)] text-[var(--foreground)]'
+                }`}
               >
-                <option value="">Choisissez…</option>
-                {[
-                  ['partenaires', 'Je cherche des apporteurs d’affaires'],
-                  ['b2b', 'Je vends aux entreprises (signaux d’achat)'],
-                ].map(([t, titre]) => (
-                  <optgroup key={t} label={titre}>
-                    {ACTIVITES.filter((a) => a.type === t).map((a) => (
-                      <option key={a.key} value={a.key}>
-                        {a.label}
-                      </option>
-                    ))}
-                  </optgroup>
-                ))}
-              </select>
-            )}
-          </div>
-        ))}
+                {titre}
+              </button>
+            );
+          })}
+          <button
+            type="button"
+            role="radio"
+            aria-checked={autres || ACTIVITES.some((a) => a.key === form.activite && a.type === 'b2b')}
+            onClick={() => {
+              setAutres(true);
+              if (!ACTIVITES.some((a) => a.key === form.activite && a.type === 'b2b')) setForm({ ...form, activite: '' });
+            }}
+            className={`col-span-2 rounded-2xl border-2 px-3 py-3 text-left text-sm font-semibold leading-tight transition ${
+              autres || ACTIVITES.some((a) => a.key === form.activite && a.type === 'b2b')
+                ? 'border-[var(--primary)] text-[var(--foreground)]'
+                : 'border-[var(--border)] text-[var(--foreground)]'
+            }`}
+          >
+            Je vends aux entreprises (logiciel, fournitures, services…)
+          </button>
+        </div>
+        {(autres || ACTIVITES.some((a) => a.key === form.activite && a.type === 'b2b')) && (
+          <select
+            id="sim-activite"
+            aria-label="Ce que vous vendez"
+            className={`${champ} mt-2`}
+            value={ACTIVITES.some((a) => a.key === form.activite && a.type === 'b2b') ? form.activite : ''}
+            onChange={maj('activite')}
+          >
+            <option value="">Ce que vous vendez…</option>
+            {ACTIVITES.filter((a) => a.type === 'b2b').map((a) => (
+              <option key={a.key} value={a.key}>
+                {a.label}
+              </option>
+            ))}
+          </select>
+        )}
+
+        <div className="mt-4">
+          <label className="block text-sm font-semibold" htmlFor="sim-ville">
+            Votre ville
+          </label>
+          <input
+            id="sim-ville"
+            className={`${champ} mt-1.5`}
+            value={form.ville}
+            onChange={maj('ville')}
+            required
+            placeholder="Ex. : Bordeaux"
+            autoComplete="address-level2"
+            enterKeyHint="go"
+          />
+        </div>
 
         {erreur && <p className="mt-4 text-sm font-semibold text-red-600">{erreur}</p>}
 
@@ -410,6 +460,25 @@ export default function Simulateur() {
         <p className="mt-3 text-center text-xs text-[var(--muted)]" aria-live="polite">
           Gratuit, une fois par entreprise. Résultat en moins d’une minute.
         </p>
+
+        {/* Exemple immédiat (28/10/2026) : le visiteur voit tout de suite ce qu'il va obtenir. */}
+        <div className="mt-6 rounded-2xl bg-[#0b141a] p-4" aria-label="Exemple de message">
+          <p className="font-mono text-[0.6rem] uppercase tracking-[0.16em] text-white/50">Exemple, envoyé à votre nom</p>
+          <p className="mt-2 max-w-[90%] rounded-2xl rounded-tl-sm bg-[#202c33] px-3 py-2 text-sm text-white">
+            Bonjour, je suis Julien. C’est bien vous qui vous occupez de l’agence Duval Immobilier ?
+          </p>
+          <p className="ml-auto mt-2 max-w-[70%] rounded-2xl rounded-tr-sm bg-[#005c4b] px-3 py-2 text-sm text-white">
+            Oui c’est moi, je vous écoute
+          </p>
+        </div>
+
+        <a
+          href={WHATSAPP}
+          onClick={() => suivre('simulateur-whatsapp', {})}
+          className="mt-4 block text-center text-sm font-semibold text-[var(--primary)] underline underline-offset-4"
+        >
+          Pas le temps ? Écrivez-moi directement sur WhatsApp
+        </a>
       </form>
     );
   }
@@ -476,23 +545,16 @@ export default function Simulateur() {
             </div>
           ))}
 
-          <label className="mt-4 flex items-start gap-2.5 text-xs leading-relaxed text-[var(--muted-strong)]">
-            <input
-              type="checkbox"
-              className="mt-0.5"
-              checked={form.consentement}
-              onChange={maj('consentement')}
-              required
-            />
-            <span>
-              J’accepte d’être recontacté par SmatchRoom Pulse au sujet de ce test. Mes coordonnées ne
-              sont ni revendues ni utilisées pour autre chose (
-              <a href="/confidentialite" className="underline">
-                confidentialité
-              </a>
-              ).
-            </span>
-          </label>
+          {/* Case à cocher retirée (28/10/2026) : une étape de moins sur téléphone.
+              Le consentement est donné en cliquant, et le texte le dit. */}
+          <p className="mt-4 text-xs leading-relaxed text-[var(--muted-strong)]">
+            En cliquant, vous acceptez d’être recontacté par SmatchRoom Pulse au sujet de ce test. Vos
+            coordonnées ne sont ni revendues ni utilisées pour autre chose (
+            <a href="/confidentialite" className="underline">
+              confidentialité
+            </a>
+            ).
+          </p>
 
           {erreur && <p className="mt-4 text-sm font-semibold text-red-600">{erreur}</p>}
 
