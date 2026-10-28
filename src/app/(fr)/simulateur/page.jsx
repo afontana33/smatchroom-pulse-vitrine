@@ -91,7 +91,14 @@ export default function SimulateurPage() {
                 />
               </div>
             </div>
-            <div className="min-w-0">
+            {/* Sur téléphone, le formulaire passe en premier (28/10/2026) : la
+                quasi-totalité des visites vient de Facebook sur mobile, et le titre,
+                le chapeau et la liste repoussaient le formulaire sous la ligne de
+                flottaison (43 visites, 1 test). */}
+            <div className="order-first min-w-0 lg:order-none">
+              <p className="mb-4 text-xl font-semibold leading-snug lg:hidden">
+                Testez gratuitement : voyez qui l’agent contacterait pour vous, dans votre ville.
+              </p>
               <Simulateur />
             </div>
           </div>
