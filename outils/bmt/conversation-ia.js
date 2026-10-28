@@ -124,7 +124,12 @@ function extraireJson(texte) {
     const o = JSON.parse(m[0]);
     if (!o || typeof o.reponse !== 'string') return null;
     const etat = ['continuer', 'chaud', 'clos'].includes(o.etat) ? o.etat : 'continuer';
-    return { reponse: nettoyer(o.reponse), etat, resume: String(o.resume || '').slice(0, 400) };
+    let reponse = nettoyer(o.reponse);
+    // Filet : une conversation qui continue se termine toujours par une question.
+    if (etat === 'continuer' && reponse && !/\?\s*$/.test(reponse)) {
+      reponse += ' Ça vous dirait qu\'on en parle rapidement par téléphone ?';
+    }
+    return { reponse, etat, resume: String(o.resume || '').slice(0, 400) };
   } catch (e) {
     return null;
   }
