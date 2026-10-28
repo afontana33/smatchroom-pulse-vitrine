@@ -304,6 +304,17 @@ export default function Simulateur() {
       if (!r.ok) throw new Error(d.erreur || 'La recherche n’a pas abouti.');
       setRes(d);
       setEtat('resultat');
+      /* Conversion « test du simulateur » (28/10/2026) : c'est elle que les
+         pubs Meta optimisent. Même barrière de consentement que dans
+         [ConversionEvents] : `fbq` n'existe que si le visiteur a accepté le
+         pixel. Pas d'envoi Google Ads tant que l'action n'existe pas dans le
+         compte (le ping serait rejeté). */
+      if (typeof window.fbq === 'function') {
+        window.fbq('track', 'Lead', { content_name: 'simulateur', content_category: form.activite });
+      }
+      if (typeof window.umami?.track === 'function') {
+        window.umami.track('simulateur-test', { activite: form.activite });
+      }
       /* Sur téléphone, le formulaire est sous le texte : on remonte au début du résultat. */
       requestAnimationFrame(() => haut.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }));
       ecrire({ form: { ...form, telephone: '', email: '' }, res: d });
