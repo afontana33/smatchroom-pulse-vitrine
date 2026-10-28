@@ -76,6 +76,25 @@ Ta réponse (le texte seul) :`;
   const moi: any = await api('/users/me');
   const monId = String(moi.provider_id ?? '');
 
+  // 0. Rattrapage : les commentaires d'Alexis des 10 derniers jours lus sur LinkedIn (faits à la main ou avant ce suivi).
+  const connus = new Set(commentes.map((c) => String(c.comment_id ?? '')));
+  const postsConnus = new Set(commentes.map((c) => String(c.post_id)));
+  const mes: any = await api(`/users/${encodeURIComponent(monId)}/comments?limit=40`).catch(() => ({}));
+  for (const m of mes.items ?? []) {
+    const d = Date.parse(m.date ?? '') || 0;
+    if (Date.now() - d > 10 * 86400e3 || connus.has(String(m.id)) || postsConnus.has(String(m.post_id))) continue;
+    await pause(1200);
+    const post: any = await api(`/posts/${encodeURIComponent(m.post_id)}`).catch(() => ({}));
+    const a = post.author ?? {};
+    const auteurId = String(post.author?.id ?? post.author_details?.id ?? '');
+    if (auteurId === monId || String(post.author?.public_identifier ?? '') === String(moi.public_identifier ?? '§')) continue; // ses propres posts : li-reponses
+    commentes.push({ post_id: String(m.post_id), post_url: post.share_url ?? null, comment_id: String(m.id),
+      auteur: String(a.name ?? post.author_details?.name ?? ''), poste: String(a.headline ?? post.author_details?.headline ?? ''),
+      url: a.public_identifier ? `https://www.linkedin.com/in/${a.public_identifier}` : '', extrait: String(post.text ?? '').slice(0, 300),
+      commentaire: String(m.text ?? ''), date: new Date(d).toISOString(), invite: false });
+    postsConnus.add(String(m.post_id));
+  }
+
   // 1. Réponses aux réponses sous les posts des autres (commentaires des 10 derniers jours)
   let reponses = 0;
   for (const c of commentes.filter((x) => Date.now() - Date.parse(x.date) < 10 * 86400e3)) {
