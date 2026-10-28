@@ -90,3 +90,63 @@ export async function engagerWhatsApp(contact, a) {
     );
   }
 }
+
+/**
+ * Prospect du formulaire de pub Meta (demande du 28/10/2026), reçu depuis la feuille Google
+ * « Pulse Meta Prospect » (Apps Script → /api/meta-lead), pour ne perdre personne : celui qui
+ * a cliqué sur WhatsApp à la fin du formulaire est déjà en conversation et n'est pas recontacté ;
+ * les autres reçoivent le premier WhatsApp de l'agent, qui mène ensuite la vente (source « formulaire »).
+ * Retourne 'deja', 'envoye' ou 'invalide'.
+ */
+export async function engagerFormulaire(p) {
+  const s = sb();
+  if (!s) return 'invalide';
+  const num = versE164(p.telephone);
+  if (num.length < 11) return 'invalide';
+  const rc = await fetch(`${s.url}/rest/v1/sr_clients?select=green_api_host,green_api_id_instance,green_api_token&id=eq.1`, { headers: s.headers, cache: 'no-store' });
+  const creds = rc.ok ? (await rc.json())[0] : null;
+  if (!creds) return 'invalide';
+
+  const ex = await fetch(`${s.url}/rest/v1/sr_leads?select=id&client_id=eq.1&telephone_e164=eq.${num}&limit=1`, { headers: s.headers, cache: 'no-store' });
+  const deja = ex.ok ? (await ex.json())[0] : null;
+  if (deja) {
+    const depuis = new Date(Date.now() - 3 * 86400e3).toISOString();
+    const cv = await fetch(`${s.url}/rest/v1/sr_conversations?select=id&lead_id=eq.${deja.id}&created_at=gte.${depuis}&limit=1`, { headers: s.headers, cache: 'no-store' });
+    if (cv.ok && (await cv.json()).length) return 'deja';
+  }
+
+  const nom = String(p.nom || '').trim();
+  const prenom = nom.split(/\s+/)[0] || '';
+  const msg = `Bonjour${prenom ? ` ${prenom}` : ''}, c'est Alexis, de SmatchRoom Pulse. Merci d'avoir rempli notre formulaire ! Pour vous montrer concrètement ce que votre agent ferait pour vous : quel est votre métier exact, et dans quelle ville êtes-vous ?`;
+  const champs = {
+    client_id: 1,
+    nom_entreprise: nom || 'Contact formulaire',
+    dirigeant: nom || null,
+    telephone: `+${num}`,
+    email: p.email || null,
+    source: 'formulaire',
+    canal: 'whatsapp',
+    source_ref: `Formulaire pub Meta · secteur : ${p.secteur || '?'} · taille : ${p.taille || '?'} · prospection : ${p.prospection || '?'}`.slice(0, 300),
+    profession: /btp|bâtiment|batiment|artisan/i.test(String(p.secteur)) ? 'BTP' : 'Autre',
+    message_genere: msg,
+    priorite: 9,
+    statut: 'contacte',
+    date_contact: new Date().toISOString(),
+    flux_etape: 'en_conversation',
+  };
+  const res = await fetch(`${s.url}/rest/v1/sr_leads${deja ? `?id=eq.${deja.id}` : ''}`, {
+    method: deja ? 'PATCH' : 'POST',
+    headers: { ...s.headers, Prefer: 'return=representation' },
+    body: JSON.stringify(champs),
+  });
+  const lead = res.ok ? (await res.json())[0] : null;
+  if (!lead) return 'invalide';
+  const id = await envoyer(creds, num, msg);
+  await fetch(`${s.url}/rest/v1/sr_conversations`, {
+    method: 'POST',
+    headers: { ...s.headers, Prefer: 'return=minimal' },
+    body: JSON.stringify({ lead_id: lead.id, client_id: 1, direction: 'out', body: msg, green_message_id: id }),
+  });
+  await envoyer(creds, ALEXIS, `📋 Formulaire pub sans clic WhatsApp : ${nom || 'sans nom'} (${p.secteur || '?'}, ${p.taille || '?'}). Ton agent vient de lui écrire.`);
+  return 'envoye';
+}
