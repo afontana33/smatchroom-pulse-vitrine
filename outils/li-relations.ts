@@ -38,9 +38,29 @@ async function dejaEnBase(pid: string, url: string) {
   return Array.isArray(j) && j.length > 0;
 }
 
+/** Personnes avec qui Alexis a déjà une conversation LinkedIn : on ne leur écrit jamais
+ *  « on n'a jamais échangé » (correctif du 28/10/2026). */
+async function dejaEchange(): Promise<Set<string>> {
+  const ids = new Set<string>();
+  let cursor: string | undefined, pages = 0;
+  do {
+    const j = await api(`/chats?account_type=LINKEDIN&limit=100${cursor ? `&cursor=${encodeURIComponent(cursor)}` : ''}`);
+    for (const c of j.items ?? []) {
+      if (c.attendee_provider_id) ids.add(String(c.attendee_provider_id));
+      if (c.attendee_public_identifier) ids.add(String(c.attendee_public_identifier));
+    }
+    cursor = j.cursor ?? undefined; pages++;
+    await pause(1000);
+  } while (cursor && pages < 30);
+  return ids;
+}
+
 (async () => {
   if (existsSync('data') === false) mkdirSync('data');
   const vues = new Set<string>(existsSync(VUES) ? JSON.parse(readFileSync(VUES, 'utf8')) : []);
+  const echanges = await dejaEchange();
+  console.log(`[relations] ${echanges.size} conversations LinkedIn existantes, exclues`);
+  if (echanges.size === 0) { console.log('[relations] historique des conversations illisible : arrêt par prudence'); return; }
   // 1. Relations pas encore examinées qui passent le filtre des titres
   const candidats: any[] = [];
   let cursor: string | undefined, pages = 0, total = 0;
@@ -50,6 +70,7 @@ async function dejaEnBase(pid: string, url: string) {
       total++;
       const id = String(x.member_id ?? '');
       if (id === '' || vues.has(id) || (x.public_identifier ?? '') === '') continue;
+      if (echanges.has(id) || echanges.has(String(x.public_identifier))) { vues.add(id); continue; }
       const titre = String(x.headline ?? '');
       if (INCLURE.test(titre) === false || EXCLURE.test(titre)) { vues.add(id); continue; }
       candidats.push({ id, nom: `${x.first_name ?? ''} ${x.last_name ?? ''}`.trim(), titre, url: String(x.public_profile_url ?? (x.public_identifier ? `https://www.linkedin.com/in/${x.public_identifier}` : '')) });
@@ -71,7 +92,9 @@ async function dejaEnBase(pid: string, url: string) {
       const o: any = retenus.get(k);
       if (o == null || gardes >= MAX) continue;
       if (await dejaEnBase(g.id, g.url)) continue;
-      const msg = message(o.prenom || g.nom.split(' ')[0], o.entreprise);
+      // Pas de prénom de personne (page entreprise, « INGETECH ») : on n'écrit pas.
+      if (!o.prenom || /^[A-ZÀ-Ý0-9 .&'-]{4,}$/.test(String(o.prenom))) continue;
+      const msg = message(o.prenom, o.entreprise);
       console.log(`  + ${g.nom} | ${g.titre.slice(0, 70)}`);
       gardes++;
       if (DRY) continue;
