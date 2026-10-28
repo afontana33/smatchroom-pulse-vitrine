@@ -99,30 +99,28 @@ Ta réponse (le texte seul) :`;
   let reponses = 0;
   for (const c of commentes.filter((x) => Date.now() - Date.parse(x.date) < 10 * 86400e3)) {
     if (reponses >= MAX_REPONSES) break;
+    if (!c.comment_id) continue;
     await pause(1500);
-    const j: any = await api(`/posts/${encodeURIComponent(c.post_id)}/comments?limit=100`).catch(() => ({}));
-    const tous: any[] = j.items ?? [];
-    // Le commentaire d'Alexis : par son id si connu, sinon par son texte.
-    const mien = tous.find((x) => (c.comment_id && String(x.id) === String(c.comment_id)) || String(x.text ?? '').trim() === String(c.commentaire).trim());
-    let reps: any[] = [];
-    if (mien && Number(mien.reply_counter ?? 0) > 0) {
-      const r: any = await api(`/posts/${encodeURIComponent(c.post_id)}/comments?comment_id=${encodeURIComponent(mien.id)}&limit=50`).catch(() => ({}));
-      reps = (r.items ?? []).filter((x: any) => String(x.id) !== String(mien.id));
-    }
-    for (const rep of reps) {
-      const id = String(rep.id ?? '');
-      if (id === '' || vus.has(id) || String(rep.author_details?.id ?? '') === monId) { if (id) vus.add(id); continue; }
-      vus.add(id);
-      const texte = String(rep.text ?? '').trim();
-      const t = sansTirets(texte.length < 3 ? 'RIEN' : await claude(REPONSE(c.extrait, c.commentaire, String(rep.author ?? ''), texte)));
-      if (t === '' || t.startsWith('RIEN')) { console.log(`  - réponse ignorée : ${rep.author} « ${texte.slice(0, 60)} »`); continue; }
-      console.log(`  > ${rep.author} a répondu : « ${texte.slice(0, 80)} »\n    réponse : ${t}`);
-      reponses++;
-      if (DRY === false) {
-        await api(`/posts/${encodeURIComponent(c.post_id)}/comments`, { method: 'POST', body: JSON.stringify({ account_id: ACCOUNT_ID, text: t, comment_id: mien.id }) });
-        await pause(20000 + Math.random() * 30000);
-      }
-      if (reponses >= MAX_REPONSES) break;
+    // LinkedIn renvoie le fil des réponses à un commentaire avec ?comment_id= (vérifié le 28/10/2026).
+    const r: any = await api(`/posts/${encodeURIComponent(c.post_id)}/comments?comment_id=${encodeURIComponent(c.comment_id)}&limit=20`).catch(() => ({}));
+    const fil: any[] = (r.items ?? []).filter((x: any) => String(x.id) !== String(c.comment_id));
+    const date = (x: any) => Date.parse(x.date ?? '') || 0;
+    const estMoi = (x: any) => String(x.author_details?.id ?? '') === monId || String(x.author ?? '') === String(moi.name ?? `${moi.first_name ?? ''} ${moi.last_name ?? ''}`.trim());
+    const monDernier = Math.max(Date.parse(c.date) || 0, ...fil.filter(estMoi).map(date));
+    // Une seule réponse par fil et par passage : au message le plus récent arrivé après la dernière intervention d'Alexis.
+    const rep = fil.filter((x) => estMoi(x) === false && date(x) > monDernier).sort((x, y) => date(y) - date(x))[0];
+    if (!rep) continue;
+    const id = String(rep.id ?? '');
+    if (id === '' || vus.has(id)) continue;
+    vus.add(id);
+    const texte = String(rep.text ?? '').replace(/^Alexis Fontana\s*/, '').trim();
+    const t = sansTirets(texte.length < 3 ? 'RIEN' : await claude(REPONSE(c.extrait, c.commentaire, String(rep.author ?? ''), texte)));
+    if (t === '' || t.startsWith('RIEN')) { console.log(`  - réponse ignorée : ${rep.author} « ${texte.slice(0, 60)} »`); continue; }
+    console.log(`  > ${rep.author} a répondu : « ${texte.slice(0, 80)} »\n    réponse : ${t}`);
+    reponses++;
+    if (DRY === false) {
+      await api(`/posts/${encodeURIComponent(c.post_id)}/comments`, { method: 'POST', body: JSON.stringify({ account_id: ACCOUNT_ID, text: t, comment_id: c.comment_id }) });
+      await pause(20000 + Math.random() * 30000);
     }
   }
 
