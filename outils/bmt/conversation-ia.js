@@ -51,7 +51,7 @@ function systemeStable(scope) {
   const moi = prenomAgent(scope);
   const mission = scope === 'agent2'
     ? `TA MISSION (apporteurs d'affaires) : tu recrutes des partenaires qui croisent des entreprises ou des particuliers préoccupés par leurs factures d'énergie (clients, adhérents, réseau). Pour chaque client recommandé et signé, le partenaire touche une commission. Le client recommandé, lui, profite d'un accompagnement gratuit (contrats d'énergie et équipements). Objectif : qu'il accepte un court appel avec toi pour mettre le partenariat en place.`
-    : `TA MISSION (prospection entreprises) : tu contactes des entreprises qui consomment beaucoup d'énergie. BLEU M TECH les aide à baisser leurs factures : renégociation des contrats d'électricité et de gaz, et équipements plus économes (solaire, pompes à chaleur…). C'est entièrement gratuit pour l'entreprise : c'est le fournisseur qui rémunère BLEU M TECH. Objectif : qu'il accepte un court appel, ou qu'il envoie une facture récente pour une étude gratuite.`;
+    : `TA MISSION (prospection entreprises) : tu contactes des entreprises qui consomment beaucoup d'énergie. BLEU M TECH les aide à baisser leurs factures : renégociation des contrats d'électricité et de gaz, et équipements plus économes (solaire, pompes à chaleur…). C'est entièrement gratuit pour l'entreprise : c'est le fournisseur qui rémunère BLEU M TECH. Objectif prioritaire : qu'il vous envoie ici, sur WhatsApp, une photo de sa dernière facture d'électricité pour une étude gratuite, avec une réponse sous 24 h (et s'il n'y a rien à gagner, vous le lui dites aussi). À défaut, un court appel.`;
 
   return `Tu es ${moi}, de BLEU M TECH (Perpignan). Tu écris sur WhatsApp à un prospect, à la première personne, en ton nom.
 
@@ -60,7 +60,7 @@ ${mission}
 RÈGLES DE STYLE
 - Vouvoiement toujours. Messages courts : 2 à 4 phrases, comme un humain sur WhatsApp. Pas de liste, pas de gras, pas de signature.
 - Réponds d'abord précisément à ce qu'il dit ou demande, puis termine TOUJOURS par UNE seule question qui fait avancer (sauf si tu arrêtes la conversation).
-- S'il demande « que puis-je faire pour vous ? » ou « quel est l'objet ? », explique en une phrase pourquoi tu le contactes, puis propose directement l'appel.
+- S'il demande « que puis-je faire pour vous ? » ou « quel est l'objet ? », explique en une phrase pourquoi tu le contactes, puis propose qu'il vous envoie une photo de sa dernière facture (étude gratuite, réponse sous 24 h), ou un court appel s'il préfère.
 - Utilise ce que tu sais de lui (métier, secteur, ville) pour être concret.
 - Ne te présente jamais comme « courtier en énergie ». Si on te demande « vous vendez de l'énergie ? » : non, BLEU M TECH aide à payer moins cher (contrats et équipements), sans frais pour le client.
 - Jamais de mention d'IA, d'assistant, de robot ou de message automatique. Si on te demande si tu es un robot, réponds simplement que c'est bien toi, ${moi}, de BLEU M TECH.
@@ -171,8 +171,16 @@ async function repondre(db, contact, enrollment) {
   if (nbIa >= MAX_REPONSES_IA) return { reponse: null, etat: 'chaud', resume: 'Conversation longue, à reprendre par le commercial.' };
 
   const dernier = fil[fil.length - 1];
-  // Message vide (photo, vocal, autocollant) : on ne répond pas à l'aveugle.
-  if (!String(dernier.body || '').trim()) return null;
+  // Message vide (photo, vocal, autocollant). Juste après une demande de facture, c'est très
+  // probablement la facture : on remercie et le commercial est alerté (28/10/2026).
+  if (!String(dernier.body || '').trim()) {
+    const avant = fil.slice(0, -1).reverse().find((m) => m.qui === 'nous');
+    if (avant && /facture/i.test(String(avant.body || ''))) {
+      return { reponse: 'Merci, je regarde ça et je reviens vers vous sous 24 h.', etat: 'chaud',
+        resume: "Le prospect a envoyé une pièce jointe juste après la demande de facture (probablement sa facture d'électricité) : à récupérer dans la conversation WhatsApp." };
+    }
+    return null;
+  }
   const heures = (Date.now() - new Date(dernier.t).getTime()) / 3600000;
   const transcript = fil
     .map((m) => (m.qui === 'nous' ? '[Vous] ' : '[Prospect] ') + String(m.body).slice(0, 1200))
