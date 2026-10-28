@@ -49,8 +49,8 @@ export async function engagerWhatsApp(contact, a) {
 
   const champs = {
     client_id: 1,
-    nom_entreprise: contact.entreprise || `${contact.prenom} ${contact.nom}`,
-    dirigeant: `${contact.prenom} ${contact.nom}`,
+    nom_entreprise: contact.entreprise || `${contact.prenom} ${contact.nom || ''}`.trim(),
+    dirigeant: `${contact.prenom} ${contact.nom || ''}`.trim(),
     telephone: `+${num}`,
     email: contact.email,
     ville: contact.ville,

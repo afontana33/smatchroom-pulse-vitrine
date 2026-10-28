@@ -253,7 +253,7 @@ export async function alerterParEmail(c) {
     auth: { user: SMTP_USER, pass: SMTP_PASS },
   });
   const lignes = [
-    ['Nom', `${c.prenom} ${c.nom}`],
+    ['Nom', `${c.prenom} ${c.nom || ''}`.trim()],
     ['Téléphone', c.telephone],
     ['Secteur', c.metier],
     ['Ville', c.ville],
@@ -268,7 +268,7 @@ export async function alerterParEmail(c) {
   await transport.sendMail({
     from: `"SmatchRoom Pulse" <${SMTP_USER}>`,
     to: process.env.LEADS_TO || 'a.fontana@smatchroom.fr',
-    subject: `Nouveau lead simulateur : ${c.prenom} ${c.nom} · ${c.metier.split(' (')[0]} · ${c.ville}`,
+    subject: `Nouveau lead simulateur : ${`${c.prenom} ${c.nom || ''}`.trim()} · ${c.metier.split(' (')[0]} · ${c.ville}`,
     text: `Nouveau test gratuit sur pulse.smatchroom.com/simulateur :\n\n${texte}`,
     html,
   });

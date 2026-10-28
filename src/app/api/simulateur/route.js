@@ -82,11 +82,13 @@ export async function POST(request) {
       type: a.type,
       total: trouves.length,
       cible: a.cible,
-      apercu: trouves.slice(0, 4).map((l) => ({ categorie: l.categorie || '', ville: l.ville || ville })),
+      /* Le premier nom est montré en clair (28/10/2026) : le visiteur voit que c'est réel avant de laisser son numéro. */
+      apercu: trouves.slice(0, 4).map((l, i) => ({ nom: i === 0 ? l.nom || '' : '', categorie: l.categorie || '', ville: l.ville || ville })),
     });
   }
 
-  if (prenom.length < 2 || nom.length < 2) return refus('Indiquez votre prénom et votre nom.');
+  /* Nom de famille facultatif depuis le 28/10/2026 : prénom et téléphone suffisent. */
+  if (prenom.length < 2) return refus('Indiquez votre prénom.');
   if (chiffres.length < 9 || chiffres.length > 15) return refus('Indiquez un numéro de téléphone valide.');
   if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return refus('Adresse email invalide.');
   if (body?.consentement !== true) return refus('Merci de cocher la case pour lancer le test.');
@@ -119,7 +121,7 @@ export async function POST(request) {
      doit jamais se perdre parce que le visiteur a fermé la page. */
   const contact = {
     prenom,
-    nom,
+    nom: nom || null,
     telephone,
     email: email || null,
     entreprise: entreprise || null,

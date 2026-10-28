@@ -5,7 +5,7 @@
  *
  * Étape 1 : secteur et ville seulement → /api/simulateur { etape: 'recherche' }
  *           (20 à 40 s). Le visiteur voit le nombre trouvé et un aperçu flouté.
- * Étape 2 : prénom, nom, téléphone (obligatoires), entreprise (facultative)
+ * Étape 2 : prénom et téléphone (obligatoires, nom de famille retiré le 28/10/2026), entreprise (facultative)
  *           pour débloquer le résultat (demande du 27/10/2026). Le contact est
  *           envoyé par email à Alexis.
  * Étape 3 : la conversation WhatsApp telle que nos agents la mènent, au nom du
@@ -317,8 +317,8 @@ export default function Simulateur() {
   async function debloquer(e) {
     e.preventDefault();
     setErreur('');
-    if (form.prenom.trim().length < 2 || form.nom.trim().length < 2 || form.telephone.replace(/\D/g, '').length < 9) {
-      setErreur('Indiquez votre prénom, votre nom et votre téléphone.');
+    if (form.prenom.trim().length < 2 || form.telephone.replace(/\D/g, '').length < 9) {
+      setErreur('Indiquez votre prénom et votre numéro WhatsApp.');
       return;
     }
     setEtat('deverrouillage');
@@ -494,12 +494,16 @@ export default function Simulateur() {
               ? `${apercu.total} signaux d’achat détectés autour de ${form.ville}`
               : `${apercu.total} partenaires trouvés autour de ${form.ville}`}
           </p>
-          <ul className="mt-5 space-y-2" aria-hidden>
+          <ul className="mt-5 space-y-2">
             {apercu.apercu.map((l, i) => (
               <li key={i} className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] px-4 py-3">
-                <span className="block select-none font-semibold text-[var(--foreground)] blur-[6px]">
-                  {['Agence Martin & Associés', 'Cabinet Lefèvre Conseil', 'Immo Duval Patrimoine', 'Groupe Bernard'][i % 4]}
-                </span>
+                {l.nom ? (
+                  <span className="block font-semibold text-[var(--foreground)]">{l.nom}</span>
+                ) : (
+                  <span className="block select-none font-semibold text-[var(--foreground)] blur-[6px]">
+                    {['Agence Martin & Associés', 'Cabinet Lefèvre Conseil', 'Immo Duval Patrimoine', 'Groupe Bernard'][i % 4]}
+                  </span>
+                )}
                 <span className="mt-0.5 flex items-start gap-1.5 text-sm text-[var(--muted)]">
                   <MapPin size={13} aria-hidden className="mt-[0.2rem] flex-shrink-0" />
                   <span className="line-clamp-1">
@@ -519,14 +523,13 @@ export default function Simulateur() {
           onSubmit={debloquer}
           className="rounded-3xl border-2 border-[var(--border-strong)] bg-[var(--surface)] p-6 shadow-[var(--shadow-lg)] sm:p-8"
         >
-          <p className="font-display text-xl font-semibold">Voir mon résultat complet</p>
+          <p className="font-display text-xl font-semibold">Recevez votre résultat sur WhatsApp</p>
           <p className="mt-1 text-sm text-[var(--muted-strong)]">
-            Les noms, la liste complète et le message que l’agent enverrait en signant à votre nom.
+            La liste complète des noms et le message que l’agent enverrait à votre nom, ici et sur votre WhatsApp.
           </p>
           {[
             ['prenom', 'Prénom', { placeholder: 'L’agent signe à votre nom', autoComplete: 'given-name' }],
-            ['nom', 'Nom', { autoComplete: 'family-name' }],
-            ['telephone', 'Téléphone', { type: 'tel', placeholder: '06 12 34 56 78', autoComplete: 'tel' }],
+            ['telephone', 'Votre numéro WhatsApp', { type: 'tel', placeholder: '06 12 34 56 78', autoComplete: 'tel', inputMode: 'tel' }],
             ['entreprise', 'Entreprise', { placeholder: 'Facultatif', autoComplete: 'organization' }],
           ].map(([k, label, props]) => (
             <div key={k} className="mt-4">
@@ -563,7 +566,7 @@ export default function Simulateur() {
             disabled={etat === 'deverrouillage'}
             className="btn-primary mt-6 inline-flex w-full items-center justify-center gap-2 px-5 py-3.5 text-sm font-bold disabled:opacity-80"
           >
-            {etat === 'deverrouillage' ? 'Ouverture de votre résultat…' : 'Voir mon résultat'}
+            {etat === 'deverrouillage' ? 'Ouverture de votre résultat…' : 'Recevoir mon résultat'}
             <ArrowRight size={16} aria-hidden />
           </button>
         </form>
