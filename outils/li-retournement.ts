@@ -29,9 +29,9 @@ ${nom} (${titre}) t'a écrit sur LinkedIn. Voici la conversation, du plus ancien
  DEMARCHAGE : il te propose un produit ou un service (logiciel, formation, prestation, financement, recrutement de commerciaux, sous-traitance, etc.) ;
  CONCURRENT : il vend de la prospection, de la génération de leads, du marketing, de la communication, du web ou du growth ;
  AUTRE : vraie question, ami, client, candidature, offre d'emploi, arnaque, crypto, message déjà en cours d'échange avec toi, personne hors de France.
-2. Si DEMARCHAGE : écris la réponse d'Alexis. Remercie en une phrase et décline sans le froisser (pas le besoin en ce moment). Puis retourne la question avec curiosité : comment lui (ou son entreprise) trouve ses nouveaux clients aujourd'hui, et dis en une phrase simple ce que tu fais. Termine par une question ouverte.
-   Si CONCURRENT : remercie, explique que c'est aussi ton métier, et propose d'en parler en partenaires : tu opères le canal WhatsApp pour des agences, en marque blanche ou en apport d'affaires. Termine par une question.
-Règles : en français, vouvoiement, 3 à 4 phrases, ton direct et chaleureux, commence par son prénom, aucun tiret (— – -) comme ponctuation, pas de lien, pas de prix, aucune mention d'intelligence artificielle ni de réponse automatique, signe « Alexis ».
+2. Si DEMARCHAGE : écris la réponse d'Alexis. On le laisse d'abord parler de lui, sans rien vendre : remercie en quelques mots, décline son offre en une demi phrase (pas le besoin en ce moment), puis pose UNE question sincère sur son activité, idéalement sur la façon dont il trouve ses propres clients. Ne présente PAS ce que fait Alexis dans ce message.
+   Si CONCURRENT : remercie, dis en une phrase que c'est aussi ton métier, sur le canal WhatsApp, et demande avec curiosité avec quels clients il travaille et sur quels canaux : l'idée est d'explorer un partenariat, sans le proposer frontalement.
+Règles : en français courant, 2 ou 3 phrases courtes, 280 caractères au maximum, ton direct et chaleureux. Tutoie s'il t'a tutoyé, sinon vouvoie. Commence par son prénom. Pas de point d'exclamation, aucun anglicisme (leads, pipe, inbound…), aucun tiret (— – -) comme ponctuation, pas de lien, pas de prix, aucune mention d'intelligence artificielle ni de réponse automatique, pas de signature.
 Réponds UNIQUEMENT en JSON : {"classe": "DEMARCHAGE" | "CONCURRENT" | "AUTRE", "prenom": "...", "entreprise": "... ou null", "reponse": "... ou null"}`;
 
 async function dejaEnBase(pid: string) {
@@ -67,7 +67,7 @@ async function dejaEnBase(pid: string) {
     vus.add(cid);
     if (d.classe !== 'DEMARCHAGE' && d.classe !== 'CONCURRENT') { console.log(`  - laissé à Alexis (${d.classe ?? '?'}) : ${nom} | ${titre.slice(0, 50)}`); continue; }
     const rep = sansTirets(String(d.reponse ?? ''));
-    if (rep.length < 20) continue;
+    if (rep.length < 20 || rep.length > 330) continue;
     console.log(`  > ${d.classe} : ${nom} | ${titre.slice(0, 60)}\n    son message : ${fil.slice(0, 120).replace(/\n/g, ' ')}…\n    réponse : ${rep}`);
     faits++;
     if (DRY) continue;
