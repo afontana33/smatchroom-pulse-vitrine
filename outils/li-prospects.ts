@@ -62,7 +62,7 @@ const NOTE_INVITE = (prenom: string) => `Bonjour ${prenom}, j'ai échangé sous 
 const REPONSE = (post: string, moi: string, auteur: string, com: string) => `Tu es Alexis Fontana, fondateur de SmatchRoom Pulse (Bordeaux) : on trouve des clients aux artisans et aux PME en démarchant pour eux.
 Sous le post LinkedIn de quelqu'un d'autre, tu avais laissé ce commentaire : """${moi}"""
 ${auteur} t'a répondu : """${com}"""
-Écris ta réponse. En français, vouvoiement, 1 à 2 phrases, ton direct et chaleureux. Commence par son prénom. Réponds vraiment à ce qu'il dit et, si c'est naturel, relance par une question ouverte. N'invente aucun chiffre ni anecdote. Pas de lien, pas de prix, pas de pitch, aucune mention de SmatchRoom, d'intelligence artificielle ou de réponse automatique, aucun tiret (— – -) comme ponctuation.
+Écris ta réponse. En français courant, vouvoiement, 2 phrases courtes au maximum et 250 caractères au maximum, ton direct et chaleureux comme un dirigeant qui répond depuis son téléphone. Aucun anglicisme (pas de value-add, insight, process…), pas de guillemets, pas de point d'exclamation, ne parle pas des artisans si lui n'en parle pas. Commence par son prénom. Réponds vraiment à ce qu'il dit et, si c'est naturel, relance par une question ouverte. N'invente aucun chiffre ni anecdote. Pas de lien, pas de prix, pas de pitch, aucune mention de SmatchRoom, d'intelligence artificielle ou de réponse automatique, aucun tiret (— – -) comme ponctuation.
 Si sa réponse est un simple merci, un emoji ou ne demande rien, réponds exactement : RIEN
 Post d'origine : """${post.slice(0, 1200)}"""
 Ta réponse (le texte seul) :`;
@@ -115,7 +115,7 @@ Ta réponse (le texte seul) :`;
     vus.add(id);
     const texte = String(rep.text ?? '').replace(/^Alexis Fontana\s*/, '').trim();
     const t = sansTirets(texte.length < 3 ? 'RIEN' : await claude(REPONSE(c.extrait, c.commentaire, String(rep.author ?? ''), texte)));
-    if (t === '' || t.startsWith('RIEN')) { console.log(`  - réponse ignorée : ${rep.author} « ${texte.slice(0, 60)} »`); continue; }
+    if (t === '' || t.startsWith('RIEN') || t.length > 300) { console.log(`  - réponse ignorée : ${rep.author} « ${texte.slice(0, 60)} »`); continue; }
     console.log(`  > ${rep.author} a répondu : « ${texte.slice(0, 80)} »\n    réponse : ${t}`);
     reponses++;
     if (DRY === false) {
