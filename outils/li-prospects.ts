@@ -15,7 +15,8 @@ const fic = (() => { try { return readFileSync('/root/unipile.env', 'utf8'); } c
 const ACCOUNT_ID = process.env.UNIPILE_ACCOUNT_ID ?? (fic.split('\n').find((l) => l.startsWith('UNIPILE_ACCOUNT_ID=')) ?? '').slice(19).trim();
 const SB = process.env.SUPABASE_URL ?? '', SK = process.env.SUPABASE_SERVICE_KEY ?? '';
 const H = { apikey: SK, Authorization: `Bearer ${SK}`, 'content-type': 'application/json' };
-const COMMENTES = 'data/li-commentes.json', VUES = 'data/li-prospects-vus.json', JOURNAL = 'data/li-prospects-jour.json';
+const COMMENTES = 'data/li-commentes.json', VUES = 'data/li-prospects-vus.json', JOURNAL = 'data/li-prospects-jour.json', NOTES = 'data/li-prospects-textes.json';
+const normT = (t: any) => String(t ?? '').replace(/^Alexis Fontana\s*/, '').replace(/\s+/g, ' ').trim().slice(0, 150);
 const pause = (ms: number) => new Promise((r) => setTimeout(r, ms));
 const sansTirets = (t: string) => t.replace(/\s+[-–—]\s+/g, ', ').replace(/[–—]/g, ', ').replace(/,\s*,/g, ',').trim();
 const conf = JSON.parse(readFileSync('signaux/pulse.json', 'utf8'));
@@ -73,6 +74,7 @@ Ta réponse (le texte seul) :`;
   const journal = lire(JOURNAL, {});
   const invitesJour = journal.date === aujourdhui ? Number(journal.invites ?? 0) : 0;
   const commentes: any[] = lire(COMMENTES, []);
+  const notes = new Set<string>(lire(NOTES, []));
   const moi: any = await api('/users/me');
   const monId = String(moi.provider_id ?? '');
 
@@ -106,6 +108,8 @@ Ta réponse (le texte seul) :`;
     const fil: any[] = (r.items ?? []).filter((x: any) => String(x.id) !== String(c.comment_id));
     const date = (x: any) => Date.parse(x.date ?? '') || 0;
     const estMoi = (x: any) => String(x.author_details?.id ?? '') === monId || String(x.author ?? '') === String(moi.name ?? `${moi.first_name ?? ''} ${moi.last_name ?? ''}`.trim());
+    // Alexis a répondu lui-même dans ce fil (texte qui n'est pas celui de l'agent) : le fil est à lui.
+    if (c.manuel || fil.some((x) => estMoi(x) && normT(x.text) !== normT(c.commentaire) && notes.has(normT(x.text)) === false)) { c.manuel = true; continue; }
     const monDernier = Math.max(Date.parse(c.date) || 0, ...fil.filter(estMoi).map(date));
     // Une seule réponse par fil et par passage : au message le plus récent arrivé après la dernière intervention d'Alexis.
     const rep = fil.filter((x) => estMoi(x) === false && date(x) > monDernier).sort((x, y) => date(y) - date(x))[0];
@@ -119,6 +123,7 @@ Ta réponse (le texte seul) :`;
     console.log(`  > ${rep.author} a répondu : « ${texte.slice(0, 80)} »\n    réponse : ${t}`);
     reponses++;
     if (DRY === false) {
+      notes.add(normT(t));
       await api(`/posts/${encodeURIComponent(c.post_id)}/comments`, { method: 'POST', body: JSON.stringify({ account_id: ACCOUNT_ID, text: t, comment_id: c.comment_id }) });
       await pause(20000 + Math.random() * 30000);
     }
@@ -178,6 +183,7 @@ Ta réponse (le texte seul) :`;
 
   if (DRY === false) {
     writeFileSync(VUES, JSON.stringify([...vus].slice(-5000)));
+    writeFileSync(NOTES, JSON.stringify([...notes].slice(-3000)));
     writeFileSync(JOURNAL, JSON.stringify({ date: aujourdhui, invites: invitesJour + invites }));
   }
   console.log(`[prospects] ${reponses} réponse(s), ${invites} invitation(s), ${acceptes} invitation(s) reçue(s) acceptée(s)${DRY ? ' (test, rien envoyé)' : ''}`);
