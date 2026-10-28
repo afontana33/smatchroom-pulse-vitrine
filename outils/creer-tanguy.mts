@@ -88,9 +88,8 @@ console.log(execSync(`npm run -s client:sync -- ${SLUG}`, { encoding: 'utf8' }).
 // Ligne d'accueil : paiement suivi par paiements.mts (178,80 € TTC = offre « agent »), puis lien QR et activation par connexion.mts.
 const { data: deja } = await sb.from('pulse_onboarding').select('id').eq('agent_slug', SLUG).maybeSingle();
 if (deja == null) {
-  const { data: max } = await sb.from('pulse_onboarding').select('id').order('id', { ascending: false }).limit(1);
   const { error } = await sb.from('pulse_onboarding').insert({
-    id: Number(max?.[0]?.id ?? 0) + 1, token: randomBytes(12).toString('hex'), offre: 'agent', entreprise: 'AS Courtage · Tanguy Duplay',
+    token: randomBytes(12).toString('hex'), offre: 'agent', entreprise: 'AS Courtage · Tanguy Duplay',
     telephone: '33618795267', statut: 'facture', rempli_at: new Date().toISOString(), agent_slug: SLUG, agent_cree_at: new Date().toISOString(),
     qonto_client_id: '01a1835b-7146-7db8-a2a5-51350445ebff', qonto_invoice_id: '01a1835b-84af-7b67-a794-2b841a5e9a11',
     donnees: { prenom: 'Tanguy', nom: 'Duplay', raison_sociale: 'AS Courtage', email: 'Tanguy.duplay@ascourtage.fr', numero_whatsapp: '0618795267' },
