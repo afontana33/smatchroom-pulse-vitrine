@@ -1,5 +1,5 @@
 /**
- * Partie serveur du simulateur : recherche (mémoire, OpenStreetMap, Apify en dernier recours), et règle « une seule
+ * Partie serveur du simulateur : recherche (mémoire, annuaire des entreprises, Apify en dernier recours), et règle « une seule
  * simulation par visiteur » (IP hachée, table pulse_simulateur_runs, 90 jours).
  *
  * Importé uniquement par les routes /api/simulateur. Le cache des recherches
@@ -86,8 +86,8 @@ export async function noterSimulation(ligne) {
 /* ───────── Économie Apify (31/10/2026) ─────────
    Octobre : ~210 recherches Apify payantes pour 4 contacts. Désormais :
    1. mémoire durable Supabase (maps_requetes + maps_cache, 90 jours) ;
-   2. OpenStreetMap (gratuit) en source principale ;
-   3. Apify seulement si OSM et la mémoire trouvent moins de MIN_LIEUX lieux,
+   2. annuaire des entreprises de l'État (gratuit) en source principale ;
+   3. Apify seulement si l'annuaire et la mémoire trouvent moins de MIN_LIEUX lieux,
       au plus APIFY_PAR_IP_JOUR par visiteur et APIFY_MAX_JOUR pour tout le site ;
    4. au plus RECHERCHES_PAR_IP_JOUR tests par visiteur et par jour, robots refusés. */
 export const RECHERCHES_PAR_IP_JOUR = 5;
@@ -214,89 +214,85 @@ async function ecrireDurable(act, ville, lieux, source, coutUsd) {
   }
 }
 
-/* Correspondance recherche Google Maps → étiquettes OpenStreetMap. */
-const OSM = {
-  'agence immobilière': ['["office"="estate_agent"]', '["shop"="estate_agent"]'],
-  'syndic de copropriété': ['["office"="property_management"]', '["office"]["name"~"syndic",i]'],
-  architecte: ['["office"="architect"]'],
-  'diagnostiqueur immobilier': ['["office"]["name"~"diagnos",i]', '["shop"]["name"~"diagnos",i]'],
-  "centre d'affaires": ['["amenity"="coworking_space"]', '["office"="coworking"]', '["name"~"centre d.affaires|business cent",i]'],
-  notaire: ['["office"="notary"]'],
-  'courtier en crédit immobilier': ['["office"="financial_advisor"]', '["name"~"courtier|cafpi|meilleurtaux|empruntis|vousfinancer",i]'],
-  'expert-comptable': ['["office"="accountant"]'],
-  avocat: ['["office"="lawyer"]'],
-  'espace de coworking': ['["amenity"="coworking_space"]', '["office"="coworking"]'],
-  'chambre de commerce': ['["name"~"chambre de commerce|chambre des m.tiers|^CCI ",i]'],
+/* Correspondance recherche Google Maps → code d'activité (NAF) de l'annuaire des
+   entreprises de l'État (recherche-entreprises.api.gouv.fr, gratuit). OpenStreetMap
+   bloque le VPS (31/10/2026). q : mot obligatoire quand un code couvre plusieurs métiers. */
+const NAF = {
+  'agence immobilière': { naf: '68.31Z' },
+  'syndic de copropriété': { naf: '68.32A' },
+  architecte: { naf: '71.11Z' },
+  'diagnostiqueur immobilier': { naf: '71.20B', q: 'diagnostic' },
+  "centre d'affaires": { naf: '82.11Z' },
+  notaire: { naf: '69.10Z', q: 'notaire' },
+  'courtier en crédit immobilier': { naf: '66.19B', q: 'courtage' },
+  'expert-comptable': { naf: '69.20Z' },
+  avocat: { naf: '69.10Z', q: 'avocat' },
+  'espace de coworking': { naf: '82.11Z' },
+  'chambre de commerce': { naf: '94.11Z' },
 };
 
-async function centreDe(ville) {
+async function communeDe(ville) {
   const cp = /^\d{5}$/.test(ville);
   const q = cp ? `codePostal=${ville}` : `nom=${encodeURIComponent(ville)}&boost=population`;
-  const res = await fetch(`https://geo.api.gouv.fr/communes?${q}&fields=centre,nom&limit=1`, {
+  const res = await fetch(`https://geo.api.gouv.fr/communes?${q}&fields=nom,code,codesPostaux,codeDepartement&limit=1`, {
     signal: AbortSignal.timeout(10_000), cache: 'no-store',
   });
   if (!res.ok) return null;
   const [c] = await res.json();
-  const [lng, lat] = c?.centre?.coordinates || [];
-  return lat ? { lat, lng, nom: c.nom } : null;
+  return c?.codesPostaux?.length ? c : null;
 }
 
-async function overpass(requete) {
-  for (const url of ['https://overpass-api.de/api/interpreter', 'https://overpass.kumi.systems/api/interpreter']) {
-    try {
-      const res = await fetch(url, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded', 'User-Agent': 'SmatchRoomPulse/1.0 (pulse.smatchroom.com)' },
-        body: `data=${encodeURIComponent(requete)}`,
-        signal: AbortSignal.timeout(30_000), cache: 'no-store',
-      });
-      if (res.ok) return (await res.json()).elements || [];
-    } catch { /* serveur suivant */ }
+/* « JCM (CIMM IMMOBILIER - IMMOLIAISON) » → « Cimm Immobilier ». */
+function nomLisible(n) {
+  let s = String(n || '').trim();
+  const m = s.match(/\(([^)]+)\)/);
+  if (m) s = m[1].split(/\s+-\s+|,/)[0].trim();
+  if (s === s.toUpperCase()) s = s.toLowerCase().replace(/(^|[\s'’-])([a-zà-ÿ])/g, (_x, p, c) => p + c.toUpperCase());
+  return s;
+}
+
+async function annuaire(params) {
+  try {
+    const res = await fetch(`https://recherche-entreprises.api.gouv.fr/search?${params}&etat_administratif=A&per_page=25`, {
+      headers: { 'User-Agent': 'SmatchRoomPulse/1.0 (pulse.smatchroom.com)' },
+      signal: AbortSignal.timeout(15_000), cache: 'no-store',
+    });
+    return res.ok ? (await res.json()).results || [] : [];
+  } catch {
+    return [];
   }
-  return null;
 }
 
-/* Recherche gratuite OpenStreetMap autour de la ville (10 km, puis 25 km). */
-async function chercherOsm(a, ville) {
-  const c = await centreDe(ville);
+/* Recherche gratuite dans l'annuaire des entreprises : la commune, puis le département. */
+async function chercherAnnuaire(a, ville) {
+  const c = await communeDe(ville);
   if (!c) return [];
-  let lieux = [];
-  for (const rayon of [10_000, 25_000]) {
-    const blocs = a.recherches.flatMap((s, i) => (OSM[s] || []).map((f) => `nwr(around:${rayon},${c.lat},${c.lng})${f}["name"];`));
-    if (!blocs.length) return [];
-    const el = await overpass(`[out:json][timeout:25];(${blocs.join('')});out center tags 300;`);
-    if (!el) return lieux;
-    const parRecherche = a.recherches.map(() => []);
-    const vus = new Set();
-    for (const e of el) {
-      const t = e.tags || {};
-      const k = norm(t.name);
-      if (!k || vus.has(k)) continue;
-      const i = a.recherches.findIndex((s) => (OSM[s] || []).some((f) => correspond(f, t)));
-      if (i < 0 || parRecherche[i].length >= PAR_RECHERCHE) continue;
-      vus.add(k);
-      parRecherche[i].push({
-        id: `osm:${e.type}/${e.id}`, nom: t.name, categorie: majuscule(a.recherches[i]),
-        ville: t['addr:city'] || c.nom || ville, adresse: [t['addr:housenumber'], t['addr:street']].filter(Boolean).join(' ') || null,
-        telephone: t.phone || t['contact:phone'] || null, website: t.website || t['contact:website'] || null,
-        lat: e.lat ?? e.center?.lat, lng: e.lon ?? e.center?.lon,
-      });
+  const zones = [`code_postal=${c.codesPostaux.slice(0, 10).join(',')}`, `departement=${c.codeDepartement}`];
+  const parRecherche = a.recherches.map(() => []);
+  const vus = new Set();
+  for (const zone of zones) {
+    for (const [i, s] of a.recherches.entries()) {
+      const r = NAF[s];
+      if (!r || parRecherche[i].length >= PAR_RECHERCHE) continue;
+      const res = await annuaire(`activite_principale=${r.naf}&${zone}${r.q ? `&q=${encodeURIComponent(r.q)}` : ''}`);
+      /* Les entreprises locales d'abord : siège dans le département. */
+      res.sort((x, y) => Number(!String(x.siege?.code_postal || '').startsWith(c.codeDepartement)) - Number(!String(y.siege?.code_postal || '').startsWith(c.codeDepartement)));
+      for (const e of res) {
+        const nom = nomLisible(e.nom_complet);
+        const k = norm(nom);
+        if (!k || vus.has(k) || parRecherche[i].length >= PAR_RECHERCHE) continue;
+        const et = (e.matching_etablissements || [])[0] || e.siege || {};
+        vus.add(k);
+        parRecherche[i].push({
+          id: `annuaire:${et.siret || e.siren}`, nom, categorie: majuscule(s),
+          ville: nomLisible(et.libelle_commune || c.nom), adresse: et.adresse || null,
+          lat: et.latitude ? Number(et.latitude) : null, lng: et.longitude ? Number(et.longitude) : null,
+        });
+      }
     }
-    lieux = melanger(parRecherche.flat());
-    if (lieux.length >= MIN_LIEUX) break;
+    if (parRecherche.flat().length >= MIN_LIEUX * 2) break;
   }
-  return lieux;
-}
-
-/* Vérifie qu'un élément OSM correspond à un filtre Overpass simple. */
-function correspond(filtre, t) {
-  return [...filtre.matchAll(/\["([^"]+)"(?:(=|~)"([^"]+)"(,i)?)?\]/g)].every(([, cle, op, val, i]) => {
-    const v = t[cle];
-    if (v == null) return false;
-    if (!op) return true;
-    if (op === '=') return v === val;
-    try { return new RegExp(val, i ? 'i' : '').test(v); } catch { return false; }
-  });
+  return melanger(parRecherche.flat());
 }
 
 /* Alterne les catégories pour que l'aperçu montre des profils variés. */
@@ -315,7 +311,7 @@ function melanger(lieux) {
 const public_ = (lieux) => lieux.map(({ nom, categorie, ville, signal, prenomDirigeant }) =>
   ({ nom, categorie, ville, ...(signal ? { signal } : {}), ...(prenomDirigeant ? { prenomDirigeant } : {}) }));
 
-/* Cherche les partenaires : mémoire, puis OSM (gratuit), puis Apify en dernier recours.
+/* Cherche les partenaires : mémoire, puis annuaire (gratuit), puis Apify en dernier recours.
    ctx = { ipHash, etape } sert au journal et aux plafonds Apify. */
 export async function chercher(actKey, ville, ctx = {}) {
   const noter = (source, nb, cout = 0) =>
@@ -344,13 +340,13 @@ export async function chercher(actKey, ville, ctx = {}) {
     return durable;
   }
 
-  const osm = await chercherOsm(a, ville).catch((e) => { console.error('[simulateur] osm', e?.message); return []; });
+  const osm = await chercherAnnuaire(a, ville).catch((e) => { console.error('[simulateur] annuaire', e?.message); return []; });
   if (osm.length >= MIN_LIEUX || !(await apifyAutorise(ctx.ipHash)) || !process.env.APIFY_TOKEN) {
     const lieux = osm.length >= (durable?.length || 0) ? osm : durable;
     const sortie = public_(lieux);
-    if (osm.length) await ecrireDurable(actKey, ville, osm, 'osm', 0);
+    if (osm.length) await ecrireDurable(actKey, ville, osm, 'annuaire', 0);
     cache.set(cleCache(actKey, ville), { at: Date.now(), lieux: sortie });
-    await noter('osm', sortie.length);
+    await noter('annuaire', sortie.length);
     return sortie;
   }
 
