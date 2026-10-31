@@ -161,7 +161,7 @@ export default function HeroLancement() {
             </h2>
 
             <ul className="mt-6 space-y-3">
-              {OFFRES.map(({ Icone, titre, texte, prix, href }) => (
+              {OFFRES.map(({ Icone, titre, texte, href }) => (
                 <li key={titre}>
                   <a
                     href={href}
@@ -171,10 +171,8 @@ export default function HeroLancement() {
                       <Icone size={20} aria-hidden />
                     </span>
                     <span className="min-w-0 flex-1">
-                      <span className="flex flex-wrap items-baseline justify-between gap-x-3">
-                        <span className="font-semibold text-[var(--foreground)]">{titre}</span>
-                        <span className="text-sm font-semibold text-[var(--primary-ink)]">{prix}</span>
-                      </span>
+                      {/* Prix masqués dans ce bloc (31/10/2026) : ils restent dans OFFRES pour les réafficher si besoin. */}
+                      <span className="block font-semibold text-[var(--foreground)]">{titre}</span>
                       <span className="mt-1 block text-sm leading-snug text-[var(--muted-strong)]">{texte}</span>
                     </span>
                     <ArrowRight
@@ -198,7 +196,7 @@ export default function HeroLancement() {
               href="#packs"
               className="mt-4 block text-center text-sm text-[var(--muted-strong)] underline-offset-4 hover:text-[var(--foreground)] hover:underline"
             >
-              Vous lancez votre activité&nbsp;? Packs Lancement dès 490&nbsp;€&nbsp;HT →
+              Vous lancez votre activité&nbsp;? Découvrir les Packs Lancement →
             </a>
           </div>
         </div>

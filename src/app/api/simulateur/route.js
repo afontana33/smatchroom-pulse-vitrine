@@ -21,7 +21,11 @@ import {
   alerterParEmail,
   chercher,
   enregistrerContact,
+  estRobot,
   hashIp,
+  noterRecherche,
+  RECHERCHES_PAR_IP_JOUR,
+  recherchesRecentes,
   ipDe,
   noterSimulation,
   simulationPrecedente,
@@ -60,12 +64,18 @@ export async function POST(request) {
      renvoie qu'un aperçu sans noms : la liste et la conversation se débloquent
      à l'étape 2, avec le formulaire de contact. */
   if (body?.etape === 'recherche') {
+    /* Économie Apify (31/10/2026) : robots refusés, 5 tests par visiteur et par jour. */
+    if (estRobot(request)) return refus('Requête refusée.', 403);
     if (ip !== 'inconnue' && (await simulationPrecedente(ipHash))) {
       return Response.json({ deja: true, erreur: 'Vous avez déjà fait votre test gratuit.' }, { status: 409 });
     }
+    if (ip !== 'inconnue' && (await recherchesRecentes(ipHash)) >= RECHERCHES_PAR_IP_JOUR) {
+      await noterRecherche({ ip_hash: ipHash, activite: a.key, ville, source: 'refus', nb: 0, cout_usd: 0 });
+      return refus('Vous avez déjà fait plusieurs essais aujourd’hui. Revenez demain, ou écrivez-nous sur WhatsApp.', 429);
+    }
     let trouves;
     try {
-      trouves = await chercher(a.key, ville);
+      trouves = await chercher(a.key, ville, { ipHash: ip !== 'inconnue' ? ipHash : null, etape: 'recherche' });
     } catch (e) {
       console.error('[simulateur]', e?.message);
       return refus('La recherche n’a pas abouti. Réessayez dans un instant.', 502);
@@ -99,9 +109,11 @@ export async function POST(request) {
     return Response.json({ deja: true, erreur: 'Vous avez déjà fait votre test gratuit.' }, { status: 409 });
   }
 
+  if (estRobot(request)) return refus('Requête refusée.', 403);
+
   let lieux;
   try {
-    lieux = await chercher(a.key, ville);
+    lieux = await chercher(a.key, ville, { ipHash: ip !== 'inconnue' ? ipHash : null, etape: 'contact' });
   } catch (e) {
     console.error('[simulateur]', e?.message);
     return refus('La recherche n’a pas abouti. Réessayez dans un instant.', 502);

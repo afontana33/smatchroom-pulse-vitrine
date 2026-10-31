@@ -1,5 +1,5 @@
 /**
- * Partie serveur du simulateur : recherche Apify, cache, et règle « une seule
+ * Partie serveur du simulateur : recherche (mémoire, OpenStreetMap, Apify en dernier recours), et règle « une seule
  * simulation par visiteur » (IP hachée, table pulse_simulateur_runs, 90 jours).
  *
  * Importé uniquement par les routes /api/simulateur. Le cache des recherches
@@ -83,25 +83,264 @@ export async function noterSimulation(ligne) {
   }).catch(() => {});
 }
 
-/* Lance la recherche Google Maps et renvoie une liste dédoublonnée de lieux. */
-export async function chercher(actKey, ville) {
+/* ───────── Économie Apify (31/10/2026) ─────────
+   Octobre : ~210 recherches Apify payantes pour 4 contacts. Désormais :
+   1. mémoire durable Supabase (maps_requetes + maps_cache, 90 jours) ;
+   2. OpenStreetMap (gratuit) en source principale ;
+   3. Apify seulement si OSM et la mémoire trouvent moins de MIN_LIEUX lieux,
+      au plus APIFY_PAR_IP_JOUR par visiteur et APIFY_MAX_JOUR pour tout le site ;
+   4. au plus RECHERCHES_PAR_IP_JOUR tests par visiteur et par jour, robots refusés. */
+export const RECHERCHES_PAR_IP_JOUR = 5;
+const APIFY_PAR_IP_JOUR = 1;
+const APIFY_MAX_JOUR = Number(process.env.SIMULATEUR_APIFY_MAX_JOUR || 5);
+const MIN_LIEUX = 5;
+const CACHE_DURABLE_JOURS = 90;
+
+const norm = (s) => String(s ?? '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/\s+/g, ' ').trim();
+const majuscule = (s) => s.charAt(0).toUpperCase() + s.slice(1);
+
+/* Robots et scripts : pas de recherche du tout. */
+export function estRobot(request) {
+  const ua = request.headers.get('user-agent') || '';
+  if (!ua || /bot|crawl|spider|slurp|curl|wget|python|httpx|axios|node-fetch|go-http|java\/|headless|phantom|scrapy|okhttp/i.test(ua)) return true;
+  const origine = request.headers.get('origin') || request.headers.get('referer') || '';
+  return !/smatchroom\.(com|fr)|localhost|127\.0\.0\.1/i.test(origine);
+}
+
+async function compter(filtre) {
+  const sb = supabase();
+  if (!sb) return 0;
+  try {
+    const res = await fetch(`${sb.url}/rest/v1/pulse_simulateur_recherches?select=id&${filtre}`, {
+      headers: { ...sb.headers, Prefer: 'count=exact', Range: '0-0' },
+      cache: 'no-store',
+    });
+    return Number((res.headers.get('content-range') || '/0').split('/')[1]) || 0;
+  } catch {
+    return 0;
+  }
+}
+const depuis24h = () => `created_at=gte.${new Date(Date.now() - 86400_000).toISOString()}`;
+
+/* Nombre de tests de ce visiteur ces dernières 24 h. */
+export const recherchesRecentes = (ipHash) => compter(`ip_hash=eq.${ipHash}&${depuis24h()}`);
+
+export async function noterRecherche(ligne) {
+  const sb = supabase();
+  if (!sb) return;
+  await fetch(`${sb.url}/rest/v1/pulse_simulateur_recherches`, {
+    method: 'POST',
+    headers: { ...sb.headers, Prefer: 'return=minimal' },
+    body: JSON.stringify(ligne),
+    cache: 'no-store',
+  }).catch(() => {});
+}
+
+async function apifyAutorise(ipHash) {
+  if (!supabase()) return false; // sans compteur durable, pas de dépense
+  const [ip, total] = await Promise.all([
+    ipHash ? compter(`ip_hash=eq.${ipHash}&source=eq.apify&${depuis24h()}`) : 0,
+    compter(`source=eq.apify&${depuis24h()}`),
+  ]);
+  return ip < APIFY_PAR_IP_JOUR && total < APIFY_MAX_JOUR;
+}
+
+/* Mémoire durable : clé « simulateur|activité|ville ». */
+const cleDurable = (act, ville) => norm(`simulateur|${act}|${ville}`);
+
+async function lireDurable(act, ville) {
+  const sb = supabase();
+  if (!sb) return null;
+  try {
+    const limite = new Date(Date.now() - CACHE_DURABLE_JOURS * 86400_000).toISOString();
+    const r = await fetch(
+      `${sb.url}/rest/v1/maps_requetes?select=place_ids&cle=eq.${encodeURIComponent(cleDurable(act, ville))}&run_at=gte.${limite}&limit=1`,
+      { headers: sb.headers, cache: 'no-store' },
+    );
+    const [ligne] = r.ok ? await r.json() : [];
+    const ids = ligne?.place_ids || [];
+    if (!ids.length) return null;
+    const liste = ids.map((id) => `"${String(id).replace(/"/g, '')}"`).join(',');
+    const f = await fetch(
+      `${sb.url}/rest/v1/maps_cache?select=place_id,titre,categorie,ville&place_id=in.(${encodeURIComponent(liste)})`,
+      { headers: sb.headers, cache: 'no-store' },
+    );
+    if (!f.ok) return null;
+    const parId = new Map((await f.json()).map((x) => [x.place_id, x]));
+    const lieux = ids.map((id) => parId.get(id)).filter(Boolean).map((x) => ({ nom: x.titre, categorie: x.categorie || '', ville: x.ville || ville }));
+    return lieux.length ? lieux : null;
+  } catch {
+    return null;
+  }
+}
+
+async function ecrireDurable(act, ville, lieux, source, coutUsd) {
+  const sb = supabase();
+  if (!sb || !lieux.length) return;
+  const fiches = lieux.map((l) => ({
+    place_id: l.id, titre: l.nom, categorie: l.categorie || null, ville: l.ville || null,
+    adresse: l.adresse || null, telephone: l.telephone || null, website: l.website || null,
+    lat: l.lat ?? null, lng: l.lng ?? null, note: l.note ?? null, nb_avis: l.nbAvis ?? null,
+    ferme: false, source, requete: `simulateur ${act}`, fetched_at: new Date().toISOString(),
+  }));
+  try {
+    await fetch(`${sb.url}/rest/v1/maps_cache?on_conflict=place_id`, {
+      method: 'POST', headers: { ...sb.headers, Prefer: 'resolution=merge-duplicates,return=minimal' },
+      body: JSON.stringify(fiches), cache: 'no-store',
+    });
+    await fetch(`${sb.url}/rest/v1/maps_requetes?on_conflict=cle`, {
+      method: 'POST', headers: { ...sb.headers, Prefer: 'resolution=merge-duplicates,return=minimal' },
+      body: JSON.stringify([{ cle: cleDurable(act, ville), terme: `simulateur ${act}`, zone: ville, source,
+        max_par_recherche: PAR_RECHERCHE, place_ids: lieux.map((l) => l.id), nb_resultats: lieux.length,
+        cout_usd: coutUsd, run_at: new Date().toISOString() }]),
+      cache: 'no-store',
+    });
+  } catch (e) {
+    console.error('[simulateur] mémoire', e?.message);
+  }
+}
+
+/* Correspondance recherche Google Maps → étiquettes OpenStreetMap. */
+const OSM = {
+  'agence immobilière': ['["office"="estate_agent"]', '["shop"="estate_agent"]'],
+  'syndic de copropriété': ['["office"="property_management"]', '["office"]["name"~"syndic",i]'],
+  architecte: ['["office"="architect"]'],
+  'diagnostiqueur immobilier': ['["office"]["name"~"diagnos",i]', '["shop"]["name"~"diagnos",i]'],
+  "centre d'affaires": ['["amenity"="coworking_space"]', '["office"="coworking"]', '["name"~"centre d.affaires|business cent",i]'],
+  notaire: ['["office"="notary"]'],
+  'courtier en crédit immobilier': ['["office"="financial_advisor"]', '["name"~"courtier|cafpi|meilleurtaux|empruntis|vousfinancer",i]'],
+  'expert-comptable': ['["office"="accountant"]'],
+  avocat: ['["office"="lawyer"]'],
+  'espace de coworking': ['["amenity"="coworking_space"]', '["office"="coworking"]'],
+  'chambre de commerce': ['["name"~"chambre de commerce|chambre des m.tiers|^CCI ",i]'],
+};
+
+async function centreDe(ville) {
+  const cp = /^\d{5}$/.test(ville);
+  const q = cp ? `codePostal=${ville}` : `nom=${encodeURIComponent(ville)}&boost=population`;
+  const res = await fetch(`https://geo.api.gouv.fr/communes?${q}&fields=centre,nom&limit=1`, {
+    signal: AbortSignal.timeout(10_000), cache: 'no-store',
+  });
+  if (!res.ok) return null;
+  const [c] = await res.json();
+  const [lng, lat] = c?.centre?.coordinates || [];
+  return lat ? { lat, lng, nom: c.nom } : null;
+}
+
+async function overpass(requete) {
+  for (const url of ['https://overpass-api.de/api/interpreter', 'https://overpass.kumi.systems/api/interpreter']) {
+    try {
+      const res = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded', 'User-Agent': 'SmatchRoomPulse/1.0 (pulse.smatchroom.com)' },
+        body: `data=${encodeURIComponent(requete)}`,
+        signal: AbortSignal.timeout(30_000), cache: 'no-store',
+      });
+      if (res.ok) return (await res.json()).elements || [];
+    } catch { /* serveur suivant */ }
+  }
+  return null;
+}
+
+/* Recherche gratuite OpenStreetMap autour de la ville (10 km, puis 25 km). */
+async function chercherOsm(a, ville) {
+  const c = await centreDe(ville);
+  if (!c) return [];
+  let lieux = [];
+  for (const rayon of [10_000, 25_000]) {
+    const blocs = a.recherches.flatMap((s, i) => (OSM[s] || []).map((f) => `nwr(around:${rayon},${c.lat},${c.lng})${f}["name"];`));
+    if (!blocs.length) return [];
+    const el = await overpass(`[out:json][timeout:25];(${blocs.join('')});out center tags 300;`);
+    if (!el) return lieux;
+    const parRecherche = a.recherches.map(() => []);
+    const vus = new Set();
+    for (const e of el) {
+      const t = e.tags || {};
+      const k = norm(t.name);
+      if (!k || vus.has(k)) continue;
+      const i = a.recherches.findIndex((s) => (OSM[s] || []).some((f) => correspond(f, t)));
+      if (i < 0 || parRecherche[i].length >= PAR_RECHERCHE) continue;
+      vus.add(k);
+      parRecherche[i].push({
+        id: `osm:${e.type}/${e.id}`, nom: t.name, categorie: majuscule(a.recherches[i]),
+        ville: t['addr:city'] || c.nom || ville, adresse: [t['addr:housenumber'], t['addr:street']].filter(Boolean).join(' ') || null,
+        telephone: t.phone || t['contact:phone'] || null, website: t.website || t['contact:website'] || null,
+        lat: e.lat ?? e.center?.lat, lng: e.lon ?? e.center?.lon,
+      });
+    }
+    lieux = melanger(parRecherche.flat());
+    if (lieux.length >= MIN_LIEUX) break;
+  }
+  return lieux;
+}
+
+/* Vérifie qu'un élément OSM correspond à un filtre Overpass simple. */
+function correspond(filtre, t) {
+  return [...filtre.matchAll(/\["([^"]+)"(?:(=|~)"([^"]+)"(,i)?)?\]/g)].every(([, cle, op, val, i]) => {
+    const v = t[cle];
+    if (v == null) return false;
+    if (!op) return true;
+    if (op === '=') return v === val;
+    try { return new RegExp(val, i ? 'i' : '').test(v); } catch { return false; }
+  });
+}
+
+/* Alterne les catégories pour que l'aperçu montre des profils variés. */
+function melanger(lieux) {
+  const parCat = new Map();
+  for (const l of lieux) {
+    if (!parCat.has(l.categorie)) parCat.set(l.categorie, []);
+    parCat.get(l.categorie).push(l);
+  }
+  const files = [...parCat.values()];
+  const sortie = [];
+  while (files.some((f) => f.length)) for (const f of files) if (f.length) sortie.push(f.shift());
+  return sortie;
+}
+
+const public_ = (lieux) => lieux.map(({ nom, categorie, ville, signal, prenomDirigeant }) =>
+  ({ nom, categorie, ville, ...(signal ? { signal } : {}), ...(prenomDirigeant ? { prenomDirigeant } : {}) }));
+
+/* Cherche les partenaires : mémoire, puis OSM (gratuit), puis Apify en dernier recours.
+   ctx = { ipHash, etape } sert au journal et aux plafonds Apify. */
+export async function chercher(actKey, ville, ctx = {}) {
+  const noter = (source, nb, cout = 0) =>
+    ctx.etape === 'recherche' && ctx.ipHash && noterRecherche({ ip_hash: ctx.ipHash, activite: actKey, ville, source, nb, cout_usd: cout });
+
   const enCache = lireCache(actKey, ville);
-  if (enCache) return enCache;
+  if (enCache) { await noter('memoire', enCache.length); return enCache; }
 
   const a = activite(actKey);
   if (!a) throw new Error('activite');
   if (a.type === 'b2b') {
     const lieux = await chercherSignaux(a, ville);
     cache.set(cleCache(actKey, ville), { at: Date.now(), lieux });
+    await noter('bodacc', lieux.length);
     return lieux;
   }
   if (process.env.SIMULATEUR_FIXTURE) { // tests locaux uniquement
     const { readFile } = await import('node:fs/promises');
     return trier(actKey, ville, JSON.parse(await readFile(process.env.SIMULATEUR_FIXTURE, 'utf8')));
   }
-  const token = process.env.APIFY_TOKEN;
-  if (!token) throw new Error('config');
 
+  const durable = await lireDurable(actKey, ville);
+  if (durable && durable.length >= MIN_LIEUX) {
+    cache.set(cleCache(actKey, ville), { at: Date.now(), lieux: durable });
+    await noter('cache', durable.length);
+    return durable;
+  }
+
+  const osm = await chercherOsm(a, ville).catch((e) => { console.error('[simulateur] osm', e?.message); return []; });
+  if (osm.length >= MIN_LIEUX || !(await apifyAutorise(ctx.ipHash)) || !process.env.APIFY_TOKEN) {
+    const lieux = osm.length >= (durable?.length || 0) ? osm : durable;
+    const sortie = public_(lieux);
+    if (osm.length) await ecrireDurable(actKey, ville, osm, 'osm', 0);
+    cache.set(cleCache(actKey, ville), { at: Date.now(), lieux: sortie });
+    await noter('osm', sortie.length);
+    return sortie;
+  }
+
+  const token = process.env.APIFY_TOKEN;
   const res = await fetch(
     `https://api.apify.com/v2/acts/${ACTOR}/run-sync-get-dataset-items?timeout=60&clean=true`,
     {
@@ -118,12 +357,20 @@ export async function chercher(actKey, ville) {
       cache: 'no-store',
     },
   );
-  if (!res.ok) throw new Error(`apify ${res.status}`);
-  return trier(actKey, ville, await res.json());
+  if (!res.ok) {
+    console.error('[simulateur] apify', res.status);
+    if (osm.length) return public_(osm);
+    throw new Error(`apify ${res.status}`);
+  }
+  const complets = trierComplet(ville, await res.json());
+  await noterRecherche({ ip_hash: ctx.ipHash || 'inconnue', activite: actKey, ville, source: 'apify', nb: complets.length, cout_usd: 0.19 });
+  await ecrireDurable(actKey, ville, complets.filter((l) => l.id && !l.id.includes('|')), ACTOR, 0.19);
+  const sortie = public_(complets.length ? complets : osm);
+  cache.set(cleCache(actKey, ville), { at: Date.now(), lieux: sortie });
+  return sortie;
 }
 
-function trier(actKey, ville, items) {
-
+function trierComplet(ville, items) {
   const vus = new Set();
   const lieux = [];
   for (const it of Array.isArray(items) ? items : []) {
@@ -132,22 +379,19 @@ function trier(actKey, ville, items) {
     if (vus.has(id)) continue;
     vus.add(id);
     lieux.push({
+      id,
       nom: it.title,
       categorie: it.categoryName || it.searchString || '',
       ville: it.city || ville,
+      adresse: it.address || null, telephone: it.phone || null, website: it.website || null,
+      lat: it.location?.lat, lng: it.location?.lng, note: it.totalScore ?? null, nbAvis: it.reviewsCount ?? null,
     });
   }
-  /* Alterne les catégories pour que l'aperçu montre des profils variés. */
-  const parCat = new Map();
-  for (const l of lieux) {
-    const k = l.categorie;
-    if (!parCat.has(k)) parCat.set(k, []);
-    parCat.get(k).push(l);
-  }
-  const files = [...parCat.values()];
-  const melange = [];
-  while (files.some((f) => f.length)) for (const f of files) if (f.length) melange.push(f.shift());
+  return melanger(lieux);
+}
 
+function trier(actKey, ville, items) {
+  const melange = public_(trierComplet(ville, items));
   cache.set(cleCache(actKey, ville), { at: Date.now(), lieux: melange });
   return melange;
 }
