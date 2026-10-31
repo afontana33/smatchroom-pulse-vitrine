@@ -26,6 +26,7 @@ import {
   noterRecherche,
   RECHERCHES_PAR_IP_JOUR,
   recherchesRecentes,
+  testPrecedent,
   ipDe,
   noterSimulation,
   simulationPrecedente,
@@ -67,6 +68,11 @@ export async function POST(request) {
     /* Économie Apify (31/10/2026) : robots refusés, 5 tests par visiteur et par jour. */
     if (estRobot(request)) return refus('Requête refusée.', 403);
     if (ip !== 'inconnue' && (await simulationPrecedente(ipHash))) {
+      return Response.json({ deja: true, erreur: 'Vous avez déjà fait votre test gratuit.' }, { status: 409 });
+    }
+    /* Un seul test par personne (90 jours) : le même secteur et la même ville peuvent être relancés, pas un autre. */
+    const test = ip !== 'inconnue' ? await testPrecedent(ipHash) : null;
+    if (test && (test.activite !== a.key || String(test.ville).toLowerCase() !== ville.toLowerCase())) {
       return Response.json({ deja: true, erreur: 'Vous avez déjà fait votre test gratuit.' }, { status: 409 });
     }
     if (ip !== 'inconnue' && (await recherchesRecentes(ipHash)) >= RECHERCHES_PAR_IP_JOUR) {

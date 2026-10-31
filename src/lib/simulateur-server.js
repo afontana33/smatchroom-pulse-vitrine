@@ -125,6 +125,20 @@ const depuis24h = () => `created_at=gte.${new Date(Date.now() - 86400_000).toISO
 /* Nombre de tests de ce visiteur ces dernières 24 h. */
 export const recherchesRecentes = (ipHash) => compter(`ip_hash=eq.${ipHash}&${depuis24h()}`);
 
+/* Le test déjà fait par ce visiteur (90 jours), ou null : un seul test par personne. */
+export async function testPrecedent(ipHash) {
+  const sb = supabase();
+  if (!sb) return null;
+  try {
+    const depuis = new Date(Date.now() - JOURS_UNE_FOIS * 86400_000).toISOString();
+    const r = await fetch(`${sb.url}/rest/v1/pulse_simulateur_recherches?select=activite,ville&ip_hash=eq.${ipHash}&nb=gt.0&created_at=gte.${depuis}&order=created_at.asc&limit=1`,
+      { headers: sb.headers, cache: 'no-store' });
+    return r.ok ? (await r.json())[0] || null : null;
+  } catch {
+    return null;
+  }
+}
+
 export async function noterRecherche(ligne) {
   const sb = supabase();
   if (!sb) return;
