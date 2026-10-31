@@ -44,8 +44,8 @@ export async function engagerWhatsApp(contact, a) {
   const b2b = a.type === 'b2b';
   const n = contact.nb_resultats;
   const msg = b2b
-    ? `Bonjour ${contact.prenom}, c'est Alexis, de SmatchRoom Pulse. Merci d'avoir fait le test sur notre site : autour de ${contact.ville}, l'agent a repéré ${n} entreprises récemment créées qui correspondent à vos clients. Vous voulez que je vous montre comment il les contacterait pour vous ?`
-    : `Bonjour ${contact.prenom}, c'est Alexis, de SmatchRoom Pulse. Merci d'avoir fait le test sur notre site : autour de ${contact.ville}, l'agent a déjà repéré ${n} professionnels qui pourraient vous recommander (${a.cible}). Vous voulez que je vous explique comment il les contacterait pour vous ?`;
+    ? `Bonjour ${contact.prenom}, c'est Alexis, de SmatchRoom Pulse. Merci d'avoir fait le test sur notre site : autour de ${contact.ville}, l'agent a repéré ${n} entreprises récemment créées qui correspondent à vos clients, et ce n'est qu'un premier aperçu : une fois lancé, il en repère de nouvelles chaque jour. Pour bien vous répondre, comment trouvez-vous vos clients aujourd'hui ?`
+    : `Bonjour ${contact.prenom}, c'est Alexis, de SmatchRoom Pulse. Merci d'avoir fait le test sur notre site : autour de ${contact.ville}, l'agent a déjà repéré ${n} professionnels qui pourraient vous recommander (${a.cible}), et ce n'est qu'un premier aperçu : une fois lancé, il en trouve bien plus chaque jour dans votre zone. Pour bien vous répondre, comment trouvez-vous vos clients aujourd'hui ?`;
 
   const champs = {
     client_id: 1,
