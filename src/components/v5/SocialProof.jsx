@@ -1,7 +1,7 @@
 'use client';
 
 /**
- * Section 4 — Preuve sociale.
+ * Section 4 · Preuve sociale.
  *
  * Trois cas clients. Le chiffre clé de chaque carte s'incrémente à l'entrée
  * dans le champ : un nombre qui monte se lit comme un résultat acquis, pas
@@ -12,35 +12,37 @@ import { motion } from 'framer-motion';
 import { Trophy, HardHat, Sparkles, Building2 } from 'lucide-react';
 import { DepthLayer, Rise, CountUp, useLightMode } from './motion';
 
+// Cas réels relevés le 3 novembre 2026 dans les conversations des agents (accord des clients donné à Alexis).
+// Une conversation = un professionnel qui a répondu et échangé au moins deux messages avec l'agent.
 const CASES = [
   {
-    key: 'btp',
+    key: 'couvreur',
     icon: HardHat,
-    sector: 'Artisanat & BTP',
-    client: 'Mathieu · Isolation by Tryba',
-    metric: { value: 12, suffix: '', label: 'partenaires apporteurs d’affaires verrouillés' },
+    sector: 'Couverture & zinguerie · Belfort',
+    client: 'Franck · Couverture du Lion',
+    metric: { value: 85, suffix: '', label: 'conversations avec des prescripteurs en 6 semaines' },
     result:
-      'Et déjà 5 demandes de devis générées en automatique. L’Agent Chasseur sécurise son flux de chantiers.',
+      'Sur 197 architectes, maîtres d’œuvre et agences contactés, 43 % ont répondu et échangé. Franck reprend la main dès qu’un prescripteur veut travailler avec lui.',
     offset: 'lg:mt-0',
   },
   {
-    key: 'services',
-    icon: Sparkles,
-    sector: 'Prestation de services',
-    client: 'Antoine D. · Nettoyage B2B',
-    metric: { value: 3, suffix: '', label: 'contrats d’entretien récurrents signés' },
+    key: 'peintre',
+    icon: Building2,
+    sector: 'Peinture & plâtrerie · Eure-et-Loir',
+    client: 'Christopher · Déco-Renov',
+    metric: { value: 51, suffix: '', label: 'conversations avec des professionnels en 4 semaines' },
     result:
-      'Des cabinets médicaux, en moins de 45 jours. L’IA contacte les décideurs locaux pendant qu’il est sur le terrain.',
+      'Un professionnel contacté sur trois a répondu : architectes, maîtres d’œuvre et gestionnaires qui ont des chantiers de peinture à confier.',
     offset: 'lg:mt-10',
   },
   {
-    key: 'corporate',
-    icon: Building2,
-    sector: 'PME & Grands Comptes',
-    client: 'Ouverture de comptes nationaux',
-    metric: { value: 300, prefix: '+', suffix: '', label: 'décideurs contactés par semaine' },
+    key: 'aquarium',
+    icon: Sparkles,
+    sector: 'Aquariums sur mesure · Lille et Belgique',
+    client: 'Mathias · Aqua & Scape',
+    metric: { value: 28, suffix: '', label: 'conversations avec des décideurs en 5 semaines' },
     result:
-      'Transfert instantané des prospects chauds directement dans le CRM de l’équipe commerciale.',
+      'Cabinets médicaux, hôtels, golfs et concessions : l’agent trouve le bon interlocuteur et lui présente le projet avec une vidéo adaptée à son secteur.',
     offset: 'lg:mt-20',
   },
 ];
@@ -127,6 +129,10 @@ export default function SocialProof() {
             </motion.article>
           ))}
         </div>
+
+        <p className="mt-10 text-xs text-[var(--muted)]">
+          Chiffres relevés le 3 novembre 2026. Une conversation correspond à un professionnel qui a répondu et échangé au moins deux messages.
+        </p>
       </div>
     </section>
   );
