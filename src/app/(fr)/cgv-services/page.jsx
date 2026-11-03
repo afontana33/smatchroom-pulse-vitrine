@@ -61,7 +61,7 @@ const ARTICLES = [
     list: [
       'Ce qui est fourni : la conception de l’Agent, son paramétrage, son hébergement sur l’infrastructure du Prestataire, son exploitation, sa supervision et ses ajustements pendant la durée de l’abonnement, ainsi que l’accès aux échanges et aux résultats produits.',
       "Ce qui n'est pas fourni, sauf mention contraire au devis : la prise de rendez-vous par un commercial humain, la négociation et la conclusion des ventes du Client, la fourniture des comptes et abonnements tiers nécessaires (numéro de téléphone, boîte de messagerie, outils du Client), la rédaction des offres commerciales du Client, ni aucune prestation de conseil juridique.",
-      "Obligation de moyens : le Prestataire s'engage à mettre en œuvre les moyens techniques et humains nécessaires à la bonne exécution de la prestation. Il ne souscrit aucune obligation de résultat. Il ne garantit ni un nombre de réponses, ni un nombre de rendez-vous, ni un volume de contrats ou de chiffre d'affaires. Les résultats obtenus par d'autres clients ne constituent pas un engagement.",
+      "Obligation de moyens : le Prestataire s'engage à mettre en œuvre les moyens techniques et humains nécessaires à la bonne exécution de la prestation. Il ne souscrit aucune obligation de résultat. Il ne garantit ni un nombre de réponses, ni un nombre de rendez-vous, ni un volume de contrats ou de chiffre d'affaires, sous réserve de la garantie prévue à l'article 10 bis. Les résultats obtenus par d'autres clients ne constituent pas un engagement.",
       "Le Prestataire peut faire évoluer les composants techniques des Agents (modèles d'intelligence artificielle, fournisseurs d'acheminement, sources de données) dès lors que le service rendu reste substantiellement équivalent.",
     ],
   },
@@ -157,6 +157,22 @@ const ARTICLES = [
     ],
   },
   {
+    title: 'Article 10 bis · Garantie Premier rendez-vous',
+    paragraphs: [
+      "Pour les formules Agent Partenaires et Agent Clients, si l'Agent n'obtient aucun rendez-vous au cours d'un mois d'abonnement, la mensualité suivante n'est pas facturée.",
+      "Un rendez-vous s'entend d'un décideur qui accepte un échange téléphonique ou en visioconférence avec le Client.",
+      "La garantie suppose que le Client n'ait ni suspendu l'Agent, ni modifié sa cible ou sa zone sans l'accord du Prestataire, et qu'il ait donné suite aux contacts qui lui ont été transmis.",
+    ],
+  },
+  {
+    title: 'Article 10 ter · Numéros WhatsApp',
+    paragraphs: [
+      "L'Agent écrit depuis un numéro WhatsApp fourni par le Client ou mis à disposition par le Prestataire, avec des rythmes d'envoi progressifs.",
+      "Meta peut restreindre ou suspendre un numéro selon ses propres règles. Une telle mesure ne constitue pas un manquement du Prestataire.",
+      "Le Prestataire remet alors l'Agent en service dans les meilleurs délais. Toute interruption de plus de sept jours consécutifs n'est pas facturée.",
+    ],
+  },
+  {
     title: 'Article 11 · Propriété intellectuelle',
     list: [
       "Le Prestataire demeure titulaire de l'ensemble des droits portant sur les Agents, leur code, leur architecture, leurs bibliothèques de messages, leurs méthodes et leurs outils, y compris sur les développements réalisés à l'occasion de la prestation. Le Client n'acquiert aucun droit de propriété sur ces éléments.",
@@ -243,7 +259,7 @@ export default function CGVServicesPage() {
       eyebrow="Cadre contractuel"
       title="Conditions générales de vente et de service"
       subtitle="Abonnements d'agents IA · contrat entre professionnels"
-      dates={["Date d'entrée en vigueur de la présente version : 20 octobre 2026", 'Dernière mise à jour : 20 octobre 2026']}
+      dates={["Date d'entrée en vigueur de la présente version : 3 novembre 2026", 'Dernière mise à jour : 3 novembre 2026']}
       intro={
         <>
           Ces conditions s&apos;appliquent aux abonnements d&apos;agents IA. La vente de
