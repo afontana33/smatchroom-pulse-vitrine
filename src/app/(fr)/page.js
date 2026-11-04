@@ -10,6 +10,7 @@ import MethodeB2B from '@/components/lp/MethodeB2B';
 import Preuves from '@/components/lp/Preuves';
 import AvisLp from '@/components/lp/AvisLp';
 import PacksLancement from '@/components/lp/PacksLancement';
+import BureauAuto from '@/components/lp/BureauAuto';
 import FaqLp from '@/components/lp/FaqLp';
 import FinalCtaLp from '@/components/lp/FinalCtaLp';
 import Footer from '@/components/Footer';
@@ -91,6 +92,7 @@ export default function Page() {
       <AvisLp />
       <Piliers />
       <PacksLancement />
+      <BureauAuto />
       <DeuxAgents />
       <MetiersPrescripteurs />
       <AgentClients />

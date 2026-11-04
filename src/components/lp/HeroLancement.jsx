@@ -8,10 +8,10 @@
  * ne rien intercaler entre ce bloc et #resultats.
  */
 
-import { ArrowRight, Building2, Globe, Handshake, Megaphone, Phone, Radar, Star } from 'lucide-react';
+import { ArrowRight, Zap, Building2, Globe, Handshake, Megaphone, Phone, Radar, Star } from 'lucide-react';
 import { CALENDLY, TEL_DISPLAY, TEL_HREF } from '@/lib/contact';
 
-/* Les quatre offres, mises en avant en tête d'accueil à la place du Pack
+/* Les cinq offres (quatre jusqu'au 04/11/2026), mises en avant en tête d'accueil à la place du Pack
    Lancement (demande du 21/10/2026). Prix identiques à Piliers.jsx et
    lib/offers.js : les changer ensemble. */
 const OFFRES = [
@@ -42,6 +42,14 @@ const OFFRES = [
     texte: 'Un site rapide à votre nom et une fiche Google complète.',
     prix: '300 € HT',
     href: '/site-web-artisan',
+  },
+  /* 04/11/2026 : l'administratif automatisé, pour tous les métiers. */
+  {
+    Icone: Zap,
+    titre: 'Automatisation du bureau',
+    texte: 'Secrétariat WhatsApp, devis et relances, rendez-vous, avis Google : votre administratif tourne seul.',
+    prix: 'dès 1 490 € HT',
+    href: '/automatisation',
   },
 ];
 
@@ -156,8 +164,8 @@ export default function HeroLancement() {
               Ce que nous faisons pour vous
             </p>
             <h2 className="mt-2 font-display text-2xl font-semibold tracking-tight sm:text-3xl">
-              Deux agents, la publicité locale{' '}
-              <span className="font-serif-it font-normal text-[var(--primary-ink)]">et votre vitrine.</span>
+              Des clients qui arrivent,{' '}
+              <span className="font-serif-it font-normal text-[var(--primary-ink)]">un bureau qui tourne seul.</span>
             </h2>
 
             <ul className="mt-6 space-y-3">

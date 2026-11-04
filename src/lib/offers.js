@@ -281,3 +281,39 @@ export const META_OFFERS = [
     ],
   },
 ];
+
+/* Pack Bureau automatique (04/11/2026) : l'administratif automatisé, pour tous
+   les secteurs. Seul le prix du pack est affiché sur le site ; le détail par
+   automatisation reste pour les rendez-vous et les propositions sur mesure. */
+export const BUREAU_AUTO = {
+  key: 'bureau-automatique',
+  name: 'Pack Bureau automatique',
+  setup: 1490,
+  monthly: 249,
+  automatisations: [
+    {
+      t: 'Secrétariat WhatsApp',
+      d: 'Répond à vos clients 24 h sur 24, pose les bonnes questions et vous transmet une demande complète, prête à traiter.',
+    },
+    {
+      t: 'Devis et relances',
+      d: 'Prépare vos devis à partir de vos notes, relance les devis non signés et les factures en retard, sans oubli.',
+    },
+    {
+      t: 'Rendez-vous et rappels',
+      d: 'Propose des créneaux, les inscrit dans votre agenda et envoie un rappel la veille pour éviter les absences.',
+    },
+    {
+      t: 'Avis Google',
+      d: 'Demande un avis à chaque client satisfait et prépare les réponses aux avis reçus.',
+    },
+    {
+      t: 'Suivi client',
+      d: "Tient vos clients informés de l'avancement de leur dossier, de leur commande ou de leur chantier, au bon moment.",
+    },
+    {
+      t: 'Comptabilité',
+      d: 'Récupère vos factures fournisseurs dans vos mails et les transmet à votre logiciel comptable.',
+    },
+  ],
+};

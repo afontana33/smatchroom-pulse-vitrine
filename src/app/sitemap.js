@@ -20,6 +20,7 @@ export default function sitemap() {
     { url: `${BASE}/pack-lancement`, changeFrequency: 'monthly', priority: 0.9 },
     { url: `${BASE}/simulateur`, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${BASE}/publicite-facebook-instagram`, changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${BASE}/automatisation`, changeFrequency: 'monthly', priority: 0.9 },
     { url: `${BASE}/metiers`, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${BASE}/agence-ia`, changeFrequency: 'monthly', priority: 0.8 },
     ...METIERS.map((m) => ({

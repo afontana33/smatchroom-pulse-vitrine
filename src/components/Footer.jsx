@@ -32,6 +32,7 @@ const CONTENT = {
       { href: '/prospection-b2b', label: 'Prospection B2B' },
       { href: '/site-web-artisan', label: 'Site internet et fiche Google' },
       { href: '/publicite-facebook-instagram', label: 'Publicité Facebook et Instagram' },
+      { href: '/automatisation', label: 'Automatisation du bureau' },
       { href: '/metiers', label: 'Agents par métier' },
       { href: '/agence-ia', label: 'Zones desservies' },
       { href: '/#resultats', label: 'Résultats' },

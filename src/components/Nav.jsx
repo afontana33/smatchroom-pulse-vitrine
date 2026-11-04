@@ -12,6 +12,7 @@ import LangSwitch from '@/components/LangSwitch';
 const LINKS = [
   { href: '/#resultats', label: 'Résultats' },
   { href: '/#piliers', label: 'Nos offres' },
+  { href: '/#automatisation', label: 'Automatisation' },
   { href: '/#questions', label: 'Questions' },
   /* Accès direct à l'Agent Clients pour les entreprises qui vendent à des
      entreprises (demande du 20/10/2026), mis en avant avec la couleur accent. */
