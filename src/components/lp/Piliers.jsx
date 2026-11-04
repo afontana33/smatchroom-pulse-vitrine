@@ -74,7 +74,7 @@ const PILIERS = [
     alt: 'Vidéaste cadrant un plan sur un moniteur de tournage',
     /* Ne pas présenter l'Agent Partenaires comme l'agent qui rappelle les
        demandes Meta : ce n'est pas son rôle (brief du 20/10/2026). */
-    text: "Nous créons vos publicités et configurons leur diffusion dans votre zone d'intervention. Les personnes intéressées peuvent laisser leurs coordonnées pour être recontactées. Vous recevez ainsi de nouvelles demandes à traiter et à transformer en clients.",
+    text: "Nous créons vos publicités et configurons leur diffusion dans votre zone d'intervention. Les personnes intéressées peuvent laisser leurs coordonnées pour être recontactées. Vous recevez ainsi de nouvelles demandes à traiter et à transformer en clients. Si besoin, nous gérons aussi vos pages Facebook et Instagram.",
     points: [
       'Créations à partir des vidéos que vous fournissez, ou tournage par notre vidéaste',
       'Campagne locale et formulaire de demande de contact configurés',

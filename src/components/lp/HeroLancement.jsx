@@ -32,7 +32,7 @@ const OFFRES = [
   {
     Icone: Megaphone,
     titre: 'Publicité Facebook et Instagram',
-    texte: 'Vos vidéos montées en publicités locales, avec formulaire de contact.',
+    texte: 'Vos vidéos montées en publicités locales, avec formulaire de contact. Vos réseaux gérés aussi, si besoin.',
     prix: 'dès 490 € HT',
     href: '/publicite-facebook-instagram',
   },

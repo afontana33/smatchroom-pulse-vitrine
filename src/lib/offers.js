@@ -80,7 +80,7 @@ export const PILIER_OFFERS = [
     key: 'acquisition-meta',
     name: 'Publicité Facebook et Instagram',
     description:
-      'Création de vos publicités à partir de vos vidéos, configuration d’une campagne locale de génération de prospects et d’un formulaire de demande de contact. Budget publicitaire non inclus, réglé par le client directement à Meta.',
+      'Création de vos publicités à partir de vos vidéos, configuration d’une campagne locale de génération de prospects et d’un formulaire de demande de contact. Gestion de vos pages Facebook et Instagram si besoin, comprise dans le mensuel. Budget publicitaire non inclus, réglé par le client directement à Meta.',
     setup: 490,
     setupFrom: true,
     monthly: 200,
@@ -200,6 +200,7 @@ export const PACKS_LANCEMENT = [
       'Rédaction des textes publicitaires',
       'Campagne locale Facebook et Instagram configurée',
       'Formulaire de demande de contact',
+      'Gestion de vos pages Facebook et Instagram si besoin',
     ],
     creations: '1 création publicitaire',
     excluded: 'Pas d’Agent Partenaires inclus',
@@ -225,6 +226,7 @@ export const PACKS_LANCEMENT = [
       'Accroches et textes adaptés à chaque variante',
       'Campagne locale Facebook et Instagram configurée',
       'Formulaire de demande de contact',
+      'Gestion de vos pages Facebook et Instagram si besoin',
     ],
     creations: '3 variantes publicitaires',
     recurring: [
@@ -254,6 +256,7 @@ export const META_OFFERS = [
       'Textes publicitaires',
       'Campagne locale de génération de prospects configurée',
       'Formulaire de demande de contact',
+      'Gestion de vos pages Facebook et Instagram si besoin',
     ],
   },
   {
@@ -267,6 +270,7 @@ export const META_OFFERS = [
       'Accroches et textes adaptés',
       'Campagne locale de génération de prospects configurée',
       'Formulaire de demande de contact',
+      'Gestion de vos pages Facebook et Instagram si besoin',
     ],
   },
   {

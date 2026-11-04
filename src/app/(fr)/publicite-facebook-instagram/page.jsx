@@ -87,6 +87,12 @@ const FAQ = [
       + "création et la gestion de vos campagnes.",
   },
   {
+    q: 'Vous gérez aussi mes réseaux sociaux ?',
+    a: "Oui, si vous en avez besoin. Si vous n'avez pas de pages Facebook et Instagram, nous les "
+      + "créons ; si elles existent, nous nous connectons à vos accès et nous les faisons vivre avec "
+      + "vos réalisations. C'est compris dans les 200 € HT par mois de gestion.",
+  },
+  {
     q: 'Je peux arrêter quand je veux ?',
     a: "Oui, la gestion mensuelle est sans engagement. Les créations réalisées restent à vous.",
   },
@@ -139,7 +145,7 @@ export default function PubliciteMetaPage() {
           <PageTitle
             lead="Trouvez de nouveaux clients"
             accent="avec la publicité sur Facebook et Instagram."
-            chapeau="Nous créons vos publicités et configurons leur diffusion dans votre zone d’intervention. Les personnes intéressées peuvent laisser leurs coordonnées pour être recontactées. Vous recevez ainsi de nouvelles demandes à traiter et à transformer en clients."
+            chapeau="Nous créons vos publicités et configurons leur diffusion dans votre zone d’intervention. Les personnes intéressées peuvent laisser leurs coordonnées pour être recontactées. Vous recevez ainsi de nouvelles demandes à traiter et à transformer en clients. Si besoin, nous gérons aussi vos réseaux sociaux."
           />
         </Section>
 
@@ -219,7 +225,7 @@ export default function PubliciteMetaPage() {
 
         <Section>
           <SectionHead eyebrow="Pourquoi ça marche" />
-          <div className="grid gap-6 md:grid-cols-3">
+          <div className="grid gap-6 md:grid-cols-2">
             <Card title="Du vrai, pas de la banque d’images">
               Vos clients voient votre travail et votre équipe. C’est ce qui donne envie de vous
               contacter.
@@ -227,6 +233,11 @@ export default function PubliciteMetaPage() {
             <Card title="Votre zone, pas toute la France">
               Le ciblage se limite à votre secteur d’intervention&nbsp;: chaque euro touche des
               clients que vous pouvez servir.
+            </Card>
+            <Card title="Vos réseaux aussi, si besoin">
+              Pas de pages Facebook ou Instagram&nbsp;? Nous les créons. Déjà en place mais à
+              l’abandon&nbsp;? Nous les faisons vivre avec vos réalisations, dans le même mensuel
+              que la gestion de la publicité.
             </Card>
             <Card title="Votre compte, votre budget">
               Le compte publicitaire est à votre nom et vous réglez le budget directement à Meta.
