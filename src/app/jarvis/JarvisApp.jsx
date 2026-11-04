@@ -50,6 +50,38 @@ function Pouls({ s }) {
   );
 }
 
+const eur = (x) => `${Math.round(Number(x ?? 0)).toLocaleString('fr-FR')} €`;
+
+function Finances({ f }) {
+  if (!f) return null;
+  const fa = f.factures;
+  const obj = Number(f.objectif_ca_mensuel_ht ?? 0);
+  const ca = Number(fa?.ca_mois_ht ?? 0);
+  const pct = obj > 0 ? Math.min(100, Math.round((ca / obj) * 100)) : null;
+  const ecart = fa ? ca - Number(fa.ca_mois_dernier_meme_date_ht ?? 0) : null;
+  return (
+    <>
+      <h3>Finances <small className="jv-maj">{f.mis_a_jour ? `Qonto · ${f.mis_a_jour}` : ''}</small></h3>
+      <div className="jv-ca">
+        <div><b>{fa ? eur(ca) : '—'}</b><span>CA du mois HT{ecart != null ? ` · ${ecart >= 0 ? '+' : ''}${eur(ecart)} vs mois dernier` : ''}</span></div>
+        {pct != null ? <div className="jv-jauge"><i style={{ width: `${pct}%` }} /><em>{pct} % de l’objectif ({eur(obj)})</em></div> : null}
+      </div>
+      <p className="jv-ligne"><span>Encaissé ce mois</span><em>{eur(f.encaisse_mois_ttc)}</em></p>
+      <p className="jv-ligne"><span>Dépenses · net</span><em>{eur(f.depenses_mois)} · {eur(f.net_mois)}</em></p>
+      <p className="jv-ligne"><span>Solde Qonto</span><em>{eur(f.solde)}</em></p>
+      {fa ? (
+        <>
+          <p className="jv-ligne"><span>Récurrent estimé</span><em>{eur(fa.recurrent_estime_ht)} / mois</em></p>
+          <p className="jv-ligne"><span>En attente de paiement</span><em>{fa.en_attente?.nombre ?? 0} · {eur(fa.en_attente?.montant_ttc)}</em></p>
+          {(fa.en_retard ?? []).slice(0, 3).map((r) => (
+            <p key={r.numero + r.client} className="jv-ligne"><span>{r.client}</span><em className="urgent">{eur(r.montant_ttc)} · {r.jours} j de retard</em></p>
+          ))}
+        </>
+      ) : <p className="jv-vide">{f.factures_erreur || 'Factures indisponibles'}</p>}
+    </>
+  );
+}
+
 function MonCote({ e }) {
   const a = e.mon_agent_aujourdhui ?? {};
   const taches = (e.taches ?? []).slice(0, 6);
@@ -64,6 +96,7 @@ function MonCote({ e }) {
         <div><b>{nb(a.messages_linkedin)}</b><span>LinkedIn</span></div>
         <div><b>{(e.leads_a_rappeler ?? []).length}</b><span>à rappeler</span></div>
       </div>
+      <Finances f={e.finances} />
       <h3>À faire</h3>
       {taches.length ? taches.map((t) => (
         <p key={t.titre} className="jv-ligne"><span>{t.titre}</span><em className={t.quand === 'urgent' ? 'urgent' : ''}>{t.quand}</em></p>
