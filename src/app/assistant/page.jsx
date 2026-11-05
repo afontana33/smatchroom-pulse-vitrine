@@ -1,4 +1,4 @@
-import { ArrowRight, Calendar, Mail, MessageCircle, Linkedin, Instagram, Users, LayoutDashboard, Mic, Sun, ShieldCheck, Bell, Check } from 'lucide-react';
+import { ArrowRight, Calendar, Mail, MessageCircle, Briefcase, Camera, Users, LayoutDashboard, Mic, Sun, ShieldCheck, Bell, Check } from 'lucide-react';
 
 // Page publique « Jarvis » (05/11/2026) : envoyée en privé à ceux qui commentent JARVIS sous les posts d'Alexis.
 // Montre comment l'assistante vocale est branchée, sans aucun détail technique sensible.
@@ -25,8 +25,8 @@ const ENTREES = [
 
 const BRANCHES = [
   { icon: MessageCircle, titre: 'WhatsApp', desc: 'Lire une conversation, répondre, envoyer un message.' },
-  { icon: Linkedin, titre: 'LinkedIn', desc: 'Suivre les échanges et répondre aux prospects.' },
-  { icon: Instagram, titre: 'Instagram', desc: 'Valider les publications, suivre les messages privés.' },
+  { icon: Briefcase, titre: 'LinkedIn', desc: 'Suivre les échanges et répondre aux prospects.' },
+  { icon: Camera, titre: 'Instagram', desc: 'Valider les publications, suivre les messages privés.' },
   { icon: Calendar, titre: 'Agenda', desc: 'Lire ma journée, créer ou déplacer un rendez-vous.' },
   { icon: Mail, titre: 'Mails', desc: 'Résumer les mails importants, répondre, en écrire un.' },
   { icon: Users, titre: 'Agents de prospection', desc: 'Pause, reprise, volume d\'envoi par jour, pour moi et pour mes clients.' },
