@@ -167,6 +167,21 @@ h2 i, h1 i { font-weight: 400; color: var(--or-fonce); }
   .galerie figure:nth-child(2) img { aspect-ratio: 4 / 3; }
 }
 @media (max-width: 520px) { .galerie figure:nth-child(n) { grid-column: span 12; } }
+/* Avant / après : deux photos côte à côte, même hauteur sur toute la rangée */
+.rang { display: flex; gap: clamp(14px, 2vw, 28px); margin-bottom: clamp(14px, 2vw, 28px); }
+.paire { margin: 0; flex: 8; min-width: 0; }
+.paire.haut { flex: 4.5; }
+.paire div { display: flex; gap: 4px; }
+.paire span { position: relative; flex: 1; min-width: 0; }
+.paire img { width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; background: var(--graphite-2); }
+.paire.haut img { aspect-ratio: 3 / 4; }
+.paire span::after { content: 'Avant'; position: absolute; left: 0; bottom: 0; font: 600 13px var(--corps); padding: 5px 10px; background: rgba(35,35,37,.82); color: var(--blanc); }
+.paire span + span::after { content: 'Après'; background: var(--or); color: var(--graphite); }
+.paire figcaption { margin-top: 10px; font-size: 15.5px; color: #CFCDC7; }
+@media (max-width: 900px) { .rang { flex-direction: column; } }
+.galerie.trois figure:nth-child(n) { grid-column: span 4; }
+.galerie.trois figure:nth-child(n) img { aspect-ratio: 4 / 3; }
+@media (max-width: 900px) { .galerie.trois figure:nth-child(n) { grid-column: span 12; } }
 .camion { margin: clamp(30px, 4vw, 48px) 0 0; max-width: 560px; }
 .camion img { width: 100%; height: auto; }
 .camion figcaption { margin-top: 10px; font-size: 14.5px; color: #A9A7A1; }
@@ -341,6 +356,23 @@ form .btn { justify-self: start; }
     <div class="env">
       <p class="filet">Réalisations</p>
       <h2>Quelques chantiers, <i>en Eure-et-Loir.</i></h2>
+      <h3 class="sous-titre">Peinture et décoration</h3>
+      <div class="galerie">
+        <figure><img src="/photos/deco-rayures.jpg" alt="Chambre avec papier peint rayé, soubassement vert et parquet" width="1280" height="960" loading="lazy"><figcaption>Papier peint rayé, soubassement peint et parquet</figcaption></figure>
+        <figure><img src="/photos/deco-bordeaux.jpg" alt="Porte et soubassement mouluré peints en bordeaux" width="960" height="1280" loading="lazy"><figcaption>Porte et soubassement mouluré, teinte bordeaux</figcaption></figure>
+        <figure><img src="/photos/deco-graphique.jpg" alt="Papier peint graphique et soubassement bleu" width="1280" height="960" loading="lazy"><figcaption>Papier peint graphique et soubassement bleu</figcaption></figure>
+        <figure><img src="/photos/deco-bleu-escalier.jpg" alt="Séjour aux murs bleus avec escalier" width="1280" height="960" loading="lazy"><figcaption>Séjour repeint, murs bleus</figcaption></figure>
+        <figure><img src="/photos/deco-fleuri.jpg" alt="Pièce tapissée de papier peint fleuri" width="640" height="480" loading="lazy"><figcaption>Papier peint fleuri</figcaption></figure>
+      </div>
+      <h3 class="sous-titre">Avant, après</h3>
+      <div class="rang">
+        <figure class="paire"><div><span><img src="/photos/facade-a-avant.jpg" alt="Façade de maison de ville, avant" width="640" height="480" loading="lazy"></span><span><img src="/photos/facade-a-apres.jpg" alt="Façade de maison de ville, après" width="640" height="480" loading="lazy"></span></div><figcaption>Ravalement de façade, maison de ville</figcaption></figure>
+        <figure class="paire"><div><span><img src="/photos/facade-b-avant.jpg" alt="Façade en brique et enduit, avant" width="640" height="480" loading="lazy"></span><span><img src="/photos/facade-b-apres.jpg" alt="Façade en brique et enduit, après" width="640" height="480" loading="lazy"></span></div><figcaption>Ravalement de façade, brique et enduit</figcaption></figure>
+      </div>
+      <div class="rang">
+        <figure class="paire"><div><span><img src="/photos/pavillon-avant.jpg" alt="Pavillon, avant" width="640" height="480" loading="lazy"></span><span><img src="/photos/pavillon-apres.jpg" alt="Pavillon, après" width="640" height="480" loading="lazy"></span></div><figcaption>Ravalement complet d'un pavillon</figcaption></figure>
+        <figure class="paire haut"><div><span><img src="/photos/escalier-avant.jpg" alt="Escalier en bois, avant" width="480" height="640" loading="lazy"></span><span><img src="/photos/escalier-apres.jpg" alt="Escalier en bois, après" width="480" height="640" loading="lazy"></span></div><figcaption>Escalier repeint</figcaption></figure>
+      </div>
       <h3 class="sous-titre">Un doublage isolant, étape par étape</h3>
       <ol class="suite">
         <li><img src="/photos/doublage-1-mur-nu.jpg" alt="Mur en béton mis à nu avant travaux" width="640" height="480" loading="lazy"><p>Le mur est mis à nu</p></li>
@@ -349,16 +381,11 @@ form .btn { justify-self: start; }
         <li><img src="/photos/doublage-4-plaques.jpg" alt="Plaques de plâtre vissées" width="640" height="480" loading="lazy"><p>Les plaques de plâtre</p></li>
         <li><img src="/photos/doublage-5-bandes.jpg" alt="Bandes à joint réalisées" width="640" height="480" loading="lazy"><p>Les bandes à joint, prêt à peindre</p></li>
       </ol>
-      <h3 class="sous-titre">D'autres chantiers</h3>
-      <div class="galerie">
+      <h3 class="sous-titre">Plaques et bandes, en grand volume</h3>
+      <div class="galerie trois">
         <figure><img src="/photos/plafond-charpente.jpg" alt="Grand séjour plaqué sous charpente apparente" width="640" height="480" loading="lazy"><figcaption>Rampants et murs plaqués sous charpente apparente</figcaption></figure>
         <figure><img src="/photos/bandes-charpente.jpg" alt="Bandes à joint sous une charpente" width="640" height="480" loading="lazy"><figcaption>Bandes à joint en grande hauteur</figcaption></figure>
-        <figure><img src="/photos/isolation-rampants.jpg" alt="Isolant posé sous la toiture" width="640" height="480" loading="lazy"><figcaption>Isolation des rampants</figcaption></figure>
-        <figure><img src="/photos/cloisons.jpg" alt="Ossature de cloisons" width="640" height="480" loading="lazy"><figcaption>Cloisons de distribution</figcaption></figure>
         <figure><img src="/photos/combles.jpg" alt="Combles avec bandes à joint" width="640" height="480" loading="lazy"><figcaption>Combles aménagés</figcaption></figure>
-        <figure><img src="/photos/plafond-leve-plaque.jpg" alt="Plafond en cours de pose" width="640" height="480" loading="lazy"><figcaption>Pose d'un plafond</figcaption></figure>
-        <figure><img src="/photos/isolation-piece.jpg" alt="Pièce isolée murs et plafond" width="640" height="480" loading="lazy"><figcaption>Isolation des murs et du plafond</figcaption></figure>
-        <figure><img src="/photos/plafond-dalles.jpg" alt="Plafond suspendu en dalles" width="640" height="480" loading="lazy"><figcaption>Plafond suspendu, chantier terminé</figcaption></figure>
       </div>
     </div>
   </section>
