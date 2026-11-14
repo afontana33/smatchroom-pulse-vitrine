@@ -19,7 +19,7 @@
 <meta property="og:url" content="https://deco-renov28.fr/">
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<link rel="preload" href="/fonts/bodoni.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fraunces.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/figtree.woff2" as="font" type="font/woff2" crossorigin>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"HousePainter","name":"Déco-Renov","description":"Peintre plaquiste : rénovation intérieure, de l'isolation à la finition.","url":"https://deco-renov28.fr/","telephone":"+33650598718","email":"deco.renov@gmx.fr","image":"https://deco-renov28.fr/logo.png","address":{"@type":"PostalAddress","streetAddress":"2B rue du Moulin","postalCode":"28240","addressLocality":"Le Thieulin","addressCountry":"FR"},"areaServed":"Eure-et-Loir","founder":{"@type":"Person","name":"Christopher Belin"}}
@@ -27,16 +27,16 @@
 <style>
 /* Déco-Renov, version « atelier ».
    Parti pris : montrer le métier au lieu de le décrire. La pièce maîtresse est le mur de l'accueil, que l'on fait glisser
-   du placo brut au mur fini. Autour : gris plâtre et graphite, l'or du logo en filets fins, une Bodoni pour les titres,
+   du placo brut au mur fini. Autour : gris plâtre et graphite, l'or du logo en filets fins, une Fraunces pour les titres,
    des angles droits et des lignes plutôt que des cartes arrondies. */
-@font-face { font-family: 'Bodoni'; src: url('/fonts/bodoni.woff2') format('woff2'); font-weight: 400 900; font-style: normal; font-display: swap; }
-@font-face { font-family: 'Bodoni'; src: url('/fonts/bodoni-italique.woff2') format('woff2'); font-weight: 400 900; font-style: italic; font-display: swap; }
+@font-face { font-family: 'Fraunces'; src: url('/fonts/fraunces.woff2') format('woff2'); font-weight: 100 900; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Fraunces'; src: url('/fonts/fraunces-italique.woff2') format('woff2'); font-weight: 100 900; font-style: italic; font-display: swap; }
 @font-face { font-family: 'Figtree'; src: url('/fonts/figtree.woff2') format('woff2'); font-weight: 300 900; font-display: swap; }
 :root {
   --platre: #DCDAD5; --trait: #BDBAB3; --graphite: #232325; --graphite-2: #2E2E31;
   --texte: #2A2A2C; --doux: #5C5B57;
   --or: #C9953F; --or-fonce: #7A5618; --or-pale: #E4C88F; --blanc: #FBFAF8;
-  --titre: 'Bodoni', 'Didot', 'Times New Roman', serif;
+  --titre: 'Fraunces', Georgia, 'Times New Roman', serif;
   --corps: 'Figtree', system-ui, sans-serif;
   --marge: clamp(20px, 5vw, 72px);
 }
@@ -92,34 +92,12 @@ h2 i, h1 i { font-weight: 400; color: var(--or-fonce); }
 .reperes { display: flex; flex-wrap: wrap; gap: 10px 0; margin: clamp(30px, 4vw, 48px) 0 0; padding: 18px 0 0; list-style: none; border-top: 1px solid var(--trait); font: 500 italic 19px var(--titre); color: var(--graphite); }
 .reperes li:not(:last-child)::after { content: ''; display: inline-block; width: 1px; height: 14px; background: var(--or-fonce); margin-inline: 16px; vertical-align: -1px; }
 
-/* Le mur avant / après : placo brut à gauche de la règle, mur fini à droite */
-.mur { position: relative; min-height: clamp(420px, 62vh, 720px); background: #BFC2BB; overflow: hidden; user-select: none; touch-action: pan-y; --x: 46%; box-shadow: 0 40px 80px -40px rgba(35,35,37,.6); }
-.mur .brut, .mur .fini { position: absolute; inset: 0; }
-.brut { background:
-  radial-gradient(circle, #8F928C 0 2.2px, transparent 2.8px) 16.5% 0 / 34% 58px repeat-y,
-  radial-gradient(circle, #8F928C 0 2.2px, transparent 2.8px) 83.5% 0 / 34% 58px repeat-y,
-  linear-gradient(90deg, transparent calc(50% - 30px), #E6E4DE calc(50% - 30px) calc(50% + 30px), transparent calc(50% + 30px)),
-  linear-gradient(180deg, transparent calc(46% - 26px), #E3E1DB calc(46% - 26px) calc(46% + 26px), transparent calc(46% + 26px)),
-  #BFC2BB; }
-.brut::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 13%; background: #9B9A96; border-top: 2px solid #86857F; }
-.fini { clip-path: inset(0 0 0 var(--x)); background:
-  radial-gradient(120% 70% at 78% 0%, rgba(228,200,143,.26), transparent 62%),
-  linear-gradient(180deg, #37383B, #2B2B2E); }
-.fini::before { content: ''; position: absolute; left: 0; right: 0; bottom: 13%; height: 4.5%; background: var(--blanc); box-shadow: 0 -1px 0 rgba(0,0,0,.25); }
-.fini::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 13%;
-  background: repeating-linear-gradient(90deg, rgba(0,0,0,.18) 0 2px, transparent 2px 92px), linear-gradient(180deg, #B98A4B, #8E6532); }
-.fini img { position: absolute; right: 9%; top: 12%; width: min(34%, 190px); filter: drop-shadow(0 6px 18px rgba(0,0,0,.35)); }
-.mur .etiq { position: absolute; bottom: calc(20% + 10px); font: 600 13.5px var(--corps); padding: 7px 12px; background: rgba(35,35,37,.78); color: var(--blanc); z-index: 2; }
-.mur .etiq i { font-style: normal; }
-@media (max-width: 520px) { .mur .etiq i { display: none; } }
-.mur .etiq.g { left: 14px; }
-.mur .etiq.d { right: 14px; background: var(--or); color: var(--graphite); }
-.regle { position: absolute; top: 0; bottom: 0; left: var(--x); width: 2px; background: var(--or); z-index: 3; transform: translateX(-1px); pointer-events: none; }
-.regle::after { content: ''; position: absolute; top: 50%; left: 50%; width: 58px; height: 58px; transform: translate(-50%, -50%); border-radius: 50%; background: var(--or) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23232325' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m9 7-5 5 5 5M15 7l5 5-5 5'/%3E%3C/svg%3E") center / 26px no-repeat; box-shadow: 0 8px 24px rgba(0,0,0,.4); }
-.mur input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: ew-resize; z-index: 4; }
-.mur input:focus-visible ~ .regle::after { outline: 3px solid var(--blanc); outline-offset: 3px; }
+/* Accueil : deux vraies réalisations, la petite posée en débord sur la grande */
+.vitrine { position: relative; margin: 0; min-height: clamp(420px, 62vh, 720px); }
+.vitrine .grande { position: absolute; top: 0; right: 0; width: 88%; height: 100%; object-fit: cover; box-shadow: 0 40px 80px -40px rgba(35,35,37,.6); }
+.vitrine .petite { position: absolute; left: 0; bottom: 7%; width: 36%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; border: 6px solid var(--platre); box-shadow: 0 24px 50px -20px rgba(35,35,37,.7); }
 .mur-legende { margin-top: 12px; font-size: 14.5px; color: var(--doux); }
-@media (max-width: 900px) { .accueil .env { grid-template-columns: 1fr; } .mur { min-height: 0; aspect-ratio: 4 / 4.2; } }
+@media (max-width: 900px) { .accueil .env { grid-template-columns: 1fr; } .vitrine { min-height: 0; aspect-ratio: 4 / 3.6; } }
 
 /* Présentation */
 .sombre { background: var(--graphite); color: #CFCDC7; }
@@ -316,15 +294,11 @@ form .btn { justify-self: start; }
         </ul>
       </div>
       <div>
-        <div class="mur" id="mur">
-          <div class="brut"></div>
-          <div class="fini"><img src="/embleme.png" alt=""></div>
-          <span class="etiq g">Avant<i> : placo et bandes</i></span>
-          <span class="etiq d">Après<i> : mur fini</i></span>
-          <input type="range" min="4" max="96" value="46" aria-label="Faire glisser pour passer du placo brut au mur fini">
-          <div class="regle"></div>
-        </div>
-        <p class="mur-legende">Faites glisser la règle : c'est tout le métier, de la plaque à la peinture.</p>
+        <figure class="vitrine">
+          <img class="grande" src="/photos/deco-rayures.jpg" alt="Chambre terminée : papier peint rayé, soubassement peint et parquet" width="1280" height="960" fetchpriority="high">
+          <img class="petite" src="/photos/deco-bordeaux.jpg" alt="Porte et soubassement mouluré peints en bordeaux" width="960" height="1280">
+        </figure>
+        <p class="mur-legende">Deux chantiers Déco-Renov : papier peint, soubassements et portes peints.</p>
       </div>
     </div>
   </section>
@@ -509,17 +483,6 @@ form .btn { justify-self: start; }
 
 <script>
 (() => {
-  // Mur avant / après : la règle suit le curseur ; une seule démonstration au chargement.
-  const mur = document.getElementById('mur'), c = mur.querySelector('input');
-  const poser = (v) => mur.style.setProperty('--x', v + '%');
-  c.addEventListener('input', () => poser(c.value));
-  if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    const de = 88, a = 46, t0 = performance.now() + 500; let touche = false;
-    c.addEventListener('pointerdown', () => { touche = true; }, { once: true });
-    poser(de);
-    const pas = (t) => { if (touche) return; const k = Math.min(1, Math.max(0, (t - t0) / 1700)), e = 1 - Math.pow(1 - k, 3), v = de + (a - de) * e; poser(v); c.value = v; if (k < 1) requestAnimationFrame(pas); };
-    requestAnimationFrame(pas);
-  }
   // Curseurs avant / après de la galerie
   document.querySelectorAll('.ba').forEach((z) => { const r = z.querySelector('input'); r.addEventListener('input', () => z.style.setProperty('--x', r.value + '%')); });
   // Formulaire de devis : envoi au serveur ; s'il ne répond pas, on ouvre la messagerie du visiteur avec la demande déjà écrite.
