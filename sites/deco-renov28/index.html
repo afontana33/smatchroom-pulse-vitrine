@@ -92,12 +92,13 @@ h2 i, h1 i { font-weight: 400; color: var(--or-fonce); }
 .reperes { display: flex; flex-wrap: wrap; gap: 10px 0; margin: clamp(30px, 4vw, 48px) 0 0; padding: 18px 0 0; list-style: none; border-top: 1px solid var(--trait); font: 500 italic 19px var(--titre); color: var(--graphite); }
 .reperes li:not(:last-child)::after { content: ''; display: inline-block; width: 1px; height: 14px; background: var(--or-fonce); margin-inline: 16px; vertical-align: -1px; }
 
-/* Accueil : deux vraies réalisations, la petite posée en débord sur la grande */
-.vitrine { position: relative; margin: 0; min-height: clamp(420px, 62vh, 720px); }
-.vitrine .grande { position: absolute; top: 0; right: 0; width: 88%; height: 100%; object-fit: cover; box-shadow: 0 40px 80px -40px rgba(35,35,37,.6); }
-.vitrine .petite { position: absolute; left: 0; bottom: 7%; width: 36%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; border: 6px solid var(--platre); box-shadow: 0 24px 50px -20px rgba(35,35,37,.7); }
+/* Accueil : un vrai avant / après, le même curseur que dans la galerie, en grand */
+.ba.grand { aspect-ratio: 3 / 4; height: clamp(440px, 68vh, 740px); margin-left: auto; box-shadow: 0 40px 80px -40px rgba(35,35,37,.6); }
+.ba.grand b { font-size: 14.5px; padding: 8px 14px; }
+.ba.grand i::after { width: 58px; height: 58px; background-size: 26px; }
+.accueil .mur-legende { text-align: right; }
 .mur-legende { margin-top: 12px; font-size: 14.5px; color: var(--doux); }
-@media (max-width: 900px) { .accueil .env { grid-template-columns: 1fr; } .vitrine { min-height: 0; aspect-ratio: 4 / 3.6; } }
+@media (max-width: 900px) { .accueil .env { grid-template-columns: 1fr; } .ba.grand { height: auto; width: 100%; } .accueil .mur-legende { text-align: left; } }
 
 /* Présentation */
 .sombre { background: var(--graphite); color: #CFCDC7; }
@@ -294,11 +295,13 @@ form .btn { justify-self: start; }
         </ul>
       </div>
       <div>
-        <figure class="vitrine">
-          <img class="grande" src="/photos/deco-rayures.jpg" alt="Chambre terminée : papier peint rayé, soubassement peint et parquet" width="1280" height="960" fetchpriority="high">
-          <img class="petite" src="/photos/deco-bordeaux.jpg" alt="Porte et soubassement mouluré peints en bordeaux" width="960" height="1280">
-        </figure>
-        <p class="mur-legende">Deux chantiers Déco-Renov : papier peint, soubassements et portes peints.</p>
+        <div class="ba grand" id="ba-accueil">
+          <img src="/photos/escalier-avant.jpg" alt="Escalier en bois, avant" width="480" height="640" fetchpriority="high">
+          <img src="/photos/escalier-apres.jpg" alt="Le même escalier repeint en blanc, après" width="480" height="640">
+          <b>Avant</b><b>Après</b>
+          <input type="range" min="0" max="100" value="50" aria-label="Escalier : faire glisser pour comparer avant et après"><i></i>
+        </div>
+        <p class="mur-legende">Faites glisser la règle : un escalier repeint par Déco-Renov.</p>
       </div>
     </div>
   </section>
@@ -362,7 +365,6 @@ form .btn { justify-self: start; }
       </div>
       <div class="rang">
         <figure class="paire"><div class="ba"><img src="/photos/pavillon-avant.jpg" alt="Pavillon, avant" width="640" height="480" loading="lazy"><img src="/photos/pavillon-apres.jpg" alt="Pavillon, après" width="640" height="480" loading="lazy"><b>Avant</b><b>Après</b><input type="range" min="0" max="100" value="50" aria-label="Pavillon : faire glisser pour comparer avant et après"><i></i></div><figcaption>Ravalement complet d'un pavillon</figcaption></figure>
-        <figure class="paire haut"><div class="ba"><img src="/photos/escalier-avant.jpg" alt="Escalier en bois, avant" width="480" height="640" loading="lazy"><img src="/photos/escalier-apres.jpg" alt="Escalier en bois, après" width="480" height="640" loading="lazy"><b>Avant</b><b>Après</b><input type="range" min="0" max="100" value="50" aria-label="Escalier en bois : faire glisser pour comparer avant et après"><i></i></div><figcaption>Escalier repeint</figcaption></figure>
         <figure class="paire haut"><div class="ba"><img src="/photos/couloir-avant.jpg" alt="Couloir, avant" width="480" height="640" loading="lazy"><img src="/photos/couloir-apres.jpg" alt="Couloir, après" width="480" height="640" loading="lazy"><b>Avant</b><b>Après</b><input type="range" min="0" max="100" value="50" aria-label="Couloir : faire glisser pour comparer avant et après"><i></i></div><figcaption>Sol du couloir refait en lames</figcaption></figure>
       </div>
       <h3 class="sous-titre">Parquet et sols</h3>
@@ -483,8 +485,17 @@ form .btn { justify-self: start; }
 
 <script>
 (() => {
-  // Curseurs avant / après de la galerie
+  // Curseurs avant / après (accueil et galerie) : la règle suit le doigt ou la souris
   document.querySelectorAll('.ba').forEach((z) => { const r = z.querySelector('input'); r.addEventListener('input', () => z.style.setProperty('--x', r.value + '%')); });
+  // Celui de l'accueil se présente une fois tout seul : la règle glisse de droite au milieu, sauf si le visiteur a déjà la main dessus
+  const za = document.getElementById('ba-accueil');
+  if (za && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const r = za.querySelector('input'), de = 92, a = 50, t0 = performance.now() + 600; let touche = false;
+    r.addEventListener('pointerdown', () => { touche = true; }, { once: true });
+    za.style.setProperty('--x', de + '%');
+    const pas = (t) => { if (touche) return; const k = Math.min(1, Math.max(0, (t - t0) / 1800)), v = de + (a - de) * (1 - Math.pow(1 - k, 3)); za.style.setProperty('--x', v + '%'); r.value = v; if (k < 1) requestAnimationFrame(pas); };
+    requestAnimationFrame(pas);
+  }
   // Formulaire de devis : envoi au serveur ; s'il ne répond pas, on ouvre la messagerie du visiteur avec la demande déjà écrite.
   const f = document.getElementById('devis'), r = document.getElementById('retour');
   f.addEventListener('submit', async (e) => {
