@@ -158,6 +158,25 @@ h2 i, h1 i { font-weight: 400; color: var(--or-fonce); }
 .galerie .vide { border: 1px solid #55555A; background: repeating-linear-gradient(135deg, transparent 0 14px, rgba(255,255,255,.025) 14px 28px); display: grid; place-items: center; font: 400 italic 19px var(--titre); color: #8F8D87; text-align: center; padding: 16px; }
 @media (max-width: 760px) { .galerie figure:nth-child(n) { grid-column: span 12; aspect-ratio: 4 / 3; } }
 
+/* Avis Google : la note à gauche, les avis recopiés mot pour mot à droite */
+.avis .env { display: grid; grid-template-columns: minmax(0, .62fr) minmax(0, 1.38fr); gap: clamp(32px, 6vw, 100px); align-items: start; }
+.note-google { position: sticky; top: 110px; }
+.note-google b { display: block; font: 500 clamp(110px, 13vw, 190px)/.85 var(--titre); color: var(--graphite); letter-spacing: -.04em; }
+.etoiles { display: flex; gap: 6px; margin-top: 22px; color: var(--or); }
+.etoiles svg { width: 26px; height: 26px; }
+.note-google p { margin-top: 14px; color: var(--doux); }
+.note-google a { display: inline-block; margin-top: 22px; font-weight: 650; color: var(--graphite); text-decoration: none; border-bottom: 1px solid var(--or-fonce); padding-bottom: 3px; }
+.note-google a:hover { color: var(--or-fonce); }
+.liste-avis { display: grid; grid-template-columns: 1fr 1fr; gap: 0 clamp(24px, 4vw, 56px); }
+.liste-avis blockquote { margin: 0; padding: 26px 0 30px; border-top: 1px solid var(--trait); }
+.liste-avis blockquote:first-child { grid-column: 1 / -1; border-top-color: var(--graphite); }
+.liste-avis p { font-size: 17px; line-height: 1.6; }
+.liste-avis blockquote:first-child p { font: 400 clamp(24px, 2.6vw, 34px)/1.3 var(--titre); color: var(--graphite); text-wrap: pretty; }
+.liste-avis footer { margin-top: 14px; font: 500 italic 19px var(--titre); color: var(--or-fonce); }
+.liste-avis footer span { font: 400 14.5px var(--corps); color: var(--doux); margin-left: 8px; }
+@media (max-width: 900px) { .avis .env { grid-template-columns: 1fr; } .note-google { position: static; } }
+@media (max-width: 620px) { .liste-avis { grid-template-columns: 1fr; } }
+
 /* Déroulé (trois étapes qui se suivent : la numérotation a un sens) */
 .etapes { counter-reset: e; margin: clamp(36px, 5vw, 64px) 0 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(20px, 4vw, 64px); }
 .etapes li { counter-increment: e; border-top: 1px solid var(--graphite); padding-top: 22px; }
@@ -227,6 +246,7 @@ form .btn { justify-self: start; }
       <a href="#presentation">L'artisan</a>
       <a href="#prestations">Prestations</a>
       <a href="#realisations">Réalisations</a>
+      <a href="#avis">Avis</a>
       <a href="#secteur">Secteur</a>
       <a href="#contact">Devis</a>
       <a class="tel" href="tel:+33650598718">06 50 59 87 18</a>
@@ -247,8 +267,8 @@ form .btn { justify-self: start; }
         </div>
         <ul class="reperes">
           <li>Plus de 20 ans d'expérience</li>
-          <li>Devis rapide et gratuit</li>
-          <li>Tout le 28</li>
+          <li>4,9 sur 5 sur Google</li>
+          <li>Devis gratuit</li>
         </ul>
       </div>
       <div>
@@ -313,6 +333,27 @@ form .btn { justify-self: start; }
         <figure class="vide">Photo à venir</figure>
         <figure class="vide">Photo à venir</figure>
         <figure class="vide">Photo à venir</figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="bloc avis" id="avis">
+    <div class="env">
+      <div class="note-google">
+        <p class="filet">Avis clients</p>
+        <b>4,9</b>
+        <div class="etoiles" role="img" aria-label="4,9 sur 5"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.9 6.6 7.1.7-5.4 4.8 1.6 7L12 17.4 5.8 21.1l1.6-7L2 9.3l7.1-.7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.9 6.6 7.1.7-5.4 4.8 1.6 7L12 17.4 5.8 21.1l1.6-7L2 9.3l7.1-.7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.9 6.6 7.1.7-5.4 4.8 1.6 7L12 17.4 5.8 21.1l1.6-7L2 9.3l7.1-.7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.9 6.6 7.1.7-5.4 4.8 1.6 7L12 17.4 5.8 21.1l1.6-7L2 9.3l7.1-.7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.9 6.6 7.1.7-5.4 4.8 1.6 7L12 17.4 5.8 21.1l1.6-7L2 9.3l7.1-.7z"/></svg></div>
+        <p>sur 5, d'après 15 avis Google.<br>Note relevée le 14 novembre 2026.</p>
+        <a href="https://www.google.com/search?q=Christopher+Belin+Deco+Renov+Le+Thieulin+avis" target="_blank" rel="noopener">Lire tous les avis sur Google</a>
+      </div>
+      <div class="liste-avis">
+        <blockquote><p>« Monsieur BELIN est soigné, rigoureux, sympathique et de très bon conseil. Nous sommes ravis du travail qu'il a fait chez nous, dans les délais et en tenant le chantier de manière impeccable. Nous le recommandons vivement pour vos travaux ! »</p><footer>Camille R.<span>décembre 2025</span></footer></blockquote>
+        <blockquote><p>« Nous sommes très satisfaits du ravalement de notre maison effectué par M. BELIN. Travail sérieux et soigné. Est à l'écoute de nos souhaits. A recommander. »</p><footer>Alain L.<span>septembre 2024</span></footer></blockquote>
+        <blockquote><p>« Réactif, minutieux, un chantier propre et réalisé soigneusement. Merci pour votre réactivité à la demande, votre disponibilité et votre travail de qualité ! Je recommande fortement »</p><footer>Lisa B.<span>avril 2026</span></footer></blockquote>
+        <blockquote><p>« Nous sommes très satisfaits de Monsieur Belin qui a effectué un excellent travail de rénovation. C'est un artisan très professionnel, aimable, qui est à l'écoute et qui donne de bons conseils. Nous le recommandons. »</p><footer>Philippe<span>septembre 2024</span></footer></blockquote>
+        <blockquote><p>« Nous avons fait appel à Mr Belin pour des travaux de peinture. Très professionnel, à l’écoute de nos attentes, nous recommandons vivement DECORENOV. »</p><footer>Valérie<span>février 2025</span></footer></blockquote>
+        <blockquote><p>« Je recommande vivement le jeune entrepreneur Christopher Belin pour l'ensemble de ses qualités professionnelles, sa rigueur et son amabilité souriante. Je ferai de nouveau appel à ses services, sans hésitation. »</p><footer>André M.-B.<span>avril 2024</span></footer></blockquote>
+        <blockquote><p>« Belle rénovation de cuisine selon nos attentes ! Merci »</p><footer>Bernadette G.<span>février 2025</span></footer></blockquote>
       </div>
     </div>
   </section>
