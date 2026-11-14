@@ -1,0 +1,426 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Déco-Renov | Peintre plaquiste en Eure-et-Loir (28)</title>
+<meta name="description" content="Déco-Renov, Christopher Belin, peintre plaquiste au Thieulin (28). Rénovation intérieure de l'isolation à la finition, façades, placo, papier peint, parquet. Plus de 20 ans d'expérience. Devis gratuit.">
+<link rel="canonical" href="https://deco-renov28.fr/">
+<meta property="og:title" content="Déco-Renov, peintre plaquiste en Eure-et-Loir">
+<meta property="og:description" content="Rénovation intérieure, de l'isolation à la finition. Devis gratuit.">
+<meta property="og:image" content="https://deco-renov28.fr/logo.png">
+<meta property="og:url" content="https://deco-renov28.fr/">
+<link rel="icon" href="/embleme.png">
+<link rel="preload" href="/fonts/bodoni.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/figtree.woff2" as="font" type="font/woff2" crossorigin>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"HousePainter","name":"Déco-Renov","description":"Peintre plaquiste : rénovation intérieure, de l'isolation à la finition.","url":"https://deco-renov28.fr/","telephone":"+33650598718","email":"deco.renov@gmx.fr","image":"https://deco-renov28.fr/logo.png","address":{"@type":"PostalAddress","streetAddress":"2B rue du Moulin","postalCode":"28240","addressLocality":"Le Thieulin","addressCountry":"FR"},"areaServed":"Eure-et-Loir","founder":{"@type":"Person","name":"Christopher Belin"}}
+</script>
+<style>
+/* Déco-Renov, version « atelier ».
+   Parti pris : montrer le métier au lieu de le décrire. La pièce maîtresse est le mur de l'accueil, que l'on fait glisser
+   du placo brut au mur fini. Autour : gris plâtre et graphite, l'or du logo en filets fins, une Bodoni pour les titres,
+   des angles droits et des lignes plutôt que des cartes arrondies. */
+@font-face { font-family: 'Bodoni'; src: url('/fonts/bodoni.woff2') format('woff2'); font-weight: 400 900; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Bodoni'; src: url('/fonts/bodoni-italique.woff2') format('woff2'); font-weight: 400 900; font-style: italic; font-display: swap; }
+@font-face { font-family: 'Figtree'; src: url('/fonts/figtree.woff2') format('woff2'); font-weight: 300 900; font-display: swap; }
+:root {
+  --platre: #DCDAD5; --trait: #BDBAB3; --graphite: #232325; --graphite-2: #2E2E31;
+  --texte: #2A2A2C; --doux: #5C5B57;
+  --or: #C9953F; --or-fonce: #7A5618; --or-pale: #E4C88F; --blanc: #FBFAF8;
+  --titre: 'Bodoni', 'Didot', 'Times New Roman', serif;
+  --corps: 'Figtree', system-ui, sans-serif;
+  --marge: clamp(20px, 5vw, 72px);
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body { margin: 0; color: var(--texte); font: 400 17px/1.65 var(--corps); background: var(--platre); }
+/* grain de plâtre, très léger, sur toute la page */
+body::before { content: ''; position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: .5; mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .45 0 0 0 0 .44 0 0 0 0 .42 0 0 0 .22 0'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23g)'/%3E%3C/svg%3E"); }
+body > * { position: relative; z-index: 1; }
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+p { margin: 0; }
+h1, h2, h3 { font-family: var(--titre); font-weight: 500; color: var(--graphite); margin: 0; line-height: 1.02; letter-spacing: -.015em; }
+h2 { font-size: clamp(36px, 5.4vw, 72px); }
+h2 i, h1 i { font-weight: 400; color: var(--or-fonce); }
+.env { padding-inline: var(--marge); max-width: 1360px; margin-inline: auto; }
+.bloc { padding-block: clamp(72px, 10vw, 140px); }
+:focus-visible { outline: 2px solid var(--or); outline-offset: 4px; }
+.filet { display: flex; align-items: center; gap: 16px; font: 600 14px var(--corps); color: var(--or-fonce); margin-bottom: clamp(22px, 3vw, 36px); }
+.filet::before { content: ''; width: 56px; height: 1px; background: currentColor; }
+.sombre .filet { color: var(--or-pale); }
+
+.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 56px; padding: 0 28px; font: 650 16.5px var(--corps); text-decoration: none; border: 1px solid transparent; cursor: pointer; transition: background .25s, color .25s, border-color .25s; }
+.btn-or { background: var(--or); color: var(--graphite); }
+.btn-or:hover { background: var(--graphite); color: var(--or-pale); }
+.btn-ligne { border-color: var(--graphite); color: var(--graphite); }
+.btn-ligne:hover { background: var(--graphite); color: var(--blanc); }
+.sombre .btn-or:hover { background: var(--blanc); color: var(--graphite); }
+
+/* En-tête */
+.tete { position: sticky; top: 0; z-index: 20; background: color-mix(in srgb, var(--platre) 90%, transparent); backdrop-filter: blur(12px); border-bottom: 1px solid var(--trait); }
+.tete .env { display: flex; align-items: center; justify-content: space-between; gap: 20px; min-height: 76px; }
+.marque { display: flex; align-items: center; gap: 14px; text-decoration: none; }
+.marque img { width: 46px; }
+.marque b { font: 600 25px/1 var(--titre); color: var(--graphite); }
+.marque small { display: block; font: 600 12px var(--corps); color: var(--or-fonce); margin-top: 4px; }
+.menu { display: flex; align-items: center; gap: clamp(16px, 2.4vw, 34px); font: 550 15.5px var(--corps); }
+.menu a { text-decoration: none; position: relative; padding-block: 6px; }
+.menu a:not(.tel)::after { content: ''; position: absolute; left: 0; right: 100%; bottom: 0; height: 1px; background: var(--or-fonce); transition: right .3s; }
+.menu a:not(.tel):hover::after { right: 0; }
+.menu .tel { font: 600 20px var(--titre); color: var(--graphite); border-left: 1px solid var(--trait); padding-left: clamp(16px, 2.4vw, 34px); white-space: nowrap; }
+@media (max-width: 900px) { .menu a:not(.tel) { display: none; } .menu .tel { border: 0; padding-left: 0; } }
+@media (max-width: 400px) { .marque small { display: none; } .marque b { font-size: 21px; } .menu .tel { font-size: 17px; } }
+
+/* Accueil */
+.accueil .env { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .92fr); gap: clamp(28px, 5vw, 80px); align-items: stretch; padding-block: clamp(36px, 5vw, 72px) clamp(56px, 7vw, 100px); }
+.accueil .texte { display: flex; flex-direction: column; justify-content: center; }
+.accueil h1 { font-size: clamp(46px, 7.2vw, 108px); letter-spacing: -.03em; line-height: .95; }
+.accueil h1 i { display: block; }
+.accueil .chapo { margin-top: clamp(22px, 3vw, 36px); max-width: 46ch; font-size: clamp(17.5px, 1.5vw, 20px); color: var(--doux); }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: clamp(26px, 3vw, 40px); }
+.reperes { display: flex; flex-wrap: wrap; gap: 10px 0; margin: clamp(30px, 4vw, 48px) 0 0; padding: 18px 0 0; list-style: none; border-top: 1px solid var(--trait); font: 500 italic 19px var(--titre); color: var(--graphite); }
+.reperes li:not(:last-child)::after { content: ''; display: inline-block; width: 1px; height: 14px; background: var(--or-fonce); margin-inline: 16px; vertical-align: -1px; }
+
+/* Le mur avant / après : placo brut à gauche de la règle, mur fini à droite */
+.mur { position: relative; min-height: clamp(420px, 62vh, 720px); background: #BFC2BB; overflow: hidden; user-select: none; touch-action: pan-y; --x: 46%; box-shadow: 0 40px 80px -40px rgba(35,35,37,.6); }
+.mur .brut, .mur .fini { position: absolute; inset: 0; }
+.brut { background:
+  radial-gradient(circle, #8F928C 0 2.2px, transparent 2.8px) 16.5% 0 / 34% 58px repeat-y,
+  radial-gradient(circle, #8F928C 0 2.2px, transparent 2.8px) 83.5% 0 / 34% 58px repeat-y,
+  linear-gradient(90deg, transparent calc(50% - 30px), #E6E4DE calc(50% - 30px) calc(50% + 30px), transparent calc(50% + 30px)),
+  linear-gradient(180deg, transparent calc(46% - 26px), #E3E1DB calc(46% - 26px) calc(46% + 26px), transparent calc(46% + 26px)),
+  #BFC2BB; }
+.brut::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 13%; background: #9B9A96; border-top: 2px solid #86857F; }
+.fini { clip-path: inset(0 0 0 var(--x)); background:
+  radial-gradient(120% 70% at 78% 0%, rgba(228,200,143,.26), transparent 62%),
+  linear-gradient(180deg, #37383B, #2B2B2E); }
+.fini::before { content: ''; position: absolute; left: 0; right: 0; bottom: 13%; height: 4.5%; background: var(--blanc); box-shadow: 0 -1px 0 rgba(0,0,0,.25); }
+.fini::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 13%;
+  background: repeating-linear-gradient(90deg, rgba(0,0,0,.18) 0 2px, transparent 2px 92px), linear-gradient(180deg, #B98A4B, #8E6532); }
+.fini img { position: absolute; right: 9%; top: 12%; width: min(34%, 190px); filter: drop-shadow(0 6px 18px rgba(0,0,0,.35)); }
+.mur .etiq { position: absolute; bottom: calc(20% + 10px); font: 600 13.5px var(--corps); padding: 7px 12px; background: rgba(35,35,37,.78); color: var(--blanc); z-index: 2; }
+.mur .etiq i { font-style: normal; }
+@media (max-width: 520px) { .mur .etiq i { display: none; } }
+.mur .etiq.g { left: 14px; }
+.mur .etiq.d { right: 14px; background: var(--or); color: var(--graphite); }
+.regle { position: absolute; top: 0; bottom: 0; left: var(--x); width: 2px; background: var(--or); z-index: 3; transform: translateX(-1px); pointer-events: none; }
+.regle::after { content: ''; position: absolute; top: 50%; left: 50%; width: 58px; height: 58px; transform: translate(-50%, -50%); border-radius: 50%; background: var(--or) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23232325' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m9 7-5 5 5 5M15 7l5 5-5 5'/%3E%3C/svg%3E") center / 26px no-repeat; box-shadow: 0 8px 24px rgba(0,0,0,.4); }
+.mur input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: ew-resize; z-index: 4; }
+.mur input:focus-visible ~ .regle::after { outline: 3px solid var(--blanc); outline-offset: 3px; }
+.mur-legende { margin-top: 12px; font-size: 14.5px; color: var(--doux); }
+@media (max-width: 900px) { .accueil .env { grid-template-columns: 1fr; } .mur { min-height: 0; aspect-ratio: 4 / 4.2; } }
+
+/* Présentation */
+.sombre { background: var(--graphite); color: #CFCDC7; }
+.sombre h2, .sombre h3 { color: var(--blanc); }
+.sombre h2 i { color: var(--or-pale); }
+.presentation .env { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: clamp(32px, 6vw, 110px); align-items: start; }
+.vingt { font: 400 clamp(150px, 22vw, 330px)/.8 var(--titre); color: transparent; -webkit-text-stroke: 1.5px var(--or); letter-spacing: -.04em; margin-left: -.04em; }
+.vingt + p { margin-top: 20px; font: 400 italic clamp(22px, 2.2vw, 30px)/1.2 var(--titre); color: var(--or-pale); }
+.presentation blockquote { margin: 0; font: 400 clamp(26px, 3.3vw, 46px)/1.22 var(--titre); color: var(--blanc); letter-spacing: -.01em; text-wrap: pretty; }
+.presentation blockquote i { color: var(--or-pale); }
+.signature { margin-top: 28px; display: flex; align-items: center; gap: 14px; font-size: 16px; }
+.signature::before { content: ''; width: 40px; height: 1px; background: var(--or); }
+.engagements { margin: clamp(48px, 6vw, 84px) 0 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid #47474B; grid-column: 1 / -1; }
+.engagements li { padding: 26px 24px 0 0; border-right: 1px solid #47474B; margin-right: 24px; font-size: 16px; line-height: 1.55; }
+.engagements li:last-child { border-right: 0; margin-right: 0; }
+.engagements b { display: block; font: 500 24px/1.15 var(--titre); color: var(--blanc); margin-bottom: 10px; }
+@media (max-width: 900px) { .presentation .env { grid-template-columns: 1fr; } .engagements { grid-template-columns: 1fr 1fr; } .engagements li { border-right: 0; margin-right: 0; padding-bottom: 6px; } .vingt { font-size: clamp(130px, 40vw, 220px); } }
+@media (max-width: 520px) { .engagements { grid-template-columns: 1fr; } }
+
+/* Prestations : liste éditoriale, la peinture passe sur la ligne au survol */
+.entete { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr); gap: clamp(20px, 5vw, 80px); align-items: end; margin-bottom: clamp(36px, 5vw, 64px); }
+.entete p { color: var(--doux); font-size: 18.5px; max-width: 44ch; }
+@media (max-width: 800px) { .entete { grid-template-columns: 1fr; } }
+.metiers { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--graphite); }
+.metiers li { position: relative; display: grid; grid-template-columns: 74px minmax(0, 1fr) minmax(0, 1fr); gap: clamp(14px, 3vw, 40px); align-items: center; padding: clamp(20px, 2.4vw, 32px) clamp(8px, 1.4vw, 20px); border-bottom: 1px solid var(--trait); isolation: isolate; }
+.metiers li::before { content: ''; position: absolute; inset: 0; z-index: -1; background: var(--graphite); transform: scaleX(0); transform-origin: left; transition: transform .55s cubic-bezier(.7,0,.2,1); }
+.metiers li:hover::before { transform: scaleX(1); }
+.metiers .teinte { width: 74px; height: 54px; background: var(--c); border: 1px solid rgba(35,35,37,.25); position: relative; }
+.metiers .teinte::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 30%; background: var(--blanc); }
+.metiers h3 { font-size: clamp(27px, 3.4vw, 46px); transition: color .3s; }
+.metiers p { color: var(--doux); font-size: 16.5px; line-height: 1.5; transition: color .3s; }
+.metiers li:hover h3 { color: var(--blanc); }
+.metiers li:hover p { color: #CFCDC7; }
+@media (max-width: 760px) { .metiers li { grid-template-columns: 54px minmax(0, 1fr); } .metiers .teinte { width: 54px; height: 42px; } .metiers p { grid-column: 2; } }
+
+/* Réalisations */
+.galerie { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: clamp(10px, 1.4vw, 20px); margin-top: clamp(36px, 5vw, 64px); }
+.galerie figure { margin: 0; position: relative; background: var(--graphite-2); overflow: hidden; min-height: 220px; }
+.galerie figure:nth-child(1) { grid-column: span 7; aspect-ratio: 7 / 5; }
+.galerie figure:nth-child(2) { grid-column: span 5; }
+.galerie figure:nth-child(n+3) { grid-column: span 4; aspect-ratio: 4 / 4.4; }
+.galerie img { width: 100%; height: 100%; object-fit: cover; }
+.galerie figcaption { position: absolute; left: 0; bottom: 0; background: var(--graphite); color: var(--blanc); font: 500 italic 17px var(--titre); padding: 8px 16px; }
+.galerie .vide { border: 1px solid #55555A; background: repeating-linear-gradient(135deg, transparent 0 14px, rgba(255,255,255,.025) 14px 28px); display: grid; place-items: center; font: 400 italic 19px var(--titre); color: #8F8D87; text-align: center; padding: 16px; }
+@media (max-width: 760px) { .galerie figure:nth-child(n) { grid-column: span 12; aspect-ratio: 4 / 3; } }
+
+/* Déroulé (trois étapes qui se suivent : la numérotation a un sens) */
+.etapes { counter-reset: e; margin: clamp(36px, 5vw, 64px) 0 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(20px, 4vw, 64px); }
+.etapes li { counter-increment: e; border-top: 1px solid var(--graphite); padding-top: 22px; }
+.etapes li::before { content: counter(e); display: block; font: 400 italic clamp(54px, 6vw, 88px)/1 var(--titre); color: var(--or-fonce); margin-bottom: 14px; }
+.etapes h3 { font-size: clamp(25px, 2.6vw, 34px); }
+.etapes p { margin-top: 10px; color: var(--doux); }
+@media (max-width: 800px) { .etapes { grid-template-columns: 1fr; } }
+
+/* Secteur : les communes en grand texte */
+.secteur { padding-top: 0; }
+.villes { margin: clamp(30px, 4vw, 52px) 0 0; font: 400 clamp(26px, 3.6vw, 52px)/1.25 var(--titre); color: var(--graphite); letter-spacing: -.01em; }
+.villes span { white-space: nowrap; }
+.villes span:nth-child(even) { font-style: italic; color: var(--or-fonce); }
+.villes span:not(:last-child)::after { content: ' /'; color: var(--trait); font-style: normal; margin-inline: .12em .28em; }
+.secteur .note { margin-top: 26px; color: var(--doux); max-width: 56ch; }
+
+/* Contact */
+.contact .env { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: clamp(32px, 6vw, 110px); align-items: start; }
+.grand-tel { display: inline-block; margin-top: clamp(24px, 3vw, 40px); font: 500 clamp(38px, 5vw, 68px)/1 var(--titre); color: var(--or-pale); text-decoration: none; }
+.grand-tel:hover { color: var(--blanc); }
+.liens { display: grid; margin-top: clamp(26px, 3vw, 40px); border-top: 1px solid #47474B; }
+.liens a { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 18px 0; border-bottom: 1px solid #47474B; text-decoration: none; color: var(--blanc); font-weight: 600; transition: padding .3s, color .3s; }
+.liens a:hover { padding-left: 12px; color: var(--or-pale); }
+.liens small { color: #A9A7A1; font-weight: 400; font-size: 14.5px; text-align: right; }
+form { display: grid; gap: 26px; }
+.deux { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; }
+@media (max-width: 560px) { .deux { grid-template-columns: 1fr; } }
+label { display: grid; gap: 4px; font: 600 14px var(--corps); color: var(--or-pale); }
+form input, select, textarea { font: 400 18px var(--corps); color: var(--blanc); background: transparent; border: 0; border-bottom: 1px solid #6A6A6F; border-radius: 0; padding: 10px 0 12px; width: 100%; }
+select option { color: var(--graphite); }
+textarea { min-height: 110px; resize: vertical; }
+form input::placeholder, textarea::placeholder { color: #8F8D87; }
+form input:focus, select:focus, textarea:focus { outline: none; border-bottom-color: var(--or); box-shadow: 0 1px 0 var(--or); }
+.piege { position: absolute; left: -9999px; }
+form .btn { justify-self: start; }
+.retour { font-weight: 600; min-height: 1.6em; color: var(--blanc); }
+.retour.ok { color: #9FE0B4; }
+.retour.ko { color: #FFB4A8; }
+.petit { font-size: 14px; color: #A9A7A1; }
+@media (max-width: 900px) { .contact .env { grid-template-columns: 1fr; } }
+
+/* Pied */
+.pied { background: #19191A; color: #A9A7A1; padding-block: 48px 110px; font-size: 15.5px; }
+.pied .env { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 24px 48px; }
+.pied b { color: var(--blanc); font: 500 24px var(--titre); display: block; margin-bottom: 6px; }
+.pied a { color: #E3E1DC; }
+.pied .credit { flex-basis: 100%; border-top: 1px solid #343437; padding-top: 18px; font-size: 14.5px; }
+
+/* WhatsApp flottant */
+.wa { position: fixed; right: max(16px, env(safe-area-inset-right)); bottom: max(16px, env(safe-area-inset-bottom)); z-index: 30; display: flex; align-items: center; gap: 10px; background: #1FA855; color: #fff; text-decoration: none; font-weight: 700; padding: 0 20px 0 15px; height: 54px; border-radius: 999px; box-shadow: 0 14px 30px -10px rgba(0,0,0,.5); transition: transform .2s; }
+.wa:hover { transform: translateY(-3px); }
+.wa svg { width: 26px; height: 26px; }
+@media (max-width: 480px) { .wa span { display: none; } .wa { padding: 0; width: 56px; height: 56px; justify-content: center; } }
+
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+
+<header class="tete">
+  <div class="env">
+    <a class="marque" href="#accueil" aria-label="Déco-Renov, accueil">
+      <img src="/embleme.png" alt="" width="46" height="43">
+      <span><b>Déco-Renov</b><small>Peintre plaquiste</small></span>
+    </a>
+    <nav class="menu" aria-label="Menu">
+      <a href="#presentation">L'artisan</a>
+      <a href="#prestations">Prestations</a>
+      <a href="#realisations">Réalisations</a>
+      <a href="#secteur">Secteur</a>
+      <a href="#contact">Devis</a>
+      <a class="tel" href="tel:+33650598718">06 50 59 87 18</a>
+    </nav>
+  </div>
+</header>
+
+<main id="accueil">
+  <section class="accueil">
+    <div class="env">
+      <div class="texte">
+        <p class="filet">Peintre plaquiste en Eure-et-Loir</p>
+        <h1>Du placo brut <i>au mur fini.</i></h1>
+        <p class="chapo">Christopher Belin vous accompagne dans toutes vos rénovations intérieures, de l'isolation jusqu'à la finition. Travaux réalisés avec soin, propreté et respect des délais.</p>
+        <div class="actions">
+          <a class="btn btn-or" href="#contact">Demander un devis gratuit</a>
+          <a class="btn btn-ligne" href="tel:+33650598718">Appeler Christopher</a>
+        </div>
+        <ul class="reperes">
+          <li>Plus de 20 ans d'expérience</li>
+          <li>Devis rapide et gratuit</li>
+          <li>Tout le 28</li>
+        </ul>
+      </div>
+      <div>
+        <div class="mur" id="mur">
+          <div class="brut"></div>
+          <div class="fini"><img src="/embleme.png" alt=""></div>
+          <span class="etiq g">Avant<i> : placo et bandes</i></span>
+          <span class="etiq d">Après<i> : mur fini</i></span>
+          <input type="range" min="4" max="96" value="46" aria-label="Faire glisser pour passer du placo brut au mur fini">
+          <div class="regle"></div>
+        </div>
+        <p class="mur-legende">Faites glisser la règle : c'est tout le métier, de la plaque à la peinture.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bloc sombre presentation" id="presentation">
+    <div class="env">
+      <div>
+        <p class="filet">L'artisan</p>
+        <div class="vingt" aria-hidden="true">20</div>
+        <p>ans d'expérience, et toujours le même soin.</p>
+      </div>
+      <div>
+        <blockquote>Je vous accompagne dans toutes vos rénovations intérieures, <i>de l'isolation jusqu'à la finition.</i> C'est moi qui viens voir, qui chiffre et qui réalise les travaux.</blockquote>
+        <p class="signature">Christopher Belin, Déco-Renov</p>
+      </div>
+      <ul class="engagements">
+        <li><b>Du soin</b>Des supports bien préparés, des angles nets, des raccords invisibles.</li>
+        <li><b>De la propreté</b>Sols et meubles protégés, chantier rangé et nettoyé avant de partir.</li>
+        <li><b>Des délais tenus</b>Une date de début et une durée annoncées dans le devis, et respectées.</li>
+        <li><b>Des conseils personnalisés</b>Teintes, finitions, isolants : ce qui convient à votre maison et à votre budget.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="bloc" id="prestations">
+    <div class="env">
+      <p class="filet">Prestations</p>
+      <div class="entete">
+        <h2>Tout le second œuvre, <i>par le même artisan.</i></h2>
+        <p>Vous n'avez pas à coordonner plusieurs entreprises : de la plaque de plâtre au dernier coup de pinceau, le chantier reste entre les mêmes mains.</p>
+      </div>
+      <ul class="metiers">
+        <li><span class="teinte" style="--c:#C9953F"></span><h3>Peinture intérieure</h3><p>Murs, plafonds, boiseries. Finitions mates, satinées ou laquées, sur des supports préparés avec soin.</p></li>
+        <li><span class="teinte" style="--c:#DAD7D0"></span><h3>Placo et bandes à joint</h3><p>Cloisons, doublages, plafonds suspendus, bandes et enduits, livrés prêts à peindre.</p></li>
+        <li><span class="teinte" style="--c:#6B6A66"></span><h3>Isolation</h3><p>Isolation des murs et des combles par l'intérieur, pour une maison plus confortable été comme hiver.</p></li>
+        <li><span class="teinte" style="--c:#8E8B84"></span><h3>Façades et extérieurs</h3><p>Ravalement, peinture de façade, volets, portails et boiseries extérieures.</p></li>
+        <li><span class="teinte" style="--c:#E4C88F"></span><h3>Papier peint et décoration</h3><p>Pose de papier peint, revêtements muraux et effets décoratifs.</p></li>
+        <li><span class="teinte" style="--c:#2E2E31"></span><h3>Parquet et sols</h3><p>Pose de parquet et de lames, pour finir la pièce du sol au plafond.</p></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="bloc sombre" id="realisations">
+    <div class="env">
+      <p class="filet">Réalisations</p>
+      <h2>Quelques chantiers, <i>en Eure-et-Loir.</i></h2>
+      <div class="galerie">
+        <figure class="vide">Photo de chantier à venir</figure>
+        <figure class="vide">Photo à venir</figure>
+        <figure class="vide">Photo à venir</figure>
+        <figure class="vide">Photo à venir</figure>
+        <figure class="vide">Photo à venir</figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="bloc" id="deroule">
+    <div class="env">
+      <p class="filet">Déroulé</p>
+      <h2>Simple, <i>du premier appel au dernier coup de pinceau.</i></h2>
+      <ol class="etapes">
+        <li><h3>La visite</h3><p>Vous m'appelez ou vous m'écrivez. Je passe chez vous voir les pièces, l'état des supports et ce que vous avez en tête.</p></li>
+        <li><h3>Le devis</h3><p>Un devis rapide, gratuit et détaillé poste par poste, avec les délais. Pas de surprise à la fin.</p></li>
+        <li><h3>Le chantier</h3><p>Je protège, je prépare, je réalise, et je vous rends des pièces propres et rangées.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="bloc secteur" id="secteur">
+    <div class="env">
+      <p class="filet">Secteur</p>
+      <h2>Basé au Thieulin, <i>présent dans tout le 28.</i></h2>
+      <p class="villes"><span>Le Thieulin</span> <span>Chartres</span> <span>La Loupe</span> <span>Courville-sur-Eure</span> <span>Illiers-Combray</span> <span>Nogent-le-Rotrou</span> <span>Senonches</span> <span>Châteauneuf-en-Thymerais</span> <span>Lucé</span> <span>Mainvilliers</span> <span>Dreux</span> <span>Châteaudun</span></p>
+      <p class="note">Votre commune n'est pas dans la liste ? Appelez-moi, on regarde ensemble.</p>
+    </div>
+  </section>
+
+  <section class="bloc sombre contact" id="contact">
+    <div class="env">
+      <div>
+        <p class="filet">Devis gratuit</p>
+        <h2>Parlons de <i>vos travaux.</i></h2>
+        <a class="grand-tel" href="tel:+33650598718">06 50 59 87 18</a>
+        <div class="liens">
+          <a href="https://wa.me/33650598718?text=Bonjour%2C%20je%20souhaite%20un%20devis%20pour%20des%20travaux." target="_blank" rel="noopener">WhatsApp <small>Envoyez vos photos, je réponds vite</small></a>
+          <a href="mailto:deco.renov@gmx.fr">deco.renov@gmx.fr <small>Par e-mail</small></a>
+          <a href="https://www.google.com/maps/search/?api=1&query=2B+rue+du+Moulin+28240+Le+Thieulin" target="_blank" rel="noopener">2B rue du Moulin <small>28240 Le Thieulin</small></a>
+        </div>
+      </div>
+      <form id="devis" novalidate>
+        <div class="deux">
+          <label>Votre nom<input name="nom" autocomplete="name" required></label>
+          <label>Votre téléphone<input name="telephone" type="tel" autocomplete="tel" inputmode="tel" required></label>
+        </div>
+        <div class="deux">
+          <label>Votre commune<input name="commune" autocomplete="address-level2"></label>
+          <label>Type de travaux
+            <select name="travaux">
+              <option>Peinture intérieure</option><option>Placo, bandes à joint</option><option>Isolation</option><option>Façade ou extérieur</option><option>Papier peint, décoration</option><option>Parquet, sols</option><option>Plusieurs travaux</option>
+            </select>
+          </label>
+        </div>
+        <label>Votre e-mail (facultatif)<input name="email" type="email" autocomplete="email"></label>
+        <label>Votre projet<textarea name="message" placeholder="Pièces concernées, surface approximative, délai souhaité…" required></textarea></label>
+        <label class="piege" aria-hidden="true">Ne pas remplir<input name="site" tabindex="-1" autocomplete="off"></label>
+        <button class="btn btn-or" type="submit">Envoyer ma demande</button>
+        <p class="retour" id="retour" role="status" aria-live="polite"></p>
+        <p class="petit">Vos coordonnées servent uniquement à vous recontacter au sujet de votre demande.</p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="pied">
+  <div class="env">
+    <div><b>Déco-Renov</b>Christopher Belin, peintre plaquiste<br>2B rue du Moulin, 28240 Le Thieulin</div>
+    <div><a href="tel:+33650598718">06 50 59 87 18</a><br><a href="mailto:deco.renov@gmx.fr">deco.renov@gmx.fr</a></div>
+    <div>SIREN 978 667 541<br><a href="/mentions-legales.html">Mentions légales et confidentialité</a></div>
+    <div class="credit">Site réalisé par <a href="https://pulse.smatchroom.com/" target="_blank" rel="noopener">SmatchRoom Pulse</a></div>
+  </div>
+</footer>
+
+<a class="wa" href="https://wa.me/33650598718?text=Bonjour%2C%20je%20souhaite%20un%20devis%20pour%20des%20travaux." target="_blank" rel="noopener" aria-label="Écrire sur WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  <span>WhatsApp</span>
+</a>
+
+<script>
+(() => {
+  // Mur avant / après : la règle suit le curseur ; une seule démonstration au chargement.
+  const mur = document.getElementById('mur'), c = mur.querySelector('input');
+  const poser = (v) => mur.style.setProperty('--x', v + '%');
+  c.addEventListener('input', () => poser(c.value));
+  if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const de = 88, a = 46, t0 = performance.now() + 500; let touche = false;
+    c.addEventListener('pointerdown', () => { touche = true; }, { once: true });
+    poser(de);
+    const pas = (t) => { if (touche) return; const k = Math.min(1, Math.max(0, (t - t0) / 1700)), e = 1 - Math.pow(1 - k, 3), v = de + (a - de) * e; poser(v); c.value = v; if (k < 1) requestAnimationFrame(pas); };
+    requestAnimationFrame(pas);
+  }
+  // Formulaire de devis : envoi au serveur ; s'il ne répond pas, on ouvre la messagerie du visiteur avec la demande déjà écrite.
+  const f = document.getElementById('devis'), r = document.getElementById('retour');
+  f.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const d = Object.fromEntries(new FormData(f));
+    if (d.site) return;
+    if (!d.nom.trim() || !d.telephone.trim() || !d.message.trim()) { r.className = 'retour ko'; r.textContent = 'Indiquez votre nom, votre téléphone et votre projet.'; return; }
+    const b = f.querySelector('button'); b.disabled = true; r.className = 'retour'; r.textContent = 'Envoi en cours…';
+    try {
+      const rep = await fetch('/api/demande', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(d) });
+      if (!rep.ok) throw new Error();
+      f.reset(); r.className = 'retour ok'; r.textContent = 'Demande envoyée. Je vous rappelle rapidement.';
+    } catch {
+      const corps = `Nom : ${d.nom}\nTéléphone : ${d.telephone}\nCommune : ${d.commune}\nTravaux : ${d.travaux}\n\n${d.message}`;
+      location.href = `mailto:deco.renov@gmx.fr?subject=${encodeURIComponent('Demande de devis')}&body=${encodeURIComponent(corps)}`;
+      r.className = 'retour'; r.textContent = 'Votre messagerie s\'ouvre avec la demande prête à envoyer.';
+    }
+    b.disabled = false;
+  });
+})();
+</script>
+</body>
+</html>
