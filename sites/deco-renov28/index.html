@@ -147,16 +147,29 @@ h2 i, h1 i { font-weight: 400; color: var(--or-fonce); }
 .metiers li:hover p { color: #CFCDC7; }
 @media (max-width: 760px) { .metiers li { grid-template-columns: 54px minmax(0, 1fr); } .metiers .teinte { width: 54px; height: 42px; } .metiers p { grid-column: 2; } }
 
-/* Réalisations */
-.galerie { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: clamp(10px, 1.4vw, 20px); margin-top: clamp(36px, 5vw, 64px); }
-.galerie figure { margin: 0; position: relative; background: var(--graphite-2); overflow: hidden; min-height: 220px; }
-.galerie figure:nth-child(1) { grid-column: span 7; aspect-ratio: 7 / 5; }
+/* Réalisations : un chantier raconté étape par étape, puis d'autres chantiers */
+.sous-titre { font: 400 italic clamp(24px, 2.6vw, 34px)/1.2 var(--titre); color: var(--or-pale); margin: clamp(40px, 5vw, 70px) 0 22px; }
+.suite { counter-reset: s; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: clamp(8px, 1vw, 14px); margin: 0; padding: 0; list-style: none; }
+.suite li { counter-increment: s; }
+.suite img, .galerie img { width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; background: var(--graphite-2); }
+.suite p { margin-top: 12px; font-size: 15.5px; line-height: 1.4; color: #CFCDC7; display: flex; gap: 10px; align-items: baseline; }
+.suite p::before { content: counter(s); font: 400 italic 26px/1 var(--titre); color: var(--or); }
+.galerie { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: clamp(10px, 1.4vw, 20px); }
+.galerie figure { margin: 0; grid-column: span 4; }
+.galerie figure:nth-child(1) { grid-column: span 7; }
 .galerie figure:nth-child(2) { grid-column: span 5; }
-.galerie figure:nth-child(n+3) { grid-column: span 4; aspect-ratio: 4 / 4.4; }
-.galerie img { width: 100%; height: 100%; object-fit: cover; }
-.galerie figcaption { position: absolute; left: 0; bottom: 0; background: var(--graphite); color: var(--blanc); font: 500 italic 17px var(--titre); padding: 8px 16px; }
-.galerie .vide { border: 1px solid #55555A; background: repeating-linear-gradient(135deg, transparent 0 14px, rgba(255,255,255,.025) 14px 28px); display: grid; place-items: center; font: 400 italic 19px var(--titre); color: #8F8D87; text-align: center; padding: 16px; }
-@media (max-width: 760px) { .galerie figure:nth-child(n) { grid-column: span 12; aspect-ratio: 4 / 3; } }
+.galerie figure:nth-child(2) img { aspect-ratio: 20 / 21.3; }
+.galerie figcaption { margin-top: 10px; font-size: 15.5px; color: #CFCDC7; }
+@media (max-width: 900px) {
+  .suite { grid-auto-flow: column; grid-template-columns: none; grid-auto-columns: 72%; overflow-x: auto; scroll-snap-type: x mandatory; margin-inline: calc(var(--marge) * -1); padding-inline: var(--marge); scrollbar-width: none; }
+  .suite li { scroll-snap-align: center; }
+  .galerie figure:nth-child(n) { grid-column: span 6; }
+  .galerie figure:nth-child(2) img { aspect-ratio: 4 / 3; }
+}
+@media (max-width: 520px) { .galerie figure:nth-child(n) { grid-column: span 12; } }
+.camion { margin: clamp(30px, 4vw, 48px) 0 0; max-width: 560px; }
+.camion img { width: 100%; height: auto; }
+.camion figcaption { margin-top: 10px; font-size: 14.5px; color: #A9A7A1; }
 
 /* Avis Google : la note à gauche, les avis recopiés mot pour mot à droite */
 .avis .env { display: grid; grid-template-columns: minmax(0, .62fr) minmax(0, 1.38fr); gap: clamp(32px, 6vw, 100px); align-items: start; }
@@ -295,6 +308,7 @@ form .btn { justify-self: start; }
       <div>
         <blockquote>Je vous accompagne dans toutes vos rénovations intérieures, <i>de l'isolation jusqu'à la finition.</i> C'est moi qui viens voir, qui chiffre et qui réalise les travaux.</blockquote>
         <p class="signature">Christopher Belin, Déco-Renov</p>
+        <figure class="camion"><img src="/photos/camion.jpg" alt="Le camion Déco-Renov" width="640" height="480" loading="lazy"><figcaption>Le camion Déco-Renov, sur les routes d'Eure-et-Loir.</figcaption></figure>
       </div>
       <ul class="engagements">
         <li><b>Du soin</b>Des supports bien préparés, des angles nets, des raccords invisibles.</li>
@@ -327,12 +341,24 @@ form .btn { justify-self: start; }
     <div class="env">
       <p class="filet">Réalisations</p>
       <h2>Quelques chantiers, <i>en Eure-et-Loir.</i></h2>
+      <h3 class="sous-titre">Un doublage isolant, étape par étape</h3>
+      <ol class="suite">
+        <li><img src="/photos/doublage-1-mur-nu.jpg" alt="Mur en béton mis à nu avant travaux" width="640" height="480" loading="lazy"><p>Le mur est mis à nu</p></li>
+        <li><img src="/photos/doublage-2-ossature.jpg" alt="Christopher fixe l'ossature métallique" width="640" height="480" loading="lazy"><p>Pose de l'ossature métallique</p></li>
+        <li><img src="/photos/doublage-3-isolant.jpg" alt="Isolant posé entre les montants" width="640" height="480" loading="lazy"><p>L'isolant entre les montants</p></li>
+        <li><img src="/photos/doublage-4-plaques.jpg" alt="Plaques de plâtre vissées" width="640" height="480" loading="lazy"><p>Les plaques de plâtre</p></li>
+        <li><img src="/photos/doublage-5-bandes.jpg" alt="Bandes à joint réalisées" width="640" height="480" loading="lazy"><p>Les bandes à joint, prêt à peindre</p></li>
+      </ol>
+      <h3 class="sous-titre">D'autres chantiers</h3>
       <div class="galerie">
-        <figure class="vide">Photo de chantier à venir</figure>
-        <figure class="vide">Photo à venir</figure>
-        <figure class="vide">Photo à venir</figure>
-        <figure class="vide">Photo à venir</figure>
-        <figure class="vide">Photo à venir</figure>
+        <figure><img src="/photos/plafond-charpente.jpg" alt="Grand séjour plaqué sous charpente apparente" width="640" height="480" loading="lazy"><figcaption>Rampants et murs plaqués sous charpente apparente</figcaption></figure>
+        <figure><img src="/photos/bandes-charpente.jpg" alt="Bandes à joint sous une charpente" width="640" height="480" loading="lazy"><figcaption>Bandes à joint en grande hauteur</figcaption></figure>
+        <figure><img src="/photos/isolation-rampants.jpg" alt="Isolant posé sous la toiture" width="640" height="480" loading="lazy"><figcaption>Isolation des rampants</figcaption></figure>
+        <figure><img src="/photos/cloisons.jpg" alt="Ossature de cloisons" width="640" height="480" loading="lazy"><figcaption>Cloisons de distribution</figcaption></figure>
+        <figure><img src="/photos/combles.jpg" alt="Combles avec bandes à joint" width="640" height="480" loading="lazy"><figcaption>Combles aménagés</figcaption></figure>
+        <figure><img src="/photos/plafond-leve-plaque.jpg" alt="Plafond en cours de pose" width="640" height="480" loading="lazy"><figcaption>Pose d'un plafond</figcaption></figure>
+        <figure><img src="/photos/isolation-piece.jpg" alt="Pièce isolée murs et plafond" width="640" height="480" loading="lazy"><figcaption>Isolation des murs et du plafond</figcaption></figure>
+        <figure><img src="/photos/plafond-dalles.jpg" alt="Plafond suspendu en dalles" width="640" height="480" loading="lazy"><figcaption>Plafond suspendu, chantier terminé</figcaption></figure>
       </div>
     </div>
   </section>
